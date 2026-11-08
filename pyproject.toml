@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aigc-agent-studio"
-version = "1.0.1b1"
+version = "1.0.1b2"
 description = "Public Beta of a LibTV-based filmmaking skill for AI agents"
 requires-python = ">=3.10"
 dependencies = ["jsonschema>=4.0"]

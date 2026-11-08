@@ -12,6 +12,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -106,10 +107,14 @@ def build_phases(plan: dict[str, Any], project_uuid: str) -> dict[str, Any]:
             if group_name:
                 by_group[group_name].append(command["name"])
         elif kind == "node_link":
-            links.append(
-                [str(LIBTV), "node", command["target"], "--left", command["left"], "-p", project_uuid]
-            )
             incoming[command["target"]].append(command["left"])
+
+    for target, sources in incoming.items():
+        command = [str(LIBTV), "node", target]
+        for source in sources:
+            command.extend(["--left", source])
+        command.extend(["-p", project_uuid])
+        links.append(command)
 
     # The platform validates both `--left` and `{{Node "..."}}` at write time:
     # a video node refuses to be created without its image/video references, and
@@ -187,14 +192,16 @@ def _names(args: list[str]) -> set[str] | None:
 
 
 def _run(command: list[str], stats: dict, key: str) -> None:
-    proc = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.run(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE, timeout=60)
     if proc.returncode != 0:
         raise RuntimeError("command failed: %s\n%s" % (" ".join(command), proc.stderr.decode("utf-8", "replace")))
     stats[key] += 1
 
 
 def _read_json(args):
-    proc = subprocess.run(args, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.run(args, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE, timeout=60)
     if proc.returncode != 0:
         message = proc.stderr.decode("utf-8", "replace").strip()
         raise RuntimeError("command failed: %s" % message if message else "command failed")
@@ -207,8 +214,10 @@ def _read_json(args):
     return data
 
 
-def _existing_nodes(project_uuid, commands):
-    inventory = _read_json([str(LIBTV), "node", "list", "-p", project_uuid])
+def _existing_nodes(project_uuid, commands, read_json=None):
+    if read_json is None:
+        read_json = _read_json
+    inventory = read_json([str(LIBTV), "node", "list", "-p", project_uuid])
     rows = inventory.get("nodes")
     if not isinstance(rows, list):
         raise RuntimeError("invalid node inventory")
@@ -238,7 +247,7 @@ def _existing_nodes(project_uuid, commands):
         if not isinstance(name, str) or name not in by_name:
             continue
         node_id = by_name[name]["id"]
-        detail = _read_json([str(LIBTV), "node", node_id, "-p", project_uuid])
+        detail = read_json([str(LIBTV), "node", node_id, "-p", project_uuid])
         if isinstance(detail, dict) and "nodes" in detail:
             detail_nodes = detail.get("nodes")
             if not isinstance(detail_nodes, list) or len(detail_nodes) != 1 or not isinstance(detail_nodes[0], dict):
@@ -254,8 +263,26 @@ def _existing_nodes(project_uuid, commands):
             raise RuntimeError('node name mismatch')
         if not _node_matches(command, node):
             raise RuntimeError("node parameters mismatch")
+        if "refs" in command:
+            refs = command["refs"]
+            if not isinstance(refs, list) or any(ref not in by_name for ref in refs):
+                raise RuntimeError("unresolved planned references")
+            expected_order = [by_name[ref]["id"] for ref in refs]
+            params = _node_params(node)
+            actual_order = params.get("imageListOrder") if isinstance(params, dict) else None
+            if actual_order is None and not expected_order:
+                actual_order = []
+            if actual_order != expected_order:
+                raise RuntimeError("node references mismatch")
         skip_names.add(name)
     return skip_names
+
+
+def _node_params(node):
+    if "params" in node:
+        return node["params"]
+    data = node.get("data")
+    return data.get("params") if isinstance(data, dict) else None
 
 
 def _node_matches(command, node):
@@ -275,7 +302,7 @@ def _node_matches(command, node):
         return False
     content = command.get("content")
     needs_params = bool(model) or bool(mode_type) or bool(prompt) or bool(settings)
-    params = node.get("params")
+    params = _node_params(node)
     if needs_params and not isinstance(params, dict):
         return False
     if not isinstance(params, dict):
@@ -362,4 +389,12 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        print("LibTV CLI unavailable or connection timed out: %s. "
+              "See docs/LIBTV_SETUP.md for installation and login." % exc, file=sys.stderr)
+        raise SystemExit(3)
+    except (RuntimeError, ValueError) as exc:
+        print("LibTV plan refused: %s" % exc, file=sys.stderr)
+        raise SystemExit(1)

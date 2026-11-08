@@ -69,6 +69,18 @@ Have the agent read [SKILL.md](../SKILL.md), confirm the requested deliverable a
 
 Media generation needs explicit approval and may consume LibTV credits. Your agent/model service can have its own charges. Current model capabilities and generation settings must come from current LibTV tools.
 
+## Resume a canvas build
+
+When `libtv_canvas_build.py` creates a canvas, it prints `[canvas]` followed by its UUID. Keep that UUID. If the build stops partway, rerun with `--project <uuid>` to use the same canvas. Omitting `--project` requests a new canvas on every invocation.
+
+With an explicit project UUID, the builder reads existing nodes before writing. It skips nodes whose names, types, prompts, settings and reference order match the plan. An ambiguous identity or a mismatch stops the build for review. Two agents should not apply the same plan to the same canvas concurrently.
+
+~~~bash
+python scripts/libtv_canvas_build.py plan.json --apply --yes --project <uuid> --verify
+~~~
+
+`--apply --yes` authorizes node and reference creation. Media generation requires its own approval.
+
 ## Offline demo and Beta coverage
 
 The [offline demo](DEMO.md) tests local prompt compilation without a LibTV connection. Its result covers that local path.

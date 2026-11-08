@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.1-beta.2
+
+- Preserve the complete ordered reference list when applying multiple incoming edges.
+- Give colliding asset display names stable, distinct node names and reject invalid or duplicate IDs.
+- Verify that all planned assets and shots exist, including asset-only canvases.
+- Read existing canvas nodes before writing and resume matching plans with an explicit project UUID.
+- Isolate CLI stdin, bound CLI waits and report missing executables and connection failures.
+- Add offline regressions for reference integrity, input validation and interrupted builds.
+
 ## 1.0.1-beta.1
 
 Public Beta.

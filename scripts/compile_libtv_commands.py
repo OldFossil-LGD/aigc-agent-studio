@@ -34,7 +34,9 @@ def _platform_base(logical_id: str) -> str:
     return base or "node"
 
 
-def build_binding_map(graph: dict[str, Any]) -> dict[str, str]:
+def build_binding_map(
+    graph: dict[str, Any], preferred_names: dict[str, str] | None = None,
+) -> dict[str, str]:
     """建立 `logical_id -> platform_name` 的**单射**映射（P0-02）。
 
     规则（确定性，同一输入多次编译结果相同）：
@@ -44,9 +46,11 @@ def build_binding_map(graph: dict[str, Any]) -> dict[str, str]:
       4. 逻辑 ID 本身永远保留在 `binding_map` 的键里，不因改名丢失。
     """
     ids = sorted({str(n.get("id")) for n in (graph.get("nodes") or []) if n.get("id")})
+    bases = {nid: preferred_names[nid] if preferred_names is not None else _platform_base(nid)
+             for nid in ids}
     groups: dict[str, list[str]] = {}
     for nid in ids:
-        groups.setdefault(_platform_base(nid), []).append(nid)
+        groups.setdefault(bases[nid], []).append(nid)
     binding: dict[str, str] = {}
     for base, members in groups.items():
         if len(members) == 1:
@@ -61,7 +65,7 @@ def build_binding_map(graph: dict[str, Any]) -> dict[str, str]:
         digest = hashlib.sha1(nid.encode("utf-8")).hexdigest()
         extra = 8
         while name in used and used[name] != nid:
-            name = "%s_%s" % (_platform_base(nid), digest[:extra])
+            name = "%s_%s" % (bases[nid], digest[:extra])
             extra += 2
         used[name] = nid
         binding[nid] = name
