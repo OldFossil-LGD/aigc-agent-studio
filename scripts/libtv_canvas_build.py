@@ -35,9 +35,11 @@ except ImportError:
 
 RC_OK, RC_FAIL, RC_USAGE, RC_ENV, RC_WARN = 0, 1, 2, 3, 4
 try:
-    from .apply_libtv_plan import resolve_libtv_binary
+    from .apply_libtv_plan import resolve_libtv_binary, _existing_nodes, _node_params
+    from .compile_libtv_commands import build_binding_map
 except ImportError:
-    from apply_libtv_plan import resolve_libtv_binary
+    from apply_libtv_plan import resolve_libtv_binary, _existing_nodes, _node_params
+    from compile_libtv_commands import build_binding_map
 
 LIBTV = str(resolve_libtv_binary())
 ROLE_CN = {"face": "脸部特写", "body": "无头身体", "anchor": "主图", "closeup": "近距版",
@@ -47,7 +49,12 @@ FACE_VIEWS = {"front", "left", "right"}
 
 
 def _run(args):
-    r = subprocess.run([LIBTV] + args, capture_output=True)
+    try:
+        r = subprocess.run([LIBTV] + args, stdin=subprocess.DEVNULL,
+                           capture_output=True, timeout=60)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return RC_ENV, {"_raw": "LibTV CLI unavailable or connection timed out: %s. "
+                       "See docs/LIBTV_SETUP.md for installation and login." % exc}
     out = r.stdout.decode("utf-8", "replace").strip()
     if not out:
         err = r.stderr.decode("utf-8", "replace").strip()
@@ -213,9 +220,41 @@ def compose_all(doc):
     return unresolved
 
 
+def _identity_errors(doc):
+    errors = []
+    if not isinstance(doc, dict):
+        return ["清单必须是 JSON 对象"]
+    for collection, key in (("characters", "id"), ("props", "id"), ("scenes", "id"),
+                            ("assets", "asset_id"), ("shots", "id")):
+        rows = doc.get(collection, [])
+        if rows is None:
+            rows = []
+        if not isinstance(rows, list):
+            errors.append("%s 必须是列表" % collection)
+            continue
+        seen = set()
+        for row in rows:
+            identifier = row.get(key) if isinstance(row, dict) else None
+            if not isinstance(identifier, str) or not identifier.strip():
+                errors.append("%s 包含无效的 %s" % (collection, key))
+            elif identifier in seen:
+                errors.append("%s 包含重复的 %s %s" % (collection, key, identifier))
+            else:
+                seen.add(identifier)
+    return errors
+
+
+def _asset_names(doc):
+    names = _names(doc)
+    preferred = {a["asset_id"]: node_name(a, names) for a in doc.get("assets") or []}
+    return build_binding_map({"nodes": [{"id": aid} for aid in preferred]}, preferred)
+
+
 def validate(doc):
     """返回 (错误列表, 警告列表)。错误＝不许建。"""
-    errs, warns = [], []
+    errs, warns = _identity_errors(doc), []
+    if errs:
+        return errs, warns
     assets = [a for a in doc.get("assets") or [] if isinstance(a, dict)]
     chars = [c for c in doc.get("characters") or [] if c.get("id")]
     by_subject = {}
@@ -297,9 +336,11 @@ def validate(doc):
 
 def build_commands(doc, project=None, canvas_name=None):
     """按依赖序生成 CLI 命令列表。"""
-    names = _names(doc)
-    assets = [a for a in doc.get("assets") or [] if isinstance(a, dict)]
-    node_of = {a.get("asset_id"): node_name(a, names) for a in assets}
+    errors = _identity_errors(doc)
+    if errors:
+        raise ValueError("\n".join(errors))
+    assets = doc.get("assets") or []
+    node_of = _asset_names(doc)
 
     def is_l1(a):
         return a.get("layer") == 1 or a.get("role") in ("face", "anchor", "plan")
@@ -330,6 +371,30 @@ def build_commands(doc, project=None, canvas_name=None):
     return cmds, node_of
 
 
+def _expected_nodes(doc, node_of):
+    commands = []
+    for asset in doc.get("assets") or []:
+        parent = asset.get("parent")
+        commands.append({"name": node_of[asset["asset_id"]], "node_type": "image",
+                         "prompt": str(asset.get("prompt")),
+                         "mode_type": "image2image" if parent else None,
+                         "refs": [node_of.get(parent, parent)] if parent else []})
+    for shot in doc.get("shots") or []:
+        refs = (shot.get("reference_plan") or {}).get("assets") or []
+        commands.append({"name": video_name(shot), "node_type": "video",
+                         "prompt": str(shot.get("prompt")), "mode_type": "mixed2video",
+                         "settings": {"enableSound": "off"},
+                         "refs": [node_of[aid] for aid in refs]})
+    return commands
+
+
+def _read_existing(command):
+    rc, result = _run(command[1:])
+    if rc != 0 or not isinstance(result, dict) or "_raw" in result:
+        raise RuntimeError("LibTV 回读失败，先检查连接、账号授权与目标画布。见 docs/LIBTV_SETUP.md")
+    return result
+
+
 def apply(doc, args):
     errs, warns = validate(doc)
     for w in warns:
@@ -349,19 +414,33 @@ def apply(doc, args):
         print("--apply 需要同时给 --yes：会写画布节点与边")
         return RC_USAGE
     project = args.project
+    skip_names = set()
+    try:
+        if project:
+            skip_names = _existing_nodes(project, _expected_nodes(doc, node_of),
+                                         read_json=_read_existing)
+        else:
+            _read_existing([LIBTV, "project", "list", "--page-size", "1"])
+    except RuntimeError as exc:
+        print("[FAIL] 写入前检查失败：%s" % exc)
+        return RC_FAIL
     created = []
     for c in cmds:
         if c[0] == "project":
             rc, out = _run(c)
-            project = (out.get("projectMeta") or {}).get("uuid")
-            print("[canvas]", project)
-            if not project:
-                print("[FAIL]", out)
+            metadata = out.get("projectMeta") if isinstance(out, dict) else None
+            project = metadata.get("uuid") if isinstance(metadata, dict) else None
+            if rc != 0 or not isinstance(project, str) or not project.strip():
+                print("[FAIL] 新建画布失败", out)
                 return RC_FAIL
+            print("[canvas]", project)
+            continue
+        if c[2] in skip_names:
+            print("[skip] 已回读确认 %s" % c[2])
             continue
         rc, out = _run(c + (["-p", project] if project and "-p" not in c else []))
-        key = out.get("newNodeKey") or out.get("nodeKey")
-        ok = rc == 0 and bool(key)
+        key = (out.get("newNodeKey") or out.get("nodeKey")) if isinstance(out, dict) else None
+        ok = rc == 0 and isinstance(key, str) and bool(key.strip())
         created.append({"cmd": c[:3], "ok": ok, "key": key})
         print("[%s] %s" % ("ok" if ok else "FAIL", c[2]), "" if ok else out)
         if not ok:
@@ -373,13 +452,39 @@ def apply(doc, args):
 
 
 def verify(project, doc, node_of=None, strict_effective=False):
-    names = _names(doc)
-    node_of = node_of or {a.get("asset_id"): node_name(a, names) for a in doc.get("assets") or []}
+    errors = _identity_errors(doc)
+    if errors:
+        print("[FAIL]", "\n".join(errors))
+        return RC_FAIL
+    node_of = node_of if node_of is not None else _asset_names(doc)
     rc, lst = _run(["node", "list", "-p", project])
     if rc != 0:
         print("[FAIL] 读不到节点列表", lst)
         return RC_FAIL
-    id2name = {n["id"]: n["name"] for n in lst.get("nodes", [])}
+    rows = lst.get("nodes") if isinstance(lst, dict) else None
+    if not isinstance(rows, list):
+        print("[FAIL] 节点列表格式无效")
+        return RC_FAIL
+    id2name = {}
+    observed_names = set()
+    for node in rows:
+        node_id = node.get("id") if isinstance(node, dict) else None
+        name = node.get("name") if isinstance(node, dict) else None
+        if (not isinstance(node_id, str) or not node_id.strip()
+                or not isinstance(name, str) or not name.strip()
+                or node_id in id2name or name in observed_names):
+            print("[FAIL] 节点身份缺失或有歧义")
+            return RC_FAIL
+        id2name[node_id] = name
+        observed_names.add(name)
+    expected_names = list(node_of.values()) + [video_name(s) for s in doc.get("shots") or []]
+    if len(expected_names) != len(set(expected_names)):
+        print("[FAIL] 计划节点名称有歧义")
+        return RC_FAIL
+    missing = sorted(set(expected_names) - observed_names)
+    if missing:
+        print("[FAIL] 缺少计划节点：%s" % "、".join(missing))
+        return RC_FAIL
     bad = []
     checked = 0
 
@@ -388,7 +493,10 @@ def verify(project, doc, node_of=None, strict_effective=False):
         if rc2 != 0:
             bad.append({"node": name, "want": "成功回读", "got": {"exit": rc2, "response": d}})
             return []
-        p = (d.get("data") or {}).get("params") or {}
+        p = _node_params(d) if isinstance(d, dict) else None
+        if not isinstance(p, dict):
+            bad.append({"node": name, "want": "有效参数回读", "got": d})
+            return []
         return [id2name.get(x, x) for x in (p.get("imageListOrder") or [])]
 
     for a in doc.get("assets") or []:
@@ -524,6 +632,11 @@ def main(argv=None):
     except (OSError, ValueError) as exc:
         print("清单读不了：%s" % exc)
         return RC_USAGE
+    identity_errors = _identity_errors(doc)
+    if identity_errors:
+        for error in identity_errors:
+            print("[FAIL]", error)
+        return RC_FAIL
     if args.compose:
         missing = compose_all(doc)
         if missing:

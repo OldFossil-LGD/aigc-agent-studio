@@ -109,10 +109,11 @@
       ],
       "headings": [
         "Changelog",
+        "1.0.1-beta.2",
         "1.0.1-beta.1",
         "1.0.0"
       ],
-      "sha256": "dbfc7cfaff06e4faf54f1e9e7a266c613995e02ecc8ecdc73a2e4607599e0136"
+      "sha256": "cc26cde1f5011cfa9c4f865953bc019be354f45efca558485ecfc2fcce10c63c"
     },
     "CONTRIBUTING.md": {
       "role": "publishing",
@@ -271,9 +272,9 @@
         "MCP setup",
         "CLI setup",
         "Before production",
-        "Offline demo and Beta coverage"
+        "Resume a canvas build"
       ],
-      "sha256": "0358e269d382a551edab49aa2a38681688e3862ec9cdb972957979a1a1a84208"
+      "sha256": "d0ddd8a74591b6872c380c0c2e0158d16516f1ebc713ef6816c2d92b713baae1"
     },
     "docs/PUBLICATION_BOUNDARIES.md": {
       "role": "documentation",
@@ -863,7 +864,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "65d0f7219150697d8492f40a86998f05eaf4551dfd074caaf5a7071414b4965d"
+      "sha256": "6e5573e762eef3f03f61372348c17d94f0e709f0415f9956ea879136c3ef9e20"
     },
     "references/acceptance-check.md": {
       "role": "active_reference",
@@ -6098,7 +6099,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "eb4014775fdf5c928eb417c910860f23acd948b1898c54b7a5c1a1b429e11523"
+      "sha256": "99d01b8717aab3e24bf9c33f6b43cffa087c33f67ff43e4b059765124819545e"
     },
     "scripts/asset_manifest.py": {
       "role": "implementation",
@@ -6200,7 +6201,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "bca371cf489b22f89c349bcf97d991099cd270b061891d53233a90119b6e696a"
+      "sha256": "e086ecd2a1bb2999df6d3d1fdc666bd75a3de2815d68240126b33969320e2278"
     },
     "scripts/compile_production.py": {
       "role": "implementation",
@@ -6375,7 +6376,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "4ed913ba5babdd13e89f2b3b063776f3375f69cd2fedcebbff0a2b6e850e6f48"
+      "sha256": "3f51f1c5001aba3c756efec9e65e288fd44e416ab6aed4f53af07823eb0991cf"
     },
     "scripts/libtv_model_rules_gate.py": {
       "role": "implementation",
@@ -7247,6 +7248,14 @@
       ],
       "headings": [],
       "sha256": "a14fdb13731958770b24eb0915186a1f89be6b1806e89108919646710045a46c"
+    },
+    "tests/test_libtv_execution_integrity.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "d463a8776548c40e754b49236fe60dcb0bef02a77a334de2ce637789a396280c"
     },
     "tests/test_media_qc_entry.py": {
       "role": "test_support",
