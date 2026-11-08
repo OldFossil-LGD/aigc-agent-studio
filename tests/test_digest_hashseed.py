@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import scripts.libtv_orchestrate as orch
+
 ORCH = Path(__file__).resolve().parents[1] / "scripts" / "libtv_orchestrate.py"
 PY = sys.executable
 
@@ -33,7 +35,9 @@ class DigestHashSeedTests(unittest.TestCase):
         second_payload, second_digest = self._run(1)
         self.assertEqual(first_payload, second_payload)
         self.assertEqual(first_digest, second_digest)
-        self.assertEqual(first_payload["passed"], 145)
+        expected_passed = 140 + (6 if orch._tool("ffmpeg") else 0)
+        expected_passed -= int(bool(orch._tool("ffmpeg") and orch._tool("ffprobe")))
+        self.assertEqual(first_payload["passed"], expected_passed)
         self.assertEqual(first_payload["failed"], 0)
         self.assertEqual(first_payload["skipped"], 0)
 

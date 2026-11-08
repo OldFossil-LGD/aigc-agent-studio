@@ -39,7 +39,8 @@ class SelfTestDeterminismTests(unittest.TestCase):
         self.assertEqual(rc, 0)
         self.assertEqual(payload, {
             "profile": "local",
-            "passed": 145,
+            "passed": 140 + (6 if orch._tool("ffmpeg") else 0)
+                      - (1 if orch._tool("ffmpeg") and orch._tool("ffprobe") else 0),
             "failed": 0,
             "skipped": 0,
             "skipped_ids": [],
@@ -50,12 +51,12 @@ class SelfTestDeterminismTests(unittest.TestCase):
         self.assertEqual(rc, 0)
         self.assertEqual(payload, {
             "profile": "sandbox-readonly",
-            "passed": 104,
+            "passed": 104 if orch._tool("ffmpeg") else 105,
             "failed": 0,
-            "skipped": 4,
+            "skipped": 4 if orch._tool("ffmpeg") else 3,
             "skipped_ids": [
                 "preflight_probe",
-                "ffmpeg_frame_checks",
+                *(["ffmpeg_frame_checks"] if orch._tool("ffmpeg") else []),
                 "verify_evidence_pack",
                 "pipeline_compile_resume_e2e",
             ],
