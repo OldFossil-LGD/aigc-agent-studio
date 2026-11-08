@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Skill runtime artifacts
+.snapshots/
+.orchestrator_tmp/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environments, captures and generated demo/build output
+.venv/
+venv/
+.context_reads/
+out/
+dist/
+build/
+*.egg-info/

@@ -1,0 +1,141 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "只要一镜提示词，不生成。8秒、16:9、黑白空镜，一只玻璃瓶的影子缓慢移过墙面，固定正面机位，左侧单光源，右下留白，全程无声；不出现人物。仅画风改变为黑白木刻，保留其余明确要求。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 8,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要一镜提示词，不生成。8秒、16:9、黑白空镜，一只玻璃瓶的影子缓慢移过墙面，固定正面机位，左侧单光源，右下留白，全程无声；不出现人物。"
+    },
+    "aspect_ratio": {
+      "value": "16:9",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要一镜提示词，不生成。8秒、16:9、黑白空镜，一只玻璃瓶的影子缓慢移过墙面，固定正面机位，左侧单光源，右下留白，全程无声；不出现人物。"
+    },
+    "visual_style": {
+      "value": {
+        "text": "黑白木刻",
+        "register": "stylized",
+        "technique": "木刻"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "仅画风改变为黑白木刻，保留其余明确要求。"
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要提示词，不生成"
+    }
+  },
+  "sound": {
+    "mode": "silent",
+    "allowed": [],
+    "forbidden": [
+      "人声",
+      "对白",
+      "旁白",
+      "口型说话",
+      "音乐",
+      "配乐",
+      "环境声",
+      "拟音",
+      "音效"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 8,
+      "description": "固定正面机位，一只玻璃瓶的影子缓慢移过墙面；瓶口、细颈与瓶肩的影子轮廓可辨，左侧单光源保持，右下角留白始终不被遮挡。",
+      "motion_path": "瓶影从墙面左中部缓慢移向中部，速度均匀，始终避开右下留白，不改变相机位置。",
+      "style_detail": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+      "style_notes": "左侧单光源是场景内照明的唯一来源，瓶影的朝向保留这一因果；画面以刻线疏密表现明暗，不增加写实渐变或第二光源。",
+      "sound_craft": "整镜全程无声，不加入环境底噪、拟音、人声、对白、旁白或配乐。",
+      "shot_kind": "empty"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera_shot_01",
+      "kind": "camera",
+      "text": "固定正面机位，相机全程不移动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "正面"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_no_people",
+      "kind": "negative",
+      "text": "空镜，不出现人物、人脸、人体或手。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "不出现人物"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_left_light",
+      "kind": "visual",
+      "text": "左侧单光源，瓶影与该光源方向一致，不增加其他光源。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "左侧单光源"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_negative_space",
+      "kind": "composition",
+      "text": "右下角留白，瓶影始终避开右下留白。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "右下角留白",
+          "右下留白"
+        ],
+        "forbidden": []
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false
+  }
+}

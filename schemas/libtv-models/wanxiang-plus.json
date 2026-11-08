@@ -1,0 +1,103 @@
+{
+  "nameOrId": "wanxiang-plus",
+  "modelName": "wanxiang-plus",
+  "modelKey": "wanxiang-plus",
+  "toolKey": "wanxiang-plus",
+  "modality": "video",
+  "schema": {
+    "modelKey": "wanxiang-plus",
+    "modelName": "Wan 2.2",
+    "modelVendor": "Wan",
+    "baseType": 35,
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 800
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "9:16"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "480P",
+          "720P"
+        ],
+        "default": "720P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "enum": [
+          {
+            "value": 5,
+            "displayName": "5s"
+          }
+        ],
+        "default": 5,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "singleImage2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 63,
+        "image": 64,
+        "checkpointId": 21251055
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      }
+    ]
+  }
+}

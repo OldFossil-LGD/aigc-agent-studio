@@ -1,0 +1,108 @@
+{
+  "nameOrId": "nebula-ultra",
+  "modelName": "nebula-ultra",
+  "modelKey": "nebula-ultra",
+  "toolKey": "nebula-ultra",
+  "modality": "image",
+  "schema": {
+    "modelKey": "nebula-ultra",
+    "modelName": "全能图片模型V2",
+    "modelVendor": "nebula",
+    "baseType": 40,
+    "properties": {
+      "enableSlash": true,
+      "cameraControl": true,
+      "magic": true,
+      "focus": true,
+      "mention": true,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "template": {
+        "displayName": "风格",
+        "maxCount": 1
+      },
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          "1K",
+          "2K",
+          "4K"
+        ],
+        "default": "2K",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          },
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "4:5",
+          "5:4",
+          "21:9"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "searchable": {
+        "displayName": "联网搜索",
+        "default": 0,
+        "component": "switch",
+        "originalField": "searchable"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            7
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "advancedSettings": [
+        "searchable"
+      ],
+      "generateTypes": {
+        "text": 83,
+        "image": 83,
+        "checkpointId": 22111377
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "scope": "Independent root review of new synthetic text probe, not full creative evaluation",
+  "status": "REVISION_REQUIRED",
+  "failures": [
+    {
+      "case": "N5",
+      "why": "Adds unknown character knowledge and asks it as an alternative to identifying the target envelope."
+    },
+    {
+      "case": "N4",
+      "why": "Reasks permission to change an explicitly locked condition as a current question instead of stating unreachable under current locks."
+    }
+  ],
+  "source_changes_receipt_note": "Concurrent Codex artifact-manifest changes affected global source_unchanged; Hermes had no tools. Inlined direction source was unchanged during this probe."
+}

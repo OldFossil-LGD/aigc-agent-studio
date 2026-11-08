@@ -1,0 +1,93 @@
+{
+  "nameOrId": "viduq2",
+  "modelName": "viduq2",
+  "modelKey": "viduq2",
+  "toolKey": "viduq2",
+  "modality": "video",
+  "schema": {
+    "modelKey": "viduq2",
+    "modelName": "Vidu Q2",
+    "modelVendor": "vidu",
+    "baseType": 60,
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 5000
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "1:1",
+          "3:4",
+          "4:3",
+          "9:16"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "540p",
+          "720p",
+          "1080p"
+        ],
+        "default": "1080p",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 8,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "frames2video": [
+            2,
+            2
+          ],
+          "image2video": [
+            0,
+            7
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution",
+        "duration"
+      ],
+      "generateTypes": {
+        "text": 37,
+        "image": 38,
+        "checkpointId": 21911829
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

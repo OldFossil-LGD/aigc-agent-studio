@@ -1,0 +1,350 @@
+{
+  "index_version": "stage1-recovery/v2-in-package",
+  "generated_by": "scripts/verify_recovery_index.py",
+  "purpose": "阶段一必读规范的包内可达索引：21册历史统一基准已迁入包内 (references/unified-baseline/)，运行时只读包内文件；外部私人工作区不再是运行依赖。",
+  "in_package_policy": "Runtime reads in-package files only. Historical originals were migrated into references/unified-baseline; public views may redact machine-specific paths, declared per migration entry. These are not active authority and never override current references or scripts.",
+  "external_roots": [],
+  "historical_source_roots": [
+    "private-source://stage1-originals"
+  ],
+  "books": [
+    {
+      "book": "01_统一状态机与交付契约.md",
+      "in_package": "references/unified-baseline/01_统一状态机与交付契约.md",
+      "package_path": "references/unified-baseline/01_统一状态机与交付契约.md",
+      "in_package_substitute": "SKILL.md §最小状态链 + references/run-sheet.md §一",
+      "external": {
+        "path": "references/unified-baseline/01_统一状态机与交付契约.md",
+        "sha256": "4d33fb91792afcdb5d712be1d4bdd62ced900a4fc25e08d933c3c1eb5daa4371",
+        "bytes": 7167
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "02_图语法_节点边分组参数.md",
+      "in_package": "references/unified-baseline/02_图语法_节点边分组参数.md",
+      "package_path": "references/unified-baseline/02_图语法_节点边分组参数.md",
+      "in_package_substitute": "references/production-compiler.md §图计划",
+      "external": {
+        "path": "references/unified-baseline/02_图语法_节点边分组参数.md",
+        "sha256": "af2f43ea6a551b03062bb9e62e5f4885071b81f063685fa4b89219dc0b1c0aa5",
+        "bytes": 4717
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "03_规模预算与题材时长档位.md",
+      "in_package": "references/unified-baseline/03_规模预算与题材时长档位.md",
+      "package_path": "references/unified-baseline/03_规模预算与题材时长档位.md",
+      "in_package_substitute": "references/production-compiler.md §规模预算",
+      "external": {
+        "path": "references/unified-baseline/03_规模预算与题材时长档位.md",
+        "sha256": "5dffbd4cfc62adcf3053dc6bbf888ae0c9950ce27aee49d333ff2fcbd5387ec0",
+        "bytes": 3207
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "05_世界状态与变更传播.md",
+      "in_package": "references/unified-baseline/05_世界状态与变更传播.md",
+      "package_path": "references/unified-baseline/05_世界状态与变更传播.md",
+      "in_package_substitute": "references/asset-consistency.md",
+      "external": {
+        "path": "references/unified-baseline/05_世界状态与变更传播.md",
+        "sha256": "e72e57f8064171d3aca29734047e21056fce8c0068f431629aa63ea9a2706d91",
+        "bytes": 3842
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "10_输入到计划编译器规范.md",
+      "in_package": "references/unified-baseline/10_输入到计划编译器规范.md",
+      "package_path": "references/unified-baseline/10_输入到计划编译器规范.md",
+      "in_package_substitute": "references/production-compiler.md（编译器用法与门禁全表）",
+      "external": {
+        "path": "references/unified-baseline/10_输入到计划编译器规范.md",
+        "sha256": "576fcf5f35ff63fe161301db364e5a046fbc53c27bc3aadb325b7461e8e0cff0",
+        "bytes": 12879
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "11_提示词包与五类模板.md",
+      "in_package": "references/unified-baseline/11_提示词包与五类模板.md",
+      "package_path": "references/unified-baseline/11_提示词包与五类模板.md",
+      "in_package_substitute": "references/production-compiler.md §2–§3 + scripts/compile_prompt_packages.py（REQUIRED_BLOCKS 即字段合同）",
+      "external": {
+        "path": "references/unified-baseline/11_提示词包与五类模板.md",
+        "sha256": "093d24b6ae6527045a8826ab491fce04dbbc03fbefe71d136495405eeef42afe",
+        "bytes": 15966
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "12_创作工艺路由_人物动作灯光风格声音.md",
+      "in_package": "references/unified-baseline/12_创作工艺路由_人物动作灯光风格声音.md",
+      "package_path": "references/unified-baseline/12_创作工艺路由_人物动作灯光风格声音.md",
+      "in_package_substitute": "references/direction-reasoning.md + references/sound-craft.md",
+      "external": {
+        "path": "references/unified-baseline/12_创作工艺路由_人物动作灯光风格声音.md",
+        "sha256": "785d80ed9579b56c30a87444d69b6c23e87031aef144c8a43c6306b68d4f6d19",
+        "bytes": 16302
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "13_提示词门禁与失败诊断.md",
+      "in_package": "references/unified-baseline/13_提示词门禁与失败诊断.md",
+      "package_path": "references/unified-baseline/13_提示词门禁与失败诊断.md",
+      "in_package_substitute": "references/production-compiler.md §3 + scripts/production_capability_gate.py",
+      "external": {
+        "path": "references/unified-baseline/13_提示词门禁与失败诊断.md",
+        "sha256": "ca56b7d6678715469fdf1ba588311faab0ff7a9f1180be01eeb9a8fb00e9717a",
+        "bytes": 13138
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "14_语言口型字幕与本地化.md",
+      "in_package": "references/unified-baseline/14_语言口型字幕与本地化.md",
+      "package_path": "references/unified-baseline/14_语言口型字幕与本地化.md",
+      "in_package_substitute": "references/standard-workflow-the-turn.md",
+      "external": {
+        "path": "references/unified-baseline/14_语言口型字幕与本地化.md",
+        "sha256": "fee08f5c26dac76ed743ed26598e334a17e639ca275e0ea667ef84feaf519da5",
+        "bytes": 10107
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "20_LibTV图构建与分组规范.md",
+      "in_package": "references/unified-baseline/20_LibTV图构建与分组规范.md",
+      "package_path": "references/unified-baseline/20_LibTV图构建与分组规范.md",
+      "in_package_substitute": "references/libtv-node-topology.md + references/libtv-node-types.md",
+      "external": {
+        "path": "references/unified-baseline/20_LibTV图构建与分组规范.md",
+        "sha256": "2ac849b945b8fdfaae6f86940b4c5a6ab6fbffa25ff5775afd7dd71560b53840",
+        "bytes": 15647
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "21_模型成本并发与恢复规范.md",
+      "in_package": "references/unified-baseline/21_模型成本并发与恢复规范.md",
+      "package_path": "references/unified-baseline/21_模型成本并发与恢复规范.md",
+      "in_package_substitute": "references/libtv-concurrency.md + references/libtv-ignite-ops-fields.md",
+      "external": {
+        "path": "references/unified-baseline/21_模型成本并发与恢复规范.md",
+        "sha256": "a6f94f4addd43dbffc543b0bdb8d0d6c57cd76fe031bdd1c593e2c2904a659d7",
+        "bytes": 16528
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "22_结构回读与媒体验收规范.md",
+      "in_package": "references/unified-baseline/22_结构回读与媒体验收规范.md",
+      "package_path": "references/unified-baseline/22_结构回读与媒体验收规范.md",
+      "in_package_substitute": "references/reverse-fidelity-contract.md + references/acceptance-check.md",
+      "external": {
+        "path": "references/unified-baseline/22_结构回读与媒体验收规范.md",
+        "sha256": "0898510d04448393eaba80d6c948b25ba8f7888336b678f592db1e973158fba6",
+        "bytes": 15786
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "23_三作与合成场景回归测试.md",
+      "in_package": "references/unified-baseline/23_三作与合成场景回归测试.md",
+      "package_path": "references/unified-baseline/23_三作与合成场景回归测试.md",
+      "in_package_substitute": "scripts/three_work_regression.py",
+      "external": {
+        "path": "references/unified-baseline/23_三作与合成场景回归测试.md",
+        "sha256": "43994d0421909ac60d80e80eeccc5e6e6f2b3d39ab6f8d0cec69396e76c31e39",
+        "bytes": 12189
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "50_三任务集成验收.md",
+      "in_package": "references/unified-baseline/50_三任务集成验收.md",
+      "package_path": "references/unified-baseline/50_三任务集成验收.md",
+      "in_package_substitute": "references/delivery-engineering.md",
+      "external": {
+        "path": "references/unified-baseline/50_三任务集成验收.md",
+        "sha256": "9b5d9265795d484a8e62bb4d052fa949c9a4191b47878f2b15a4fb87a22e7a61",
+        "bytes": 8746
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true,
+      "publication_redaction": "Only local machine path/project identifier replaced; original private bytes retained off-tree"
+    },
+    {
+      "book": "samples/B1_资产_角色设定板.md",
+      "in_package": "references/unified-baseline/samples/B1_资产_角色设定板.md",
+      "package_path": "references/unified-baseline/samples/B1_资产_角色设定板.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B1_资产_角色设定板.md",
+        "sha256": "7325aa2709e7173d2e293af98b7b09b321f22d3afcb8202391c961ceb48e1016",
+        "bytes": 3327
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "samples/B2_故事板_黑白三路径.md",
+      "in_package": "references/unified-baseline/samples/B2_故事板_黑白三路径.md",
+      "package_path": "references/unified-baseline/samples/B2_故事板_黑白三路径.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B2_故事板_黑白三路径.md",
+        "sha256": "1b01bb97a7d523d483f8bf78347d8c554814ade7b0a15d7855223b5484823758",
+        "bytes": 1192
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "samples/B3_视频_短片单镜_15秒.md",
+      "in_package": "references/unified-baseline/samples/B3_视频_短片单镜_15秒.md",
+      "package_path": "references/unified-baseline/samples/B3_视频_短片单镜_15秒.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B3_视频_短片单镜_15秒.md",
+        "sha256": "5d9c902eb8626e5cf85d14b3c1d33d6a0be99c3095b7fd2e6caca1b3e437668e",
+        "bytes": 4395
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "samples/B4_视频_中片段落版_30秒.md",
+      "in_package": "references/unified-baseline/samples/B4_视频_中片段落版_30秒.md",
+      "package_path": "references/unified-baseline/samples/B4_视频_中片段落版_30秒.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B4_视频_中片段落版_30秒.md",
+        "sha256": "c8f655f23511bd8a9dbd75633139a489884b9befec746973ff67512aacf0fe37",
+        "bytes": 5118
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "samples/B5_视频_长片分段_5分钟.md",
+      "in_package": "references/unified-baseline/samples/B5_视频_长片分段_5分钟.md",
+      "package_path": "references/unified-baseline/samples/B5_视频_长片分段_5分钟.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B5_视频_长片分段_5分钟.md",
+        "sha256": "89be840372ef821063b8a185e3a95a67d5ff1a024976951cf3fabe7b03f18f4c",
+        "bytes": 6301
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "samples/B6_声音_三层声音表.md",
+      "in_package": "references/unified-baseline/samples/B6_声音_三层声音表.md",
+      "package_path": "references/unified-baseline/samples/B6_声音_三层声音表.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B6_声音_三层声音表.md",
+        "sha256": "bde52de94f465d8e5d299edbf490be97791106752a8ed2b5400171543fbe227e",
+        "bytes": 2413
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "samples/B7_合成_时间线与字幕.md",
+      "in_package": "references/unified-baseline/samples/B7_合成_时间线与字幕.md",
+      "package_path": "references/unified-baseline/samples/B7_合成_时间线与字幕.md",
+      "in_package_substitute": "references/examples/delivery-samples.md",
+      "external": {
+        "path": "references/unified-baseline/samples/B7_合成_时间线与字幕.md",
+        "sha256": "e8700356c905ac71dc4474357f05fdc9085e2416f55a08e030f1d0f3cb76142f",
+        "bytes": 3223
+      },
+      "migrated": true,
+      "source_recorded_in": "references/unified-baseline/MIGRATION_MANIFEST.json",
+      "authority": "historical_snapshot_not_active_authority",
+      "recoverable": true
+    },
+    {
+      "book": "evals/scenarios.md",
+      "in_package": "evals/scenarios.md",
+      "package_path": "evals/scenarios.md",
+      "in_package_substitute": "evals/scenarios.md（2026-10-22 call8 本批新建；仅阶段一意图交付验收场景，不是找回旧全库 scenarios）",
+      "external": {
+        "path": "evals/scenarios.md",
+        "sha256": "95c6345b4dbc59e2dbdd9f15e2cbd31386963f8540f2cced4025df34ec70ffd5",
+        "bytes": 2136
+      },
+      "migrated": false,
+      "source": null,
+      "authority": "in_package_original",
+      "recoverable": false,
+      "note": "旧全库 evals/scenarios.md 仍缺失且不可恢复；本包新增 evals/scenarios.md 仅覆盖 INTENT-DELIVERY-01 阶段一验收场景，明确为本批新建，不声称恢复全库历史场景。"
+    }
+  ],
+  "unrecoverable": [
+    "evals/scenarios.md"
+  ],
+  "verify_command": "python scripts/verify_recovery_index.py",
+  "migration_manifest": "references/unified-baseline/MIGRATION_MANIFEST.json",
+  "publication_note": "Local provenance paths are anonymised. Public snapshot hashes describe the distributed views; original source hashes remain in the migration record. Unmodified private originals are retained outside the publication tree."
+}

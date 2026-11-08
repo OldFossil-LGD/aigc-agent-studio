@@ -1,0 +1,66 @@
+{
+  "nameOrId": "vocal-music",
+  "modelName": "vocal-music",
+  "modelKey": "vocal-music",
+  "toolKey": "vocal-music",
+  "modality": "audio",
+  "schema": {
+    "modelKey": "vocal-music",
+    "modelName": "智能音乐模型",
+    "modelVendor": "vocal",
+    "scene": "Music",
+    "sceneName": "音乐",
+    "properties": {
+      "prompt": {
+        "placeholder": "描述信息",
+        "maxLength": 5000
+      },
+      "duration": {
+        "displayName": "音乐时长",
+        "tips": "设定歌曲长度。自动模式下优先保证歌词完整；指定时长后则优先匹配时长。",
+        "enum": [
+          {
+            "value": 30000,
+            "displayName": "30秒"
+          },
+          {
+            "value": 60000,
+            "displayName": "1分钟"
+          },
+          {
+            "value": 120000,
+            "displayName": "2分钟"
+          },
+          {
+            "value": 180000,
+            "displayName": "3分钟"
+          },
+          {
+            "value": 240000,
+            "displayName": "4分钟"
+          }
+        ],
+        "default": 30000,
+        "layout": "horizontal",
+        "component": "singleSelect",
+        "originalField": "music_length_ms"
+      }
+    },
+    "config": {
+      "advancedSettings": [
+        "duration"
+      ],
+      "generateTypes": {
+        "audio": 112,
+        "checkpointId": 22685108
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

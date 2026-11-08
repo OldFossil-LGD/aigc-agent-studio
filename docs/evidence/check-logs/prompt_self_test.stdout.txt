@@ -1,0 +1,101 @@
+  [OK]   blocks·段落版块名（本段共用 · X）能被取到 → 0
+  [OK]   blocks·交叉引用（变焦只按【时间线】…）不许当块起点 → 0
+  [OK]   blocks·合格块（模板版 12 块齐 + 元素齐）→ 0
+  [OK]   blocks·抽掉【构图】整块 → 1（缺块即 FAIL）
+  [OK]   blocks·块齐但元素缺（时间线四相不全 / 运镜缺锁死与落点）→ WARN
+  [OK]   blocks·含人物块但**无面部肌肉级证据**（微表情缺）→ WARN
+  [OK]   blocks·道具只写「有些旧了」（真实感下限不足）→ WARN
+  [OK]   blocks·出现风格化词却无风格声明（默认应走写实）→ WARN
+  [OK]   blocks·【人物与环境】写了动作过程与皮肤句（模块归属错）→ WARN
+  [OK]   blocks·【镜头规格】没声明景别 → WARN
+  [OK]   blocks·把表情性皱纹写成常态（鼻唇沟很深，无静息态）→ WARN
+  [OK]   blocks·只丢型号、没译成效果 → WARN
+  [OK]   blocks·自编风格编号（库里没有 B99）→ WARN
+  [OK]   blocks·人物被写死（起始几乎不动 / 缺眼落点）→ WARN
+  [OK]   blocks·正文含交叉引用「见【时间线】」时块提取仍正确 → 0
+  [OK]   blocks·起始相写成「待机位」（站得端正 / 等他开始）→ WARN
+  [OK]   blocks·块内出现装饰符号（** 强调）→ 1
+  [OK]   blocks·填表式【本镜目的】（无变化与代价）→ WARN
+  [OK]   blocks·影子方向与光源位置矛盾（光在下、影朝下）→ WARN
+  [OK]   blocks·二级动作缺因（椅子被带翻但没说被什么带翻）→ WARN
+  [OK]   blocks·光源过多（四种光源）→ WARN
+  [OK]   blocks·镜内位移超限（六步约 4.5 米）→ WARN
+  [OK]   blocks·位移超限但已声明「参考视频驱动」→ 0（既定例外，防误报）
+  [OK]   blocks·参考图给了角色却没说「不许它供什么」→ WARN
+  [OK]   blocks·参考图角色带明文排除 → 0（证明不是全篇搜「禁止」）
+  [OK]   blocks·只写毫米数、没译成空间结果 → WARN
+  [OK]   blocks·焦段配了空间结果（换了措辞）→ 0（证明不是只认基线那一句）
+  [OK]   blocks·焦段只写毫米、没写视场角（度）→ WARN
+  [OK]   blocks·焦段写成「63°（35mm）」度打头 → 0
+  [OK]   blocks·方向没标注参照系（只写「左侧」）→ WARN
+  [OK]   blocks·有台词却没写声线 → WARN
+  [OK]   blocks·有台词且配了声线母档 → 0
+  [OK]   blocks·有配乐却没写它与对白的关系 → WARN
+  [OK]   blocks·写了配乐且明确让它路（比对白低）→ 0
+  [OK]   blocks·有事件声却无环境层（声场是死的）→ WARN
+  [OK]   blocks·环境层在前、事件声在后 → 0
+  [OK]   blocks·首行画幅 21:9 与包内 2.39:1 不同值 → WARN
+  [OK]   blocks·首行画幅写 2.39:1（21:9 落地）→ 0
+  [OK]   blocks·分段镜没写死「恰好 N 段 N-1 切换点」→ WARN
+  [OK]   blocks·分段镜段内写了「第 N 秒」→ WARN
+  [OK]   blocks·多人物没声明「一次一人动」→ WARN
+  [OK]   blocks·多人物写明「只有 A 动」→ 0
+  [OK]   blocks·包是固定光圈却写了 f 值 → WARN
+  [OK]   blocks·块内思考残留 → 1
+  [OK]   blocks·没有围栏（贴错文件）→ 3
+  [OK]   blocks·空文件 → 3
+  [OK]   blocks·围栏未闭合 → 1
+  [OK]   timeline·连续时间轴 → 0
+  [OK]   timeline·有空档 → 1
+  [OK]   timeline·有重叠 → 1
+  [OK]   timeline·首镜不从 0 起 → 1
+  [OK]   timeline·没有镜头行 → 3
+  [OK]   timeline·段落式表（段落A/B/C）→ 0
+  [OK]   timeline·段落式表但无时间区 → 3（认载体 ≠ 放行）
+  [OK]   否定式·该报[不要出现六根手指] → WARN
+  [OK]   否定式·该报[禁止使用塑料皮肤] → WARN
+  [OK]   否正例·持续状态[没有停] 放行 → 0
+  [OK]   否正例·状态描述[没有任何人] 放行 → 0
+  [OK]   否正例·现象清单[禁止出现：A、B] 放行 → 0
+  [OK]   否正例·现象清单[【禁止出现】A、B] 放行 → 0
+  [OK]   否正例·环境层[无配乐/无声] 放行 → 0
+  [OK]   否正例·词内字[景别与焦距不变] 放行 → 0
+  [OK]   否正例·词内字[区别/分别] 放行 → 0
+  [OK]   blocks·含人物块但生理活性与静息微动都缺 → WARN
+  [OK]   blocks·含人物块且生理活性≥2种+静息微动齐 → 0
+  [OK]   blocks·资产块（无声音行 / 无结尾留白）→ 0
+  [OK]   blocks·故事板块（无声音行 / 无结尾留白）→ 0
+  [OK]   blocks·镜头块缺声音行与结尾留白 → WARN（--asset / --storyboard 不许卸掉镜头侧检查）
+  [OK]   blocks·'印片收尾'不算结尾留白 → WARN
+  [WARN] index·本 skill 自身 → 4（无结构 FAIL，长度 WARN 仍待处理；不是全库 PASS）
+skill 目录：<HOME>\Documents\Codex\2026-10-25\ni\work\di_checklist_completion_20261026_r2\qa_prepublication_skill
+
+SKILL.md 提到：207 个文件 + 2 个目录
+references/ 实际：279 个 .md
+
+[INFO] 余量预警：29 份文件 ≥290 行（余量 ≤10）——**这是预警不是错误**；要它进退出码就加 --headroom
+         315 行  余 -15   references/unified-baseline/22_结构回读与媒体验收规范.md
+         299 行  余 1   references/unified-baseline/20_LibTV图构建与分组规范.md
+         298 行  余 2   references/camera-movement-library.md
+         298 行  余 2   references/libtv-canvas-nodes.md
+         298 行  余 2   references/libtv-node-topology.md
+         298 行  余 2   references/libtv-web-api-shapes.md
+         ……另 23 份
+
+[WARN] 需要处理：
+  references/unified-baseline/22_结构回读与媒体验收规范.md 315 行，超过 300 行上限——拆出一个新文件，并在 SKILL.md 索引里挂上
+
+[PASS] 无幻影、无孤立：SKILL.md 的索引与 references/ 一一对应。
+       （但有 1 条长度 WARN，见上）
+
+  [OK]   291 行隔离册·默认余量 INFO → 0
+  [OK]   291 行隔离册·--headroom → 4
+  [OK]   index·孤立文件（headroom=False）→ 1（结构门禁仍生效）
+  [OK]   index·孤立文件（headroom=True）→ 1（结构门禁仍生效）
+  [OK]   claims·本 skill 自身 → 0（数字断言与实测一致）
+  [OK]   claims·假的「全库 999 条」→ 1（**证明它真的在查**）
+  [OK]   claims --refs·默认 → 0（**只报 INFO、不误报** —— E23：误报比漏报更隐蔽）
+  [OK]   claims --refs-strict → 1（**能进退出码**，证明它不是空壳）
+
+自检：78 通过 / 0 失败
+本库 index：WARN（rc=4）；自检通过不等于全库 PASS。

@@ -1,0 +1,122 @@
+{
+  "nameOrId": "lib-image-2",
+  "modelName": "lib-image-2",
+  "modelKey": "lib-image-2",
+  "toolKey": "lib-image-2",
+  "modality": "image",
+  "schema": {
+    "modelKey": "lib-image-2",
+    "modelName": "Lib Image",
+    "modelVendor": "lib-image",
+    "baseType": 27,
+    "properties": {
+      "enableSlash": true,
+      "magic": true,
+      "cameraControl": true,
+      "mention": true,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜",
+        "maxLength": 0
+      },
+      "template": {
+        "displayName": "风格",
+        "maxCount": 1
+      },
+      "quality": {
+        "displayName": "画质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "低画质"
+          },
+          {
+            "value": "medium",
+            "displayName": "标准画质"
+          },
+          {
+            "value": "high",
+            "displayName": "高画质"
+          }
+        ],
+        "default": "medium",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          {
+            "value": "1K",
+            "displayName": "1K"
+          },
+          {
+            "value": "2K",
+            "displayName": "2K"
+          },
+          {
+            "value": "4K",
+            "displayName": "4K"
+          }
+        ],
+        "default": "2K",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "1:2",
+          "2:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "5:4",
+          "4:5",
+          "21:9",
+          "9:21"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            14
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "resolution",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 92,
+        "image": 92,
+        "checkpointId": 22890161
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

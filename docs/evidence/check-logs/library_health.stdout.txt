@@ -1,0 +1,29 @@
+=== 悬空指针（引用了不存在的册）===
+  无
+
+=== 孤立知识（除索引外无人引用）===
+  非风格卷：无
+  风格卷（正常，只被索引引用）：0 册
+
+=== 学了没用上（只有记账册引用 ＝ 有出处没入口）===
+  无（每册都至少被一份工作册引用）
+
+=== 行数（上限 300，≥290 为将满）===
+  到上限（必须拆）：无
+  将满（290–299）：writing-methods.md(298)、updream-workflow.md(298)、studio-workflow.md(298)、platform-matrix.md(298)、pitfalls.md(298)、libtv-web-api-shapes.md(298)、libtv-node-topology.md(298)、libtv-canvas-nodes.md(298)、camera-movement-library.md(298)、skin-light-physics.md(297)、shot-linkage.md(297)、shot-craft.md(297)、script-format.md(297)、storyboard-frame.md(296)、libtv-realtime-and-fe-tools.md(296)、feasibility.md(296)、block-playbook-asset.md(296)、blind-reverse-runbook.md(296)、style-sources-a.md(294)、libtv-cli-env-binding.md(294)、governance-law.md(294)、style-library-genre.md(292)、production-ledger.md(292)、shot-orchestration.md(290)、direction-reasoning.md(290)、color-science.md(290)
+
+=== 跨册重复长句（≥28 字）===
+  规则行（真重复，该修）：0 条   导航/出处行（属设计）：23 条   同源册数据行（属设计）：39 条
+
+=== 台账撞号（E## 在 key-decisions* 之间必须唯一）===
+  无：全部 E## 唯一
+
+=== 疑似错字（库内从未出现的汉字） ===
+  无：全库无「库内从未出现的汉字」
+
+=== 表格行完整性（截断的行不报错） ===
+  无：全库以 `|` 开头的行都以 `|` 结尾
+
+=== 行号引用（全库 `文件:行号` 是否越界）===
+  写好文件名的引用共 142 处
+  越界：无

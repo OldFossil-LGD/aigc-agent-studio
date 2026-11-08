@@ -1,0 +1,38 @@
+{
+  "schema_version": "port-registry/v1",
+  "note": "端口能力注册表（任务书 T-P1-03）：只登记已被实际使用/文档证实过的端口；未证实的平台类型写 UNKNOWN，禁止据位置猜测。",
+  "types": {
+    "text": {
+      "status": "KNOWN",
+      "input_ports": [],
+      "output_ports": [{"port_id": "text", "payload_type": "Text"}],
+      "evidence": "compile_prompt_packages/node_create content 字段；离线计划实测"
+    },
+    "image": {
+      "status": "KNOWN",
+      "input_ports": [{"port_id": "reference_image", "payload_type": "ImageAssetRef", "required": false, "order": 0}],
+      "output_ports": [{"port_id": "image", "payload_type": "ImageAssetRef"}],
+      "evidence": "stage 5.5 参考闭环；imageList/imageListOrder 实测口径"
+    },
+    "video": {
+      "status": "KNOWN",
+      "input_ports": [{"port_id": "reference_images", "payload_type": "ImageAssetRef", "required": false, "order": 0},
+                      {"port_id": "first_frame", "payload_type": "ImageAssetRef", "required": false, "order": 1},
+                      {"port_id": "last_frame", "payload_type": "ImageAssetRef", "required": false, "order": 2}],
+      "output_ports": [{"port_id": "video", "payload_type": "VideoAssetRef"}],
+      "evidence": "frames2video / mixed2video 参数与 left 边序实测（run-sheet 站 5.5）"
+    },
+    "audio": {
+      "status": "UNKNOWN",
+      "input_ports": [],
+      "output_ports": [],
+      "evidence": "平台音频节点端口未实测；不得按位置猜"
+    },
+    "video-clip": {
+      "status": "UNKNOWN",
+      "input_ports": [],
+      "output_ports": [],
+      "evidence": "片段/装配节点的原生端口未实测"
+    }
+  }
+}

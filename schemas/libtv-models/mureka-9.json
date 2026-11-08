@@ -1,0 +1,42 @@
+{
+  "nameOrId": "mureka-9",
+  "modelName": "mureka-9",
+  "modelKey": "mureka-9",
+  "toolKey": "mureka-9",
+  "modality": "audio",
+  "schema": {
+    "modelKey": "mureka-9",
+    "modelName": "Mureka V9",
+    "modelVendor": "mureka",
+    "scene": "Music",
+    "sceneName": "音乐",
+    "properties": {
+      "prompt": {
+        "placeholder": "描述您想要的音乐",
+        "maxLength": 1024
+      },
+      "instrumental": {
+        "displayName": "纯乐器",
+        "default": 1,
+        "component": "switch",
+        "originalField": "force_instrumental"
+      }
+    },
+    "config": {
+      "advancedSettings": [
+        "instrumental"
+      ],
+      "generateTypes": {
+        "audio": 99,
+        "checkpointId": 22685089
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

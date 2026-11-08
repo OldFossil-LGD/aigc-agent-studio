@@ -1,0 +1,82 @@
+{
+  "nameOrId": "doubao-seedream-5-0-pro",
+  "modelName": "doubao-seedream-5-0-pro",
+  "modelKey": "doubao-seedream-5-0-pro",
+  "toolKey": "doubao-seedream-5-0-pro",
+  "modality": "image",
+  "schema": {
+    "modelKey": "doubao-seedream-5-0-pro",
+    "modelName": "Seedream5.0 Pro",
+    "modelVendor": "Seedream",
+    "baseType": 81,
+    "properties": {
+      "strikethroughPrice": {
+        "active": true
+      },
+      "mention": true,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          "1K",
+          "2K"
+        ],
+        "default": "2K",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "21:9"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            10
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 65,
+        "image": 65,
+        "checkpointId": 23164723
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "generated_at": "2026-10-26",
+  "provenance": {
+    "fixture_kind": "synthetic",
+    "source_uuid": "synthetic-source-not-a-platform-project",
+    "source_name": "Offline synthetic fidelity source",
+    "mirror_uuid": "synthetic-mirror-not-a-platform-project",
+    "mirror_name": "Offline synthetic fidelity mirror",
+    "construction": "Authored from generic node types and a simple chain, not an original project readback",
+    "limitations": "Tests graph structure and lineage only; does not reproduce historical media quality or original private project evidence."
+  },
+  "derivation_rules": {
+    "overbuild_2x": "source nodes and edges duplicated twice with __xN id suffix",
+    "underbuild_60pct": "first 60% of source nodes plus edges induced on them",
+    "schema_mismatch": "source with `type` renamed to `node_type` (same counts)",
+    "mirror_plan_linked": "source nodes carrying source_node_id = own id (1:1 lineage)",
+    "mirror_plan_unlinked": "source nodes with no source_node_id",
+    "mirror_plan_half_mapped": "source nodes where only every 2nd node carries source_node_id",
+    "synthetic_source": "24 generic nodes, 20 simple chain edges; explicitly synthetic"
+  },
+  "cases": [
+    {
+      "name": "synthetic_same_scale",
+      "source": "synthetic_source.json",
+      "plan": "synthetic_mirror.json",
+      "mode": "copy_reverse",
+      "deliverable": "production_plan",
+      "lineage": "off",
+      "expected_status": "PASS",
+      "expect_codes": [],
+      "why": "Independent synthetic source and mirror with matching node/edge/type counts"
+    },
+    {
+      "name": "overbuild_detected",
+      "source": "synthetic_source.json",
+      "plan": null,
+      "derive": "overbuild_2x",
+      "mode": "copy_reverse",
+      "deliverable": "production_plan",
+      "lineage": "off",
+      "expected_status": "FAIL",
+      "expect_codes": [
+        "FIDELITY_OVERBUILD_NODE_TOTAL",
+        "FIDELITY_OVERBUILD_EDGE_TOTAL"
+      ],
+      "why": "a 2x plan must not pass as a mirror"
+    },
+    {
+      "name": "underbuild_detected",
+      "source": "synthetic_source.json",
+      "plan": null,
+      "derive": "underbuild_60pct",
+      "mode": "copy_reverse",
+      "deliverable": "production_plan",
+      "lineage": "off",
+      "expected_status": "FAIL",
+      "expect_codes": [
+        "FIDELITY_NODE_TOTAL"
+      ],
+      "why": "dropping 40% of the graph must still fail the lower bound"
+    },
+    {
+      "name": "schema_mismatch_is_not_a_failure",
+      "source": "synthetic_source.json",
+      "plan": null,
+      "derive": "schema_mismatch",
+      "mode": "copy_reverse",
+      "deliverable": "production_plan",
+      "lineage": "off",
+      "expected_status": "PASS",
+      "expect_codes": [],
+      "why": "type vs node_type naming must not fabricate a failure"
+    },
+    {
+      "name": "mirror_with_lineage_passes",
+      "source": "synthetic_source.json",
+      "plan": null,
+      "derive": "mirror_plan_linked",
+      "mode": "copy_reverse",
+      "deliverable": "mirror",
+      "lineage": "on",
+      "expected_status": "PASS",
+      "expect_codes": [],
+      "why": "a 1:1 mirror plan with full source_node_id coverage"
+    },
+    {
+      "name": "mirror_without_lineage_fails",
+      "source": "synthetic_source.json",
+      "plan": null,
+      "derive": "mirror_plan_unlinked",
+      "mode": "copy_reverse",
+      "deliverable": "mirror",
+      "lineage": "on",
+      "expected_status": "FAIL",
+      "expect_codes": [
+        "FIDELITY_NO_LINEAGE",
+        "FIDELITY_UNMAPPED_SOURCE_NODES"
+      ],
+      "why": "same scale is not lineage; mirror must be traceable to source nodes"
+    },
+    {
+      "name": "half_mapped_lineage_fails",
+      "source": "synthetic_source.json",
+      "plan": null,
+      "derive": "mirror_plan_half_mapped",
+      "mode": "copy_reverse",
+      "deliverable": "mirror",
+      "lineage": "on",
+      "expected_status": "FAIL",
+      "expect_codes": [
+        "FIDELITY_UNMAPPED_SOURCE_NODES"
+      ],
+      "why": "partial mapping must be visible as coverage, not rounded up to pass"
+    }
+  ]
+}

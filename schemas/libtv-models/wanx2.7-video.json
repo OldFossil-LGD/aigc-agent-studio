@@ -1,0 +1,169 @@
+{
+  "nameOrId": "wanx2.7-video",
+  "modelName": "wanx2.7-video",
+  "modelKey": "wanx2.7-video",
+  "toolKey": "wanx2.7-video",
+  "modality": "video",
+  "schema": {
+    "modelKey": "wanx2.7-video",
+    "modelName": "Wan 2.7",
+    "modelVendor": "Wan",
+    "baseType": 44,
+    "properties": {
+      "magic": true,
+      "mention": true,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 3000
+      },
+      "ratio": {
+        "default": "16:9",
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "9:16",
+          "1:1",
+          "4:3",
+          "3:4"
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "ratio_auto": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "min": 2,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "720P",
+          "1080P"
+        ],
+        "default": "1080P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "enableSound": {
+        "displayName": "生成音频",
+        "tips": "为生成的视频添加音频内容",
+        "enum": [
+          {
+            "value": "on",
+            "displayName": "开启"
+          },
+          {
+            "value": "off",
+            "displayName": "关闭"
+          }
+        ],
+        "default": "on",
+        "originalField": "enableSound",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "frames2video": [
+            1,
+            2
+          ],
+          "video2video": [
+            1,
+            1
+          ],
+          "audio2video": [
+            0,
+            1
+          ],
+          "mixed2video": [
+            1,
+            5
+          ]
+        },
+        "mixed2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 4
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "frames2video": [
+          "ratio_auto",
+          "resolution",
+          "duration"
+        ],
+        "video2video": [
+          "ratio",
+          "resolution",
+          "duration",
+          "enableSound"
+        ],
+        "mixed2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 53,
+        "image": 54,
+        "checkpointId": 22805353
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "video2video",
+          "frames2video"
+        ]
+      }
+    ]
+  }
+}

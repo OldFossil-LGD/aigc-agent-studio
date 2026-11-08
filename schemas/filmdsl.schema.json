@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigc-agent-studio.local/schemas/filmdsl.schema.json",
+  "title": "FilmDSL interchange view (filmdsl/v1)",
+  "description": "本库 01–04 产物的派生交换视图，形状对齐 CineCrew 的 SceneBlueprint（meta/assets/memory/clips 四层）。派生视图不是权威：权威仍是 01-04；studio.generation_authorized 恒 false。",
+  "type": "object",
+  "required": ["format", "blueprint_id", "origin", "metadata", "global_style", "assets", "memory", "clips", "studio"],
+  "additionalProperties": true,
+  "properties": {
+    "format": {"const": "filmdsl/v1"},
+    "blueprint_id": {"type": "string", "minLength": 1},
+    "origin": {
+      "type": "object",
+      "required": ["projection", "authority", "artifacts"],
+      "properties": {
+        "projection": {"type": "string"},
+        "authority": {"const": "studio_artifacts_are_authoritative"},
+        "source_revision": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "artifacts": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["project_name"],
+      "properties": {
+        "project_name": {"type": "string", "minLength": 1},
+        "goal": {"type": ["string", "null"]},
+        "target_aspect_ratio": {"type": ["string", "null"]},
+        "global_fps": {"type": ["number", "null"]},
+        "duration_sec": {"type": ["number", "null"]},
+        "projected_duration_sec": {"type": ["number", "null"]},
+        "production_mode": {"type": ["string", "null"]},
+        "task_type": {"type": ["string", "null"]},
+        "deliverable": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "global_style": {"type": "string", "minLength": 1},
+    "assets": {
+      "type": "object",
+      "required": ["characters", "locations", "props"],
+      "properties": {
+        "characters": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+        "locations": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+        "props": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+        "other": {"type": "array", "items": {"$ref": "#/$defs/asset"}}
+      },
+      "additionalProperties": true
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "continuity": {"type": "array", "items": {"type": "object"}},
+        "rulebook": {"type": "array", "items": {"type": "string"}},
+        "world_state": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "clips": {"type": "array", "items": {"$ref": "#/$defs/clip"}},
+    "studio": {
+      "type": "object",
+      "required": ["generation_authorized"],
+      "properties": {
+        "generation_authorized": {"const": false},
+        "gate_artifacts": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "import_report": {"type": "object"}
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string"},
+        "kind": {"type": ["string", "null"]},
+        "anchor_role": {"type": ["string", "null"]},
+        "requires_iteration": {"type": "boolean"},
+        "state_versions": {"type": ["integer", "string", "null"]},
+        "reference_purpose": {"type": "array", "items": {"type": "string"}},
+        "iteration_chain": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "entity": {
+      "type": "object",
+      "required": ["asset_id"],
+      "properties": {
+        "asset_id": {"type": "string", "minLength": 1},
+        "position": {"type": ["string", "null"]},
+        "action_state": {"type": ["string", "null"]},
+        "source": {"type": "string"},
+        "node_id": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "dialogue": {
+      "type": "object",
+      "required": ["has_dialogue"],
+      "properties": {
+        "has_dialogue": {"type": "boolean"},
+        "speaker_asset_id": {"type": ["string", "null"]},
+        "listener_asset_id": {"type": ["string", "null"]},
+        "text": {"type": ["string", "null"]},
+        "voice_preset": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "clip": {
+      "type": "object",
+      "required": ["shot_id", "narrative_layer", "staging_layer", "render_layer", "assembly_layer"],
+      "properties": {
+        "shot_id": {"type": "string", "minLength": 1},
+        "order": {"type": "integer", "minimum": 0},
+        "plan": {"type": "object"},
+        "narrative_layer": {
+          "type": "object",
+          "required": ["narrative_action", "dialogue"],
+          "properties": {
+            "narrative_action": {"type": "string", "minLength": 1},
+            "emotional_beat": {"type": "string"},
+            "dialogue": {"$ref": "#/$defs/dialogue"},
+            "performance_emotion": {"type": ["string", "null"]},
+            "performance_intensity": {"type": ["integer", "null"], "minimum": 1, "maximum": 10}
+          },
+          "additionalProperties": true
+        },
+        "staging_layer": {
+          "type": "object",
+          "required": ["duration_seconds", "entities"],
+          "properties": {
+            "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+            "camera": {"type": "object"},
+            "lighting": {"type": ["string", "null"]},
+            "environment_id": {"type": ["string", "null"]},
+            "entities": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+            "consistency_constraints": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": true
+        },
+        "render_layer": {
+          "type": "object",
+          "required": ["image_render_spec", "video_render_spec"],
+          "properties": {
+            "keyframe_policy": {"type": "string"},
+            "image_render_spec": {"type": "object"},
+            "video_render_spec": {"type": "object"},
+            "duration_seconds": {"type": ["number", "null"]}
+          },
+          "additionalProperties": true
+        },
+        "assembly_layer": {
+          "type": "object",
+          "properties": {
+            "transition_in": {"type": "string"},
+            "transition_out": {"type": "string"},
+            "cut_range": {"type": ["object", "null"]},
+            "audio_tracks": {"type": "array"}
+          },
+          "additionalProperties": true
+        },
+        "studio": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

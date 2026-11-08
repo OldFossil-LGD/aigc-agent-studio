@@ -1,0 +1,179 @@
+[
+  {
+    "id": "M1",
+    "profile": "prompt_only",
+    "features": [
+      "camera",
+      "empty",
+      "look",
+      "silent",
+      "sound",
+      "stylized"
+    ],
+    "brief": "只要5秒9:16水墨空镜提示词：山石倒影，固定机位，完全无声，无人物；不得改写实、加运镜或环境底噪。",
+    "requirements": [
+      {
+        "id": "look",
+        "text": "水墨空镜，5秒9:16，无人物"
+      },
+      {
+        "id": "locks",
+        "text": "固定机位，完全无声；只交提示词"
+      }
+    ]
+  },
+  {
+    "id": "M2",
+    "profile": "no_dialogue",
+    "features": [
+      "sound"
+    ],
+    "brief": "只写声音方案：8秒旧钟表店空镜，无对白但保留雨声与一次钟摆轻响；不要人声或音乐，不要把无对白变成全静音。",
+    "requirements": [
+      {
+        "id": "sound",
+        "text": "无对白但保留雨声与一次钟摆轻响"
+      },
+      {
+        "id": "scope",
+        "text": "只写声音方案；不加人声或音乐"
+      }
+    ]
+  },
+  {
+    "id": "M3",
+    "profile": "rework",
+    "features": [
+      "assets",
+      "camera",
+      "continuity",
+      "direction",
+      "motion",
+      "performance"
+    ],
+    "brief": "审这一镜文字，目标是两人同框呈现迟疑：固定广角机位，甲递出钥匙后停住，乙手指靠近但不接，仍未转移持有；两人始终同框。只准文字局部修正，不许正反打、推镜或宣称已完成交接。",
+    "requirements": [
+      {
+        "id": "frame",
+        "text": "固定广角且两人始终同框"
+      },
+      {
+        "id": "state",
+        "text": "乙不接，钥匙未转移持有；只审文字"
+      }
+    ]
+  },
+  {
+    "id": "M4",
+    "profile": "rework",
+    "features": [
+      "assets",
+      "continuity",
+      "direction",
+      "motion",
+      "performance"
+    ],
+    "brief": "目标是甲主动把旧照片让给乙。镜1甲持照片，镜2甲主动递出，乙接住，镜3乙持照片离开。仅审已有文字，不新增物件，不要求单独松手或空手特写。",
+    "requirements": [
+      {
+        "id": "handover",
+        "text": "甲主动递出，乙接住，乙持照片离开"
+      },
+      {
+        "id": "scope",
+        "text": "仅审已有文字，不新增物件或强加空手特写"
+      }
+    ]
+  },
+  {
+    "id": "M5",
+    "profile": "rework",
+    "features": [
+      "assets",
+      "continuity",
+      "motion"
+    ],
+    "brief": "审两镜连续性：镜1蓝陶杯从桌上掉落摔成三片。镜2同一蓝陶杯完整地出现在桌上。世界是写实连续时间，未授权修复或替换杯子；只允许改镜2，保留三片碎杯的结果，不新增人物、修复或复原特效。",
+    "requirements": [
+      {
+        "id": "physical",
+        "text": "写实连续时间，蓝陶杯已摔成三片"
+      },
+      {
+        "id": "scope",
+        "text": "只改镜2，保留碎片；不新增修复、物件或人物"
+      }
+    ]
+  },
+  {
+    "id": "M6",
+    "profile": "rework",
+    "features": [
+      "assets",
+      "camera",
+      "continuity",
+      "direction",
+      "motion",
+      "performance",
+      "sound"
+    ],
+    "extra_refs": [
+      "references/drama-dialogue-craft.md",
+      "references/editing-rhythm.md",
+      "references/sound-narrative.md"
+    ],
+    "brief": "给12秒两镜叙事与剪辑声音方案：镜1年迈门卫夜里修好一只无名纸风车；镜2清晨将风车插回校门边、退开看它转。主题是无人看见的照顾。无对白、无旁白、不加音乐；用纸摩擦、远处晨间脚步与风的声桥连接。不可新增儿童反应镜、字幕或解释台词；只交文字方案，不生成。",
+    "requirements": [
+      {
+        "id": "story",
+        "text": "两镜12秒，无人看见的照顾；不新增反应镜或解释文字"
+      },
+      {
+        "id": "sound_edit",
+        "text": "无对白旁白音乐，纸摩擦、晨间脚步与风声桥"
+      }
+    ]
+  },
+  {
+    "id": "M7",
+    "profile": "mirror",
+    "features": [
+      "reverse"
+    ],
+    "reverse_spec": {
+      "mode": "copy_reverse",
+      "deliverable": "mirror",
+      "source_access": "copy_readback"
+    },
+    "brief": "我只有副本画布的节点文字与截图，没有原项目权限或原始媒体；想了解副本工作流并写反推说明。不得标原项目源级复刻，不把结构相似称为媒体效果复现。只交文字说明。",
+    "requirements": [
+      {
+        "id": "access",
+        "text": "只有副本节点文字与截图，没有原项目权限或媒体"
+      },
+      {
+        "id": "claim",
+        "text": "只能副本级反推说明；不标源级复刻或媒体效果已复现"
+      }
+    ]
+  },
+  {
+    "id": "M8",
+    "profile": "rework",
+    "features": [
+      "continuity",
+      "direction"
+    ],
+    "brief": "仅做已有文字分镜的局部审阅：目标是访客自行取走房间内唯一一张照片。镜1保管员已离开，照片在桌上；镜2访客拿起；镜3访客持照片离开，桌面无照片。只做必要修法；不增加让渡者、不猜还有第二张照片、不追问已给出的唯一性。",
+    "requirements": [
+      {
+        "id": "action",
+        "text": "访客自行拿起唯一照片并持它离开"
+      },
+      {
+        "id": "scope",
+        "text": "仅局部审阅，不新增让渡者或第二物件，不重复追问唯一性"
+      }
+    ]
+  }
+]

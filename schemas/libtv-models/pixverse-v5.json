@@ -1,0 +1,185 @@
+{
+  "nameOrId": "pixverse-v5",
+  "modelName": "pixverse-v5",
+  "modelKey": "pixverse-v5",
+  "toolKey": "pixverse-v5",
+  "modality": "video",
+  "schema": {
+    "modelKey": "pixverse-v5",
+    "modelName": "Pixverse V5",
+    "modelVendor": "Pixverse",
+    "baseType": 45,
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 2048
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "ratio_auto": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "540P",
+          "720P",
+          "1080P"
+        ],
+        "default": "1080P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "enum": [
+          {
+            "value": 5,
+            "displayName": "5s"
+          },
+          {
+            "value": 8,
+            "displayName": "8s"
+          }
+        ],
+        "default": 5,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "soundEffect": {
+        "displayName": "声音效果",
+        "tips": "为视频生成匹配的声音效果",
+        "default": 1,
+        "originalField": "soundEffect",
+        "component": "switch"
+      },
+      "style": {
+        "displayName": "风格",
+        "tips": "选择视频生成风格以获得不同的创意效果",
+        "enum": [
+          {
+            "value": "general",
+            "displayName": "通用"
+          },
+          {
+            "value": "anime",
+            "displayName": "动漫"
+          },
+          {
+            "value": "3d_animation",
+            "displayName": "3D"
+          },
+          {
+            "value": "clay",
+            "displayName": "粘土"
+          },
+          {
+            "value": "comic",
+            "displayName": "漫画"
+          },
+          {
+            "value": "cyberpunk",
+            "displayName": "赛博朋克"
+          }
+        ],
+        "originalField": "style",
+        "component": "singleSelect",
+        "default": "general"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            0,
+            1
+          ],
+          "frames2video": [
+            2,
+            2
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "singleImage2video": [
+          "ratio_auto",
+          "resolution",
+          "duration"
+        ],
+        "frames2video": [
+          "ratio_auto",
+          "resolution",
+          "duration"
+        ]
+      },
+      "advancedSettings": {
+        "text2video": [
+          "style",
+          "soundEffect"
+        ],
+        "singleImage2video": [
+          "style",
+          "soundEffect"
+        ],
+        "frames2video": [
+          "style",
+          "soundEffect"
+        ]
+      },
+      "generateTypes": {
+        "text": 39,
+        "image": 40,
+        "checkpointId": 21762811
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "method": "Eight fixed synthetic natural-language briefs. First Hermes beam-free outputs were generated without the later audit feedback. Codex supplied task-source closures; this is not autonomous source-discovery validation. Failures remain unedited. Targeted rework received feedback and is not blind; one job returned empty text/exit1. Codex explicitly authored independent final revisions and bound literal source/task/output evidence. Source capture bytes prove consistency with provided bundles, not model understanding. No mechanical_review test fixture was used.",
+  "generation": {
+    "model": "beam-free",
+    "provider": "opencode-go",
+    "first_valid_cases": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8"
+    ],
+    "rework_status": [
+      {
+        "job": "cross_rework_M1_M2",
+        "exit": 1,
+        "source_unchanged": true,
+        "valid_case_ids": []
+      },
+      {
+        "job": "cross_rework_M3_M4",
+        "exit": 0,
+        "source_unchanged": true,
+        "valid_case_ids": [
+          "M3",
+          "M4"
+        ]
+      },
+      {
+        "job": "cross_rework_M5_M6",
+        "exit": 0,
+        "source_unchanged": true,
+        "valid_case_ids": [
+          "M5",
+          "M6"
+        ]
+      },
+      {
+        "job": "cross_rework_M7_M8",
+        "exit": 0,
+        "source_unchanged": true,
+        "valid_case_ids": [
+          "M7",
+          "M8"
+        ]
+      }
+    ]
+  },
+  "first_audit": {
+    "status": "REWORK_REQUIRED",
+    "method": "Codex independently compared actual artifacts, declared scope and source/output byte excerpts; no grading key was supplied for first generation.",
+    "cases": [
+      {
+        "id": "M1",
+        "feedback": "水墨工艺不要只剩风格名；据本题与工艺原文落实必要的纸/墨/光处理，不强加人物或运动。applied_text不是产物原文。",
+        "evidence_errors": [
+          "application absent: look"
+        ]
+      },
+      {
+        "id": "M2",
+        "feedback": "声音主要求可读；证据多处不是原文。必须逐字复制来源与artifact中的连续片段。",
+        "evidence_errors": [
+          "application absent: sound",
+          "quote absent: scope",
+          "application absent: scope"
+        ]
+      },
+      {
+        "id": "M3",
+        "feedback": "产物基本保留锁定；applied_text是重排拼接。当前文字结论、待设计、媒体未验证要分开，后两者不塞入当前unresolved。",
+        "evidence_errors": [
+          "application absent: frame",
+          "application absent: state"
+        ]
+      },
+      {
+        "id": "M4",
+        "feedback": "已有文字连续动作与持有结果已支持目标，无必要修法。staging的位置关系通则不能直接支持主动让渡结论；请选真正支持该判断的来源原文。",
+        "evidence_errors": [
+          "application absent: handover"
+        ]
+      },
+      {
+        "id": "M5",
+        "feedback": "镜1杯子从桌上掉落摔碎，镜2沿同一桌面/framing展示碎片会无依据搬回桌面。只改镜2与实际落点连续，不强加用户没锁的机位；引用/产物片段必须逐字。",
+        "evidence_errors": [
+          "quote absent: physical",
+          "application absent: physical",
+          "application absent: scope"
+        ]
+      },
+      {
+        "id": "M6",
+        "feedback": "唯一镜1→镜2切点不能写在镜2末尾退开停住。修理完的切换与第二镜结束要分清；保持两镜12秒和指定声桥，不加无依据工具/声效。引用与applied_text需逐字。",
+        "evidence_errors": [
+          "application absent: story",
+          "quote absent: sound_edit",
+          "application absent: sound_edit"
+        ]
+      },
+      {
+        "id": "M7",
+        "feedback": "只提供了用户对副本资料的描述，没有具体节点/截图可检验。可以给受限说明/待补材料，不能宣称已看过具体画布或媒体验证；当前证据缺口明确保留unresolved，不能为了formal清空。",
+        "evidence_errors": [
+          "quote absent: access",
+          "application absent: access",
+          "application absent: claim"
+        ]
+      },
+      {
+        "id": "M8",
+        "feedback": "已给三镜文字足够判定当前自取；不要又以原文逐字未提供为由新增当前缺口。媒体待验证另列。applied_text必须是产物连续原文，不能重组。",
+        "evidence_errors": [
+          "application absent: action",
+          "application absent: scope"
+        ]
+      }
+    ],
+    "notes": "First drafts are preserved unedited. All returned drafts, not creative Final. No media or user-study claim."
+  },
+  "final_independent_review": [
+    {
+      "id": "M1",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Ink material/negative space replaces style-name-only drafting; fixed silent empty shot kept.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M2",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Rain and one pendulum event remain audible; no-dialogue is not converted to silence.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M3",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Fixed wide two-shot and untransferred key kept; no reverse shot or push-in.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M4",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Existing initiator/receiver/possession chain accepted with no forced release/empty-hand insert.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M5",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Only shot2 repaired; fragments stay at the preceding fall location, with no reset or invented camera lock.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M6",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "One inter-shot cut placed after shot1 repair; shot2 ending distinct, 12 seconds/two shots and requested sounds retained.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M7",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Missing actual copy data remains unresolved; no source-replica or media-fidelity claim.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    },
+    {
+      "id": "M8",
+      "text_review": "User endpoint and explicit locks preserved after independent revision",
+      "specific_review": "Self-take and unique object accepted; no giver, second photo or repeated uniqueness question.",
+      "source_and_output_excerpts": "Literal fragments independently checked; source supports the specific decision rather than a merely related slogan.",
+      "remaining_limits": "No media or audience-quality verification; this is an operator-reviewed synthetic case, not an autonomous success rate."
+    }
+  ],
+  "evidence_gate": {
+    "method": "Source captures are exact bytes included in the recorded Hermes query bundles; they do not prove model comprehension. Final artifacts/decision excerpts were independently revised by Codex and labelled as such; no mechanical_review fixture used. Snapshot catalog/source bindings are historical evaluation evidence, not reusable current creative approvals.",
+    "rows": [
+      {
+        "id": "M1",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      },
+      {
+        "id": "M2",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      },
+      {
+        "id": "M3",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      },
+      {
+        "id": "M4",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      },
+      {
+        "id": "M5",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      },
+      {
+        "id": "M6",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      },
+      {
+        "id": "M7",
+        "expected_ready": false,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_REJECTED",
+          "delivery_ready": false,
+          "failures": [
+            "Current-task unresolved facts/decisions must be explicitly empty for formal delivery"
+          ],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality"
+        }
+      },
+      {
+        "id": "M8",
+        "expected_ready": true,
+        "expectation_met": true,
+        "result": {
+          "status": "REVIEW_EVIDENCE_VALID",
+          "delivery_ready": true,
+          "failures": [],
+          "creative_quality_verified": false,
+          "media_quality_verified": false,
+          "generation_authorized": false,
+          "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+          "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+          "decision_count": 2
+        }
+      }
+    ],
+    "all_expectations_met": true
+  },
+  "scope": "Archived snapshot case-study evidence; review/capture bindings are not reusable approvals for a changed catalog/task/output. No media generated."
+}

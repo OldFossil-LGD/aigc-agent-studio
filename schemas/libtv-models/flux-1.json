@@ -1,0 +1,83 @@
+{
+  "nameOrId": "flux-1",
+  "modelName": "flux-1",
+  "modelKey": "flux-1",
+  "toolKey": "flux-1",
+  "modality": "image",
+  "schema": {
+    "modelKey": "flux-1",
+    "modelName": "基础算法F.1",
+    "modelVendor": "flux",
+    "baseType": 19,
+    "properties": {
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "lora": {
+        "displayName": "风格",
+        "maxCount": 3
+      },
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            3
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 21,
+        "image": 22,
+        "checkpointId": 2295774
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

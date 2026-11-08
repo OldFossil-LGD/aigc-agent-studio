@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigc-agent-studio.local/schemas/workflow_graph_ir.v2.schema.json",
+  "title": "Workflow Graph IR v2",
+  "description": "跨模块唯一图权威。边必须带语义；只有 data_reference（或经批准的 assembly）可落为平台物理引用连线。端口未知写 UNKNOWN，不猜。",
+  "type": "object",
+  "required": ["schema_version", "graph_id", "revision", "nodes", "edges"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"const": "workflow-graph-ir/v2"},
+    "graph_id": {"type": "string", "minLength": 1},
+    "revision": {"type": "integer", "minimum": 1},
+    "source": {
+      "type": "object",
+      "properties": {
+        "system": {"type": "string"},
+        "source_revision": {"type": ["string", "null"]},
+        "legacy_format": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "groups": {"type": "array", "items": {"type": "object"}},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_uid", "platform_type"],
+        "properties": {
+          "node_uid": {"type": "string", "minLength": 1},
+          "logical_id": {"type": "string"},
+          "logical_role": {"type": "string"},
+          "platform_type": {"enum": ["text", "image", "video", "audio", "video-clip", "group"]},
+          "input_ports": {"type": "array", "items": {"$ref": "#/$defs/port"}},
+          "output_ports": {"type": "array", "items": {"$ref": "#/$defs/port"}},
+          "group_id": {"type": ["string", "null"]},
+          "platform_mapping": {"$ref": "#/$defs/mapping"},
+          "legacy": {"type": "object"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["edge_uid", "kind", "source", "target"],
+        "properties": {
+          "edge_uid": {"type": "string"},
+          "kind": {"enum": ["data_reference", "control_dependency", "assembly", "lineage", "condition", "unknown"]},
+          "source": {"$ref": "#/$defs/endpoint"},
+          "target": {"$ref": "#/$defs/endpoint"},
+          "payload_type": {"type": ["string", "null"]},
+          "reference_order": {"type": ["integer", "null"]},
+          "condition": {"type": ["object", "null"]},
+          "platform_mapping": {"$ref": "#/$defs/mapping"},
+          "legacy": {"type": "object"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "loss_report": {"type": "array", "items": {"type": "object"}},
+    "allowed_cycles": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}
+  },
+  "$defs": {
+    "port": {
+      "type": "object",
+      "required": ["port_id"],
+      "properties": {
+        "port_id": {"type": "string"},
+        "payload_type": {"type": ["string", "null"]},
+        "required": {"type": "boolean"},
+        "order": {"type": ["integer", "null"]},
+        "status": {"enum": ["KNOWN", "UNKNOWN"]}
+      },
+      "additionalProperties": true
+    },
+    "endpoint": {
+      "type": "object",
+      "required": ["node_uid"],
+      "properties": {
+        "node_uid": {"type": "string"},
+        "port_id": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "mapping": {
+      "type": "object",
+      "properties": {
+        "libtv_uuid": {"type": ["string", "null"]},
+        "display_name": {"type": ["string", "null"]},
+        "status": {"enum": ["UNVERIFIED", "VERIFIED", "MISMATCH", "UNKNOWN"]}
+      },
+      "additionalProperties": true
+    }
+  }
+}

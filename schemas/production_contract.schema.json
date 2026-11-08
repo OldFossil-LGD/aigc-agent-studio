@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProductionContract",
+  "type": "object",
+  "required": [
+    "production_contract",
+    "assumptions",
+    "questions"
+  ],
+  "properties": {
+    "production_contract": {
+      "type": "object",
+      "required": [
+        "goal",
+        "production_mode",
+        "duration_sec",
+        "aspect_ratio",
+        "shots",
+        "delivery"
+      ],
+      "properties": {
+        "goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_type": {
+          "enum": [
+            "full_film",
+            "prompt_only",
+            "single_shot"
+          ]
+        },
+        "production_mode": {
+          "enum": [
+            "content_reverse",
+            "copy_reverse",
+            "source_replica",
+            "rule_distill",
+            "production_build"
+          ]
+        },
+        "duration_sec": {
+          "type": [
+            "integer",
+            "number"
+          ],
+          "minimum": 1
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "world_state_initial": {
+          "type": "object"
+        },
+        "visual_style": {
+          "type": "string"
+        },
+        "no_dialogue": {
+          "type": "boolean"
+        },
+        "fps": {
+          "type": [
+            "integer",
+            "number"
+          ],
+          "minimum": 1
+        },
+        "shots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "duration_sec": {
+                "type": [
+                  "integer",
+                  "number"
+                ],
+                "minimum": 1
+              },
+              "generation_duration_sec": {
+                "type": [
+                  "integer",
+                  "number"
+                ],
+                "minimum": 1
+              },
+              "cut_range": {
+                "type": "object",
+                "required": [
+                  "start_sec",
+                  "end_sec"
+                ],
+                "properties": {
+                  "start_sec": {
+                    "type": [
+                      "integer",
+                      "number"
+                    ],
+                    "minimum": 0
+                  },
+                  "end_sec": {
+                    "type": [
+                      "integer",
+                      "number"
+                    ],
+                    "minimum": 0
+                  }
+                }
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "world_state_delta": {
+                "type": "object"
+              },
+              "world_state_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "risk": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "no_dialogue": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "history": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "delivery": {
+          "type": "object",
+          "required": [
+            "ignition_allowed"
+          ],
+          "properties": {
+            "ignition_allowed": {
+              "const": false
+            }
+          }
+        },
+        "status": {
+          "enum": [
+            "READY",
+            "DRAFT"
+          ]
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "READY",
+        "DRAFT"
+      ]
+    }
+  }
+}

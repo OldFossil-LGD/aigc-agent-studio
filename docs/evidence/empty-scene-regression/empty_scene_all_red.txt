@@ -1,0 +1,46 @@
+test_cloth_prop_is_preserved_without_a_blanket_clothing_ban (tests.test_empty_scene_objects.EmptySceneObjectTests.test_cloth_prop_is_preserved_without_a_blanket_clothing_ban) ... FAIL
+test_explicit_offscreen_voice_is_not_negated_by_visual_continuity (tests.test_empty_scene_objects.EmptySceneObjectTests.test_explicit_offscreen_voice_is_not_negated_by_visual_continuity) ... FAIL
+test_moving_empty_scene_keeps_its_declared_movement (tests.test_empty_scene_objects.EmptySceneObjectTests.test_moving_empty_scene_keeps_its_declared_movement) ... ok
+test_still_empty_scene_is_not_instructed_to_change_the_picture (tests.test_empty_scene_objects.EmptySceneObjectTests.test_still_empty_scene_is_not_instructed_to_change_the_picture) ... FAIL
+test_unspecified_empty_scene_sound_does_not_request_new_human_voice (tests.test_empty_scene_objects.EmptySceneObjectTests.test_unspecified_empty_scene_sound_does_not_request_new_human_voice) ... FAIL
+
+======================================================================
+FAIL: test_cloth_prop_is_preserved_without_a_blanket_clothing_ban (tests.test_empty_scene_objects.EmptySceneObjectTests.test_cloth_prop_is_preserved_without_a_blanket_clothing_ban)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>\Documents\Codex\2026-10-25\ni\work\di_checklist_completion_20261026_r2\skill\tests\test_empty_scene_objects.py", line 27, in test_cloth_prop_is_preserved_without_a_blanket_clothing_ban
+    self.assertNotRegex(blocks['continuity'], r'(?:不引入|禁止)[^；。]*[、，]服装')
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Regex matched: '不引入任何身份、服装' matches '(?:不引入|禁止)[^；。]*[、，]服装' in '保持空间、材质、光线方向和物件位置连续；本镜无人物，不引入任何身份、服装或人声。'
+
+======================================================================
+FAIL: test_explicit_offscreen_voice_is_not_negated_by_visual_continuity (tests.test_empty_scene_objects.EmptySceneObjectTests.test_explicit_offscreen_voice_is_not_negated_by_visual_continuity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>\Documents\Codex\2026-10-25\ni\work\di_checklist_completion_20261026_r2\skill\tests\test_empty_scene_objects.py", line 44, in test_explicit_offscreen_voice_is_not_negated_by_visual_continuity
+    self.assertNotRegex(blocks['continuity'], r'(?:不引入|禁止)[^；。]*人声')
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Regex matched: '不引入任何身份、服装或人声' matches '(?:不引入|禁止)[^；。]*人声' in '保持空间、材质、光线方向和物件位置连续；本镜无人物，不引入任何身份、服装或人声。'
+
+======================================================================
+FAIL: test_still_empty_scene_is_not_instructed_to_change_the_picture (tests.test_empty_scene_objects.EmptySceneObjectTests.test_still_empty_scene_is_not_instructed_to_change_the_picture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>\Documents\Codex\2026-10-25\ni\work\di_checklist_completion_20261026_r2\skill\tests\test_empty_scene_objects.py", line 23, in test_still_empty_scene_is_not_instructed_to_change_the_picture
+    self.assertNotIn('画面变化', blocks['action'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '画面变化' unexpectedly found in '完成镜头 shot_01 的画面变化：雨后的空站台，一条红围巾平放在长椅上，整段保持静止。相机固定侧面远景，不推拉摇移，完全无声。不出现人物，也不加字幕、旁白或音乐。；画面内不出现人物或人体动作，动作物理可信，段内不硬切。\n整段保持静止，无运动。'
+
+======================================================================
+FAIL: test_unspecified_empty_scene_sound_does_not_request_new_human_voice (tests.test_empty_scene_objects.EmptySceneObjectTests.test_unspecified_empty_scene_sound_does_not_request_new_human_voice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>\Documents\Codex\2026-10-25\ni\work\di_checklist_completion_20261026_r2\skill\tests\test_empty_scene_objects.py", line 57, in test_unspecified_empty_scene_sound_does_not_request_new_human_voice
+    self.assertNotIn('必要的人声', blocks['sound'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '必要的人声' unexpectedly found in '保留环境声、动作声和必要的人声层；除非镜头要求，不加入现代音乐。'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.806s
+
+FAILED (failures=4)

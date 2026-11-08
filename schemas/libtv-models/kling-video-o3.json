@@ -1,0 +1,167 @@
+{
+  "nameOrId": "kling-video-o3",
+  "modelName": "kling-video-o3",
+  "modelKey": "kling-video-o3",
+  "toolKey": "kling-video-o3",
+  "modality": "video",
+  "schema": {
+    "modelKey": "kling-video-o3",
+    "modelName": "可灵 3.0",
+    "modelVendor": "Kling",
+    "baseType": 66,
+    "properties": {
+      "count": [
+        1
+      ],
+      "magic": true,
+      "prompt": {
+        "maxLength": 2000,
+        "originalField": "prompt"
+      },
+      "lens": {
+        "displayName": " 镜头",
+        "maxCount": 1
+      },
+      "duration": {
+        "displayName": "时长",
+        "min": 5,
+        "max": 15,
+        "step": 1,
+        "default": 5,
+        "component": "slider",
+        "originalField": "duration"
+      },
+      "ratio_auto": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": " ",
+            "displayName": "智能模式"
+          },
+          "16:9",
+          "1:1",
+          "9:16"
+        ],
+        "default": " ",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "quality": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "标准"
+          },
+          {
+            "value": "high",
+            "displayName": "高品质"
+          },
+          {
+            "value": "4k",
+            "displayName": "4K"
+          }
+        ],
+        "default": "low",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "enableSound": {
+        "displayName": "生成音频",
+        "tips": "为生成的视频添加音频内容",
+        "enum": [
+          {
+            "value": "on",
+            "displayName": "开启"
+          },
+          {
+            "value": "off",
+            "displayName": "关闭"
+          }
+        ],
+        "default": "on",
+        "originalField": "enableSound",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "frames2video": [
+            2,
+            2
+          ],
+          "audio2video": [
+            0,
+            0
+          ],
+          "singleImage2video": [
+            1,
+            1
+          ]
+        }
+      },
+      "subjects": {
+        "displayName": "主体",
+        "items": {
+          "singleImage2video": {
+            "maxCount": 3
+          },
+          "frames2video": {
+            "maxCount": 3
+          }
+        }
+      },
+      "smartStoryboard": {
+        "displayName": "智能分镜",
+        "component": "switch",
+        "default": false,
+        "originalField": "multi_shot",
+        "barOnly": true
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio_auto",
+          "quality",
+          "duration",
+          "enableSound",
+          "smartStoryboard"
+        ],
+        "frames2video": [
+          "quality",
+          "duration",
+          "enableSound"
+        ],
+        "singleImage2video": [
+          "quality",
+          "duration",
+          "enableSound",
+          "smartStoryboard"
+        ]
+      },
+      "generateTypes": {
+        "text": 90,
+        "image": 90,
+        "checkpointId": 22522069
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      }
+    ]
+  }
+}

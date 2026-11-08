@@ -1,0 +1,168 @@
+{
+  "nameOrId": "MiniMax-Hailuo-H3",
+  "modelName": "MiniMax-Hailuo-H3",
+  "modelKey": "MiniMax-Hailuo-H3",
+  "toolKey": "MiniMax-Hailuo-H3",
+  "modality": "video",
+  "schema": {
+    "modelKey": "MiniMax-Hailuo-H3",
+    "modelName": "Minimax H3",
+    "modelVendor": "MiniMax",
+    "baseType": 47,
+    "properties": {
+      "magic": false,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 2000
+      },
+      "ratio_auto": {
+        "default": "adaptive",
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "adaptive",
+            "displayName": "自适应"
+          }
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "ratio_t2v": {
+        "default": "16:9",
+        "displayName": "比例",
+        "enum": [
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16"
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "ratio": {
+        "default": "16:9",
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "adaptive",
+            "displayName": "自适应"
+          },
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16"
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "768P",
+          "2K"
+        ],
+        "default": "2K",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "min": 5,
+        "max": 15,
+        "step": 1,
+        "default": 5,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            1,
+            1
+          ],
+          "frames2video": [
+            1,
+            2
+          ],
+          "mixed2video": [
+            1,
+            15
+          ]
+        },
+        "mixed2videoConfig": {
+          "videoMax": 3,
+          "imageMax": 9,
+          "audioMax": 3
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio_t2v",
+          "resolution",
+          "duration"
+        ],
+        "singleImage2video": [
+          "ratio_auto",
+          "resolution",
+          "duration"
+        ],
+        "frames2video": [
+          "ratio_auto",
+          "resolution",
+          "duration"
+        ],
+        "image2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "mixed2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 41,
+        "image": 42,
+        "checkpointId": 23237078
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      },
+      {
+        "require": [
+          "image",
+          "video"
+        ],
+        "mode": "any",
+        "forModeTypes": [
+          "mixed2video"
+        ],
+        "whenHas": [
+          "audio"
+        ],
+        "message": "全能参考不可仅输入音频，须至少包含 1 个参考视频或图片"
+      }
+    ]
+  }
+}

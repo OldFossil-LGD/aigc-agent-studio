@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "name": "valid_copy_reverse",
+      "mode": "copy_reverse",
+      "source_access": "copy_readback",
+      "expected": "PASS"
+    },
+    {
+      "name": "invalid_source_replica_from_copy",
+      "mode": "source_replica",
+      "source_access": "copy_readback",
+      "expected": "FAIL"
+    },
+    {
+      "name": "invalid_unresolved_verified",
+      "mode": "copy_reverse",
+      "source_access": "copy_readback",
+      "evidence_class": "unresolved",
+      "status": "verified",
+      "expected": "FAIL",
+      "expect_error_contains": "unresolved evidence must be undetermined"
+    },
+    {
+      "name": "invalid_rule_distill_without_blind",
+      "mode": "rule_distill",
+      "source_access": "copy_readback",
+      "evidence_class": "inferred",
+      "status": "proposed",
+      "blind_test": {},
+      "expected": "FAIL",
+      "expect_error_contains": "rule_distill requires blind_test"
+    },
+    {
+      "name": "invalid_source_replica_without_original_permission",
+      "mode": "source_replica",
+      "source_access": "none",
+      "status": "undetermined",
+      "expected": "FAIL",
+      "expect_error_contains": "source_replica requires original_readback"
+    }
+  ]
+}

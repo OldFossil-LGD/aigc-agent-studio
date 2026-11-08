@@ -1,0 +1,125 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "只交付提示词，不生成。17秒16:9写实无人镜头，三个固定正面镜头分别4、7、6秒。机械夹按下透明开关后，蓝色指示灯熄灭；第二镜夹爪松开灯仍灭，第三镜继续保持熄灭。环境只有房间底噪；第二镜前1.5秒另保留上镜机械回响，随后仅底噪。无音乐无人声。 第一镜成片4秒，生成8秒并截取第1至5秒。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 17,
+      "source": "user_explicit",
+      "locked": true
+    },
+    "aspect_ratio": {
+      "value": "16:9",
+      "source": "user_explicit",
+      "locked": true
+    },
+    "visual_style": {
+      "value": {
+        "text": "写实",
+        "register": "photoreal"
+      },
+      "source": "user_explicit",
+      "locked": true
+    }
+  },
+  "sound": {
+    "mode": "ambience_only",
+    "allowed": [
+      "房间底噪"
+    ],
+    "forbidden": [
+      "人声",
+      "对白",
+      "旁白",
+      "音乐"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "fresh_01",
+      "duration_sec": 4,
+      "shot_kind": "empty",
+      "description": "固定正面：机械夹压下透明开关，蓝色指示灯在压力落下后熄灭。",
+      "action_feedback": "夹爪在开关最低处停住，灯面由浅蓝变为炭灰。",
+      "continuity_state": "触碰前亮，触碰后灭，开关保持下压。",
+      "generation_duration_sec": 8,
+      "cut_range": {
+        "start_sec": 1,
+        "end_sec": 5
+      }
+    },
+    {
+      "id": "fresh_02",
+      "duration_sec": 7,
+      "shot_kind": "empty",
+      "description": "固定正面：夹爪向上松开，指示灯继续熄灭。",
+      "action_feedback": "机械夹离开开关，开关回弹，指示灯不重新亮起。",
+      "continuity_state": "从上镜熄灭状态开始，离开后仍为炭灰。",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      },
+      "sound_craft": "本镜开头1.5秒保留上镜机械回响，随后只有房间底噪。"
+    },
+    {
+      "id": "fresh_03",
+      "duration_sec": 6,
+      "shot_kind": "empty",
+      "description": "固定正面：指示灯和透明开关维持位置，夹爪留在开关上方。",
+      "action_feedback": "夹爪保持悬停，指示灯持续熄灭。",
+      "continuity_state": "延续上一镜开关回弹、指示灯炭灰状态。"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera",
+      "kind": "camera",
+      "text": "相机固定正面，镜头不移动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "semantics": {
+        "required_any": [
+          "固定"
+        ],
+        "forbidden": [
+          "移动"
+        ],
+        "required_all": [
+          "固定",
+          "正面"
+        ]
+      }
+    },
+    {
+      "id": "c_no_people",
+      "kind": "negative",
+      "text": "不出现人物。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "semantics": {
+        "required_any": [
+          "不出现"
+        ],
+        "forbidden": [
+          "人物"
+        ]
+      }
+    }
+  ],
+  "entities": []
+}

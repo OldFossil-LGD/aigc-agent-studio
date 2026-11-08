@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigc-agent-studio.local/schemas/prompt_ast.v2.schema.json",
+  "title": "Prompt AST v2",
+  "description": "提示词语义层：12 块与模型执行提示词都由它渲染。每个字段带来源 decision id；硬约束必须有消费路径，否则阻断编译。",
+  "type": "object",
+  "required": ["schema_version", "shot_id", "fields"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"const": "prompt-ast/v2"},
+    "shot_id": {"type": "string", "minLength": 1},
+    "identity_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["character_id"],
+        "properties": {
+          "character_id": {"type": "string"},
+          "identity_version": {"type": ["string", "null"]},
+          "look_id": {"type": ["string", "null"]},
+          "continuity_state_id": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "purpose": {"$ref": "#/$defs/field"},
+        "camera_spec": {"$ref": "#/$defs/field"},
+        "composition": {"$ref": "#/$defs/field"},
+        "lighting": {"$ref": "#/$defs/field"},
+        "timeline": {"$ref": "#/$defs/field"},
+        "sound": {"$ref": "#/$defs/field"}
+      },
+      "additionalProperties": true
+    },
+    "constraint_coverage": {
+      "type": "object",
+      "properties": {
+        "covered": {"type": "array", "items": {"type": "object"}},
+        "unconsumed_locked_constraints": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "field": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": {},
+        "source_decision_ids": {"type": "array", "items": {"type": "string"}},
+        "status": {"enum": ["filled", "N/A", "UNKNOWN"]}
+      },
+      "additionalProperties": true
+    }
+  }
+}

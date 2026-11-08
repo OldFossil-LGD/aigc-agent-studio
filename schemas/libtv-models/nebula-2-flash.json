@@ -1,0 +1,113 @@
+{
+  "nameOrId": "nebula-2-flash",
+  "modelName": "nebula-2-flash",
+  "modelKey": "nebula-2-flash",
+  "toolKey": "nebula-2-flash",
+  "modality": "image",
+  "schema": {
+    "modelKey": "nebula-2-flash",
+    "modelName": "全能图片模型V2-Flash",
+    "modelVendor": "nebula",
+    "baseType": 70,
+    "properties": {
+      "enableSlash": true,
+      "cameraControl": true,
+      "magic": true,
+      "focus": true,
+      "mention": true,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "template": {
+        "displayName": "风格",
+        "maxCount": 1
+      },
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          "1K",
+          "2K",
+          "4K"
+        ],
+        "default": "2K",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          },
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "4:5",
+          "5:4",
+          "8:1",
+          "1:8",
+          "4:1",
+          "1:4",
+          "21:9"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "search_enabled": {
+        "displayName": "联网搜索",
+        "default": 0,
+        "component": "switch",
+        "originalField": "search_enabled"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            7
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2image": [
+          "quality",
+          "ratio"
+        ],
+        "image2image": [
+          "quality",
+          "ratio"
+        ]
+      },
+      "advancedSettings": [
+        "search_enabled"
+      ],
+      "generateTypes": {
+        "text": 83,
+        "image": 83,
+        "checkpointId": 22621740
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

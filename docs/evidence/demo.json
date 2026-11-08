@@ -1,0 +1,82 @@
+{
+  "scope": "Actual R2 relocated Windows offline runs with fresh requirements-only venv, system-only PATH and absent LibTV; no output text rewritten",
+  "python": "Python 3.13.14",
+  "source_hashes_unchanged": true,
+  "results": [
+    {
+      "name": "draft",
+      "args": [
+        "scripts/compile_intent_delivery.py",
+        "samples/papercut_empty_shot_intent.en.json",
+        "--out",
+        "out/demo",
+        "--draft"
+      ],
+      "exit": 0,
+      "stdout": "{\r\n  \"gate_status\": \"PASS\",\r\n  \"contract_status\": \"READY\",\r\n  \"proposed_decisions\": [],\r\n  \"copyable_markdown\": \"out\\\\demo\\\\13_Draft_Prompt.md\",\r\n  \"verification_status\": \"PASS\",\r\n  \"delivery_readiness\": \"DRAFT_REVIEW_REQUIRED\"\r\n}\r\n",
+      "stderr": "",
+      "has_draft": true,
+      "has_final": false,
+      "files": [
+        "01_production_contract.json",
+        "02_asset_graph_plan.json",
+        "03_shot_graph_plan.json",
+        "04_prompt_packages.jsonl",
+        "06_gate_results.json",
+        "07_regression_ledger.json",
+        "09_claims.jsonl",
+        "10_claim_gate.json",
+        "11_task_profile.json",
+        "12_intent_delivery_package.json",
+        "13_Draft_Prompt.md",
+        "14_delivery_verification.json",
+        "rendered"
+      ]
+    },
+    {
+      "name": "missing_review",
+      "args": [
+        "scripts/compile_intent_delivery.py",
+        "samples/papercut_empty_shot_intent.en.json",
+        "--out",
+        "out/review-required"
+      ],
+      "exit": 1,
+      "stdout": "{\r\n  \"gate_status\": \"PASS\",\r\n  \"contract_status\": \"READY\",\r\n  \"proposed_decisions\": [],\r\n  \"copyable_markdown\": \"out\\\\review-required\\\\13_Draft_Prompt.md\",\r\n  \"verification_status\": \"PASS\",\r\n  \"delivery_readiness\": \"DRAFT_REVIEW_REQUIRED\"\r\n}\r\n",
+      "stderr": "DRAFT_REVIEW_REQUIRED: full current source and decision evidence required before formal delivery\r\n",
+      "has_draft": true,
+      "has_final": false,
+      "files": [
+        "01_production_contract.json",
+        "02_asset_graph_plan.json",
+        "03_shot_graph_plan.json",
+        "04_prompt_packages.jsonl",
+        "06_gate_results.json",
+        "07_regression_ledger.json",
+        "09_claims.jsonl",
+        "10_claim_gate.json",
+        "11_task_profile.json",
+        "12_intent_delivery_package.json",
+        "13_Draft_Prompt.md",
+        "14_delivery_verification.json",
+        "rendered"
+      ]
+    },
+    {
+      "name": "invalid_input",
+      "args": [
+        "scripts/compile_intent_delivery.py",
+        "out/invalid-intent.json",
+        "--out",
+        "out/invalid-output",
+        "--draft"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "intent handoff invalid: unmapped task fields: unexpected_camera_rule; use declared decisions/constraints or keep unresolved\r\n",
+      "has_draft": false,
+      "has_final": false,
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "source_revision": "6f1d4a0c9b2e7d35a8c1f40b5e6d92a3c7b8e1f20d4a6c9b3e5f7a1d2c4b6e8f",
+  "generation_authorized": false,
+  "world_state_scope": "declared_state_not_media_verification",
+  "mode": "production_build",
+  "deliverable": "production_plan",
+  "source_access": "text_only",
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 6,
+      "shot_timing": {"duration_sec": 6, "generation_duration_sec": 6, "cut_range": {"start_sec": 0, "end_sec": 6}},
+      "risk": "medium",
+      "candidate_count": 2,
+      "description": "雨夜街道，<char_lin> 站在便利店门口抬头看招牌",
+      "shot_kind": "character",
+      "entities": [
+        {"asset_id": "char_lin", "position": "画面左三分", "action_state": "抬头"},
+        {"asset_id": "primary_scene", "position": "背景满幅"}
+      ],
+      "camera": {"shot_scale": "MS", "angle": "low", "movement": "static"},
+      "lighting": "雨夜霓虹侧逆光",
+      "environment_id": "primary_scene",
+      "roles": ["storyboard", "prompt", "scene_ref", "identity_ref", "candidate_image", "refined_image", "video_candidate", "selection"],
+      "required_roles": ["storyboard", "prompt", "identity_ref", "candidate_image", "video_candidate", "selection"]
+    },
+    {
+      "id": "shot_02",
+      "duration_sec": 4,
+      "shot_timing": {"duration_sec": 4, "generation_duration_sec": 8, "cut_range": {"start_sec": 1, "end_sec": 5}},
+      "risk": "low",
+      "candidate_count": 1,
+      "description": "固定正面：霓虹招牌在雨幕里亮起，灯管依次闪烁",
+      "shot_kind": "empty",
+      "camera": {"shot_scale": "CU", "angle": "eye_level", "movement": "static"},
+      "lighting": "冷调雨幕，招牌为主导光源",
+      "roles": ["storyboard", "prompt", "composition_ref", "candidate_image", "video_candidate", "selection"],
+      "required_roles": ["storyboard", "prompt", "composition_ref", "candidate_image", "video_candidate", "selection"]
+    },
+    {
+      "id": "shot_03",
+      "duration_sec": 5,
+      "shot_timing": {"duration_sec": 5, "generation_duration_sec": 5, "cut_range": {"start_sec": 0, "end_sec": 5}},
+      "risk": "high",
+      "candidate_count": 3,
+      "description": "近景：<char_lin> 的手指推开玻璃门，门内暖光溢出",
+      "shot_kind": "character",
+      "camera": {"shot_scale": "CU", "angle": "eye_level", "movement": "slow_push"},
+      "no_dialogue": true,
+      "roles": ["storyboard", "prompt", "composition_ref", "candidate_image", "refined_image", "video_candidate", "selection"],
+      "required_roles": ["storyboard", "prompt", "candidate_image", "video_candidate", "selection"]
+    }
+  ],
+  "nodes": [
+    {"id": "shot_01__storyboard", "role": "storyboard", "shot_id": "shot_01", "node_type": "text", "model": "GVLM 3.1", "settings": {}},
+    {"id": "shot_01__prompt", "role": "prompt", "shot_id": "shot_01", "node_type": "text", "model": "GVLM 3.1", "settings": {}},
+    {"id": "shot_01__identity_ref", "role": "identity_ref", "shot_id": "shot_01", "node_type": "image", "model": "General image Pro", "settings": {"quality": "2K"}, "mode_type": "text2image"},
+    {"id": "shot_01__candidate_image_A", "role": "candidate_image", "shot_id": "shot_01", "node_type": "image", "model": "General image Pro", "settings": {"ratio": "16:9"}, "mode_type": "text2image"},
+    {"id": "shot_01__video_candidate_A", "role": "video_candidate", "shot_id": "shot_01", "node_type": "video", "model": "Wan 3.0", "settings": {"duration": 6}},
+    {"id": "shot_01__selection", "role": "selection", "shot_id": "shot_01", "node_type": "text", "settings": {}},
+
+    {"id": "shot_02__storyboard", "role": "storyboard", "shot_id": "shot_02", "node_type": "text", "model": "GVLM 3.1", "settings": {}},
+    {"id": "shot_02__prompt", "role": "prompt", "shot_id": "shot_02", "node_type": "text", "model": "GVLM 3.1", "settings": {}},
+    {"id": "shot_02__composition_ref", "role": "composition_ref", "shot_id": "shot_02", "node_type": "image", "model": "General image Pro", "settings": {}, "asset_id": "primary_prop"},
+    {"id": "shot_02__candidate_image_A", "role": "candidate_image", "shot_id": "shot_02", "node_type": "image", "model": "General image Pro", "settings": {}},
+    {"id": "shot_02__video_candidate_A", "role": "video_candidate", "shot_id": "shot_02", "node_type": "video", "model": "Wan 3.0", "settings": {"duration": 8}},
+    {"id": "shot_02__selection", "role": "selection", "shot_id": "shot_02", "node_type": "text", "settings": {}},
+
+    {"id": "shot_03__storyboard", "role": "storyboard", "shot_id": "shot_03", "node_type": "text", "model": "GVLM 3.1", "settings": {}},
+    {"id": "shot_03__prompt", "role": "prompt", "shot_id": "shot_03", "node_type": "text", "model": "GVLM 3.1", "settings": {}},
+    {"id": "primary_prop__refine_b", "role": "composition_ref", "shot_id": "shot_03", "node_type": "image", "model": "General image Pro", "settings": {}},
+    {"id": "shot_03__candidate_image_A", "role": "candidate_image", "shot_id": "shot_03", "node_type": "image", "model": "General image Pro", "settings": {}},
+    {"id": "shot_03__video_candidate_A", "role": "video_candidate", "shot_id": "shot_03", "node_type": "video", "model": "Wan 3.0", "settings": {"duration": 5}},
+    {"id": "shot_03__selection", "role": "selection", "shot_id": "shot_03", "node_type": "text", "settings": {}}
+  ],
+  "edges": [
+    {"source": "shot_01__prompt", "target": "shot_01__candidate_image_A", "purpose": "compile"},
+    {"source": "shot_01__candidate_image_A", "target": "shot_01__video_candidate_A", "purpose": "image_reference"},
+    {"source": "shot_01__video_candidate_A", "target": "shot_01__selection", "purpose": "select"},
+    {"source": "shot_02__prompt", "target": "shot_02__candidate_image_A", "purpose": "compile"},
+    {"source": "shot_02__candidate_image_A", "target": "shot_02__video_candidate_A", "purpose": "image_reference"},
+    {"source": "shot_02__video_candidate_A", "target": "shot_02__selection", "purpose": "select"},
+    {"source": "shot_03__prompt", "target": "shot_03__candidate_image_A", "purpose": "compile"},
+    {"source": "shot_03__candidate_image_A", "target": "shot_03__video_candidate_A", "purpose": "image_reference"},
+    {"source": "shot_03__video_candidate_A", "target": "shot_03__selection", "purpose": "select"}
+  ],
+  "groups": [],
+  "policy": {
+    "required_shot_roles": ["storyboard", "prompt", "candidate_image", "video_candidate", "selection"],
+    "link_grammar": {
+      "shot_chain": ["storyboard -> prompt -> video_candidate", "candidate_image -> refined_image -> video_candidate"]
+    }
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "generated_at": "2026-10-16",
+  "source": "libtv model <modelKey> (logged-out read-only)",
+  "count": 77,
+  "by_type": {
+    "text": 4,
+    "image": 20,
+    "video": 34,
+    "audio": 6,
+    "script": 10,
+    "storyboard": 10
+  },
+  "refresh": "node work/fetch_model_schemas.mjs",
+  "models": [
+    {
+      "modelKey": "MiniMax-Hailuo-2.3",
+      "modelName": "Hailuo-2.3",
+      "modality": "video",
+      "file": "MiniMax-Hailuo-2.3.json",
+      "bytes": 4044
+    },
+    {
+      "modelKey": "MiniMax-Hailuo-2.3-Fast",
+      "modelName": "Hailuo-2.3 Fast",
+      "modality": "video",
+      "file": "MiniMax-Hailuo-2.3-Fast.json",
+      "bytes": 4008
+    },
+    {
+      "modelKey": "MiniMax-Hailuo-H3",
+      "modelName": "Minimax H3",
+      "modality": "video",
+      "file": "MiniMax-Hailuo-H3.json",
+      "bytes": 3467
+    },
+    {
+      "modelKey": "MiniMax-Hailuo-H3-Max",
+      "modelName": "Minimax H3 Max",
+      "modality": "video",
+      "file": "MiniMax-Hailuo-H3-Max.json",
+      "bytes": 2783
+    },
+    {
+      "modelKey": "MiniMax-Hailuo-o2",
+      "modelName": "Hailuo-O2",
+      "modality": "video",
+      "file": "MiniMax-Hailuo-o2.json",
+      "bytes": 3483
+    },
+    {
+      "modelKey": "aurora-3-lite",
+      "modelName": "多模态文本模型lite",
+      "modality": "text",
+      "file": "aurora-3-lite.json",
+      "bytes": 748
+    },
+    {
+      "modelKey": "aurora-3-prime",
+      "modelName": "多模态文本模型Pro",
+      "modality": "text",
+      "file": "aurora-3-prime.json",
+      "bytes": 752
+    },
+    {
+      "modelKey": "cvlm-5.5",
+      "modelName": "CVLM 5.5",
+      "modality": "text",
+      "file": "cvlm-5.5.json",
+      "bytes": 705
+    },
+    {
+      "modelKey": "doubao-seedream-5-0-pro",
+      "modelName": "Seedream5.0 Pro",
+      "modality": "image",
+      "file": "doubao-seedream-5-0-pro.json",
+      "bytes": 1579
+    },
+    {
+      "modelKey": "flux-1",
+      "modelName": "基础算法F.1",
+      "modality": "image",
+      "file": "flux-1.json",
+      "bytes": 1528
+    },
+    {
+      "modelKey": "flux-2-flex",
+      "modelName": "Flux 2 Flex",
+      "modality": "image",
+      "file": "flux-2-flex.json",
+      "bytes": 1471
+    },
+    {
+      "modelKey": "flux-2-pro",
+      "modelName": "Flux 2 Pro",
+      "modality": "image",
+      "file": "flux-2-pro.json",
+      "bytes": 1464
+    },
+    {
+      "modelKey": "flux-3-image",
+      "modelName": "Genesis F.3",
+      "modality": "image",
+      "file": "flux-3-image.json",
+      "bytes": 1707
+    },
+    {
+      "modelKey": "happy-horse-1",
+      "modelName": "Happy Horse 1.0",
+      "modality": "video",
+      "file": "happy-horse-1.json",
+      "bytes": 2272
+    },
+    {
+      "modelKey": "happy-horse-1.1",
+      "modelName": "Happy Horse 1.1",
+      "modality": "video",
+      "file": "happy-horse-1.1.json",
+      "bytes": 2282
+    },
+    {
+      "modelKey": "image-editor",
+      "modelName": "图片编辑模型",
+      "modality": "image",
+      "file": "image-editor.json",
+      "bytes": 1565
+    },
+    {
+      "modelKey": "image-editor-pro",
+      "modelName": "图片编辑Pro",
+      "modality": "image",
+      "file": "image-editor-pro.json",
+      "bytes": 1588
+    },
+    {
+      "modelKey": "jimeng-4.6",
+      "modelName": "即梦4.6",
+      "modality": "image",
+      "file": "jimeng-4.6.json",
+      "bytes": 1778
+    },
+    {
+      "modelKey": "kling-v2-5-turbo-pro",
+      "modelName": "可灵 2.5",
+      "modality": "video",
+      "file": "kling-v2-5-turbo-pro.json",
+      "bytes": 3016
+    },
+    {
+      "modelKey": "kling-v2-6",
+      "modelName": "可灵V2.6",
+      "modality": "video",
+      "file": "kling-v2-6.json",
+      "bytes": 3153
+    },
+    {
+      "modelKey": "kling-v3-motion-control",
+      "modelName": "动作控制-可灵O3",
+      "modality": "video",
+      "file": "kling-v3-motion-control.json",
+      "bytes": 3024
+    },
+    {
+      "modelKey": "kling-v3-omni",
+      "modelName": "可灵 3.0 Omni",
+      "modality": "video",
+      "file": "kling-v3-omni.json",
+      "bytes": 7699
+    },
+    {
+      "modelKey": "kling-v3-turbo",
+      "modelName": "可灵 3.0 turbo",
+      "modality": "video",
+      "file": "kling-v3-turbo.json",
+      "bytes": 2941
+    },
+    {
+      "modelKey": "kling-video-o1",
+      "modelName": "可灵O1",
+      "modality": "video",
+      "file": "kling-video-o1.json",
+      "bytes": 3944
+    },
+    {
+      "modelKey": "kling-video-o3",
+      "modelName": "可灵 3.0",
+      "modality": "video",
+      "file": "kling-video-o3.json",
+      "bytes": 3512
+    },
+    {
+      "modelKey": "lib-image-2",
+      "modelName": "Lib Image",
+      "modality": "image",
+      "file": "lib-image-2.json",
+      "bytes": 2528
+    },
+    {
+      "modelKey": "lib-image-2.5-f",
+      "modelName": null,
+      "modality": "image",
+      "file": "lib-image-2.5-f.json",
+      "bytes": 3217
+    },
+    {
+      "modelKey": "lib-image-2.5-s",
+      "modelName": null,
+      "modality": "image",
+      "file": "lib-image-2.5-s.json",
+      "bytes": 3217
+    },
+    {
+      "modelKey": "midjourney-video",
+      "modelName": "MJ Video",
+      "modality": "video",
+      "file": "midjourney-video.json",
+      "bytes": 2726
+    },
+    {
+      "modelKey": "minimax-voice-design",
+      "modelName": "MiniMax voice design",
+      "modality": "audio",
+      "file": "minimax-voice-design.json",
+      "bytes": 729
+    },
+    {
+      "modelKey": "mj-niji7",
+      "modelName": "Midjourney Niji 7",
+      "modality": "image",
+      "file": "mj-niji7.json",
+      "bytes": 2935
+    },
+    {
+      "modelKey": "mj-v7",
+      "modelName": "Midjourney V7",
+      "modality": "image",
+      "file": "mj-v7.json",
+      "bytes": 2976
+    },
+    {
+      "modelKey": "mj-v8.1",
+      "modelName": "Midjourney V8.1",
+      "modality": "image",
+      "file": "mj-v8.1.json",
+      "bytes": 2988
+    },
+    {
+      "modelKey": "mj-v8.2",
+      "modelName": "Midjourney V8.2",
+      "modality": "image",
+      "file": "mj-v8.2.json",
+      "bytes": 2988
+    },
+    {
+      "modelKey": "motion-3-prime",
+      "modelName": "全能视频模型3",
+      "modality": "video",
+      "file": "motion-3-prime.json",
+      "bytes": 2028
+    },
+    {
+      "modelKey": "mureka-8",
+      "modelName": "Mureka V8",
+      "modality": "audio",
+      "file": "mureka-8.json",
+      "bytes": 1287
+    },
+    {
+      "modelKey": "mureka-9",
+      "modelName": "Mureka V9",
+      "modality": "audio",
+      "file": "mureka-9.json",
+      "bytes": 840
+    },
+    {
+      "modelKey": "nebula-2-flash",
+      "modelName": "全能图片模型V2-Flash",
+      "modality": "image",
+      "file": "nebula-2-flash.json",
+      "bytes": 2217
+    },
+    {
+      "modelKey": "nebula-2.1",
+      "modelName": "全能图片模型V2.1",
+      "modality": "image",
+      "file": "nebula-2.1.json",
+      "bytes": 2196
+    },
+    {
+      "modelKey": "nebula-core",
+      "modelName": "全能图片模型",
+      "modality": "image",
+      "file": "nebula-core.json",
+      "bytes": 1605
+    },
+    {
+      "modelKey": "nebula-ultra",
+      "modelName": "全能图片模型V2",
+      "modality": "image",
+      "file": "nebula-ultra.json",
+      "bytes": 2075
+    },
+    {
+      "modelKey": "omnihuman-1.5",
+      "modelName": "OmniHuman 1.5",
+      "modality": "video",
+      "file": "omnihuman-1.5.json",
+      "bytes": 1898
+    },
+    {
+      "modelKey": "orbit-2-image",
+      "modelName": "艾克斯图片模型",
+      "modality": "image",
+      "file": "orbit-2-image.json",
+      "bytes": 1319
+    },
+    {
+      "modelKey": "pixverse-v5",
+      "modelName": "Pixverse V5",
+      "modality": "video",
+      "file": "pixverse-v5.json",
+      "bytes": 3915
+    },
+    {
+      "modelKey": "pixverse-v5.5",
+      "modelName": "Pixverse V5.5",
+      "modality": "video",
+      "file": "pixverse-v5.5.json",
+      "bytes": 4614
+    },
+    {
+      "modelKey": "qwen",
+      "modelName": "Qwen Image",
+      "modality": "image",
+      "file": "qwen.json",
+      "bytes": 1514
+    },
+    {
+      "modelKey": "qwen-3-vl-flash",
+      "modelName": "Qwen 3 VL Flash",
+      "modality": "text",
+      "file": "qwen-3-vl-flash.json",
+      "bytes": 746
+    },
+    {
+      "modelKey": "qwen-edit",
+      "modelName": "Qwen Image Edit",
+      "modality": "image",
+      "file": "qwen-edit.json",
+      "bytes": 1544
+    },
+    {
+      "modelKey": "qwen-image-3",
+      "modelName": "Qwen Image3",
+      "modality": "image",
+      "file": "qwen-image-3.json",
+      "bytes": 2119
+    },
+    {
+      "modelKey": "scene-2",
+      "modelName": "多镜头视频模型",
+      "modality": "video",
+      "file": "scene-2.json",
+      "bytes": 1761
+    },
+    {
+      "modelKey": "scene-2-ultra",
+      "modelName": "多镜头视频模型Pro",
+      "modality": "video",
+      "file": "scene-2-ultra.json",
+      "bytes": 1814
+    },
+    {
+      "modelKey": "seed-audio-1.0",
+      "modelName": "seed-audio-1.0",
+      "modality": "audio",
+      "file": "seed-audio-1.0.json",
+      "bytes": 3186
+    },
+    {
+      "modelKey": "seedance-1.5-pro",
+      "modelName": "Seedance 1.5 Pro",
+      "modality": "video",
+      "file": "seedance-1.5-pro.json",
+      "bytes": 2846
+    },
+    {
+      "modelKey": "seedream-4",
+      "modelName": "Seedream 4.0",
+      "modality": "image",
+      "file": "seedream-4.json",
+      "bytes": 1761
+    },
+    {
+      "modelKey": "seedream-4.5",
+      "modelName": "Seedream 4.5",
+      "modality": "image",
+      "file": "seedream-4.5.json",
+      "bytes": 1881
+    },
+    {
+      "modelKey": "seedream-5",
+      "modelName": "Seedream 5.0",
+      "modality": "image",
+      "file": "seedream-5.json",
+      "bytes": 1870
+    },
+    {
+      "modelKey": "speech-2.8-hd",
+      "modelName": "Minimax-speech-2.8-hd",
+      "modality": "audio",
+      "file": "speech-2.8-hd.json",
+      "bytes": 4374
+    },
+    {
+      "modelKey": "speech-2.8-turbo",
+      "modelName": "Minimax-speech-2.8-turbo",
+      "modality": "audio",
+      "file": "speech-2.8-turbo.json",
+      "bytes": 4392
+    },
+    {
+      "modelKey": "star-video2",
+      "modelName": "StarVideo 2.0",
+      "modality": "video",
+      "file": "star-video2.json",
+      "bytes": 3881
+    },
+    {
+      "modelKey": "star-video2-fast",
+      "modelName": "StarVideo 2.0 Fast",
+      "modality": "video",
+      "file": "star-video2-fast.json",
+      "bytes": 3742
+    },
+    {
+      "modelKey": "star-video2-mini",
+      "modelName": "StarVideo 2.0 Mini",
+      "modality": "video",
+      "file": "star-video2-mini.json",
+      "bytes": 3737
+    },
+    {
+      "modelKey": "star-video2.5",
+      "modelName": "Seedance 2.5",
+      "modality": "video",
+      "file": "star-video2.5.json",
+      "bytes": 5677
+    },
+    {
+      "modelKey": "star-video2.5-draft",
+      "modelName": "Seedance 2.5（样片模式）",
+      "modality": "video",
+      "file": "star-video2.5-draft.json",
+      "bytes": 5525
+    },
+    {
+      "modelKey": "vidu-q4",
+      "modelName": "ONE",
+      "modality": "video",
+      "file": "vidu-q4.json",
+      "bytes": 3156
+    },
+    {
+      "modelKey": "viduq2",
+      "modelName": "Vidu Q2",
+      "modality": "video",
+      "file": "viduq2.json",
+      "bytes": 1777
+    },
+    {
+      "modelKey": "viduq2-pro",
+      "modelName": "Vidu Q2 Pro",
+      "modality": "video",
+      "file": "viduq2-pro.json",
+      "bytes": 2046
+    },
+    {
+      "modelKey": "viduq2-turbo",
+      "modelName": "Vidu Q2 Turbo",
+      "modality": "video",
+      "file": "viduq2-turbo.json",
+      "bytes": 1703
+    },
+    {
+      "modelKey": "viduq3-pro",
+      "modelName": "Vidu Q3 Pro",
+      "modality": "video",
+      "file": "viduq3-pro.json",
+      "bytes": 3073
+    },
+    {
+      "modelKey": "vocal-music",
+      "modelName": "智能音乐模型",
+      "modality": "audio",
+      "file": "vocal-music.json",
+      "bytes": 1487
+    },
+    {
+      "modelKey": "vocal-v3",
+      "modelName": "智能语音模型V3",
+      "modality": "audio",
+      "file": "vocal-v3.json",
+      "bytes": 2092
+    },
+    {
+      "modelKey": "wanx2.7-video",
+      "modelName": "Wan 2.7",
+      "modality": "video",
+      "file": "wanx2.7-video.json",
+      "bytes": 3422
+    },
+    {
+      "modelKey": "wanx3.0",
+      "modelName": "Wan 3.0",
+      "modality": "video",
+      "file": "wanx3.0.json",
+      "bytes": 3891
+    },
+    {
+      "modelKey": "wanx3.0-prime",
+      "modelName": null,
+      "modality": "video",
+      "file": "wanx3.0-prime.json",
+      "bytes": 3686
+    },
+    {
+      "modelKey": "wanxiang-plus",
+      "modelName": "Wan 2.2",
+      "modality": "video",
+      "file": "wanxiang-plus.json",
+      "bytes": 2008
+    },
+    {
+      "modelKey": "wanxiang-preview",
+      "modelName": "Wan 2.5",
+      "modality": "video",
+      "file": "wanxiang-preview.json",
+      "bytes": 2900
+    },
+    {
+      "modelKey": "wanxiang-v2-6",
+      "modelName": "Wan 2.6",
+      "modality": "video",
+      "file": "wanxiang-v2-6.json",
+      "bytes": 3588
+    },
+    {
+      "modelKey": "z-image",
+      "modelName": "Z Image",
+      "modality": "image",
+      "file": "z-image.json",
+      "bytes": 1447
+    }
+  ]
+}

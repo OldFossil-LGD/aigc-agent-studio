@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShotGraphPlan",
+  "type": "object",
+  "required": [
+    "shots",
+    "nodes",
+    "edges",
+    "groups",
+    "policy"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "generation_authorized": {
+      "const": false
+    },
+    "world_state_scope": {
+      "const": "declared_state_not_media_verification"
+    },
+    "shots": {
+      "type": "array"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "role",
+          "node_type"
+        ]
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "target",
+          "purpose"
+        ]
+      }
+    },
+    "groups": {
+      "type": "array"
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "required_shot_roles"
+      ]
+    },
+    "production_records": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/productionRecord"
+      }
+    },
+    "record_history": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/productionRecord"
+        }
+      }
+    },
+    "archived_records": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/productionRecord"
+      }
+    },
+    "graph_history": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "asset_definitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "$defs": {
+    "productionRecord": {
+      "type": "object",
+      "required": [
+        "record_format",
+        "scope",
+        "record_id",
+        "version",
+        "source_version",
+        "source_revision",
+        "authored_node",
+        "references",
+        "state",
+        "review_status"
+      ],
+      "properties": {
+        "record_format": {
+          "const": "production-record/v1"
+        },
+        "scope": {
+          "const": "offline_plan_and_artifact_binding"
+        },
+        "record_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_revision": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "authored_node": {
+          "type": "object"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "record_id",
+              "version",
+              "source_revision",
+              "source",
+              "purpose",
+              "kind"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "recovering",
+            "graph_plan_ready",
+            "generated",
+            "archived"
+          ]
+        },
+        "review_status": {
+          "const": "NOT_VERIFIED"
+        },
+        "source_prompt_package": {
+          "type": "object"
+        },
+        "media_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "media_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "media_byte_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "media_evidence_class": {
+          "enum": [
+            "local_file_only",
+            "offline_fixture"
+          ]
+        },
+        "recovery": {
+          "type": "object",
+          "required": [
+            "scope",
+            "status",
+            "source_record_ids",
+            "responsibility_layers",
+            "reentry_states",
+            "remaining_gates"
+          ],
+          "properties": {
+            "scope": {
+              "const": "offline_native_plan"
+            },
+            "status": {
+              "enum": [
+                "awaiting_revalidation",
+                "plan_revalidated"
+              ]
+            },
+            "source_record_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "responsibility_layers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reentry_states": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "remaining_gates": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "validated_gates": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

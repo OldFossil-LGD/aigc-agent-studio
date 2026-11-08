@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssetGraphPlan",
+  "type": "object",
+  "required": ["assets", "iteration_chains", "exemptions", "policy"],
+  "properties": {
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "anchor_role", "requires_iteration", "state_versions"]
+      }
+    },
+    "iteration_chains": {"type": "array"},
+    "exemptions": {"type": "array"},
+    "policy": {"type": "object"}
+  }
+}

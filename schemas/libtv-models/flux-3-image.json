@@ -1,0 +1,90 @@
+{
+  "nameOrId": "flux-3-image",
+  "modelName": "flux-3-image",
+  "modelKey": "flux-3-image",
+  "toolKey": "flux-3-image",
+  "modality": "image",
+  "schema": {
+    "modelKey": "flux-3-image",
+    "modelName": "Genesis F.3",
+    "modelVendor": "flux",
+    "baseType": 51,
+    "properties": {
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自动"
+          },
+          {
+            "value": "1k",
+            "displayName": "1K"
+          },
+          {
+            "value": "2k",
+            "displayName": "2K"
+          },
+          {
+            "value": "4k",
+            "displayName": "4K"
+          }
+        ],
+        "default": "2k",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            10
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 84,
+        "image": 84,
+        "checkpointId": 23388861
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

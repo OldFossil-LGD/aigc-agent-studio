@@ -1,0 +1,92 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "三镜状态继承，只交提示词",
+  "task_type": "prompt_only",
+  "version": 7,
+  "decisions": {
+    "duration_sec": {
+      "value": 6,
+      "source": "user_explicit",
+      "locked": true
+    },
+    "aspect_ratio": {
+      "value": "9:16",
+      "source": "user_explicit",
+      "locked": true
+    },
+    "visual_style": {
+      "value": {
+        "text": "剪纸",
+        "register": "stylized"
+      },
+      "source": "user_explicit",
+      "locked": true
+    }
+  },
+  "world_state_initial": {
+    "杯": {
+      "kind": "prop",
+      "value": "完整",
+      "observable": true
+    },
+    "门": {
+      "kind": "world",
+      "value": "关闭",
+      "observable": true
+    }
+  },
+  "entities": [],
+  "shots": [
+    {
+      "id": "s1",
+      "version": 2,
+      "duration_sec": 2,
+      "description": "剪纸房间中的一镜，无人物",
+      "shot_kind": "empty",
+      "asset_refs": [],
+      "world_state_refs": [
+        "杯",
+        "门"
+      ],
+      "world_state_delta": {
+        "杯": {
+          "kind": "prop",
+          "value": "碎裂",
+          "observable": true
+        },
+        "门": "unchanged"
+      }
+    },
+    {
+      "id": "s2",
+      "version": 3,
+      "duration_sec": 2,
+      "description": "剪纸房间中的一镜，无人物",
+      "shot_kind": "empty",
+      "asset_refs": [],
+      "world_state_refs": [
+        "杯",
+        "门"
+      ],
+      "world_state_delta": {
+        "杯": "unchanged",
+        "门": "unchanged"
+      }
+    },
+    {
+      "id": "s3",
+      "version": 4,
+      "duration_sec": 2,
+      "description": "剪纸房间中的一镜，无人物",
+      "shot_kind": "empty",
+      "asset_refs": [],
+      "world_state_refs": [
+        "门"
+      ],
+      "world_state_delta": {
+        "杯": "unchanged",
+        "门": "unchanged"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1372 @@
+[
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_01",
+    "field": "performance",
+    "decision": "小林视线从阿青眼睛落到袖口，下巴短暂收紧后松开，嘴角只提起一点；掩住失望，仍向阿青做安慰的手势，动作比阿青的转身慢半拍。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/0/performance",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_01",
+    "field": "action_feedback",
+    "decision": "阿青一开始转身，小林才伸手靠近阿青袖口；阿青注意到这只手，离开的动作短暂停住，镜头结束时尚未离开画面。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/0/action_feedback",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_01",
+    "field": "continuity_state",
+    "decision": "第一镜结束时两人仍并排在同一房间，小林的手刚到阿青袖口附近；第二镜从这个未完手势接起。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/0/continuity_state",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_01",
+    "field": "transition",
+    "decision": "切点落在小林的手靠近阿青袖口的一刻，下一镜保持小林手在左、阿青袖口在右，不换轴线。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/0/transition",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_02",
+    "field": "performance",
+    "decision": "小林指尖顺着阿青袖口轻轻捋平一处褶皱，随即松开退回；阿青的手在原处停一拍，接住这份安慰，没有被拉住。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/1/performance",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_02",
+    "field": "action_feedback",
+    "decision": "阿青停顿后袖口从小林松开的指尖移开，小林的手留在原位再缓缓放下；安慰完成，仍让对方离开。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/1/action_feedback",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_a",
+    "shot_id": "shot_02",
+    "field": "continuity_state",
+    "decision": "延续上一镜同一双手、浅灰衬衣和深灰外套；起点为手刚到袖口旁，终点为松手，克制没有升级为拉扯。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_a.json",
+    "source_pointer": "/shots/1/continuity_state",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_01",
+    "field": "performance",
+    "decision": "小林直视阿青，眉内端抬起，嘴角斜向下，停住平时的笑意；让失望显露，在阿青转身时向其袖口伸手，动作不再回避。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/0/performance",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_01",
+    "field": "action_feedback",
+    "decision": "阿青一开始转身，小林才伸手靠近阿青袖口；阿青注意到这只手，离开的动作短暂停住，镜头结束时尚未离开画面。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/0/action_feedback",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_01",
+    "field": "continuity_state",
+    "decision": "第一镜结束时两人仍并排在同一房间，小林的手刚到阿青袖口附近；第二镜从这个未完手势接起。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/0/continuity_state",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_01",
+    "field": "transition",
+    "decision": "切点落在小林的手靠近阿青袖口的一刻，下一镜保持小林手在左、阿青袖口在右，不换轴线。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/0/transition",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_02",
+    "field": "performance",
+    "decision": "小林手指轻握阿青袖口，指节收紧后停住，不把对方拉回；阿青的手停在旁边，离开的动势被这一握暂时留住。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/1/performance",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_02",
+    "field": "action_feedback",
+    "decision": "袖口在小林指间产生清楚的小褶皱，阿青的手随之停下；这个可见反馈表明挽留已经发生，不靠旁白解释。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/1/action_feedback",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P1_purpose_b",
+    "shot_id": "shot_02",
+    "field": "continuity_state",
+    "decision": "延续上一镜同一双手、浅灰衬衣和深灰外套；起点为手刚到袖口旁，终点为轻握停住，不跳回尚未伸手的状态。",
+    "source_rule_ids": [
+      "direction_motive",
+      "direction_surface",
+      "direction_handoff",
+      "direction_identity_delta",
+      "asset_anchor",
+      "shot_emotion",
+      "shot_phase",
+      "shot_silence",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P1_purpose_b.json",
+    "source_pointer": "/shots/1/continuity_state",
+    "exceptions": [
+      "人物模板仅用于P1。用户锁定无声与固定景别，导演推导只改变可见表演，不添加旁白、移动机位或拆出新镜。shot-craft§模板与sound-craft§三的常规底噪不覆盖用户明确静默。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_a",
+    "shot_id": "shot_01",
+    "field": "action_feedback",
+    "decision": "纸球碰到铃体后减速停在铃旁，铃体轻微振动，中心位置保持；碰铃这一可见动作带来唯一的铜铃碰撞声。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P2_direction_a.json",
+    "source_pointer": "/shots/0/action_feedback",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_a",
+    "shot_id": "shot_01",
+    "field": "motion_path",
+    "decision": "白色纸球从画面左侧向右滚入中央铜铃。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P2_direction_a.json",
+    "source_pointer": "/shots/0/motion_path",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_a",
+    "shot_id": "shot_01",
+    "field": "style_detail",
+    "decision": "分层手工纸片构成画面，白色纸球为圆形叠纸，铜铃用铜色纸片表达；可见纸层厚度、裁切毛茬和纸片实影，侧后方光照亮纸边。有限的白色、铜色与蓝色卡纸，边界为裁切边，不用渐变。纸球通过平面纸层位移与自身转动滚行，铜铃保持中央。禁止照片写实、PBR材质、美漫描边、赛璐璐平涂、粗黑轮廓线。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P2_direction_a.json",
+    "source_pointer": "/shots/0/style_detail",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_a",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "只在纸球碰上铜铃的时刻响起一声铜铃碰撞声并自然衰减，不加纸球滚动声、纸片摩擦声、环境底噪、人声或配乐。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P2_direction_a.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_b",
+    "shot_id": "shot_01",
+    "field": "action_feedback",
+    "decision": "纸球碰到铃体后减速停在铃旁，铃体轻微振动，中心位置保持；碰铃这一可见动作带来唯一的铜铃碰撞声。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P2_direction_b.json",
+    "source_pointer": "/shots/0/action_feedback",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_b",
+    "shot_id": "shot_01",
+    "field": "motion_path",
+    "decision": "白色纸球从画面右侧向左滚入中央铜铃。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P2_direction_b.json",
+    "source_pointer": "/shots/0/motion_path",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_b",
+    "shot_id": "shot_01",
+    "field": "style_detail",
+    "decision": "分层手工纸片构成画面，白色纸球为圆形叠纸，铜铃用铜色纸片表达；可见纸层厚度、裁切毛茬和纸片实影，侧后方光照亮纸边。有限的白色、铜色与蓝色卡纸，边界为裁切边，不用渐变。纸球通过平面纸层位移与自身转动滚行，铜铃保持中央。禁止照片写实、PBR材质、美漫描边、赛璐璐平涂、粗黑轮廓线。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P2_direction_b.json",
+    "source_pointer": "/shots/0/style_detail",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P2_direction_b",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "只在纸球碰上铜铃的时刻响起一声铜铃碰撞声并自然衰减，不加纸球滚动声、纸片摩擦声、环境底噪、人声或配乐。",
+    "source_rule_ids": [
+      "shot_single_action",
+      "style_domain",
+      "style_paper",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P2_direction_b.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "空镜无人物/关节式人物。剪纸的平面分层用于纸球与铃；方向只改纸球的水平路径，铃的中央位置与声源不变。用户仅许铃声，三层声音规划中的底噪与滚动拟音不适用。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_01",
+    "field": "action_feedback",
+    "decision": "机械臂指端碰到红色台灯灯座上的一处触点，台灯随这次触碰熄灭，桌面原有的灯光光斑消失；机械臂随即离开触点，停在灯座左侧。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/0/action_feedback",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_01",
+    "field": "continuity_state",
+    "decision": "本镜由灯亮起始，结束时红色台灯保持熄灭；机械臂已停在灯座左侧。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/0/continuity_state",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_01",
+    "field": "transition",
+    "decision": "固定轴线直接切入触碰后的状态，不重放触碰动作，第二镜从本镜的台灯与机械臂终态开始。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/0/transition",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "仅保留低而稳定的房间底噪，机械臂动作和灯态变化不另加点击或电流音效，无人声无音乐。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_02",
+    "field": "action_feedback",
+    "decision": "台灯持续熄灭，灯罩不发光，桌面没有灯光光斑；机械臂留在灯座左侧，不再触碰。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/1/action_feedback",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_02",
+    "field": "continuity_state",
+    "decision": "继承上一镜触碰后红色台灯熄灭的状态，整镜持续熄灭，不回滚；台灯身份和位置、机械臂停点均与上一镜结尾相同。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/1/continuity_state",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_a",
+    "shot_id": "shot_02",
+    "field": "sound_craft",
+    "decision": "仅保留与上一镜同一层低而稳定的房间底噪，无人声无音乐，不为灯态额外配音效。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_a.json",
+    "source_pointer": "/shots/1/sound_craft",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_01",
+    "field": "action_feedback",
+    "decision": "机械臂指端碰到红色台灯灯座上的同一处触点，台灯仍然亮着，桌面的灯光光斑没有消失；机械臂随即离开触点，停在灯座左侧。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/0/action_feedback",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_01",
+    "field": "continuity_state",
+    "decision": "本镜由灯亮起始，结束时红色台灯保持亮着；机械臂已停在灯座左侧。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/0/continuity_state",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_01",
+    "field": "transition",
+    "decision": "固定轴线直接切入触碰后的状态，不重放触碰动作，第二镜从本镜的台灯与机械臂终态开始。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/0/transition",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "仅保留低而稳定的房间底噪，机械臂动作和灯态变化不另加点击或电流音效，无人声无音乐。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_02",
+    "field": "action_feedback",
+    "decision": "台灯持续亮着，灯罩的亮度和桌面灯光光斑保持稳定；机械臂留在灯座左侧，不再触碰。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/1/action_feedback",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_02",
+    "field": "continuity_state",
+    "decision": "继承上一镜触碰后红色台灯亮着的状态，整镜持续亮着，不回滚；台灯身份和位置、机械臂停点均与上一镜结尾相同。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/1/continuity_state",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P3_consequence_b",
+    "shot_id": "shot_02",
+    "field": "sound_craft",
+    "decision": "仅保留与上一镜同一层低而稳定的房间底噪，无人声无音乐，不为灯态额外配音效。",
+    "source_rule_ids": [
+      "direction_handoff",
+      "asset_anchor",
+      "asset_state",
+      "shot_single_action",
+      "shot_phase",
+      "sound_density"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P3_consequence_b.json",
+    "source_pointer": "/shots/1/sound_craft",
+    "exceptions": [
+      "灯态是显式允许改变的结果；衣着、角色模板均不适用。两镜合计10秒、各5秒不变，不为动作拆增镜。触碰与反馈属同一连续事件；不额外添加触碰声。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_a",
+    "shot_id": "shot_01",
+    "field": "transition",
+    "decision": "画面由固定俯拍旧时钟直接切到固定正面的雨中窗户，两个画面的主体、构图与动作各自保持。",
+    "source_rule_ids": [
+      "shot_phase"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P4_sound_a.json",
+    "source_pointer": "/shots/0/transition",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL",
+    "source_attribution_correction": {
+      "kind": "post_audit_source_attribution_correction",
+      "corrected_at": "2026-10-23T13:30:15.923572+00:00",
+      "old_recipe_source_rule_ids": [
+        "style_domain",
+        "style_wood",
+        "style_motion_limit",
+        "sound_sync",
+        "sound_density",
+        "sound_silence",
+        "sound_lcut"
+      ],
+      "new_recipe_source_rule_ids": [
+        "shot_phase"
+      ],
+      "reason": "旧recipe按成对需求粗分组，逐字段实际映射细化时未同步声明，造成已确认的来源ID不一致。",
+      "current_clause_applicability": "VERIFIED_CURRENT_REVIEW",
+      "actual_text_consumption": "VERIFIED_UNCHANGED_BYTES",
+      "original_author_causal_trace": "UNVERIFIED",
+      "basis": [
+        {
+          "id": "shot_phase",
+          "path": "references/shot-craft.md",
+          "sha256": "57f21c035d06ade9d64adf3f1cd3af5c24fcc1c5ce248b2dc7c8ccac4d3b55ac",
+          "line_start": 128,
+          "line_end": 130,
+          "quote": "【进入下一镜的过渡压力】（**块里具体的转场「词」取自 `transition-library.md`**）[下一镜从哪里接、怎么接：动作匹配点（切在动作的可读峰值上，不是等动作做完）/\n                         视线落点（上一镜观众视线落在哪个象限，下一镜的核心信息点就接在哪里）/\n                         声音桥（从哪镜来、空间变没变）/ 景别落差（下一镜跳什么景别）]",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        }
+      ],
+      "applicability_explanation": "原条款要求明确下一镜从哪里接、怎么接；当前文字明确俯拍旧时钟直接切到正面雨窗并保持各自画面。",
+      "boundary": "仅纠正当前来源归属，不声称原时点声明已经一致，不证明原作者内在因果推理。"
+    }
+  },
+  {
+    "case_id": "P4_sound_a",
+    "shot_id": "shot_01",
+    "field": "style_detail",
+    "decision": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+    "source_rule_ids": [
+      "style_domain",
+      "style_wood",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density",
+      "sound_silence",
+      "sound_lcut"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P4_sound_a.json",
+    "source_pointer": "/shots/0/style_detail",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_a",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "第一镜以近处清晰的前景滴答声为唯一声音，滴答与旧时钟的走针对应，无人声无配乐。",
+    "source_rule_ids": [
+      "style_domain",
+      "style_wood",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density",
+      "sound_silence",
+      "sound_lcut"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P4_sound_a.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_a",
+    "shot_id": "shot_02",
+    "field": "style_detail",
+    "decision": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+    "source_rule_ids": [
+      "style_domain",
+      "style_wood",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density",
+      "sound_silence",
+      "sound_lcut"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P4_sound_a.json",
+    "source_pointer": "/shots/1/style_detail",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_a",
+    "shot_id": "shot_02",
+    "field": "sound_craft",
+    "decision": "切到第二镜时窗外雨声铺底，上一镜的滴答余响从本镜起点延续2秒后结束，此后只留窗外雨声；雨声保持在窗外，无人声无配乐。",
+    "source_rule_ids": [
+      "style_domain",
+      "style_wood",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density",
+      "sound_silence",
+      "sound_lcut"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P4_sound_a.json",
+    "source_pointer": "/shots/1/sound_craft",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_b",
+    "shot_id": "shot_01",
+    "field": "transition",
+    "decision": "画面由固定俯拍旧时钟直接切到固定正面的雨中窗户，两个画面的主体、构图与动作各自保持。",
+    "source_rule_ids": [
+      "shot_phase"
+    ],
+    "expected_canonical_block": "continuity",
+    "source_path": "samples/craft_pairs/intents/P4_sound_b.json",
+    "source_pointer": "/shots/0/transition",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL",
+    "source_attribution_correction": {
+      "kind": "post_audit_source_attribution_correction",
+      "corrected_at": "2026-10-23T13:30:15.923572+00:00",
+      "old_recipe_source_rule_ids": [
+        "style_domain",
+        "style_wood",
+        "style_motion_limit",
+        "sound_sync",
+        "sound_density",
+        "sound_silence",
+        "sound_lcut"
+      ],
+      "new_recipe_source_rule_ids": [
+        "shot_phase"
+      ],
+      "reason": "旧recipe按成对需求粗分组，逐字段实际映射细化时未同步声明，造成已确认的来源ID不一致。",
+      "current_clause_applicability": "VERIFIED_CURRENT_REVIEW",
+      "actual_text_consumption": "VERIFIED_UNCHANGED_BYTES",
+      "original_author_causal_trace": "UNVERIFIED",
+      "basis": [
+        {
+          "id": "shot_phase",
+          "path": "references/shot-craft.md",
+          "sha256": "57f21c035d06ade9d64adf3f1cd3af5c24fcc1c5ce248b2dc7c8ccac4d3b55ac",
+          "line_start": 128,
+          "line_end": 130,
+          "quote": "【进入下一镜的过渡压力】（**块里具体的转场「词」取自 `transition-library.md`**）[下一镜从哪里接、怎么接：动作匹配点（切在动作的可读峰值上，不是等动作做完）/\n                         视线落点（上一镜观众视线落在哪个象限，下一镜的核心信息点就接在哪里）/\n                         声音桥（从哪镜来、空间变没变）/ 景别落差（下一镜跳什么景别）]",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        }
+      ],
+      "applicability_explanation": "原条款要求明确下一镜从哪里接、怎么接；当前文字明确俯拍旧时钟直接切到正面雨窗并保持各自画面。",
+      "boundary": "仅纠正当前来源归属，不声称原时点声明已经一致，不证明原作者内在因果推理。"
+    }
+  },
+  {
+    "case_id": "P4_sound_b",
+    "shot_id": "shot_01",
+    "field": "style_detail",
+    "decision": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+    "source_rule_ids": [
+      "style_domain",
+      "style_wood",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density",
+      "sound_silence",
+      "sound_lcut"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P4_sound_b.json",
+    "source_pointer": "/shots/0/style_detail",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_b",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "本镜全程完全无声，滴答声、滴答余响、雨声、环境底噪、拟音、人声和配乐均不加入。",
+    "source_rule_ids": [
+      "sound_silence",
+      "shot_silence"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P4_sound_b.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL",
+    "source_attribution_correction": {
+      "kind": "post_audit_source_attribution_correction",
+      "corrected_at": "2026-10-23T13:30:15.923572+00:00",
+      "old_recipe_source_rule_ids": [
+        "style_domain",
+        "style_wood",
+        "style_motion_limit",
+        "sound_sync",
+        "sound_density",
+        "sound_silence",
+        "sound_lcut"
+      ],
+      "new_recipe_source_rule_ids": [
+        "sound_silence",
+        "shot_silence"
+      ],
+      "reason": "旧recipe按成对需求粗分组，逐字段实际映射细化时未同步声明，造成已确认的来源ID不一致。",
+      "current_clause_applicability": "VERIFIED_CURRENT_REVIEW",
+      "actual_text_consumption": "VERIFIED_UNCHANGED_BYTES",
+      "original_author_causal_trace": "UNVERIFIED",
+      "basis": [
+        {
+          "id": "sound_silence",
+          "path": "references/sound-craft.md",
+          "sha256": "c4edca03906a71a146d57004f996bafe4c854e809a5b13e315605ebc7d38e173",
+          "line_start": 174,
+          "line_end": 179,
+          "quote": "**最有效的动态技巧是对比，不是强度**：\n- 先稀后密 · 先慢后快 · 先低后高；\n- **\"先耳语、再咆哮、再回到耳语\"**——从亲密到全力再到脆弱，是最稳的一张情绪地图；\n- **静默是一件乐器**——留白的位置比塞满更有效。\n\n> 配合\"结尾留白\"使用：整片要有\"先收后放\"，最后一镜的克制才立得住。",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        },
+        {
+          "id": "shot_silence",
+          "path": "references/shot-craft.md",
+          "sha256": "57f21c035d06ade9d64adf3f1cd3af5c24fcc1c5ce248b2dc7c8ccac4d3b55ac",
+          "line_start": 56,
+          "line_end": 56,
+          "quote": "> ② **块不许删**——本镜不适用时写 `本块不适用：N.A.（原因 + 替代）`；**空块也要把该块的必需元素写全**（例：【声音】N.A.＝\"本条静音，无配乐、无环境音\"）。",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        }
+      ],
+      "applicability_explanation": "原条款要求声音不适用时也明确静音、无配乐、无环境音；当前文字完整列出全程完全无声及所有不加入的声音层。",
+      "boundary": "仅纠正当前来源归属，不声称原时点声明已经一致，不证明原作者内在因果推理。"
+    }
+  },
+  {
+    "case_id": "P4_sound_b",
+    "shot_id": "shot_02",
+    "field": "style_detail",
+    "decision": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+    "source_rule_ids": [
+      "style_domain",
+      "style_wood",
+      "style_motion_limit",
+      "sound_sync",
+      "sound_density",
+      "sound_silence",
+      "sound_lcut"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P4_sound_b.json",
+    "source_pointer": "/shots/1/style_detail",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P4_sound_b",
+    "shot_id": "shot_02",
+    "field": "sound_craft",
+    "decision": "本镜全程完全无声，滴答声、滴答余响、雨声、环境底噪、拟音、人声和配乐均不加入。",
+    "source_rule_ids": [
+      "sound_silence",
+      "shot_silence"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P4_sound_b.json",
+    "source_pointer": "/shots/1/sound_craft",
+    "exceptions": [
+      "L-cut仅用于a；b明确全静默，sound-craft§六“跨剪辑点不要放静音”不适用。用户指定本镜余响2秒，优先于shot-craft常规块内不写秒数；2秒不是全片或其他镜时长。木刻只取黑白，不照抄可选红蓝套印。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL",
+    "source_attribution_correction": {
+      "kind": "post_audit_source_attribution_correction",
+      "corrected_at": "2026-10-23T13:30:15.923572+00:00",
+      "old_recipe_source_rule_ids": [
+        "style_domain",
+        "style_wood",
+        "style_motion_limit",
+        "sound_sync",
+        "sound_density",
+        "sound_silence",
+        "sound_lcut"
+      ],
+      "new_recipe_source_rule_ids": [
+        "sound_silence",
+        "shot_silence"
+      ],
+      "reason": "旧recipe按成对需求粗分组，逐字段实际映射细化时未同步声明，造成已确认的来源ID不一致。",
+      "current_clause_applicability": "VERIFIED_CURRENT_REVIEW",
+      "actual_text_consumption": "VERIFIED_UNCHANGED_BYTES",
+      "original_author_causal_trace": "UNVERIFIED",
+      "basis": [
+        {
+          "id": "sound_silence",
+          "path": "references/sound-craft.md",
+          "sha256": "c4edca03906a71a146d57004f996bafe4c854e809a5b13e315605ebc7d38e173",
+          "line_start": 174,
+          "line_end": 179,
+          "quote": "**最有效的动态技巧是对比，不是强度**：\n- 先稀后密 · 先慢后快 · 先低后高；\n- **\"先耳语、再咆哮、再回到耳语\"**——从亲密到全力再到脆弱，是最稳的一张情绪地图；\n- **静默是一件乐器**——留白的位置比塞满更有效。\n\n> 配合\"结尾留白\"使用：整片要有\"先收后放\"，最后一镜的克制才立得住。",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        },
+        {
+          "id": "shot_silence",
+          "path": "references/shot-craft.md",
+          "sha256": "57f21c035d06ade9d64adf3f1cd3af5c24fcc1c5ce248b2dc7c8ccac4d3b55ac",
+          "line_start": 56,
+          "line_end": 56,
+          "quote": "> ② **块不许删**——本镜不适用时写 `本块不适用：N.A.（原因 + 替代）`；**空块也要把该块的必需元素写全**（例：【声音】N.A.＝\"本条静音，无配乐、无环境音\"）。",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        }
+      ],
+      "applicability_explanation": "原条款要求声音不适用时也明确静音、无配乐、无环境音；当前文字完整列出全程完全无声及所有不加入的声音层。",
+      "boundary": "仅纠正当前来源归属，不声称原时点声明已经一致，不证明原作者内在因果推理。"
+    }
+  },
+  {
+    "case_id": "P5_style_a",
+    "shot_id": "shot_01",
+    "field": "motion_path",
+    "decision": "瓶影从墙面左中部缓慢移向中部，速度均匀，始终避开右下留白，不改变相机位置。",
+    "source_rule_ids": [
+      "shot_single_action"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P5_style_a.json",
+    "source_pointer": "/shots/0/motion_path",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL",
+    "source_attribution_correction": {
+      "kind": "post_audit_source_attribution_correction",
+      "corrected_at": "2026-10-23T13:30:15.923572+00:00",
+      "old_recipe_source_rule_ids": [
+        "shot_silence",
+        "style_domain",
+        "style_wood",
+        "style_ink",
+        "style_motion_limit",
+        "sound_silence"
+      ],
+      "new_recipe_source_rule_ids": [
+        "shot_single_action"
+      ],
+      "reason": "旧recipe按成对需求粗分组，逐字段实际映射细化时未同步声明，造成已确认的来源ID不一致。",
+      "current_clause_applicability": "VERIFIED_CURRENT_REVIEW",
+      "actual_text_consumption": "VERIFIED_UNCHANGED_BYTES",
+      "original_author_causal_trace": "UNVERIFIED",
+      "basis": [
+        {
+          "id": "shot_single_action",
+          "path": "references/shot-craft.md",
+          "sha256": "57f21c035d06ade9d64adf3f1cd3af5c24fcc1c5ce248b2dc7c8ccac4d3b55ac",
+          "line_start": 246,
+          "line_end": 247,
+          "quote": "**★ 一句话判据**：**画框换过？轴线换过？动作超过一个？——三个都没有，留；有一个有，拆。**\n**反过来不用拆的**：同机位、同轴线、同一件事；景别只做 ≤1 级微调（「收近一档」）；一条连续动作的推演（他先抬手，随后停住）；只是状态在变（呼吸、眼神、尘落）。",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        }
+      ],
+      "applicability_explanation": "原条款允许同机位同轴线的一条连续动作不拆；当前文字只有瓶影缓慢平移，固定相机且避开同一处留白。",
+      "boundary": "仅纠正当前来源归属，不声称原时点声明已经一致，不证明原作者内在因果推理。"
+    }
+  },
+  {
+    "case_id": "P5_style_a",
+    "shot_id": "shot_01",
+    "field": "style_detail",
+    "decision": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+    "source_rule_ids": [
+      "shot_silence",
+      "style_domain",
+      "style_wood",
+      "style_ink",
+      "style_motion_limit",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P5_style_a.json",
+    "source_pointer": "/shots/0/style_detail",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P5_style_a",
+    "shot_id": "shot_01",
+    "field": "style_notes",
+    "decision": "左侧单光源是场景内照明的唯一来源，瓶影的朝向保留这一因果；画面以刻线疏密表现明暗，不增加写实渐变或第二光源。",
+    "source_rule_ids": [
+      "shot_silence",
+      "style_domain",
+      "style_wood",
+      "style_ink",
+      "style_motion_limit",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P5_style_a.json",
+    "source_pointer": "/shots/0/style_notes",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P5_style_a",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "整镜全程无声，不加入环境底噪、拟音、人声、对白、旁白或配乐。",
+    "source_rule_ids": [
+      "shot_silence",
+      "style_domain",
+      "style_wood",
+      "style_ink",
+      "style_motion_limit",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P5_style_a.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P5_style_b",
+    "shot_id": "shot_01",
+    "field": "motion_path",
+    "decision": "瓶影从墙面左中部缓慢移向中部，速度均匀，始终避开右下留白，不改变相机位置。",
+    "source_rule_ids": [
+      "shot_single_action"
+    ],
+    "expected_canonical_block": "action",
+    "source_path": "samples/craft_pairs/intents/P5_style_b.json",
+    "source_pointer": "/shots/0/motion_path",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL",
+    "source_attribution_correction": {
+      "kind": "post_audit_source_attribution_correction",
+      "corrected_at": "2026-10-23T13:30:15.923572+00:00",
+      "old_recipe_source_rule_ids": [
+        "shot_silence",
+        "style_domain",
+        "style_wood",
+        "style_ink",
+        "style_motion_limit",
+        "sound_silence"
+      ],
+      "new_recipe_source_rule_ids": [
+        "shot_single_action"
+      ],
+      "reason": "旧recipe按成对需求粗分组，逐字段实际映射细化时未同步声明，造成已确认的来源ID不一致。",
+      "current_clause_applicability": "VERIFIED_CURRENT_REVIEW",
+      "actual_text_consumption": "VERIFIED_UNCHANGED_BYTES",
+      "original_author_causal_trace": "UNVERIFIED",
+      "basis": [
+        {
+          "id": "shot_single_action",
+          "path": "references/shot-craft.md",
+          "sha256": "57f21c035d06ade9d64adf3f1cd3af5c24fcc1c5ce248b2dc7c8ccac4d3b55ac",
+          "line_start": 246,
+          "line_end": 247,
+          "quote": "**★ 一句话判据**：**画框换过？轴线换过？动作超过一个？——三个都没有，留；有一个有，拆。**\n**反过来不用拆的**：同机位、同轴线、同一件事；景别只做 ≤1 级微调（「收近一档」）；一条连续动作的推演（他先抬手，随后停住）；只是状态在变（呼吸、眼神、尘落）。",
+          "status": "CURRENT_CLAUSE_APPLICABILITY_REVIEWED"
+        }
+      ],
+      "applicability_explanation": "原条款允许同机位同轴线的一条连续动作不拆；当前文字只有瓶影缓慢平移，固定相机且避开同一处留白。",
+      "boundary": "仅纠正当前来源归属，不声称原时点声明已经一致，不证明原作者内在因果推理。"
+    }
+  },
+  {
+    "case_id": "P5_style_b",
+    "shot_id": "shot_01",
+    "field": "style_detail",
+    "decision": "中国水墨在宣纸上晕开，边缘发毛，枯笔飞白与笔断意连清楚可见；以墨色浓淡呈现明暗，保留大面积未着墨纸白。瓶影以一笔起、行、收的书写性推进，瓶颈与瓶肩形状始终可辨，墨晕仅在边缘缓慢展开。保持黑白墨色，不加淡彩。禁止照片写实、真实毛孔、PBR材质、美漫描边、赛璐璐平涂、均匀灰阶。",
+    "source_rule_ids": [
+      "shot_silence",
+      "style_domain",
+      "style_wood",
+      "style_ink",
+      "style_motion_limit",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P5_style_b.json",
+    "source_pointer": "/shots/0/style_detail",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P5_style_b",
+    "shot_id": "shot_01",
+    "field": "style_notes",
+    "decision": "左侧单光源是场景内照明的唯一来源，瓶影的朝向保留这一因果；画面以墨色浓淡表现明暗，不增加写实渐变或第二光源。",
+    "source_rule_ids": [
+      "shot_silence",
+      "style_domain",
+      "style_wood",
+      "style_ink",
+      "style_motion_limit",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "visual",
+    "source_path": "samples/craft_pairs/intents/P5_style_b.json",
+    "source_pointer": "/shots/0/style_notes",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  },
+  {
+    "case_id": "P5_style_b",
+    "shot_id": "shot_01",
+    "field": "sound_craft",
+    "decision": "整镜全程无声，不加入环境底噪、拟音、人声、对白、旁白或配乐。",
+    "source_rule_ids": [
+      "shot_silence",
+      "style_domain",
+      "style_wood",
+      "style_ink",
+      "style_motion_limit",
+      "sound_silence"
+    ],
+    "expected_canonical_block": "sound",
+    "source_path": "samples/craft_pairs/intents/P5_style_b.json",
+    "source_pointer": "/shots/0/sound_craft",
+    "exceptions": [
+      "用户锁定左侧单光源与瓶影缓慢位移，优先于工艺册木刻/水墨的无方向光与动势不靠位移等一般建议；仅把同一物理因果译为刻线或墨色。用户锁定黑白，禁用示例红蓝套印与可选淡彩。右下留白不因水墨大面积留白而改变位置。无声/无人，不套皮肤、呼吸、人声模板。"
+    ],
+    "status": "PENDING_CANONICAL_AND_FINAL"
+  }
+]

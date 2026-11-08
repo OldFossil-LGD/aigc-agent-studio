@@ -1,0 +1,322 @@
+{
+  "nameOrId": "kling-v3-omni",
+  "modelName": "kling-v3-omni",
+  "modelKey": "kling-v3-omni",
+  "toolKey": "kling-v3-omni",
+  "modality": "video",
+  "schema": {
+    "modelKey": "kling-v3-omni",
+    "modelName": "可灵 3.0 Omni",
+    "modelVendor": "Kling",
+    "baseType": 67,
+    "properties": {
+      "count": [
+        1
+      ],
+      "magic": true,
+      "mention": true,
+      "prompt": {
+        "maxLength": 2000,
+        "originalField": "prompt"
+      },
+      "lens": {
+        "displayName": " 镜头",
+        "maxCount": 1
+      },
+      "ratio": {
+        "displayName": "比例",
+        "default": "16:9",
+        "enum": [
+          "16:9",
+          "1:1",
+          "9:16"
+        ],
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "ratio_auto": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": " ",
+            "displayName": "智能模式"
+          },
+          "16:9",
+          "1:1",
+          "9:16"
+        ],
+        "default": " ",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "duration": {
+        "displayName": "时长",
+        "default": 5,
+        "min": 3,
+        "max": 15,
+        "step": 1,
+        "component": "slider",
+        "originalField": "duration"
+      },
+      "duration_10": {
+        "displayName": "时长",
+        "default": 5,
+        "min": 3,
+        "max": 10,
+        "step": 1,
+        "component": "slider",
+        "originalField": "duration"
+      },
+      "quality": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "标准"
+          },
+          {
+            "value": "high",
+            "displayName": "高品质"
+          }
+        ],
+        "default": "low",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "quality_4k": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "标准"
+          },
+          {
+            "value": "high",
+            "displayName": "高品质"
+          },
+          {
+            "value": "4k",
+            "displayName": "4K"
+          }
+        ],
+        "default": "low",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "enableSound": {
+        "displayName": "生成音频",
+        "tips": "为生成的视频添加音频内容",
+        "enum": [
+          {
+            "value": "on",
+            "displayName": "开启"
+          },
+          {
+            "value": "off",
+            "displayName": "关闭"
+          }
+        ],
+        "default": "on",
+        "originalField": "enableSound",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "mixed2video": [
+            1,
+            7
+          ],
+          "frames2video": [
+            1,
+            2
+          ],
+          "videoEdit2video": [
+            1,
+            5
+          ],
+          "audio2video": [
+            0,
+            0
+          ],
+          "singleImage2video": [
+            1,
+            1
+          ]
+        },
+        "mixed2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 4
+        },
+        "videoEdit2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 4
+        }
+      },
+      "subjects": {
+        "displayName": "主体",
+        "items": {
+          "text2video": {
+            "maxCount": 7,
+            "videoSubject": {
+              "maxCount": 3
+            }
+          },
+          "singleImage2video": {
+            "maxCount": 3
+          },
+          "frames2video": {
+            "maxCount": 3
+          },
+          "videoEdit2video": {
+            "maxCount": 4,
+            "sharedWith": "imageList",
+            "videoSubject": {
+              "disabledWithVideo": true,
+              "disabledMessage": "传入视频时不可使用视频主体"
+            }
+          },
+          "mixed2video": {
+            "maxCount": 7,
+            "maxCountWithVideo": 4,
+            "sharedWith": "imageList",
+            "videoSubject": {
+              "maxCount": 3,
+              "disabledWithVideo": true,
+              "disabledMessage": "传入视频时不可使用视频主体"
+            }
+          }
+        }
+      },
+      "smartStoryboard": {
+        "displayName": "智能分镜",
+        "component": "switch",
+        "default": false,
+        "originalField": "multi_shot",
+        "barOnly": true
+      },
+      "mediaConstraints": {
+        "videoEdit2video": {
+          "video": {
+            "duration": {
+              "min": 3,
+              "max": 10,
+              "message": "输入视频需要在3s-10s之间,可使用【剪辑工具】进行快捷剪辑",
+              "action": "block"
+            },
+            "formats": {
+              "allowed": [
+                "mp4",
+                "mov"
+              ],
+              "message": "输入视频仅支持MP4和MOV格式",
+              "action": "block"
+            },
+            "height": {
+              "min": 720,
+              "max": 2160,
+              "message": "已为你智能裁切视频比例，如需使用原比例，需保证\"视频高度不小于720像素且不大于2160像素\"",
+              "action": "warn"
+            }
+          }
+        },
+        "mixed2video": {
+          "video": {
+            "duration": {
+              "min": 3,
+              "max": 10,
+              "message": "请输入在3s-10s之间的视频,可使用【剪辑工具】进行快捷剪辑",
+              "action": "block"
+            },
+            "formats": {
+              "allowed": [
+                "mp4",
+                "mov"
+              ],
+              "message": "输入视频仅支持MP4和MOV格式",
+              "action": "block"
+            },
+            "height": {
+              "min": 720,
+              "max": 2160,
+              "message": "已为你智能裁切视频比例，如需使用原比例，需保证\"视频高度不小于720像素且不大于2160像素\"",
+              "action": "warn"
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "enableSound",
+          "duration",
+          "quality_4k",
+          "smartStoryboard"
+        ],
+        "frames2video": [
+          "ratio_auto",
+          "enableSound",
+          "duration",
+          "quality_4k"
+        ],
+        "singleImage2video": [
+          "ratio",
+          "enableSound",
+          "duration",
+          "quality_4k",
+          "smartStoryboard"
+        ],
+        "videoEdit2video": [
+          "ratio_auto",
+          "duration",
+          "quality",
+          "enableSound"
+        ],
+        "mixed2video": [
+          "ratio",
+          "duration",
+          "quality_4k",
+          "enableSound",
+          "smartStoryboard"
+        ]
+      },
+      "generateTypes": {
+        "text": 89,
+        "image": 89,
+        "checkpointId": 22522172
+      }
+    },
+    "settingsRules": [
+      {
+        "when": {
+          "modeType": "mixed2video"
+        },
+        "inputWhen": {
+          "videoList": "notEmpty"
+        },
+        "override": {
+          "duration": {
+            "max": 10
+          }
+        },
+        "message": "全能参考包含视频时视频时长最长10s"
+      }
+    ],
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

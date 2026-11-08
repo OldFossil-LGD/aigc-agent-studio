@@ -1,0 +1,123 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "只要一镜提示词，不生成。6秒、9:16、剪纸空镜、固定俯拍、画面中央是一枚铜铃，白色纸球滚入并碰响它，背景蓝色；只有铜铃碰撞声，无人声无配乐，不出现人或手。纸球从画面左侧向右滚入中央碰铃。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 6,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要一镜提示词，不生成。6秒、9:16、剪纸空镜、固定俯拍、画面中央是一枚铜铃，白色纸球滚入并碰响它，背景蓝色；只有铜铃碰撞声，无人声无配乐，不出现人或手。"
+    },
+    "aspect_ratio": {
+      "value": "9:16",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要一镜提示词，不生成。6秒、9:16、剪纸空镜、固定俯拍、画面中央是一枚铜铃，白色纸球滚入并碰响它，背景蓝色；只有铜铃碰撞声，无人声无配乐，不出现人或手。"
+    },
+    "visual_style": {
+      "value": {
+        "text": "剪纸空镜",
+        "register": "stylized",
+        "technique": "剪纸"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要一镜提示词，不生成。6秒、9:16、剪纸空镜、固定俯拍、画面中央是一枚铜铃，白色纸球滚入并碰响它，背景蓝色；只有铜铃碰撞声，无人声无配乐，不出现人或手。"
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要提示词，不生成"
+    }
+  },
+  "sound": {
+    "mode": "ambience_only",
+    "allowed": [
+      "铜铃碰撞声"
+    ],
+    "forbidden": [
+      "人声",
+      "对白",
+      "旁白",
+      "口型说话",
+      "音乐",
+      "配乐"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 6,
+      "description": "固定俯拍，铜铃始终位于画面中央，背景为纯蓝色手工纸，白色纸球滚入并碰响铜铃。",
+      "motion_path": "白色纸球从画面左侧向右滚入中央铜铃。",
+      "action_feedback": "纸球碰到铃体后减速停在铃旁，铃体轻微振动，中心位置保持；碰铃这一可见动作带来唯一的铜铃碰撞声。",
+      "style_detail": "分层手工纸片构成画面，白色纸球为圆形叠纸，铜铃用铜色纸片表达；可见纸层厚度、裁切毛茬和纸片实影，侧后方光照亮纸边。有限的白色、铜色与蓝色卡纸，边界为裁切边，不用渐变。纸球通过平面纸层位移与自身转动滚行，铜铃保持中央。禁止照片写实、PBR材质、美漫描边、赛璐璐平涂、粗黑轮廓线。",
+      "sound_craft": "只在纸球碰上铜铃的时刻响起一声铜铃碰撞声并自然衰减，不加纸球滚动声、纸片摩擦声、环境底噪、人声或配乐。",
+      "shot_kind": "empty"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera_shot_01",
+      "kind": "camera",
+      "text": "固定俯拍，相机不移动，铜铃始终在画面中央。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "俯拍"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_no_people",
+      "kind": "negative",
+      "text": "空镜，不出现人物、人脸、人体或手。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "不出现人物"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_center_blue",
+      "kind": "composition",
+      "text": "铜铃位于画面中央，背景始终为蓝色，白色纸球滚入。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "画面中央",
+          "蓝色"
+        ],
+        "forbidden": []
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false
+  }
+}

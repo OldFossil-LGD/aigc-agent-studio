@@ -1,0 +1,190 @@
+{
+  "nameOrId": "kling-video-o1",
+  "modelName": "kling-video-o1",
+  "modelKey": "kling-video-o1",
+  "toolKey": "kling-video-o1",
+  "modality": "video",
+  "schema": {
+    "modelKey": "kling-video-o1",
+    "modelName": "可灵O1",
+    "modelVendor": "Kling",
+    "baseType": 54,
+    "properties": {
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "magic": true,
+      "mention": true,
+      "prompt": {
+        "maxLength": 2000,
+        "originalField": "prompt"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "default": "16:9",
+        "enum": [
+          "16:9",
+          "1:1",
+          "9:16"
+        ],
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "ratio_auto": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "16:9",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "duration": {
+        "displayName": "时长",
+        "enum": [
+          {
+            "value": 5,
+            "displayName": "5s"
+          },
+          {
+            "value": 10,
+            "displayName": "10s"
+          }
+        ],
+        "default": 5,
+        "component": "singleButton",
+        "originalField": "duration"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "quality": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "标准"
+          },
+          {
+            "value": "high",
+            "displayName": "高品质"
+          }
+        ],
+        "default": "low",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "mixed2video": [
+            1,
+            7
+          ],
+          "frames2video": [
+            1,
+            2
+          ],
+          "videoEdit2video": [
+            1,
+            5
+          ],
+          "audio2video": [
+            0,
+            0
+          ],
+          "singleImage2video": [
+            1,
+            1
+          ]
+        },
+        "mixed2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 4
+        },
+        "videoEdit2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 4
+        }
+      },
+      "subjects": {
+        "displayName": "主体",
+        "disableVideoSubject": true,
+        "items": {
+          "mixed2video": {
+            "maxCount": 7,
+            "maxCountWithVideo": 4,
+            "sharedWith": "imageList"
+          }
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "quality",
+          "duration"
+        ],
+        "frames2video": [
+          "quality",
+          "resolution",
+          "duration"
+        ],
+        "singleImage2video": [
+          "quality",
+          "resolution",
+          "duration"
+        ],
+        "videoEdit2video": [
+          "quality",
+          "resolution",
+          "duration"
+        ],
+        "mixed2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 89,
+        "image": 89,
+        "checkpointId": 22176637
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      }
+    ]
+  }
+}

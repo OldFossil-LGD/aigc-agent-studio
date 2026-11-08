@@ -1,0 +1,102 @@
+{
+  "nameOrId": "viduq2-pro",
+  "modelName": "viduq2-pro",
+  "modelKey": "viduq2-pro",
+  "toolKey": "viduq2-pro",
+  "modality": "video",
+  "schema": {
+    "modelKey": "viduq2-pro",
+    "modelName": "Vidu Q2 Pro",
+    "modelVendor": "vidu",
+    "properties": {
+      "mention": false,
+      "magic": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 5000
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "720p",
+          "1080p"
+        ],
+        "default": "1080p",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 8,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "mixed2video": [
+            1,
+            7
+          ],
+          "singleImage2video": [
+            1,
+            1
+          ],
+          "frames2video": [
+            2,
+            2
+          ]
+        },
+        "mixed2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 4
+        }
+      },
+      "bgm": {
+        "displayName": "背景音乐",
+        "default": 0,
+        "component": "switch",
+        "originalField": "bgm"
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution",
+        "duration",
+        "bgm"
+      ],
+      "generateTypes": {
+        "text": 37,
+        "image": 38,
+        "checkpointId": 22478760
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

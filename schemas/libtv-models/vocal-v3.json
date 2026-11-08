@@ -1,0 +1,92 @@
+{
+  "nameOrId": "vocal-v3",
+  "modelName": "vocal-v3",
+  "modelKey": "vocal-v3",
+  "toolKey": "vocal-v3",
+  "modality": "audio",
+  "schema": {
+    "modelKey": "vocal-v3",
+    "modelName": "智能语音模型V3",
+    "modelVendor": "vocal",
+    "scene": "Text-to-Speech",
+    "sceneName": "文字转语音",
+    "properties": {
+      "prompt": {
+        "placeholder": "描述信息",
+        "maxLength": 5000
+      },
+      "voice": {
+        "displayName": "音色",
+        "originalField": "voice_id",
+        "component": "singleSelect",
+        "layout": "vertical"
+      },
+      "stability": {
+        "displayName": "稳定性",
+        "enum": [
+          {
+            "value": 0,
+            "displayName": "活泼的"
+          },
+          {
+            "value": 0.5,
+            "displayName": "自然的"
+          },
+          {
+            "value": 1,
+            "displayName": "沉稳的"
+          }
+        ],
+        "default": 0.5,
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "音乐时长",
+        "tips": "设定歌曲长度。自动模式下优先保证歌词完整；指定时长后则优先匹配时长。",
+        "enum": [
+          {
+            "value": 30000,
+            "displayName": "30秒"
+          },
+          {
+            "value": 60000,
+            "displayName": "1分钟"
+          },
+          {
+            "value": 120000,
+            "displayName": "2分钟"
+          },
+          {
+            "value": 180000,
+            "displayName": "3分钟"
+          },
+          {
+            "value": 240000,
+            "displayName": "4分钟"
+          }
+        ],
+        "default": 30000,
+        "layout": "horizontal",
+        "component": "singleSelect",
+        "originalField": "music_length_ms"
+      }
+    },
+    "config": {
+      "advancedSettings": [
+        "voice",
+        "stability"
+      ],
+      "generateTypes": {
+        "audio": 112,
+        "checkpointId": 22685105
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "只要两镜提示词，不生成。12秒、9:16、黑白木刻空镜，第一镜6秒固定俯拍旧时钟，第二镜6秒固定正面看雨中窗户；主体、画面动作、构图和画风固定。声音策略：两镜全程完全无声，不要任何滴答声、雨声、人声或配乐。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 12,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要两镜提示词，不生成。12秒、9:16、黑白木刻空镜，第一镜6秒固定俯拍旧时钟，第二镜6秒固定正面看雨中窗户；主体、画面动作、构图和画风固定。"
+    },
+    "aspect_ratio": {
+      "value": "9:16",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要两镜提示词，不生成。12秒、9:16、黑白木刻空镜，第一镜6秒固定俯拍旧时钟，第二镜6秒固定正面看雨中窗户；主体、画面动作、构图和画风固定。"
+    },
+    "visual_style": {
+      "value": {
+        "text": "黑白木刻空镜",
+        "register": "stylized",
+        "technique": "木刻"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要两镜提示词，不生成。12秒、9:16、黑白木刻空镜，第一镜6秒固定俯拍旧时钟，第二镜6秒固定正面看雨中窗户；主体、画面动作、构图和画风固定。"
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要提示词，不生成"
+    }
+  },
+  "sound": {
+    "mode": "silent",
+    "allowed": [],
+    "forbidden": [
+      "人声",
+      "对白",
+      "旁白",
+      "口型说话",
+      "音乐",
+      "配乐",
+      "环境声",
+      "拟音",
+      "音效"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 6,
+      "description": "固定俯拍旧时钟，时钟在画面中央，指针缓慢走动，钟面木刻排线清楚。",
+      "style_detail": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+      "sound": {
+        "mode": "silent",
+        "allowed": [],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "口型说话",
+          "音乐",
+          "配乐",
+          "环境声",
+          "拟音",
+          "音效"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      },
+      "sound_craft": "本镜全程完全无声，滴答声、滴答余响、雨声、环境底噪、拟音、人声和配乐均不加入。",
+      "transition": "画面由固定俯拍旧时钟直接切到固定正面的雨中窗户，两个画面的主体、构图与动作各自保持。",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "shot_02",
+      "duration_sec": 6,
+      "description": "固定正面看雨中窗户，窗框位于画面中央，雨滴沿窗玻璃向下滑落，窗框边缘与玻璃位置稳定。",
+      "style_detail": "黑白木刻版画，以刀具刻出的直线组与排线组成物体，纸张纤维和油墨不均可见，黑白二值为主，几乎没有中间调。明暗以刻线疏密表达；相邻画面更新时排线有细微重刻变化。保持黑白单色，不加入红蓝套色。禁止照片写实、PBR材质、胶片颗粒、美漫描边、赛璐璐平涂、平滑渐变。",
+      "sound": {
+        "mode": "silent",
+        "allowed": [],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "口型说话",
+          "音乐",
+          "配乐",
+          "环境声",
+          "拟音",
+          "音效"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      },
+      "sound_craft": "本镜全程完全无声，滴答声、滴答余响、雨声、环境底噪、拟音、人声和配乐均不加入。",
+      "shot_kind": "empty"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera_shot_01",
+      "kind": "camera",
+      "text": "第一镜固定俯拍旧时钟，相机不移动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "俯拍"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_camera_shot_02",
+      "kind": "camera",
+      "text": "第二镜固定正面看雨中窗户，相机不移动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_02"
+      ],
+      "semantics": {
+        "required_any": [
+          "正面"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_no_people",
+      "kind": "negative",
+      "text": "空镜，不出现人物、人脸、人体或手。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01",
+        "shot_02"
+      ],
+      "semantics": {
+        "required_any": [
+          "不出现人物"
+        ],
+        "forbidden": []
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false
+  }
+}

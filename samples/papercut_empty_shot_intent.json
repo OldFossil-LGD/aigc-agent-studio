@@ -1,0 +1,148 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "一条 5 秒、9:16 竖屏的剪纸空镜：白色纸制时钟的影子扫过蓝色墙面。无人声，仅保留雨声；固定俯拍，右上角留白供后期标题；只要提示词，不生成。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 5,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：一条5秒"
+    },
+    "aspect_ratio": {
+      "value": "9:16",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：9:16竖屏"
+    },
+    "visual_style": {
+      "value": {
+        "text": "剪纸风格：色块平涂、剪裁边缘干净、纸纤维哑光",
+        "register": "stylized",
+        "technique": "剪纸拼贴，层叠纸片投影"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：剪纸空镜"
+    },
+    "shot_count": {
+      "value": 1,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：只要一条"
+    },
+    "shot_kind": {
+      "value": "empty",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：空镜"
+    },
+    "sound_mode": {
+      "value": "ambience_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：无人声，仅保留雨声"
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：只要提示词，不生成"
+    }
+  },
+  "sound": {
+    "mode": "ambience_only",
+    "allowed": ["雨声"],
+    "forbidden": ["人声", "对白", "旁白", "口型说话", "歌词", "音乐"],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 5,
+      "description": "白色纸制时钟的影子缓慢扫过蓝色墙面，剪纸拼贴质感，固定俯拍，画面右上角留白供后期标题。",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": ["雨声"],
+        "forbidden": ["人声", "对白", "旁白", "口型说话", "歌词", "音乐"],
+        "source": "user_explicit",
+        "locked": true
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera",
+      "kind": "camera",
+      "text": "相机固定俯拍，机位不移动、不摇不移。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": ["shot_01"],
+      "semantics": {
+        "required_any": ["俯拍", "正上方", "自上而下"],
+        "forbidden": ["平视", "仰拍", "水平机位"]
+      }
+    },
+    {
+      "id": "c_composition",
+      "kind": "composition",
+      "text": "画面右上角留白，供后期标题使用。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": ["shot_01"],
+      "semantics": {
+        "required_any": ["右上角留白", "右上留白", "画面右上角"],
+        "forbidden": ["居中构图", "主体居中"]
+      }
+    },
+    {
+      "id": "c_sound",
+      "kind": "sound",
+      "text": "只保留雨声；无人声、无对白、无旁白、无音乐。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": ["shot_01"],
+      "semantics": {
+        "required_any": ["雨声"],
+        "forbidden": ["旁白", "解说", "人声台词"]
+      }
+    },
+    {
+      "id": "c_subject",
+      "kind": "visual",
+      "text": "白色纸制时钟的影子缓慢扫过蓝色墙面；剪纸拼贴，色块平涂。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": ["shot_01"],
+      "semantics": {
+        "required_any": ["时钟", "影子", "蓝色墙面"],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_empty",
+      "kind": "negative",
+      "text": "画面内不出现人物、面孔、人体；不出现字幕、水印、UI、LOGO。",
+      "delivery": "prompt",
+      "source": "agent_proposed",
+      "locked": false,
+      "shots": ["shot_01"],
+      "semantics": {
+        "required_any": ["不出现人物", "禁止人物"],
+        "forbidden": []
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false
+  }
+}

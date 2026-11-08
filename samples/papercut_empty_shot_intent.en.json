@@ -1,0 +1,194 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "Synthetic example brief: a 5-second 9:16 cut-paper empty shot. A white paper clock shadow sweeps across a blue wall. Rain ambience only, no voices or music. Fixed overhead camera, upper-right space for a title added later. Prompt draft only; no media generation.",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 5,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    },
+    "aspect_ratio": {
+      "value": "9:16",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    },
+    "visual_style": {
+      "value": {
+        "text": "Cut-paper collage with flat colour and matte paper fibres",
+        "register": "stylized",
+        "technique": "Layered cut-paper collage with cast shadows"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    },
+    "shot_count": {
+      "value": 1,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    },
+    "shot_kind": {
+      "value": "empty",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    },
+    "sound_mode": {
+      "value": "ambience_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "Explicit setting in the synthetic example brief; not user research."
+    }
+  },
+  "sound": {
+    "mode": "ambience_only",
+    "allowed": [
+      "rain"
+    ],
+    "forbidden": [
+      "human voices",
+      "dialogue",
+      "narration",
+      "music"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 5,
+      "description": "A white paper clock shadow slowly sweeps across a blue wall; matte cut-paper collage, fixed overhead view, upper-right negative space for a title added in editing.",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "rain"
+        ],
+        "forbidden": [
+          "human voices",
+          "dialogue",
+          "narration",
+          "music"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera",
+      "kind": "camera",
+      "text": "The camera remains fixed in a top-down overhead view.",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "overhead",
+          "top-down"
+        ],
+        "forbidden": [
+          "eye-level",
+          "low-angle"
+        ]
+      }
+    },
+    {
+      "id": "c_composition",
+      "kind": "composition",
+      "text": "Leave upper-right negative space for a title added later.",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "upper-right"
+        ],
+        "forbidden": [
+          "centred composition"
+        ]
+      }
+    },
+    {
+      "id": "c_sound",
+      "kind": "sound",
+      "text": "Rain ambience only; no human voices, dialogue, narration or music.",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "rain",
+          "Rain"
+        ],
+        "forbidden": [
+          "spoken voice-over"
+        ]
+      }
+    },
+    {
+      "id": "c_subject",
+      "kind": "visual",
+      "text": "A white paper clock shadow slowly sweeps across a blue wall; flat colour and matte paper collage.",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_all": [
+          "clock",
+          "shadow",
+          "blue wall"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_empty",
+      "kind": "negative",
+      "text": "No people, faces, bodies, subtitles, watermarks, UI or logos.",
+      "delivery": "prompt",
+      "source": "agent_proposed",
+      "locked": false,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "No people",
+          "no people"
+        ],
+        "forbidden": []
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false
+  }
+}

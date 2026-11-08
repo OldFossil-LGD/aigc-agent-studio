@@ -1,0 +1,101 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "雨夜便利店门口，一个二十多岁的短发青年抬头看刚亮起的霓虹招牌，5秒，写实电影感，竖屏9:16，只要提示词，不要生成。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 5,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：5秒"
+    },
+    "aspect_ratio": {
+      "value": "9:16",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：竖屏9:16"
+    },
+    "visual_style": {
+      "value": {
+        "text": "写实电影感：真实材质、自然光、细颗粒、不塑料",
+        "register": "photoreal",
+        "technique": "实拍电影质感"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：写实电影感"
+    },
+    "shot_count": {
+      "value": 1,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：一句话单镜"
+    },
+    "shot_kind": {
+      "value": "character",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：一个青年抬头看招牌"
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "用户原话：只要提示词，不要生成"
+    }
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 5,
+      "description": "雨夜便利店门口，一名二十多岁的短发青年站在雨棚下，抬头看向刚亮起的霓虹招牌；雨幕在侧逆光里可见。",
+      "shot_kind": "character"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_ratio",
+      "kind": "ratio",
+      "text": "画幅 9:16 竖屏。",
+      "delivery": "settings",
+      "source": "user_explicit",
+      "locked": true
+    },
+    {
+      "id": "c_dur",
+      "kind": "duration",
+      "text": "单镜 5 秒。",
+      "delivery": "settings",
+      "source": "user_explicit",
+      "locked": true
+    },
+    {
+      "id": "c_style",
+      "kind": "visual",
+      "text": "写实电影质感：真实材质、自然光、细颗粒，不要塑料感与CG勾边。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "semantics": {
+        "required_any": [
+          "真实材质",
+          "自然光",
+          "细颗粒"
+        ],
+        "forbidden": [
+          "塑料感",
+          "卡通",
+          "CG勾边"
+        ]
+      }
+    },
+    {
+      "id": "c_scope",
+      "kind": "other",
+      "text": "只交提示词，不建画布、不生成、不点火。",
+      "delivery": "pending",
+      "source": "user_explicit",
+      "locked": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "nameOrId": "aurora-3-lite",
+  "modelName": "aurora-3-lite",
+  "modelKey": "aurora-3-lite",
+  "toolKey": "aurora-3-lite",
+  "modality": "text",
+  "schema": {
+    "modelKey": "aurora-3-lite",
+    "modelName": "多模态文本模型lite",
+    "modelVendor": "aurora",
+    "properties": {
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "modeType": {
+        "items": {
+          "image2text": [
+            0,
+            7
+          ],
+          "video2text": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "generateTypes": {
+        "checkpointId": 23193474
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IntentHandoff",
+  "description": "Agent-authored structured intent contract (intent-handoff/v1). The user never writes this by hand; the Agent transcribes the user's prose into it.",
+  "type": "object",
+  "required": [
+    "intent_format",
+    "goal",
+    "task_type",
+    "decisions",
+    "shots"
+  ],
+  "properties": {
+    "intent_format": {
+      "const": "intent-handoff/v1"
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_type": {
+      "enum": [
+        "full_film",
+        "prompt_only",
+        "single_shot"
+      ]
+    },
+    "decisions": {
+      "type": "object",
+      "required": [
+        "duration_sec",
+        "aspect_ratio",
+        "visual_style"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/decision"
+      },
+      "properties": {
+        "visual_style": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/decision"
+            },
+            {
+              "properties": {
+                "value": {
+                  "$ref": "#/$defs/visual_style"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "duration_sec",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "duration_sec": {
+            "type": [
+              "integer",
+              "number"
+            ],
+            "minimum": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "world_state_delta": {
+            "type": "object"
+          },
+          "world_state_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "shot_kind": {
+            "type": "string"
+          },
+          "sound": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/$defs/sound_intent"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "world_state_initial": {
+      "type": "object"
+    },
+    "sound": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/sound_intent"
+        }
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "text",
+          "delivery",
+          "source",
+          "locked"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "camera",
+              "composition",
+              "sound",
+              "visual",
+              "action",
+              "negative",
+              "duration",
+              "ratio",
+              "other"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "delivery": {
+            "enum": [
+              "prompt",
+              "settings",
+              "pending"
+            ]
+          },
+          "source": {
+            "enum": [
+              "user_explicit",
+              "agent_proposed",
+              "default"
+            ]
+          },
+          "locked": {
+            "type": "boolean"
+          },
+          "shots": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "semantics": {
+            "type": "object",
+            "properties": {
+              "required_any": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "forbidden": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "delivery": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "required": [
+        "value",
+        "source",
+        "locked"
+      ],
+      "properties": {
+        "value": {},
+        "source": {
+          "enum": [
+            "user_explicit",
+            "agent_proposed",
+            "default"
+          ]
+        },
+        "locked": {
+          "type": "boolean"
+        }
+      }
+    },
+    "visual_style": {
+      "type": "object",
+      "required": [
+        "text",
+        "register"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "register": {
+          "enum": [
+            "photoreal",
+            "stylized",
+            "illustration",
+            "graphic"
+          ]
+        }
+      }
+    },
+    "sound_intent": {
+      "type": "object",
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "silent",
+            "ambience_only",
+            "dialogue_allowed",
+            "unspecified"
+          ]
+        },
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "enum": [
+            "user_explicit",
+            "agent_proposed",
+            "default"
+          ]
+        },
+        "locked": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

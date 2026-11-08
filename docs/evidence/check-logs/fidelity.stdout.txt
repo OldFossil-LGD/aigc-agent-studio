@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "cases": [
+    [
+      "manifest_has_cases",
+      true
+    ],
+    [
+      "manifest_records_provenance",
+      true
+    ],
+    [
+      "fixture:synthetic_same_scale",
+      true
+    ],
+    [
+      "fixture:overbuild_detected",
+      true
+    ],
+    [
+      "fixture:underbuild_detected",
+      true
+    ],
+    [
+      "fixture:schema_mismatch_is_not_a_failure",
+      true
+    ],
+    [
+      "fixture:mirror_with_lineage_passes",
+      true
+    ],
+    [
+      "fixture:mirror_without_lineage_fails",
+      true
+    ],
+    [
+      "fixture:half_mapped_lineage_fails",
+      true
+    ]
+  ],
+  "failed": []
+}

@@ -1,0 +1,29 @@
+
+── ① 无工位的册（流程里没有东西派你去读它） ──
+  [OK]   所有非查阅型册都有工位
+
+── ② 单册行数（上限 300） ──
+  [OK]   无超限；将满(≥290)：26 册
+
+── ③ 悬空指针（口径来自 lib_health.py，本脚本不重复实现） ──
+  [OK]   无
+
+── ④ 未挂 SKILL 索引的册 ──
+  [OK]   全部已挂
+
+── ⑤ 脚本自检 + claims ──
+  [OK]   十四脚本自检全过
+  [OK] claims：数字断言一致
+
+── ⑥ 跨册重复长句（规则行） ──
+  [OK]   0 条（导航/出处行属设计）
+
+── ⑦ 路由表自检（新增册有没有补路由） ──
+  [OK]   见第 ① 项（无工位册＝0 即通过）
+
+── ⑧ 环境体检（外部工具契约 · 不计入问题数） ──
+  [OK]   ffmpeg  <HOME>\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE（来源：PATH）
+  [OK]   ffprobe <HOME>\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE（来源：PATH）
+
+── ⑨ 结论 ──
+  **全过**

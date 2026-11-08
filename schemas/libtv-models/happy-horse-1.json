@@ -1,0 +1,114 @@
+{
+  "nameOrId": "happy-horse-1",
+  "modelName": "happy-horse-1",
+  "modelKey": "happy-horse-1",
+  "toolKey": "happy-horse-1",
+  "modality": "video",
+  "schema": {
+    "modelKey": "happy-horse-1",
+    "modelName": "Happy Horse 1.0",
+    "modelVendor": "happy-horse",
+    "baseType": 27,
+    "properties": {
+      "strikethroughPrice": {
+        "active": true
+      },
+      "magic": false,
+      "mention": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 0
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "9:16",
+          "1:1",
+          "4:3",
+          "3:4"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "720P",
+          "1080P"
+        ],
+        "default": "720P",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "min": 3,
+        "max": 15,
+        "step": 1,
+        "default": 5,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "frames2video": [
+            1,
+            1
+          ],
+          "videoEdit2video": [
+            1,
+            5
+          ],
+          "image2video": [
+            1,
+            9
+          ]
+        },
+        "videoEdit2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 5
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "frames2video": [
+          "resolution",
+          "duration"
+        ],
+        "image2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "videoEdit2video": [
+          "resolution"
+        ]
+      },
+      "generateTypes": {
+        "text": 117,
+        "image": 117,
+        "checkpointId": 22910993
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "只要两镜提示词，不生成。10秒、16:9、写实、同一固定桌面，机械臂触碰红色台灯；每镜5秒固定机位，第二镜为触碰后的状态，不引入人物，环境仅有房间底噪，无音乐无人声。改变触碰的后果：第一镜触碰后台灯仍亮，第二镜必须持续亮着，体现反馈与因果。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 10,
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要两镜提示词，不生成。10秒、16:9、写实、同一固定桌面，机械臂触碰红色台灯；每镜5秒固定机位，第二镜为触碰后的状态，不引入人物，环境仅有房间底噪，无音乐无人声。"
+    },
+    "aspect_ratio": {
+      "value": "16:9",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要两镜提示词，不生成。10秒、16:9、写实、同一固定桌面，机械臂触碰红色台灯；每镜5秒固定机位，第二镜为触碰后的状态，不引入人物，环境仅有房间底噪，无音乐无人声。"
+    },
+    "visual_style": {
+      "value": {
+        "text": "写实",
+        "register": "photoreal"
+      },
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要两镜提示词，不生成。10秒、16:9、写实、同一固定桌面，机械臂触碰红色台灯；每镜5秒固定机位，第二镜为触碰后的状态，不引入人物，环境仅有房间底噪，无音乐无人声。"
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true,
+      "evidence": "只要提示词，不生成"
+    }
+  },
+  "sound": {
+    "mode": "ambience_only",
+    "allowed": [
+      "房间底噪"
+    ],
+    "forbidden": [
+      "人声",
+      "对白",
+      "旁白",
+      "口型说话",
+      "音乐",
+      "配乐"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 5,
+      "description": "固定机位，机械臂触碰红色台灯。同一固定桌面，红色台灯灯座的位置、灯罩朝向与机械臂形状保持不变，台灯位于桌面右侧，机械臂位于台灯左侧。起始时台灯亮着。",
+      "action_feedback": "机械臂指端碰到红色台灯灯座上的同一处触点，台灯仍然亮着，桌面的灯光光斑没有消失；机械臂随即离开触点，停在灯座左侧。",
+      "continuity_state": "本镜由灯亮起始，结束时红色台灯保持亮着；机械臂已停在灯座左侧。",
+      "transition": "固定轴线直接切入触碰后的状态，不重放触碰动作，第二镜从本镜的台灯与机械臂终态开始。",
+      "sound_craft": "仅保留低而稳定的房间底噪，机械臂动作和灯态变化不另加点击或电流音效，无人声无音乐。",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "shot_02",
+      "duration_sec": 5,
+      "description": "固定机位呈现触碰后的状态。同一固定桌面，红色台灯灯座的位置、灯罩朝向与机械臂形状保持不变，台灯位于桌面右侧，机械臂位于台灯左侧。",
+      "action_feedback": "台灯持续亮着，灯罩的亮度和桌面灯光光斑保持稳定；机械臂留在灯座左侧，不再触碰。",
+      "continuity_state": "继承上一镜触碰后红色台灯亮着的状态，整镜持续亮着，不回滚；台灯身份和位置、机械臂停点均与上一镜结尾相同。",
+      "sound_craft": "仅保留与上一镜同一层低而稳定的房间底噪，无人声无音乐，不为灯态额外配音效。",
+      "shot_kind": "empty"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera_shot_01",
+      "kind": "camera",
+      "text": "第一镜固定桌面机位，相机不移动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "固定"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_camera_shot_02",
+      "kind": "camera",
+      "text": "第二镜沿用同一固定桌面机位，相机不移动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_02"
+      ],
+      "semantics": {
+        "required_any": [
+          "固定"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_no_people",
+      "kind": "negative",
+      "text": "空镜，不出现人物、人脸、人体或人手。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01",
+        "shot_02"
+      ],
+      "semantics": {
+        "required_any": [
+          "不出现人物"
+        ],
+        "forbidden": []
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false
+  }
+}

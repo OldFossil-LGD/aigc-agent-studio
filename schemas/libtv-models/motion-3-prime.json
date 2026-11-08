@@ -1,0 +1,99 @@
+{
+  "nameOrId": "motion-3-prime",
+  "modelName": "motion-3-prime",
+  "modelKey": "motion-3-prime",
+  "toolKey": "motion-3-prime",
+  "modality": "video",
+  "schema": {
+    "modelKey": "motion-3-prime",
+    "modelName": "全能视频模型3",
+    "modelVendor": "motion",
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 0
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "9:16"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "720p",
+          "1080p"
+        ],
+        "default": "1080p",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "enum": [
+          {
+            "value": 8,
+            "displayName": "8s"
+          }
+        ],
+        "default": 8,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "enableSound": {
+        "displayName": "生成音频",
+        "enum": [
+          {
+            "value": "on",
+            "displayName": "开启"
+          },
+          {
+            "value": "off",
+            "displayName": "关闭"
+          }
+        ],
+        "default": "on",
+        "originalField": "enableSound",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution",
+        "duration"
+      ],
+      "generateTypes": {
+        "text": 97,
+        "image": 97,
+        "checkpointId": 22685037
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

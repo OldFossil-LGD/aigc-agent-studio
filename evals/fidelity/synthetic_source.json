@@ -1,0 +1,370 @@
+{
+  "nodes": [
+    {
+      "id": "synthetic-node-0",
+      "name": "Synthetic script 0",
+      "type": "script",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-1",
+      "name": "Synthetic storyboard 1",
+      "type": "storyboard",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-2",
+      "name": "Synthetic image 2",
+      "type": "image",
+      "position": {
+        "x": 400,
+        "y": 0
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-3",
+      "name": "Synthetic video 3",
+      "type": "video",
+      "position": {
+        "x": 600,
+        "y": 0
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-4",
+      "name": "Synthetic audio 4",
+      "type": "audio",
+      "position": {
+        "x": 800,
+        "y": 0
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-5",
+      "name": "Synthetic group 5",
+      "type": "group",
+      "position": {
+        "x": 1000,
+        "y": 0
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-6",
+      "name": "Synthetic script 6",
+      "type": "script",
+      "position": {
+        "x": 0,
+        "y": 160
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-7",
+      "name": "Synthetic storyboard 7",
+      "type": "storyboard",
+      "position": {
+        "x": 200,
+        "y": 160
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-8",
+      "name": "Synthetic image 8",
+      "type": "image",
+      "position": {
+        "x": 400,
+        "y": 160
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-9",
+      "name": "Synthetic video 9",
+      "type": "video",
+      "position": {
+        "x": 600,
+        "y": 160
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-10",
+      "name": "Synthetic audio 10",
+      "type": "audio",
+      "position": {
+        "x": 800,
+        "y": 160
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-11",
+      "name": "Synthetic group 11",
+      "type": "group",
+      "position": {
+        "x": 1000,
+        "y": 160
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-12",
+      "name": "Synthetic script 12",
+      "type": "script",
+      "position": {
+        "x": 0,
+        "y": 320
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-13",
+      "name": "Synthetic storyboard 13",
+      "type": "storyboard",
+      "position": {
+        "x": 200,
+        "y": 320
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-14",
+      "name": "Synthetic image 14",
+      "type": "image",
+      "position": {
+        "x": 400,
+        "y": 320
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-15",
+      "name": "Synthetic video 15",
+      "type": "video",
+      "position": {
+        "x": 600,
+        "y": 320
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-16",
+      "name": "Synthetic audio 16",
+      "type": "audio",
+      "position": {
+        "x": 800,
+        "y": 320
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-17",
+      "name": "Synthetic group 17",
+      "type": "group",
+      "position": {
+        "x": 1000,
+        "y": 320
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-18",
+      "name": "Synthetic script 18",
+      "type": "script",
+      "position": {
+        "x": 0,
+        "y": 480
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-19",
+      "name": "Synthetic storyboard 19",
+      "type": "storyboard",
+      "position": {
+        "x": 200,
+        "y": 480
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-20",
+      "name": "Synthetic image 20",
+      "type": "image",
+      "position": {
+        "x": 400,
+        "y": 480
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-21",
+      "name": "Synthetic video 21",
+      "type": "video",
+      "position": {
+        "x": 600,
+        "y": 480
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-22",
+      "name": "Synthetic audio 22",
+      "type": "audio",
+      "position": {
+        "x": 800,
+        "y": 480
+      },
+      "width": 160,
+      "height": 100
+    },
+    {
+      "id": "synthetic-node-23",
+      "name": "Synthetic group 23",
+      "type": "group",
+      "position": {
+        "x": 1000,
+        "y": 480
+      },
+      "width": 160,
+      "height": 100
+    }
+  ],
+  "edges": [
+    {
+      "id": "synthetic-edge-0",
+      "source": "synthetic-node-0",
+      "target": "synthetic-node-1"
+    },
+    {
+      "id": "synthetic-edge-1",
+      "source": "synthetic-node-1",
+      "target": "synthetic-node-2"
+    },
+    {
+      "id": "synthetic-edge-2",
+      "source": "synthetic-node-2",
+      "target": "synthetic-node-3"
+    },
+    {
+      "id": "synthetic-edge-3",
+      "source": "synthetic-node-3",
+      "target": "synthetic-node-4"
+    },
+    {
+      "id": "synthetic-edge-4",
+      "source": "synthetic-node-4",
+      "target": "synthetic-node-5"
+    },
+    {
+      "id": "synthetic-edge-5",
+      "source": "synthetic-node-5",
+      "target": "synthetic-node-6"
+    },
+    {
+      "id": "synthetic-edge-6",
+      "source": "synthetic-node-6",
+      "target": "synthetic-node-7"
+    },
+    {
+      "id": "synthetic-edge-7",
+      "source": "synthetic-node-7",
+      "target": "synthetic-node-8"
+    },
+    {
+      "id": "synthetic-edge-8",
+      "source": "synthetic-node-8",
+      "target": "synthetic-node-9"
+    },
+    {
+      "id": "synthetic-edge-9",
+      "source": "synthetic-node-9",
+      "target": "synthetic-node-10"
+    },
+    {
+      "id": "synthetic-edge-10",
+      "source": "synthetic-node-10",
+      "target": "synthetic-node-11"
+    },
+    {
+      "id": "synthetic-edge-11",
+      "source": "synthetic-node-11",
+      "target": "synthetic-node-12"
+    },
+    {
+      "id": "synthetic-edge-12",
+      "source": "synthetic-node-12",
+      "target": "synthetic-node-13"
+    },
+    {
+      "id": "synthetic-edge-13",
+      "source": "synthetic-node-13",
+      "target": "synthetic-node-14"
+    },
+    {
+      "id": "synthetic-edge-14",
+      "source": "synthetic-node-14",
+      "target": "synthetic-node-15"
+    },
+    {
+      "id": "synthetic-edge-15",
+      "source": "synthetic-node-15",
+      "target": "synthetic-node-16"
+    },
+    {
+      "id": "synthetic-edge-16",
+      "source": "synthetic-node-16",
+      "target": "synthetic-node-17"
+    },
+    {
+      "id": "synthetic-edge-17",
+      "source": "synthetic-node-17",
+      "target": "synthetic-node-18"
+    },
+    {
+      "id": "synthetic-edge-18",
+      "source": "synthetic-node-18",
+      "target": "synthetic-node-19"
+    },
+    {
+      "id": "synthetic-edge-19",
+      "source": "synthetic-node-19",
+      "target": "synthetic-node-20"
+    }
+  ]
+}

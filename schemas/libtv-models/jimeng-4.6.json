@@ -1,0 +1,88 @@
+{
+  "nameOrId": "jimeng-4.6",
+  "modelName": "jimeng-4.6",
+  "modelKey": "jimeng-4.6",
+  "toolKey": "jimeng-4.6",
+  "modality": "image",
+  "schema": {
+    "modelKey": "jimeng-4.6",
+    "modelName": "即梦4.6",
+    "modelVendor": "Seedream",
+    "properties": {
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 800
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          "2K",
+          "4K"
+        ],
+        "default": "2K",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "21:9",
+          "9:21"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "sequential": {
+        "displayName": "组图模式",
+        "default": 1,
+        "component": "switch",
+        "originalField": "sequential",
+        "tips": "开启后，模型会根据用户提供的提示词自主判断是否返回组图以及组图包含的图片数量。"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            6
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "advancedSettings": [
+        "sequential"
+      ],
+      "generateTypes": {
+        "text": 65,
+        "image": 65,
+        "checkpointId": 23194007
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

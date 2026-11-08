@@ -1,0 +1,25 @@
+{
+  "scope": "Documented scope comparison; primary README pages inspected, upstream systems not executed",
+  "review_window": "2026-10-26 to 2026-10-27 Asia/Shanghai",
+  "retrieval": "Connected GitHub fetch failed at transport; public GitHub primary pages read with web tool",
+  "sources": [
+    {
+      "repository": "renmu2017/Hell-Grind-AIGC-Skill",
+      "url": "https://github.com/renmu2017/Hell-Grind-AIGC-Skill/blob/main/README.md",
+      "observed_scope": "Model-independent prompts, creative locks, production records and failure diagnosis",
+      "verification": "README snapshot only, no upstream runtime/absence claim"
+    },
+    {
+      "repository": "ifeihong/aigc-film-studio",
+      "url": "https://github.com/ifeihong/aigc-film-studio/blob/main/README.md",
+      "observed_scope": "Brief/script, assets, shots, prompts and consistency workflow",
+      "verification": "README snapshot only; production guarantees not adopted"
+    },
+    {
+      "repository": "jtydhr88/screenwriting-skills",
+      "url": "https://github.com/jtydhr88/screenwriting-skills/blob/main/README.md",
+      "observed_scope": "Screenwriting/dramaturgy craft skills and multilingual natural-language use",
+      "verification": "README snapshot only, no comparative quality test"
+    }
+  ]
+}

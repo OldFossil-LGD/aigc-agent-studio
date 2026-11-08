@@ -1,0 +1,42 @@
+{
+  "nameOrId": "cvlm-5.5",
+  "modelName": "cvlm-5.5",
+  "modelKey": "cvlm-5.5",
+  "toolKey": "cvlm-5.5",
+  "modality": "text",
+  "schema": {
+    "modelKey": "cvlm-5.5",
+    "modelName": "CVLM 5.5",
+    "modelVendor": "cvlm",
+    "properties": {
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "modeType": {
+        "items": {
+          "image2text": [
+            0,
+            12
+          ],
+          "video2text": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "config": {
+      "generateTypes": {
+        "checkpointId": 22999214
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

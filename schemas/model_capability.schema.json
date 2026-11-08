@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigc-agent-studio.local/schemas/model_capability.schema.json",
+  "title": "Model capability registry entry (model-capability/v1)",
+  "description": "按改造书 §7 的接口卡：能力只写可验证字段，未测项写 unknown，不许用营销词。",
+  "type": "object",
+  "required": ["registry_version", "models"],
+  "properties": {
+    "registry_version": {"const": "1.0.0"},
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model_id", "modality", "capabilities", "verified_at"],
+        "properties": {
+          "model_id": {"type": "string", "minLength": 1},
+          "modality": {"enum": ["image", "video", "audio", "llm"]},
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "text_to_image": {"enum": ["yes", "no", "unknown"]},
+              "image_to_image": {"enum": ["yes", "no", "unknown"]},
+              "text_to_video": {"enum": ["yes", "no", "unknown"]},
+              "image_to_video": {"enum": ["yes", "no", "unknown"]},
+              "first_last_frame": {"enum": ["yes", "no", "unknown"]},
+              "multi_reference": {"type": "integer", "minimum": 0},
+              "negative_prompt": {"enum": ["yes", "no", "unknown"]},
+              "audio_native": {"enum": ["yes", "no", "unknown"]},
+              "max_duration_sec": {"type": ["number", "null"]},
+              "resolutions": {"type": "array", "items": {"type": "string"}},
+              "aspect_ratios": {"type": "array", "items": {"type": "string"}},
+              "frame_rate": {"type": ["number", "null"]}
+            },
+            "additionalProperties": true
+          },
+          "constraints": {"type": "array", "items": {"type": "string"}},
+          "verified_at": {"type": "string"},
+          "evidence": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

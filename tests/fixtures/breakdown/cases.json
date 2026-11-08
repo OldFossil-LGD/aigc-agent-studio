@@ -1,0 +1,13 @@
+{
+  "format": "breakdown-cases/v1",
+  "note": "拆解门禁回归：每例跑 parse+validate，比对错误码全集（含 WARN）。mutations 只在内存里改，不动 fixtures。",
+  "cases": [
+    {"name": "cn_three_scenes", "script": "cn_three_scenes.txt", "expected_codes": []},
+    {"name": "cn_no_headings", "script": "cn_no_headings.txt", "expected_codes": ["NO_SCENE_HEADINGS"]},
+    {"name": "cn_missing_camera", "script": "cn_missing_camera.txt", "expected_codes": ["CAMERA_UNSPECIFIED"]},
+    {"name": "cn_untagged", "script": "cn_untagged.txt", "expected_codes": ["ENTITY_CANDIDATE"]},
+    {"name": "dialogue_altered", "script": "cn_three_scenes.txt", "mutation": "dialogue_altered", "expected_codes": ["DIALOGUE_NOT_VERBATIM"]},
+    {"name": "duplicate_shot_id", "script": "cn_three_scenes.txt", "mutation": "duplicate_shot_id", "expected_codes": ["DUPLICATE_SHOT_ID"]},
+    {"name": "unresolved_asset", "script": "cn_three_scenes.txt", "mutation": "unresolved_asset", "expected_codes": ["UNRESOLVED_ASSET"]}
+  ]
+}

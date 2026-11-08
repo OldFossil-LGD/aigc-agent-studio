@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PromptPackage",
+  "type": "object",
+  "required": [
+    "node_id",
+    "role",
+    "node_type",
+    "blocks",
+    "missing_blocks",
+    "status"
+  ],
+  "properties": {
+    "node_id": {
+      "type": "string"
+    },
+    "shot_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "role": {
+      "type": "string"
+    },
+    "node_type": {
+      "enum": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "video-clip"
+      ]
+    },
+    "blocks": {
+      "type": "object"
+    },
+    "unresolved": {
+      "type": "array"
+    },
+    "missing_blocks": {
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "READY",
+        "INCOMPLETE"
+      ]
+    },
+    "record_binding": {
+      "type": "object",
+      "required": [
+        "record_id",
+        "version",
+        "source_revision"
+      ],
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_revision": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

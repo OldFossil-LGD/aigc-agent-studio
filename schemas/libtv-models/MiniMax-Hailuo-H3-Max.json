@@ -1,0 +1,135 @@
+{
+  "nameOrId": "MiniMax-Hailuo-H3-Max",
+  "modelName": "MiniMax-Hailuo-H3-Max",
+  "modelKey": "MiniMax-Hailuo-H3-Max",
+  "toolKey": "MiniMax-Hailuo-H3-Max",
+  "modality": "video",
+  "schema": {
+    "modelKey": "MiniMax-Hailuo-H3-Max",
+    "modelName": "Minimax H3 Max",
+    "modelVendor": "MiniMax",
+    "baseType": 47,
+    "properties": {
+      "magic": false,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 2000
+      },
+      "ratio_auto": {
+        "default": "adaptive",
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "adaptive",
+            "displayName": "自适应"
+          }
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "ratio_t2v": {
+        "default": "16:9",
+        "displayName": "比例",
+        "enum": [
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16"
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "ratio": {
+        "default": "16:9",
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "adaptive",
+            "displayName": "自适应"
+          },
+          "21:9",
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16"
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "480P",
+          "768P"
+        ],
+        "default": "480P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "min": 5,
+        "max": 15,
+        "step": 1,
+        "default": 5,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            1,
+            1
+          ],
+          "frames2video": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio_t2v",
+          "resolution",
+          "duration"
+        ],
+        "singleImage2video": [
+          "ratio_auto",
+          "resolution",
+          "duration"
+        ],
+        "image2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 41,
+        "image": 42,
+        "checkpointId": 23321805
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

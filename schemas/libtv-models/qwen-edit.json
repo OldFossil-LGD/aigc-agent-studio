@@ -1,0 +1,83 @@
+{
+  "nameOrId": "qwen-edit",
+  "modelName": "qwen-edit",
+  "modelKey": "qwen-edit",
+  "toolKey": "qwen-edit",
+  "modality": "image",
+  "schema": {
+    "modelKey": "qwen-edit",
+    "modelName": "Qwen Image Edit",
+    "modelVendor": "qwen",
+    "baseType": 39,
+    "properties": {
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "lora": {
+        "displayName": "风格",
+        "maxCount": 3
+      },
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            1,
+            2
+          ]
+        }
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 58,
+        "image": 59,
+        "checkpointId": 22314407
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "nameOrId": "midjourney-video",
+  "modelName": "midjourney-video",
+  "modelKey": "midjourney-video",
+  "toolKey": "midjourney-video",
+  "modality": "video",
+  "schema": {
+    "modelKey": "midjourney-video",
+    "modelName": "MJ Video",
+    "modelVendor": "midjourney",
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 0
+      },
+      "ratio": {
+        "displayName": "视频比例",
+        "enum": [
+          "4:3",
+          "16:9",
+          "1:1",
+          "1:2",
+          "2:3"
+        ],
+        "default": "16:9",
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "480P",
+          "720P"
+        ],
+        "default": "720P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "enum": [
+          5
+        ],
+        "default": 5,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "motion": {
+        "displayName": "运动强度",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "低"
+          },
+          {
+            "value": "high",
+            "displayName": "高"
+          }
+        ],
+        "originalField": "motion",
+        "component": "singleButton"
+      },
+      "raw": {
+        "displayName": "Raw模式",
+        "tips": "",
+        "component": "switch",
+        "default": 0,
+        "originalField": "raw_mj"
+      },
+      "loop": {
+        "displayName": "首尾循环模式",
+        "tips": "生成循环视频指以传入的图片作为视频的首尾帧，从而形成循环效果。",
+        "default": 0,
+        "component": "switch",
+        "originalField": "loop_mj"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "frames2video": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    "config": {
+      "excludeModeTypes": [
+        "text2video"
+      ],
+      "settings": {
+        "text2video": [
+          "ratio",
+          "resolution",
+          "duration",
+          "motion",
+          "raw",
+          "loop"
+        ],
+        "frames2video": [
+          "resolution",
+          "duration",
+          "motion",
+          "raw",
+          "loop"
+        ]
+      },
+      "generateTypes": {
+        "text": 73,
+        "image": 73,
+        "checkpointId": 22723488
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "image"
+        ],
+        "message": "该模型需要参考图片才能生成视频"
+      }
+    ]
+  }
+}

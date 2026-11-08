@@ -1,0 +1,182 @@
+{
+  "nameOrId": "MiniMax-Hailuo-2.3",
+  "modelName": "MiniMax-Hailuo-2.3",
+  "modelKey": "MiniMax-Hailuo-2.3",
+  "toolKey": "MiniMax-Hailuo-2.3",
+  "modality": "video",
+  "schema": {
+    "modelKey": "MiniMax-Hailuo-2.3",
+    "modelName": "Hailuo-2.3",
+    "modelVendor": "MiniMax",
+    "baseType": 47,
+    "properties": {
+      "magic": false,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 2000
+      },
+      "ratio": {
+        "default": "auto",
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "768P",
+          "1080P"
+        ],
+        "default": "1080P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "enum": [
+          {
+            "value": 6,
+            "displayName": "6s"
+          },
+          {
+            "value": 10,
+            "displayName": "10s"
+          }
+        ],
+        "default": 6,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "cameraMovement": {
+        "displayName": "运镜指令",
+        "tips": "Hailuo 2.3 支持在提示词中使用运镜指令，如 [Zoom in]、[Pan left,Pedestal up] 等，点击按钮快速插入",
+        "enum": [
+          {
+            "value": "[Zoom in]",
+            "displayName": "拉近"
+          },
+          {
+            "value": "[Zoom out]",
+            "displayName": "拉远"
+          },
+          {
+            "value": "[Pan left]",
+            "displayName": "左摇"
+          },
+          {
+            "value": "[Pan right]",
+            "displayName": "右摇"
+          },
+          {
+            "value": "[Tilt up]",
+            "displayName": "仰摄"
+          },
+          {
+            "value": "[Tilt down]",
+            "displayName": "俯摄"
+          },
+          {
+            "value": "[Push in]",
+            "displayName": "推镜"
+          },
+          {
+            "value": "[Pull out]",
+            "displayName": "拉镜"
+          },
+          {
+            "value": "[Truck left]",
+            "displayName": "左移"
+          },
+          {
+            "value": "[Truck right]",
+            "displayName": "右移"
+          },
+          {
+            "value": "[Pedestal up]",
+            "displayName": "上升"
+          },
+          {
+            "value": "[Pedestal down]",
+            "displayName": "下降"
+          },
+          {
+            "value": "[Shake]",
+            "displayName": "抖动"
+          },
+          {
+            "value": "[Tracking shot]",
+            "displayName": "跟摄"
+          },
+          {
+            "value": "[Static shot]",
+            "displayName": "静止"
+          }
+        ]
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution",
+        "duration"
+      ],
+      "advancedSettings": [
+        "cameraMovement"
+      ],
+      "generateTypes": {
+        "text": 41,
+        "image": 42,
+        "checkpointId": 21948870
+      }
+    },
+    "settingsRules": [
+      {
+        "conflict": [
+          {
+            "field": "resolution",
+            "values": [
+              "1080P"
+            ]
+          },
+          {
+            "field": "duration",
+            "values": [
+              10
+            ]
+          }
+        ],
+        "message": "1080P 分辨率下不支持 10s 时长"
+      }
+    ],
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

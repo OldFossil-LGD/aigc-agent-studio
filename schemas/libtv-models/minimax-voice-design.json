@@ -1,0 +1,34 @@
+{
+  "nameOrId": "minimax-voice-design",
+  "modelName": "minimax-voice-design",
+  "modelKey": "minimax-voice-design",
+  "toolKey": "minimax-voice-design",
+  "modality": "audio",
+  "schema": {
+    "modelKey": "minimax-voice-design",
+    "modelName": "MiniMax voice design",
+    "modelVendor": "MiniMax",
+    "scene": "Voice-Design",
+    "sceneName": "音色设计",
+    "properties": {
+      "prompt": {
+        "placeholder": "输入要设计的音色",
+        "maxLength": 50000
+      }
+    },
+    "config": {
+      "advancedSettings": [],
+      "generateTypes": {
+        "audio": 120,
+        "checkpointId": 22685106
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

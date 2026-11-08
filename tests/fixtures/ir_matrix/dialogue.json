@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "project": {
+    "project_id": "PRJ_DLG",
+    "title": "DLG",
+    "model_id": "m-ok",
+    "delivery": {
+      "duration_sec": {
+        "value": 5,
+        "source_type": "user_explicit",
+        "locked": true
+      },
+      "aspect_ratio": {
+        "value": "2.39:1",
+        "source_type": "user_explicit",
+        "locked": true
+      },
+      "fps": {
+        "value": 24,
+        "source_type": "user_explicit",
+        "locked": true
+      }
+    }
+  },
+  "requirements": [],
+  "assets": {
+    "characters": [
+      {
+        "character_id": "char_01",
+        "identity_version": "v001"
+      }
+    ],
+    "locations": [
+      {
+        "id": "loc_01",
+        "kind": "scene"
+      }
+    ],
+    "props": []
+  },
+  "shots": [
+    {
+      "shot_id": "shot_03",
+      "order": 0,
+      "screen_order": 0,
+      "story_time": "2027-01-15T23:40",
+      "purpose": {
+        "value": "把消息说出来",
+        "source_type": "script"
+      },
+      "delivery": {
+        "duration_sec": {
+          "value": 5,
+          "source_type": "script"
+        },
+        "aspect_ratio": "2.39:1",
+        "fps": 24
+      },
+      "camera_spec": {
+        "value": {
+          "shot_size": "MCU",
+          "lens_status": "selected",
+          "camera_movement": "locked_off"
+        },
+        "source_type": "script"
+      },
+      "composition": {
+        "value": "画面左三分之二为主体",
+        "source_type": "script"
+      },
+      "lighting": {
+        "value": "顶部钠灯为主光",
+        "source_type": "script"
+      },
+      "camera_movement": {
+        "value": "固定",
+        "source_type": "script"
+      },
+      "timeline": {
+        "beats": [
+          {
+            "start_sec": 0,
+            "end_sec": 5,
+            "action": "她说：这雨不停了"
+          }
+        ]
+      },
+      "asset_refs": {
+        "character_refs": [
+          {
+            "character_id": "char_01",
+            "identity_version": "v001"
+          }
+        ],
+        "location_id": "loc_01",
+        "prop_refs": [],
+        "continuity_state_id": "cs_01"
+      },
+      "audio_policy": {
+        "mode": "dialogue_only",
+        "allow": [
+          "对白"
+        ],
+        "deny": [],
+        "dialogue": "present",
+        "sound_events": []
+      },
+      "transition": {
+        "kind": "cut",
+        "target_shot_id": "END"
+      }
+    }
+  ],
+  "expected_rules": []
+}

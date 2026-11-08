@@ -1,0 +1,691 @@
+[
+  {
+    "id": "M1",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "只要5秒9:16水墨空镜提示词：山石倒影，固定机位，完全无声，无人物；不得改写实、加运镜或环境底噪。",
+      "profile": "prompt_only",
+      "features": [
+        "camera",
+        "empty",
+        "look",
+        "silent",
+        "sound",
+        "stylized"
+      ],
+      "requirements": [
+        {
+          "id": "look",
+          "text": "水墨空镜，5秒9:16，无人物"
+        },
+        {
+          "id": "locks",
+          "text": "固定机位，完全无声；只交提示词"
+        }
+      ]
+    },
+    "artifact": "草稿，仅提示词，媒体未验证。5秒，9:16竖屏，水墨空镜：山石及其倒影由宣纸上的浓淡墨色表现，墨边晕开、枯笔带飞白，水面留出纸白；以墨色浓淡表现明暗，不套照片写实、PBR或体积光。固定机位，不推拉摇移，不加人物或额外动作。完全无声：不加雨声、环境底噪、人声或音乐。",
+    "consideration": {
+      "story_direction": "not_applicable: 5秒水墨空镜无人物，无剧情因果、人物弧线或戏剧任务。",
+      "performance": "not_applicable: 无人物，无表情、身体通道或表演。",
+      "camera_space": "applicable: 固定机位、9:16与空镜是核心锁定，禁止运镜。",
+      "look_lighting": "applicable: 水墨风格被用户显式锁定，覆盖写实默认；无人物与空镜。",
+      "motion_physics": "not_applicable: 无主体或摄像机运动，不写步态、物理反馈或运镜。",
+      "assets": "not_applicable: 无角色、道具或场景资产需求。",
+      "continuity": "not_applicable: 单镜5秒空镜，无跨镜身份或状态连续。",
+      "sound": "applicable: 完全无声是显式锁定，禁止环境底噪、配乐与人声。",
+      "editing_delivery": "applicable: 只交提示词，停在Prompt Package/草稿，不生成媒体或导出。",
+      "reverse": "not_applicable: 不是反推、复刻或盲测任务。",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: 无画布、节点、发布或付费生成动作。"
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "look"
+        ],
+        "rationale": "用户要求「水墨空镜，5秒9:16，无人物」。用墨晕、飞白和纸白承载山石倒影，使水墨落实到材料与明暗，不套写实资产。",
+        "task_evidence": [
+          "水墨空镜，5秒9:16，无人物"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/stylized-look-craft.md",
+            "quote": "**墨在宣纸上晕开、边缘发毛**"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "山石及其倒影由宣纸上的浓淡墨色表现，墨边晕开、枯笔带飞白"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "locks"
+        ],
+        "rationale": "用户要求「固定机位，完全无声；只交提示词」。固定机位和完全无声覆盖运镜与环境床的默认建议；只给文字提示词。",
+        "task_evidence": [
+          "固定机位，完全无声；只交提示词"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/context-reading.md",
+            "quote": "用户明确无声优先于声音册的默认环境底噪；不把无声改成无对白，不加雨声、人声。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "固定机位，不推拉摇移，不加人物或额外动作。完全无声：不加雨声、环境底噪、人声或音乐。"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M2",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "只写声音方案：8秒旧钟表店空镜，无对白但保留雨声与一次钟摆轻响；不要人声或音乐，不要把无对白变成全静音。",
+      "profile": "no_dialogue",
+      "features": [
+        "sound"
+      ],
+      "requirements": [
+        {
+          "id": "sound",
+          "text": "无对白但保留雨声与一次钟摆轻响"
+        },
+        {
+          "id": "scope",
+          "text": "只写声音方案；不加人声或音乐"
+        }
+      ]
+    },
+    "artifact": "草稿，仅声音方案，音频效果未验证。8秒旧钟表店空镜：持续保留雨声，8秒内仅一次轻而短的钟摆声，不循环追加钟声。无对白、无人声、无旁白、无音乐；无对白不等于全静音。单次钟摆声的具体落点是后续设计，不改变保留雨声与只响一次的要求。",
+    "consideration": {
+      "story_direction": "not_applicable: 只写声音方案，不涉及剧情因果或镜头组织。",
+      "performance": "not_applicable: 无人物表演或表情。",
+      "camera_space": "not_applicable: 声音方案不包含机位或运动决定。",
+      "look_lighting": "not_applicable: 不涉及画面风格或灯光。",
+      "motion_physics": "not_applicable: 不涉及主体或摄像机运动。",
+      "assets": "not_applicable: 无角色、道具或场景资产需求。",
+      "continuity": "not_applicable: 单个8秒声音方案，无跨镜连续。",
+      "sound": "applicable: 无对白但保留雨声与一次钟摆轻响；无人声、无音乐；不把无对白变成全静音。",
+      "editing_delivery": "applicable: 只交付声音方案，不生成媒体或导出。",
+      "reverse": "not_applicable: 不是反推、复刻或盲测任务。",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: 无画布、节点、发布或付费生成动作。"
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "sound"
+        ],
+        "rationale": "用户要求「无对白但保留雨声与一次钟摆轻响」。雨声持续而钟摆只响一次，保留无对白与无声的区别。",
+        "task_evidence": [
+          "无对白但保留雨声与一次钟摆轻响"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/production-compiler.md",
+            "quote": "无对白镜头只保留 ambience/环境声，不生成人声或无依据音乐。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "持续保留雨声，8秒内仅一次轻而短的钟摆声"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "scope"
+        ],
+        "rationale": "用户要求「只写声音方案；不加人声或音乐」。输出限定声音方案，无需增加人声、音乐或进入媒体生产。",
+        "task_evidence": [
+          "只写声音方案；不加人声或音乐"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/production-compiler.md",
+            "quote": "无对白镜头只保留 ambience/环境声，不生成人声或无依据音乐。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "无对白、无人声、无旁白、无音乐；无对白不等于全静音。"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M3",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "审这一镜文字，目标是两人同框呈现迟疑：固定广角机位，甲递出钥匙后停住，乙手指靠近但不接，仍未转移持有；两人始终同框。只准文字局部修正，不许正反打、推镜或宣称已完成交接。",
+      "profile": "rework",
+      "features": [
+        "assets",
+        "camera",
+        "continuity",
+        "direction",
+        "motion",
+        "performance"
+      ],
+      "requirements": [
+        {
+          "id": "frame",
+          "text": "固定广角且两人始终同框"
+        },
+        {
+          "id": "state",
+          "text": "乙不接，钥匙未转移持有；只审文字"
+        }
+      ]
+    },
+    "artifact": "草稿，局部文字审阅；实际表演未验证。固定广角机位，甲乙始终同框。甲持钥匙向乙递出后停住；乙手指靠近，但不接，钥匙仍由甲持有，未发生交接。当前动作停顿和未转移的持有状态支持迟疑的文字目标，必要修法：无。保留固定广角，不改正反打，不推镜，不把未接改成接过。停顿时值、手部距离是后续设计；接触、迟疑与同框可读性需实际媒体复核。",
+    "consideration": {
+      "story_direction": "applicable: same-frame hesitation is the dramatic task; no new plot information is added.",
+      "performance": "applicable: hesitation is expressed through incomplete action and delayed response, not emotion labels.",
+      "camera_space": "applicable: 固定广角与双人同框已锁定，不另提未锁景别或改推镜。",
+      "look_lighting": "not_applicable: no lighting or style change is requested; avoid imposing default look.",
+      "motion_physics": "applicable: only micro hand proximity and stillness; no camera or body displacement.",
+      "assets": "applicable: key is a held prop; holding state must remain explicit, with no new asset.",
+      "continuity": "applicable: both identities and key-holding state persist across the unchanged two-shot.",
+      "sound": "not_applicable: no sound requirement; do not add ambience, music, or voice.",
+      "editing_delivery": "not_applicable: text-only local review; no cut, transition, or delivery plan.",
+      "reverse": "not_applicable: this is not reverse or source-replica work.",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: no platform build, render, upload, or export is authorized."
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "frame"
+        ],
+        "rationale": "用户要求「固定广角且两人始终同框」。同框迟疑通过两人的未完成动作读取，无需用正反打或推镜替换用户锁。",
+        "task_evidence": [
+          "固定广角且两人始终同框"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/context-reading.md",
+            "quote": "固定机位不因运镜建议被换掉；有双人同框锁定时，表演册的正反打建议不能默默拆镜。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "固定广角机位，甲乙始终同框。"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "state"
+        ],
+        "rationale": "用户要求「乙不接，钥匙未转移持有；只审文字」。递出停住与不接共同保留钥匙归甲；不把接近误判成完成交接。",
+        "task_evidence": [
+          "乙不接，钥匙未转移持有；只审文字"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/performance-craft.md",
+            "quote": "一个\"未完成的动作\"比十个\"完成的动作\"更像人。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "乙手指靠近，但不接，钥匙仍由甲持有，未发生交接。"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M4",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "目标是甲主动把旧照片让给乙。镜1甲持照片，镜2甲主动递出，乙接住，镜3乙持照片离开。仅审已有文字，不新增物件，不要求单独松手或空手特写。",
+      "profile": "rework",
+      "features": [
+        "assets",
+        "continuity",
+        "direction",
+        "motion",
+        "performance"
+      ],
+      "requirements": [
+        {
+          "id": "handover",
+          "text": "甲主动递出，乙接住，乙持照片离开"
+        },
+        {
+          "id": "scope",
+          "text": "仅审已有文字，不新增物件或强加空手特写"
+        }
+      ]
+    },
+    "artifact": "草稿，局部文字审阅；媒体未验证。当前目标成立：镜1甲持旧照片，镜2甲主动递出、乙接住，镜3乙持照片离开，发起者与最终持有者清楚。必要修法：无。不新增物件，不强加单独松手或空手特写，不把主动让渡改成乙自行拿取。具体机位和交接节奏为后续设计；实际接触与观众可读性待媒体验证。",
+    "consideration": {
+      "story_direction": "applicable: three-shot active handover from甲持 to乙持 and departure.",
+      "performance": "applicable: active giving and receiving must read as action, not as forced empty-hand closeup.",
+      "camera_space": "not_applicable: no camera lock is specified; shot sizes and motion remain undetermined.",
+      "look_lighting": "not_applicable: no style or lighting change is requested.",
+      "motion_physics": "applicable: hand-to-hand transfer is an active action sequence; no self-fetch or added object.",
+      "assets": "applicable: one photo object persists through all three shots with holder changes.",
+      "continuity": "applicable: holder state changes only at the handover and must not be skipped.",
+      "sound": "not_applicable: no sound requirement; do not add ambience, music, or voice.",
+      "editing_delivery": "not_applicable: text-only review; no transition or delivery specification.",
+      "reverse": "not_applicable: this is not reverse or source-replica work.",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: no platform build, render, upload, or export is authorized."
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "handover"
+        ],
+        "rationale": "用户要求「甲主动递出，乙接住，乙持照片离开」。发起、接收、离开持有的连续链已支持主动让渡。",
+        "task_evidence": [
+          "甲主动递出，乙接住，乙持照片离开"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/direction-reasoning.md",
+            "quote": "主动让渡核对让渡者发起；自行取走保留接收者发起。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "镜2甲主动递出、乙接住，镜3乙持照片离开"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "scope"
+        ],
+        "rationale": "用户要求「仅审已有文字，不新增物件或强加空手特写」。现有文字目标已满足，补空手特写会变成无必要改动；待设计和媒体效果另列。",
+        "task_evidence": [
+          "仅审已有文字，不新增物件或强加空手特写"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/direction-reasoning.md",
+            "quote": "“松手/手空”不是独立必备词，最终持有状态已清楚时不为补词强加动作。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "不新增物件，不强加单独松手或空手特写"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M5",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "审两镜连续性：镜1蓝陶杯从桌上掉落摔成三片。镜2同一蓝陶杯完整地出现在桌上。世界是写实连续时间，未授权修复或替换杯子；只允许改镜2，保留三片碎杯的结果，不新增人物、修复或复原特效。",
+      "profile": "rework",
+      "features": [
+        "assets",
+        "continuity",
+        "motion"
+      ],
+      "requirements": [
+        {
+          "id": "physical",
+          "text": "写实连续时间，蓝陶杯已摔成三片"
+        },
+        {
+          "id": "scope",
+          "text": "只改镜2，保留碎片；不新增修复、物件或人物"
+        }
+      ]
+    },
+    "artifact": "草稿，仅改镜2的连续性审阅；媒体未验证。镜1已发生蓝陶杯从桌上掉落摔成三片的事件；连续时间下镜2完整杯无交代复现不成立。替换镜2：承接镜1杯子落下摔碎的位置，三片蓝陶残片仍留在该落点，不搬回桌面，不出现完整杯。镜1保持原文；不新增人物、替换杯、修复或复原特效，不强加未锁定机位。具体残片布局属后续设计，实际位置、接触和质感待媒体复核。",
+    "consideration": {
+      "story_direction": "not_applicable: 本题只审两镜物体状态连续性，无叙事命题、人物弧线或场景任务",
+      "performance": "not_applicable: 无演员表演、台词或身体表演要求",
+      "camera_space": "not_applicable: 未要求机位、景别或空间调度变化，只处理道具状态",
+      "look_lighting": "not_applicable: 未指定风格、光比或调色",
+      "motion_physics": "applicable: 蓝陶杯摔碎为三片是已发生物理结果，镜2不得复原或替换",
+      "assets": "applicable: 蓝陶杯是持续道具资产，其破损状态必须跨镜一致",
+      "continuity": "applicable: 写实连续时间要求碎片状态守恒，只允许改镜2",
+      "sound": "not_applicable: 无声音或配乐要求",
+      "editing_delivery": "not_applicable: 无剪辑节奏、转场或交付格式要求",
+      "reverse": "not_applicable: 不是反推或复刻任务",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: 无平台实现、发布或导出要求"
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "physical"
+        ],
+        "rationale": "用户要求「写实连续时间，蓝陶杯已摔成三片」。破损是既有世界状态，后镜必须承接落点和碎片，不能无因复原。",
+        "task_evidence": [
+          "写实连续时间，蓝陶杯已摔成三片"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/character-continuity.md",
+            "quote": "脏污与破损只能累积或\"有交代地重置\""
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "三片蓝陶残片仍留在该落点，不搬回桌面，不出现完整杯。"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "scope"
+        ],
+        "rationale": "用户要求「只改镜2，保留碎片；不新增修复、物件或人物」。只替换镜2的错误状态，不借一致性模板添加修复或锁死机位。",
+        "task_evidence": [
+          "只改镜2，保留碎片；不新增修复、物件或人物"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/context-reading.md",
+            "quote": "工艺建议有冲突时记录适用例外/未解，不能让机械文件计划代替导演选择。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "镜1保持原文；不新增人物、替换杯、修复或复原特效，不强加未锁定机位。"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M6",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "给12秒两镜叙事与剪辑声音方案：镜1年迈门卫夜里修好一只无名纸风车；镜2清晨将风车插回校门边、退开看它转。主题是无人看见的照顾。无对白、无旁白、不加音乐；用纸摩擦、远处晨间脚步与风的声桥连接。不可新增儿童反应镜、字幕或解释台词；只交文字方案，不生成。",
+      "profile": "rework",
+      "features": [
+        "assets",
+        "camera",
+        "continuity",
+        "direction",
+        "motion",
+        "performance",
+        "sound"
+      ],
+      "requirements": [
+        {
+          "id": "story",
+          "text": "两镜12秒，无人看见的照顾；不新增反应镜或解释文字"
+        },
+        {
+          "id": "sound_edit",
+          "text": "无对白旁白音乐，纸摩擦、晨间脚步与风声桥"
+        }
+      ]
+    },
+    "artifact": "草稿，12秒两镜文字方案；未生成媒体。建议每镜6秒，属于未锁定时长分配提案，总时长12秒。镜1（0–6秒，夜）：年迈门卫修好无名纸风车；只保留纸摩擦声，结尾修完的手暂歇。唯一两镜切点在约6秒、镜1修完的这一拍，随后进入清晨的镜2。风声在镜1末尾先入并延续到镜2，纸摩擦尾音可跨切点短暂保留。镜2（6–12秒，晨）：同一门卫将同一风车插回校门边，退开看它转；保留风声与远处晨间脚步。镜2末尾的退看是全片结束位置，不是两镜之间的切点。两镜分别承担修好与归还，使无人看见的照顾由动作完成；不新增儿童反应镜、字幕或解释台词。无对白、无旁白、无音乐，不加入工具声或其他未要求声效。实际表演、声桥与风车运动未验证；时长分配、机位和声音落点为后续设计。",
+    "consideration": {
+      "story_direction": "applicable: 两镜12秒服务“无人看见的照顾”，每镜必须承担不同叙事功能",
+      "performance": "applicable: 年迈门卫修风车、插回、退看的克制手部与身体信号是表演核心",
+      "camera_space": "applicable: 两镜连接需景别、机位与切点设计，但不新增反应镜",
+      "look_lighting": "not_applicable: 仅自然夜/晨时段，未锁定风格或光比",
+      "motion_physics": "applicable: 纸风车旋转、手部修理与脚步的动作与物理反馈需文字说明",
+      "assets": "applicable: 无名纸风车是跨镜同一道具，状态从修好到插回必须一致",
+      "continuity": "applicable: 夜到晨的物体、人物与空间状态必须连续",
+      "sound": "applicable: 无对白旁白音乐，纸摩擦、晨间脚步与风声桥是明确要求",
+      "editing_delivery": "applicable: 12秒两镜的切点、声音桥与节奏分配需方案",
+      "reverse": "not_applicable: 不是反推任务",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: 未要求平台节点、画布或导出"
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "story"
+        ],
+        "rationale": "用户要求「两镜12秒，无人看见的照顾；不新增反应镜或解释文字」。修好与归还分别承担必要叙事功能，以两镜和总时长约束组织节拍；六秒分配保持提案身份。",
+        "task_evidence": [
+          "两镜12秒，无人看见的照顾；不新增反应镜或解释文字"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/direction-reasoning.md",
+            "quote": "把这场戏整场删掉，后面的故事还成立吗？"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "建议每镜6秒，属于未锁定时长分配提案，总时长12秒。"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "sound_edit"
+        ],
+        "rationale": "用户要求「无对白旁白音乐，纸摩擦、晨间脚步与风声桥」。风声跨镜与纸声尾音衔接夜晨；两镜切换放在修完之后，第二镜退看仅作结束，不混淆时间。",
+        "task_evidence": [
+          "无对白旁白音乐，纸摩擦、晨间脚步与风声桥"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/sound-craft.md",
+            "quote": "- **声音桥**：三段不同的画面配一条**不间断**的风声，就能焊成一个连续世界。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "风声在镜1末尾先入并延续到镜2，纸摩擦尾音可跨切点短暂保留。"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M7",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "我只有副本画布的节点文字与截图，没有原项目权限或原始媒体；想了解副本工作流并写反推说明。不得标原项目源级复刻，不把结构相似称为媒体效果复现。只交文字说明。",
+      "profile": "mirror",
+      "features": [
+        "reverse"
+      ],
+      "requirements": [
+        {
+          "id": "access",
+          "text": "只有副本节点文字与截图，没有原项目权限或媒体"
+        },
+        {
+          "id": "claim",
+          "text": "只能副本级反推说明；不标源级复刻或媒体效果已复现"
+        }
+      ]
+    },
+    "artifact": "草稿，受限反推说明，不是具体画布审计。用户描述自己有副本节点文字与截图，但本次未附可检验的节点、截图或UUID，因此不能逐节点断言副本工作流已核实。仅以copy_reverse作为拟定范围，用户描述的copy_readback尚未由本次回读核验；不标source_replica，不写原项目源级复刻或媒体效果复现。后续可记录副本节点、边、参数、引用及其证据位置，并并列副本UUID、推定来源与证明方式；不得补造缺失字段。当前未解：需实际可访问的副本材料及来源关系依据，才能核对具体工作流。原项目权限、原始媒体、结构与媒体全等性均未验证；不生成、上传或点火。",
+    "consideration": {
+      "story_direction": "not_applicable: 只写副本级反推说明，不新增或重写叙事。",
+      "performance": "not_applicable: 不新增表演设计或角色动机。",
+      "camera_space": "not_applicable: 不新增镜头、景别或机位设计。",
+      "look_lighting": "not_applicable: 不新增风格、灯光或调色设计。",
+      "motion_physics": "not_applicable: 不新增动作或物理规律设计。",
+      "assets": "not_applicable: 不新增角色、道具或场景资产生成。",
+      "continuity": "not_applicable: 不新增连续性规则或世界状态。",
+      "sound": "not_applicable: 不新增声音设计或音轨。",
+      "editing_delivery": "not_applicable: 只交付文字说明，不涉及剪辑、时间线或交付包。",
+      "reverse": "applicable: mode=copy_reverse、deliverable=mirror、source_access=copy_readback；副本级事实与未解必须分开。",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: 不实施平台写入、生成或发布。"
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "access"
+        ],
+        "rationale": "用户要求「只有副本节点文字与截图，没有原项目权限或媒体」。只有用户对副本的描述不足以报告实际画布事实，保留待补材料。",
+        "task_evidence": [
+          "只有副本节点文字与截图，没有原项目权限或媒体"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/reverse-fidelity-contract.md",
+            "quote": "1. `source_replica` 必须有 `original_readback`；否则最多是 `copy_reverse`。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "本次未附可检验的节点、截图或UUID，因此不能逐节点断言副本工作流已核实。"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "claim"
+        ],
+        "rationale": "用户要求「只能副本级反推说明；不标源级复刻或媒体效果已复现」。拟反推只限副本层，结构、原项目权限和媒体效果必须分开，当前不得升格交付。",
+        "task_evidence": [
+          "只能副本级反推说明；不标源级复刻或媒体效果已复现"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/source-fidelity-mode.md",
+            "quote": "副本级任务不得因本文件标题含“源级”就升格为原项目级。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "不标source_replica，不写原项目源级复刻或媒体效果复现。"
+          }
+        ]
+      }
+    ],
+    "unresolved": [
+      "Actual accessible copy nodes/screenshots and provenance evidence have not been supplied; specific workflow cannot be verified"
+    ],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  },
+  {
+    "id": "M8",
+    "author": "Codex independent revision after preserved Hermes drafts; not an unaided blind generation",
+    "task": {
+      "goal": "仅做已有文字分镜的局部审阅：目标是访客自行取走房间内唯一一张照片。镜1保管员已离开，照片在桌上；镜2访客拿起；镜3访客持照片离开，桌面无照片。只做必要修法；不增加让渡者、不猜还有第二张照片、不追问已给出的唯一性。",
+      "profile": "rework",
+      "features": [
+        "continuity",
+        "direction"
+      ],
+      "requirements": [
+        {
+          "id": "action",
+          "text": "访客自行拿起唯一照片并持它离开"
+        },
+        {
+          "id": "scope",
+          "text": "仅局部审阅，不新增让渡者或第二物件，不重复追问唯一性"
+        }
+      ]
+    },
+    "artifact": "草稿，局部文字审阅；媒体未验证。现有三镜已支持访客自行取走唯一照片：镜1保管员已离开，照片在桌上；镜2访客拿起；镜3访客持照片离开，桌面无照片。必要修法：无。当前文字无待确认项；不新增让渡者、不猜另有第二张照片、不重问唯一性，也不加赠与动作。取物的具体景别、接触细节是后续设计，实际表演与观众可读性仍待媒体复核。",
+    "consideration": {
+      "story_direction": "applicable: 仅审阅已有文字分镜，目标是访客自行取走唯一照片。",
+      "performance": "not_applicable: 不新增表演或表情设计，只核对现有动作。",
+      "camera_space": "not_applicable: 不新增或修改镜头、机位。",
+      "look_lighting": "not_applicable: 不新增风格或灯光。",
+      "motion_physics": "not_applicable: 不新增动作物理设计。",
+      "assets": "not_applicable: 不新增资产或物件，唯一照片身份保持不变。",
+      "continuity": "applicable: 需核对照片持有状态、桌面无照片与镜间继承。",
+      "sound": "not_applicable: 不新增声音设计。",
+      "editing_delivery": "not_applicable: 仅文字审阅，不涉及剪辑或交付包。",
+      "reverse": "not_applicable: 不是反推或复刻任务。",
+      "workflow_governance": "applicable: 核对当前文字任务、用户锁、相关来源与产物；媒体未验证只限制媒体结论，不冒充文字缺口。",
+      "implementation_publication": "not_applicable: 不实施生成或发布。"
+    },
+    "decisions": [
+      {
+        "requirement_ids": [
+          "action"
+        ],
+        "rationale": "用户要求「访客自行拿起唯一照片并持它离开」。唯一照片的既有状态与访客主动拿起/持离共同支持自取，没有让渡者需要补写。",
+        "task_evidence": [
+          "访客自行拿起唯一照片并持它离开"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/direction-reasoning.md",
+            "quote": "主动让渡核对让渡者发起；自行取走保留接收者发起。"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "现有三镜已支持访客自行取走唯一照片"
+          }
+        ]
+      },
+      {
+        "requirement_ids": [
+          "scope"
+        ],
+        "rationale": "用户要求「仅局部审阅，不新增让渡者或第二物件，不重复追问唯一性」。已给唯一性与动作结果足够作局部文字结论；只把未来设计与媒体验证留待后续。",
+        "task_evidence": [
+          "仅局部审阅，不新增让渡者或第二物件，不重复追问唯一性"
+        ],
+        "source_evidence": [
+          {
+            "path": "references/direction-reasoning.md",
+            "quote": "只保留会改变本次文字判定的缺口"
+          }
+        ],
+        "applied_to": [
+          {
+            "artifact": "review.md",
+            "text": "当前文字无待确认项；不新增让渡者、不猜另有第二张照片、不重问唯一性"
+          }
+        ]
+      }
+    ],
+    "unresolved": [],
+    "media_quality_verified": false,
+    "generation_authorized": false
+  }
+]

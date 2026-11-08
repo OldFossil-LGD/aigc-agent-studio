@@ -1,0 +1,42 @@
+{
+  "nameOrId": "qwen-3-vl-flash",
+  "modelName": "qwen-3-vl-flash",
+  "modelKey": "qwen-3-vl-flash",
+  "toolKey": "qwen-3-vl-flash",
+  "modality": "text",
+  "schema": {
+    "modelKey": "qwen-3-vl-flash",
+    "modelName": "Qwen 3 VL Flash",
+    "modelVendor": "qwen",
+    "properties": {
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "modeType": {
+        "items": {
+          "image2text": [
+            0,
+            7
+          ],
+          "video2text": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "generateTypes": {
+        "checkpointId": 23193479
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

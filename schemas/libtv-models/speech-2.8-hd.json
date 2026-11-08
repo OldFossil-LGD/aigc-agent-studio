@@ -1,0 +1,169 @@
+{
+  "nameOrId": "speech-2.8-hd",
+  "modelName": "speech-2.8-hd",
+  "modelKey": "speech-2.8-hd",
+  "toolKey": "speech-2.8-hd",
+  "modality": "audio",
+  "schema": {
+    "modelKey": "speech-2.8-hd",
+    "modelName": "Minimax-speech-2.8-hd",
+    "modelVendor": "MiniMax",
+    "scene": "Text-to-Speech",
+    "sceneName": "文字转语音",
+    "properties": {
+      "prompt": {
+        "placeholder": "输入要合成的文本",
+        "maxLength": 50000
+      },
+      "voiceCard": {
+        "displayName": "音色设置",
+        "component": "voiceCard",
+        "originalField": "voice_setting_voice_id",
+        "default": {
+          "voiceId": "female-shaonv",
+          "name": "少女音色",
+          "language": "中文(普通话)",
+          "gender": "Female",
+          "voiceUrl": "https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/audio/26867b52384f44d6ad5f717dbd710ff7/ed4975bb8d702870fb9a00bf1ba5ba423486311139c2e37177ea38751a58c6c9.mp3"
+        }
+      },
+      "speed": {
+        "displayName": "语速",
+        "component": "slider",
+        "layout": "inline",
+        "min": 0.5,
+        "max": 2,
+        "step": 0.01,
+        "default": 1,
+        "originalField": "voice_setting_speed"
+      },
+      "voicePitch": {
+        "displayName": "声调",
+        "component": "slider",
+        "layout": "inline",
+        "min": -12,
+        "max": 12,
+        "step": 1,
+        "default": 0,
+        "originalField": "voice_setting_pitch"
+      },
+      "vol": {
+        "displayName": "音量",
+        "component": "slider",
+        "layout": "inline",
+        "min": 0.01,
+        "max": 10,
+        "step": 0.1,
+        "default": 1,
+        "originalField": "voice_setting_vol"
+      },
+      "modifyPitch": {
+        "displayName": "音高",
+        "tips": "音高调整（低沉/明亮）",
+        "component": "slider",
+        "layout": "inline",
+        "min": -100,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "originalField": "voice_modify_pitch"
+      },
+      "modifyIntensity": {
+        "displayName": "强度",
+        "tips": "强度调整（力量感/柔和）",
+        "component": "slider",
+        "layout": "inline",
+        "min": -100,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "originalField": "voice_modify_intensity"
+      },
+      "modifyTimbre": {
+        "displayName": "音色调节",
+        "tips": "音色调整（磁性/清脆）",
+        "component": "slider",
+        "layout": "inline",
+        "min": -100,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "originalField": "voice_modify_timbre"
+      },
+      "soundEffects": {
+        "displayName": "音效",
+        "enum": [
+          {
+            "value": "",
+            "displayName": "无"
+          },
+          {
+            "value": "spacious_echo",
+            "displayName": "空旷回音"
+          },
+          {
+            "value": "auditorium_echo",
+            "displayName": "礼堂广播"
+          },
+          {
+            "value": "lofi_telephone",
+            "displayName": "电话失真"
+          },
+          {
+            "value": "robotic",
+            "displayName": "电音"
+          }
+        ],
+        "default": "",
+        "component": "singleButton",
+        "originalField": "voice_modify_sound_effects"
+      }
+    },
+    "config": {
+      "advancedSettings": [
+        {
+          "groupKey": "voiceCard",
+          "displayName": "音色设置",
+          "collapsible": false,
+          "fields": [
+            "voiceCard"
+          ]
+        },
+        {
+          "groupKey": "voiceBasic",
+          "displayName": "基础调节",
+          "collapsible": true,
+          "defaultCollapsed": false,
+          "fields": [
+            "speed",
+            "voicePitch",
+            "vol"
+          ]
+        },
+        {
+          "groupKey": "voiceEffects",
+          "displayName": "音色效果调节",
+          "collapsible": true,
+          "defaultCollapsed": true,
+          "fields": [
+            "modifyPitch",
+            "modifyIntensity",
+            "modifyTimbre",
+            "soundEffects"
+          ]
+        }
+      ],
+      "generateTypes": {
+        "audio": 116,
+        "checkpointId": 22890468
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

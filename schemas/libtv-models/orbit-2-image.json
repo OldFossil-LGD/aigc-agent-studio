@@ -1,0 +1,67 @@
+{
+  "nameOrId": "orbit-2-image",
+  "modelName": "orbit-2-image",
+  "modelKey": "orbit-2-image",
+  "toolKey": "orbit-2-image",
+  "modality": "image",
+  "schema": {
+    "modelKey": "orbit-2-image",
+    "modelName": "艾克斯图片模型",
+    "modelVendor": "orbit",
+    "properties": {
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "ratio"
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 110,
+        "image": 110,
+        "checkpointId": 22685005
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "rule-registry/v1",
+  "note": "跨模块执行规则的唯一检索入口。references/ 是解释层，本文件是判定入口；每条规则必须能追到 owner_doc 与 test_id。",
+  "rules": [
+    {"rule_id": "GRAPH_EDGE_DANGLING", "owner_doc": "scripts/workflow_graph_ir.py", "severity": "ERROR", "applies_to": ["workflow-graph-ir/v2"], "test_id": "tests/test_graph_ir_v2.py"},
+    {"rule_id": "GRAPH_EDGE_BAD_KIND", "owner_doc": "scripts/workflow_graph_ir.py", "severity": "ERROR", "applies_to": ["workflow-graph-ir/v2"], "test_id": "tests/test_graph_ir_v2.py"},
+    {"rule_id": "GRAPH_TARGET_PORT_UNKNOWN", "owner_doc": "scripts/workflow_graph_ir.py", "severity": "WARN", "applies_to": ["workflow-graph-ir/v2"], "test_id": "tests/test_graph_ir_v2.py"},
+    {"rule_id": "GRAPH_REFERENCE_ORDER_DUP", "owner_doc": "scripts/workflow_graph_ir.py", "severity": "ERROR", "applies_to": ["workflow-graph-ir/v2"], "test_id": "tests/test_graph_ir_v2.py"},
+    {"rule_id": "GRAPH_CYCLE", "owner_doc": "scripts/workflow_graph_ir.py", "severity": "ERROR", "applies_to": ["workflow-graph-ir/v2"], "test_id": "tests/test_graph_ir_v2.py"},
+    {"rule_id": "EDGE_V2V_REF_FORBIDDEN", "owner_doc": "scripts/graph_plan_lint.py", "severity": "ERROR", "applies_to": ["graph-plan"], "test_id": "tests/test_graph_video_reference_actions.py"},
+    {"rule_id": "EDGE_V2V_UNDETERMINED", "owner_doc": "scripts/graph_plan_lint.py", "severity": "UNDET", "applies_to": ["graph-plan"], "test_id": "tests/test_graph_video_reference_actions.py"},
+    {"rule_id": "LINK_ONLY_DATA_REFERENCE", "owner_doc": "scripts/compile_libtv_commands.py", "severity": "ERROR", "applies_to": ["libtv-command-plan"], "test_id": "tests/test_graph_ir_v2.py"},
+    {"rule_id": "REQ_LOCK_OVERRIDDEN", "owner_doc": "scripts/production_ir.py", "severity": "ERROR", "applies_to": ["production-ir/v1"], "test_id": "scripts/production_ir.py#self-test"},
+    {"rule_id": "SHOT_PRESENCE_CONFLICT", "owner_doc": "scripts/production_ir.py", "severity": "ERROR", "applies_to": ["production-ir/v1"], "test_id": "scripts/production_ir.py#self-test"},
+    {"rule_id": "PROJECT_DURATION_MISMATCH", "owner_doc": "scripts/production_ir.py", "severity": "ERROR", "applies_to": ["production-ir/v1"], "test_id": "scripts/production_ir.py#self-test"},
+    {"rule_id": "CONTRACT_UNCONSUMED_CONSTRAINT", "owner_doc": "scripts/prompt_ast.py", "severity": "ERROR", "applies_to": ["prompt-ast/v2"], "test_id": "scripts/prompt_ast.py#self-test"},
+    {"rule_id": "PROMPT_FIELD_UNKNOWN", "owner_doc": "scripts/prompt_ast.py", "severity": "WARN", "applies_to": ["prompt-ast/v2"], "test_id": "scripts/prompt_ast.py#self-test"}
+  ]
+}

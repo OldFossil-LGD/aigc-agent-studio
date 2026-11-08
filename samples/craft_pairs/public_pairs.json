@@ -1,0 +1,92 @@
+{
+  "scope": "stage2 text creative semantics only, no media; Agent understands brief, scripts compile decisions",
+  "pairs": [
+    {
+      "id": "P1_purpose",
+      "common": "只要提示词，不生成。12秒、16:9、黑白写实电影风格、全程无声；同一房间的两个人物小林与阿青，第一镜6秒固定并排中景，第二镜6秒固定手部近景；相机不移动，人物与衣服不换，事件是阿青准备离开。",
+      "a": "只改变小林的叙事目的：隐藏失望，仍安慰对方。用可见表演兑现，不能靠旁白解释。",
+      "b": "只改变小林的叙事目的：坦露失望，挽留对方。用可见表演兑现，不能靠旁白解释。",
+      "changed_dimension": "narrative_purpose",
+      "locked": [
+        "duration",
+        "ratio",
+        "style",
+        "no_sound",
+        "characters",
+        "wardrobe",
+        "camera",
+        "shot_durations",
+        "setting"
+      ]
+    },
+    {
+      "id": "P2_direction",
+      "common": "只要一镜提示词，不生成。6秒、9:16、剪纸空镜、固定俯拍、画面中央是一枚铜铃，白色纸球滚入并碰响它，背景蓝色；只有铜铃碰撞声，无人声无配乐，不出现人或手。",
+      "a": "纸球从画面左侧向右滚入中央碰铃。",
+      "b": "纸球从画面右侧向左滚入中央碰铃。",
+      "changed_dimension": "motion_direction",
+      "locked": [
+        "duration",
+        "ratio",
+        "style",
+        "camera",
+        "bell_center",
+        "background",
+        "no_people",
+        "sound_strategy"
+      ]
+    },
+    {
+      "id": "P3_consequence",
+      "common": "只要两镜提示词，不生成。10秒、16:9、写实、同一固定桌面，机械臂触碰红色台灯；每镜5秒固定机位，第二镜为触碰后的状态，不引入人物，环境仅有房间底噪，无音乐无人声。",
+      "a": "改变触碰的后果：第一镜触碰令台灯熄灭，第二镜必须持续熄灭，体现反馈与因果。",
+      "b": "改变触碰的后果：第一镜触碰后台灯仍亮，第二镜必须持续亮着，体现反馈与因果。",
+      "changed_dimension": "state_consequence",
+      "locked": [
+        "duration",
+        "ratio",
+        "style",
+        "setting",
+        "lamp_identity",
+        "no_people",
+        "camera",
+        "sound_strategy"
+      ]
+    },
+    {
+      "id": "P4_sound",
+      "common": "只要两镜提示词，不生成。12秒、9:16、黑白木刻空镜，第一镜6秒固定俯拍旧时钟，第二镜6秒固定正面看雨中窗户；主体、画面动作、构图和画风固定。",
+      "a": "声音策略：第一镜前景滴答声，切到第二镜后滴答余响延续2秒，再只留窗外雨声；全程无人声无配乐。",
+      "b": "声音策略：两镜全程完全无声，不要任何滴答声、雨声、人声或配乐。",
+      "changed_dimension": "sound_strategy",
+      "locked": [
+        "duration",
+        "ratio",
+        "style",
+        "subjects",
+        "visual_actions",
+        "camera",
+        "composition",
+        "shot_durations"
+      ]
+    },
+    {
+      "id": "P5_style",
+      "common": "只要一镜提示词，不生成。8秒、16:9、黑白空镜，一只玻璃瓶的影子缓慢移过墙面，固定正面机位，左侧单光源，右下留白，全程无声；不出现人物。",
+      "a": "仅画风改变为黑白木刻，保留其余明确要求。",
+      "b": "仅画风改变为黑白水墨，保留其余明确要求。",
+      "changed_dimension": "visual_style",
+      "locked": [
+        "duration",
+        "ratio",
+        "subject",
+        "action",
+        "camera",
+        "light_direction",
+        "negative_space",
+        "no_people",
+        "silence"
+      ]
+    }
+  ]
+}

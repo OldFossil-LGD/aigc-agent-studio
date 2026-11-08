@@ -1,0 +1,16 @@
+{
+  "format": "agentic-backends-cases/v1",
+  "note": "交换层门禁回归：每个 case 复制 base/ 到临时目录并施加一种 mutation，再跑 export+validate，比对错误码集合。fixtures 为合成样例，不是真实项目产物。",
+  "cases": [
+    {"name": "complete", "mutation": "none", "expected_codes": []},
+    {"name": "style_missing", "mutation": "drop_style", "expected_codes": ["STYLE_MISSING"]},
+    {"name": "zero_duration", "mutation": "zero_duration", "expected_codes": ["CLIP_DURATION_MISSING"]},
+    {"name": "asset_unresolved", "mutation": "bad_asset_ref", "expected_codes": ["UNRESOLVED_ASSET"]},
+    {"name": "authority_leak", "mutation": "auth_leak", "expected_codes": ["AUTHORITY_LEAK"]},
+    {"name": "dialogue_broken", "mutation": "dialogue_broken", "expected_codes": ["DIALOGUE_SPEAKER_MISSING"]},
+    {"name": "no_shots", "mutation": "drop_shots", "expected_codes": ["SHOTS_EMPTY"]},
+    {"name": "view_drops_clip", "mutation": "none", "tamper": "drop_clip_in_view", "expected_codes": ["DROPPED_FIELD"]},
+    {"name": "view_strips_style", "mutation": "none", "tamper": "strip_style_in_view", "expected_codes": ["DROPPED_FIELD", "STYLE_MISSING"]},
+    {"name": "require_complete_on_bad_ref", "mutation": "bad_asset_ref", "require_complete": true, "expected_codes": ["REQUIRE_COMPLETE_FAILED", "UNRESOLVED_ASSET"]}
+  ]
+}

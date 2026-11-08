@@ -1,0 +1,73 @@
+{
+  "assets": [
+    {
+      "id": "char_lin",
+      "kind": "character",
+      "name": "林",
+      "anchor_role": "character_anchor",
+      "requires_iteration": true,
+      "iteration_reason": "cross_shot_reuse",
+      "state_versions": 1,
+      "reference_purpose": ["identity", "face"]
+    },
+    {
+      "id": "primary_scene",
+      "kind": "scene",
+      "name": "便利店门头",
+      "anchor_role": "scene_anchor",
+      "requires_iteration": true,
+      "iteration_reason": "cross_shot_reuse",
+      "state_versions": 1,
+      "reference_purpose": ["identity", "scene"]
+    },
+    {
+      "id": "primary_prop",
+      "kind": "prop",
+      "name": "霓虹招牌",
+      "anchor_role": "prop_anchor",
+      "requires_iteration": true,
+      "iteration_reason": "state_change",
+      "state_versions": 2,
+      "reference_purpose": ["identity", "state"]
+    }
+  ],
+  "iteration_chains": [
+    {
+      "entity_id": "char_lin",
+      "reason": "cross_shot_reuse",
+      "nodes": [
+        {"id": "char_lin__anchor", "role": "asset_anchor", "mode_type": "text2image"},
+        {"id": "char_lin__refine_a", "role": "asset_refine", "mode_type": "image2image"}
+      ],
+      "edges": [
+        {"source": "char_lin__anchor", "target": "char_lin__refine_a", "purpose": "refine"}
+      ]
+    },
+    {
+      "entity_id": "primary_scene",
+      "reason": "cross_shot_reuse",
+      "nodes": [
+        {"id": "primary_scene__anchor", "role": "asset_anchor", "mode_type": "text2image"},
+        {"id": "primary_scene__refine_a", "role": "asset_refine", "mode_type": "image2image"}
+      ],
+      "edges": [
+        {"source": "primary_scene__anchor", "target": "primary_scene__refine_a", "purpose": "refine"}
+      ]
+    },
+    {
+      "entity_id": "primary_prop",
+      "reason": "state_change",
+      "nodes": [
+        {"id": "primary_prop__anchor", "role": "asset_anchor", "mode_type": "text2image"},
+        {"id": "primary_prop__refine_a", "role": "asset_refine", "mode_type": "image2image"},
+        {"id": "primary_prop__refine_b", "role": "asset_refine", "mode_type": "image2image"}
+      ],
+      "edges": [
+        {"source": "primary_prop__anchor", "target": "primary_prop__refine_a", "purpose": "refine"},
+        {"source": "primary_prop__refine_a", "target": "primary_prop__refine_b", "purpose": "refine"}
+      ]
+    }
+  ],
+  "exemptions": [],
+  "policy": {"anchor_per_class": 1, "iteration_required_when": ["cross_shot_reuse", "state_change"]}
+}

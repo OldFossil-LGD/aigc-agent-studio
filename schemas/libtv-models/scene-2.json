@@ -1,0 +1,90 @@
+{
+  "nameOrId": "scene-2",
+  "modelName": "scene-2",
+  "modelKey": "scene-2",
+  "toolKey": "scene-2",
+  "modality": "video",
+  "schema": {
+    "modelKey": "scene-2",
+    "modelName": "多镜头视频模型",
+    "modelVendor": "scene",
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 0
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "9:16"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "720p"
+        ],
+        "default": "720p",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "enum": [
+          {
+            "value": 4,
+            "displayName": "4s"
+          },
+          {
+            "value": 8,
+            "displayName": "8s"
+          },
+          {
+            "value": 12,
+            "displayName": "12s"
+          }
+        ],
+        "default": 8,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution",
+        "duration"
+      ],
+      "generateTypes": {
+        "text": 71,
+        "image": 71,
+        "checkpointId": 21885654
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

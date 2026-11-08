@@ -1,0 +1,563 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/aigc/asset_system.schema.json",
+  "title": "AssetSystemBreakdown",
+  "description": "四层资产系统的输入契约（asset-system/2）：剧本拆解 + 资产注册 + 每镜引用计划。只描述结构，不证明画面质量。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "assets"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "asset-system/2"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "platform_mode": {
+      "enum": [
+        "flat",
+        "wrapped"
+      ]
+    },
+    "script_lines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/character"
+      }
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/prop"
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/scene"
+      }
+    },
+    "shots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/shot"
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    }
+  },
+  "$defs": {
+    "character": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "states"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "base_state": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "prop": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "class"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "class": {
+          "enum": [
+            "handheld",
+            "set",
+            "environmental"
+          ]
+        },
+        "evidence": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "shot": {
+      "type": "object",
+      "required": [
+        "id",
+        "scene",
+        "reference_plan"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scene": {
+          "type": "string"
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "props": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "camera": {
+          "type": "string"
+        },
+        "scale": {
+          "type": "string"
+        },
+        "angle": {
+          "type": "string"
+        },
+        "reverse": {
+          "type": "boolean"
+        },
+        "reference_plan": {
+          "$ref": "#/$defs/reference_plan"
+        }
+      }
+    },
+    "reference_plan": {
+      "type": "object",
+      "required": [
+        "selector_policy_version",
+        "primary_asset_id",
+        "assets",
+        "prompt_refs",
+        "reasons"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "selector_policy_version": {
+          "type": "string"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excluded": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "asset_id",
+              "why"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "asset_id": {
+                "type": "string"
+              },
+              "why": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "capability_check": {
+          "enum": [
+            "PASSED",
+            "FAILED",
+            "NOT_RUN"
+          ]
+        },
+        "primary_asset_id": {
+          "type": "string",
+          "description": "主参考：位置权重最高，必须等于 assets[0]"
+        },
+        "order_reason": {
+          "type": "string",
+          "description": "为什么是这个顺序（位置权重 / prompt 首次出现 / 朝向）"
+        },
+        "prompt_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "与 assets 一一对应的插桩：{{Image N}} 或 {{node_key}}，顺序不得错位"
+        },
+        "resolved": {
+          "type": "array",
+          "description": "画布绑定：asset_id → node_key → imageListOrder",
+          "items": {
+            "type": "object",
+            "required": [
+              "asset_id",
+              "node_key",
+              "image_index",
+              "effective"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "asset_id": {
+                "type": "string"
+              },
+              "node_key": {
+                "type": "string"
+              },
+              "image_index": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "effective": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "first_frame": {
+          "type": "string",
+          "description": "首帧/静帧的资产或节点 id；若声明，必须是 assets[0]"
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "kind",
+        "subject",
+        "role",
+        "layer",
+        "version",
+        "status",
+        "origin",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "character",
+            "prop",
+            "scene",
+            "board"
+          ]
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "enum": [
+            "face",
+            "view",
+            "body",
+            "anchor",
+            "closeup",
+            "plan",
+            "design"
+          ]
+        },
+        "layer": {
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "review",
+            "approved",
+            "deprecated",
+            "stale"
+          ]
+        },
+        "origin": {
+          "enum": [
+            "user",
+            "approved_asset",
+            "project_preset",
+            "llm_inferred"
+          ]
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source": {
+          "type": "string"
+        },
+        "parent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variant": {
+          "type": "string"
+        },
+        "covers": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "front",
+              "back",
+              "left",
+              "right",
+              "top"
+            ]
+          }
+        },
+        "qc_report_id": {
+          "type": "string"
+        },
+        "artifact_ready": {
+          "type": "boolean"
+        },
+        "design_board": {
+          "type": "boolean"
+        },
+        "panels": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "faces_visible": {
+          "type": "boolean"
+        },
+        "reverse": {
+          "type": "boolean"
+        },
+        "orphan_ok": {
+          "type": "boolean"
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "origin_run_id": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "character"
+              },
+              "role": {
+                "const": "face"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "character"
+              },
+              "role": {
+                "enum": [
+                  "view",
+                  "body"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "prop"
+              },
+              "role": {
+                "const": "anchor"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "prop"
+              },
+              "role": {
+                "const": "closeup"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "scene"
+              },
+              "role": {
+                "const": "plan"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "scene"
+              },
+              "role": {
+                "const": "view"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "board"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "layer": {
+                "const": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "nameOrId": "kling-v3-motion-control",
+  "modelName": "kling-v3-motion-control",
+  "modelKey": "kling-v3-motion-control",
+  "toolKey": "kling-v3-motion-control",
+  "modality": "video",
+  "schema": {
+    "modelKey": "kling-v3-motion-control",
+    "modelName": "动作控制-可灵O3",
+    "modelVendor": "Kling",
+    "disabledTip": "该模型需要连入图片和视频素材",
+    "properties": {
+      "actionFollow": true,
+      "magic": true,
+      "motionImitation": true,
+      "derivesDurationFromVideo": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "placeholder": "动作控制仅支持单人角色，参考单人视频中的动作，请确保输入的图片和视频中的角色清晰可见",
+        "maxLength": 2000
+      },
+      "characterOrientation": {
+        "displayName": "人物朝向",
+        "tips": "当角色朝向与视频一致时,复杂动作的表现会更好;当其与图像一致时,对镜头运动的支持会更好。",
+        "enum": [
+          {
+            "value": "image",
+            "displayName": "与图片一致"
+          },
+          {
+            "value": "video",
+            "displayName": "与视频一致"
+          }
+        ],
+        "default": "video",
+        "originalField": "characterOrientation",
+        "component": "singleSelect"
+      },
+      "quality": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "标准"
+          },
+          {
+            "value": "high",
+            "displayName": "高品质模式"
+          }
+        ],
+        "default": "low",
+        "originalField": "quality",
+        "component": "singleButton"
+      },
+      "keepOriginalSound": {
+        "displayName": "保留原始音频",
+        "tips": "生成的视频是否保留原始音频。",
+        "component": "switch",
+        "default": 1,
+        "originalField": "keepOriginalSound"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "mixed2video": [
+            2,
+            2
+          ]
+        },
+        "mixed2videoConfig": {
+          "videoMax": 1,
+          "imageMaxWithVideo": 1
+        }
+      },
+      "mediaConstraints": {
+        "mixed2video": {
+          "video": {
+            "duration": {
+              "min": 3,
+              "max": 30,
+              "message": "输入视频需要在3s-30s之间,可使用【剪辑工具】进行快捷剪辑",
+              "action": "block"
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality"
+      ],
+      "advancedSettings": [
+        "characterOrientation",
+        "keepOriginalSound"
+      ],
+      "generateTypes": {
+        "text": 90,
+        "image": 90,
+        "checkpointId": 23194085
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "image",
+          "video"
+        ],
+        "mode": "all",
+        "message": "请同时添加参考图片和视频"
+      }
+    ]
+  }
+}

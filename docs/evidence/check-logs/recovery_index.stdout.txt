@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "index_in_package": true,
+  "total_books": 22,
+  "verified_reachable": 22,
+  "declared_unrecoverable": 1,
+  "migration_manifest_status": "PASS",
+  "external_runtime_dependencies": 0,
+  "failures": []
+}

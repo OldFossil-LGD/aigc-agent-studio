@@ -1,0 +1,89 @@
+{
+  "scope": "synthetic text-only probe, no media validation",
+  "cases": [
+    {
+      "id": "N1",
+      "current_text_conclusion": "不通过：镜2只呈现访客接过照片，未呈现保管员主动递出，主动让渡的发起者缺失。",
+      "necessary_fix": "仅改镜2为保管员主动将照片递给访客、访客接住，保留镜1/镜3与物件不变。",
+      "questions": [],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "主动让渡核对让渡者发起；自行取走保留接收者发起。",
+      "evidence": "镜1保管员手持照片。镜2访客接过照片。镜3访客拿照片离开。只允许改镜2，不能增镜、角色、物件。"
+    },
+    {
+      "id": "N2",
+      "current_text_conclusion": "通过：镜1保管员手持，镜2保管员递出并访客接住，镜3保管员手空且访客持照片离开，持有状态转移清楚。",
+      "necessary_fix": "无",
+      "questions": [],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "动作与状态已共同支持目标时，必要修法写无；",
+      "evidence": "镜1保管员手持照片。镜2保管员将照片递给访客，访客接住。镜3保管员手空着，访客拿照片离开。只做必要修正。"
+    },
+    {
+      "id": "N3",
+      "current_text_conclusion": "通过：镜2已写保管员主动递出、访客托住、保管员松手手空，镜3访客持照片离开，主动让渡链完整。",
+      "necessary_fix": "无",
+      "questions": [],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "主动让渡核对让渡者发起；自行取走保留接收者发起。",
+      "evidence": "镜1保管员手持照片。镜2保管员主动将照片递出，访客托住，保管员松手，手空着。镜3访客持照片离开。只做必要修正。"
+    },
+    {
+      "id": "N4",
+      "current_text_conclusion": "不可达：密封玻璃无开口且双方不移动，仅改手部动作无法把照片交到另一人手里。",
+      "necessary_fix": "无：在不改变空间与移动限制时无法完成直接交递。",
+      "questions": [],
+      "later_design": [
+        "待确认是否改变空间/开口/移动等锁定项"
+      ],
+      "media_unverified": true,
+      "source_quote": "必须改变锁定空间/机位才可能完成动作时，写清需改变哪项决定；若用户已明确不许改变，当前直接判条件下不可达，不再追问能否改锁定项，突破范围的选项只列后续另行确认。",
+      "evidence": "目标是隔窗把照片直接交到另一人手里。两人之间锁定一整面密封玻璃，没有开口；两人都不移动。只准改手部动作，不可改空间。"
+    },
+    {
+      "id": "N5",
+      "current_text_conclusion": "无法判定：两个外观相同且均封闭的信封未建立与遗嘱目标的对应关系；镜2只写拿走左侧信封，不能推出装有遗嘱。",
+      "necessary_fix": "无：在不得新增可见标记/内容且不推断知识的前提下无法由文字成立。",
+      "questions": [
+        "装有遗嘱的信封与访客拿走的左侧信封是否为同一对象 → 会改变当前验收判断"
+      ],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "关键物件身份缺失时，列明审阅所缺依据和目前无法判定的目标，保留原文角色事实与已成立的动作",
+      "evidence": "画面有两个外观相同的信封，镜1均封闭，不见内容或标记，未说明哪个装有遗嘱；镜2访客拿走左侧信封。不得新增可见标记或内容，不推断人物知识。"
+    },
+    {
+      "id": "N6",
+      "current_text_conclusion": "通过：镜1明确唯一照片在桌上，镜2访客拿起该照片，镜3桌上无照片且访客持离，无交付者，自行取走成立。",
+      "necessary_fix": "无",
+      "questions": [],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "主动让渡核对让渡者发起；自行取走保留接收者发起。",
+      "evidence": "镜1明确房间只有这一张照片，照片在桌上。镜2访客拿起这张照片。镜3桌上已无照片，访客持它离开。没有交付者。只做必要修正。"
+    },
+    {
+      "id": "N7",
+      "current_text_conclusion": "通过：保管员已离开、照片在桌，镜2访客自己拿起，镜3访客持离，无赠与，自行取走成立。",
+      "necessary_fix": "无",
+      "questions": [],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "主动让渡核对让渡者发起；自行取走保留接收者发起。",
+      "evidence": "镜1保管员已离开，照片放在桌上。镜2访客自己从桌面拿起照片。镜3访客持照片离开。不能改成别人赠与。"
+    },
+    {
+      "id": "N8",
+      "current_text_conclusion": "通过：镜2保管员主动递出并访客接住，镜3访客持照片离开；未单独写松手/空手特写不构成缺口。",
+      "necessary_fix": "无",
+      "questions": [],
+      "later_design": [],
+      "media_unverified": true,
+      "source_quote": "最终持有状态已清楚时不为补词强加动作。",
+      "evidence": "镜1保管员手持照片。镜2保管员主动递出照片，访客接住。镜3访客持照片离开。没有单独写松手/空手特写，只作必要修正。"
+    }
+  ]
+}

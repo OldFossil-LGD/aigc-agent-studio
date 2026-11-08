@@ -1,0 +1,36 @@
+{
+  "production_contract": {
+    "goal": "交换层回归测试片：雨夜便利店",
+    "production_mode": "production_build",
+    "duration_sec": 15.0,
+    "aspect_ratio": "16:9",
+    "fps": 24,
+    "visual_style": "写实电影纪录片",
+    "source_project_uuid": null,
+    "source_film": null,
+    "entities": [
+      {"id": "char_lin", "kind": "character"},
+      {"id": "primary_scene", "kind": "scene"},
+      {"id": "primary_prop", "kind": "prop"}
+    ],
+    "shots": [
+      {"id": "shot_01", "description": "雨夜街道，<char_lin> 站在便利店门口抬头看招牌", "risk": "medium", "duration_sec": 6.0},
+      {"id": "shot_02", "description": "固定正面：霓虹招牌在雨幕里亮起，<primary_prop> 的灯管依次闪烁", "risk": "low", "duration_sec": 4.0},
+      {"id": "shot_03", "description": "近景：<char_lin> 的手指推开玻璃门，门内暖光溢出", "risk": "high", "duration_sec": 5.0}
+    ],
+    "audio": {"layers": ["ambience", "action"], "no_dialogue": true},
+    "delivery": {
+      "ignition_allowed": false,
+      "requires_media_generation": false,
+      "requires_export": false,
+      "artifacts": ["production_contract", "asset_graph_plan", "shot_graph_plan", "prompt_packages", "capability_gate"]
+    },
+    "constraints": [
+      "身份锁定：char_lin 不得换装、不得换脸",
+      "场景锁定：primary_scene 的门头结构与招牌文字位置不变",
+      "无声镜头只留环境声与动作声，不加人声与配乐"
+    ]
+  },
+  "assumptions": ["测试夹具：用于交换层门禁回归，不是真实项目"],
+  "questions": []
+}

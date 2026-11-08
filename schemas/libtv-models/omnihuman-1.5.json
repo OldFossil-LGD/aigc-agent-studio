@@ -1,0 +1,90 @@
+{
+  "nameOrId": "omnihuman-1.5",
+  "modelName": "omnihuman-1.5",
+  "modelKey": "omnihuman-1.5",
+  "toolKey": "omnihuman-1.5",
+  "modality": "video",
+  "schema": {
+    "modelKey": "omnihuman-1.5",
+    "modelName": "OmniHuman 1.5",
+    "modelVendor": "omnihuman",
+    "properties": {
+      "digitalHuman": true,
+      "magic": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 0
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "fastMode": {
+        "displayName": "快速模式",
+        "tips": "加快生成速度，但会降低画面质量",
+        "default": 0,
+        "component": "switch",
+        "originalField": "fastMode"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            1,
+            1
+          ],
+          "audio2video": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution"
+      ],
+      "advancedSettings": [
+        "fastMode"
+      ],
+      "generateTypes": {
+        "text": 111,
+        "image": 111,
+        "checkpointId": 22685082
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "image",
+          "audio"
+        ],
+        "mode": "all",
+        "message": "请同时添加参考图片和音频"
+      }
+    ]
+  }
+}

@@ -1,0 +1,751 @@
+{
+  "shots": [
+    {
+      "id": "fresh_01",
+      "duration_sec": 4,
+      "shot_timing": {
+        "duration_sec": 4,
+        "generation_duration_sec": 8,
+        "cut_range": {
+          "start_sec": 1,
+          "end_sec": 5
+        }
+      },
+      "risk": "medium",
+      "candidate_count": 1,
+      "description": "固定正面：机械夹压下透明开关，蓝色指示灯在压力落下后熄灭。",
+      "shot_kind": "empty",
+      "roles": [
+        "storyboard",
+        "prompt",
+        "scene_ref",
+        "composition_ref",
+        "candidate_image",
+        "refined_image",
+        "video_candidate",
+        "selection"
+      ],
+      "required_roles": [
+        "storyboard",
+        "prompt",
+        "scene_ref",
+        "composition_ref",
+        "candidate_image",
+        "refined_image",
+        "video_candidate",
+        "selection"
+      ]
+    },
+    {
+      "id": "fresh_02",
+      "duration_sec": 7,
+      "shot_timing": {
+        "duration_sec": 7,
+        "generation_duration_sec": 7,
+        "cut_range": {
+          "start_sec": 0,
+          "end_sec": 7
+        }
+      },
+      "risk": "medium",
+      "candidate_count": 1,
+      "description": "固定正面：夹爪向上松开，指示灯继续熄灭。",
+      "shot_kind": "empty",
+      "roles": [
+        "storyboard",
+        "prompt",
+        "scene_ref",
+        "composition_ref",
+        "candidate_image",
+        "refined_image",
+        "video_candidate",
+        "selection"
+      ],
+      "required_roles": [
+        "storyboard",
+        "prompt",
+        "scene_ref",
+        "composition_ref",
+        "candidate_image",
+        "refined_image",
+        "video_candidate",
+        "selection"
+      ]
+    },
+    {
+      "id": "fresh_03",
+      "duration_sec": 6,
+      "shot_timing": {
+        "duration_sec": 6,
+        "generation_duration_sec": 6,
+        "cut_range": {
+          "start_sec": 0,
+          "end_sec": 6
+        }
+      },
+      "risk": "medium",
+      "candidate_count": 1,
+      "description": "固定正面：指示灯和透明开关维持位置，夹爪留在开关上方。",
+      "shot_kind": "empty",
+      "roles": [
+        "storyboard",
+        "prompt",
+        "scene_ref",
+        "composition_ref",
+        "candidate_image",
+        "refined_image",
+        "video_candidate",
+        "selection"
+      ],
+      "required_roles": [
+        "storyboard",
+        "prompt",
+        "scene_ref",
+        "composition_ref",
+        "candidate_image",
+        "refined_image",
+        "video_candidate",
+        "selection"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "fresh_01__storyboard",
+      "role": "storyboard",
+      "shot_id": "fresh_01",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_description": "固定正面：机械夹压下透明开关，蓝色指示灯在压力落下后熄灭。",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_01__prompt",
+      "role": "prompt",
+      "shot_id": "fresh_01",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_01__scene_ref",
+      "role": "scene_ref",
+      "shot_id": "fresh_01",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "text2image",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_01__composition_ref",
+      "role": "composition_ref",
+      "shot_id": "fresh_01",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "text2image",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_01__candidate_image_A",
+      "role": "candidate_image",
+      "shot_id": "fresh_01",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "image2image",
+      "candidate_index": 1,
+      "shot_description": "固定正面：机械夹压下透明开关，蓝色指示灯在压力落下后熄灭。",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_01__refined_image_A",
+      "role": "refined_image",
+      "shot_id": "fresh_01",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "image2image",
+      "candidate_index": 1,
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_01__video_candidate_A",
+      "role": "video_candidate",
+      "shot_id": "fresh_01",
+      "node_type": "video",
+      "model": "Kling O3",
+      "settings": {
+        "ratio": "16:9",
+        "quality": "low",
+        "enableSound": "off",
+        "duration": 8
+      },
+      "mode_type": "mixed2video",
+      "candidate_index": 1,
+      "shot_description": "固定正面：机械夹压下透明开关，蓝色指示灯在压力落下后熄灭。",
+      "shot_kind": "empty",
+      "shot_timing": {
+        "duration_sec": 4,
+        "generation_duration_sec": 8,
+        "cut_range": {
+          "start_sec": 1,
+          "end_sec": 5
+        }
+      }
+    },
+    {
+      "id": "fresh_01__selection",
+      "role": "selection",
+      "shot_id": "fresh_01",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_02__storyboard",
+      "role": "storyboard",
+      "shot_id": "fresh_02",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_description": "固定正面：夹爪向上松开，指示灯继续熄灭。",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_02__prompt",
+      "role": "prompt",
+      "shot_id": "fresh_02",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_02__scene_ref",
+      "role": "scene_ref",
+      "shot_id": "fresh_02",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "text2image",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_02__composition_ref",
+      "role": "composition_ref",
+      "shot_id": "fresh_02",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "text2image",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_02__candidate_image_A",
+      "role": "candidate_image",
+      "shot_id": "fresh_02",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "image2image",
+      "candidate_index": 1,
+      "shot_description": "固定正面：夹爪向上松开，指示灯继续熄灭。",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_02__refined_image_A",
+      "role": "refined_image",
+      "shot_id": "fresh_02",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "image2image",
+      "candidate_index": 1,
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_02__video_candidate_A",
+      "role": "video_candidate",
+      "shot_id": "fresh_02",
+      "node_type": "video",
+      "model": "Kling O3",
+      "settings": {
+        "ratio": "16:9",
+        "quality": "low",
+        "enableSound": "off",
+        "duration": 7
+      },
+      "mode_type": "mixed2video",
+      "candidate_index": 1,
+      "shot_description": "固定正面：夹爪向上松开，指示灯继续熄灭。",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      },
+      "shot_timing": {
+        "duration_sec": 7,
+        "generation_duration_sec": 7,
+        "cut_range": {
+          "start_sec": 0,
+          "end_sec": 7
+        }
+      }
+    },
+    {
+      "id": "fresh_02__selection",
+      "role": "selection",
+      "shot_id": "fresh_02",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "ambience_only",
+        "allowed": [
+          "房间底噪",
+          "机械回响（前1.5秒）"
+        ],
+        "forbidden": [
+          "人声",
+          "对白",
+          "旁白",
+          "音乐"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      }
+    },
+    {
+      "id": "fresh_03__storyboard",
+      "role": "storyboard",
+      "shot_id": "fresh_03",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_description": "固定正面：指示灯和透明开关维持位置，夹爪留在开关上方。",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_03__prompt",
+      "role": "prompt",
+      "shot_id": "fresh_03",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_03__scene_ref",
+      "role": "scene_ref",
+      "shot_id": "fresh_03",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "text2image",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_03__composition_ref",
+      "role": "composition_ref",
+      "shot_id": "fresh_03",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "text2image",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_03__candidate_image_A",
+      "role": "candidate_image",
+      "shot_id": "fresh_03",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "image2image",
+      "candidate_index": 1,
+      "shot_description": "固定正面：指示灯和透明开关维持位置，夹爪留在开关上方。",
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_03__refined_image_A",
+      "role": "refined_image",
+      "shot_id": "fresh_03",
+      "node_type": "image",
+      "model": "General image Pro",
+      "settings": {
+        "quality": "2K",
+        "ratio": "16:9"
+      },
+      "mode_type": "image2image",
+      "candidate_index": 1,
+      "shot_kind": "empty"
+    },
+    {
+      "id": "fresh_03__video_candidate_A",
+      "role": "video_candidate",
+      "shot_id": "fresh_03",
+      "node_type": "video",
+      "model": "Kling O3",
+      "settings": {
+        "ratio": "16:9",
+        "quality": "low",
+        "enableSound": "off",
+        "duration": 6
+      },
+      "mode_type": "mixed2video",
+      "candidate_index": 1,
+      "shot_description": "固定正面：指示灯和透明开关维持位置，夹爪留在开关上方。",
+      "shot_kind": "empty",
+      "shot_timing": {
+        "duration_sec": 6,
+        "generation_duration_sec": 6,
+        "cut_range": {
+          "start_sec": 0,
+          "end_sec": 6
+        }
+      }
+    },
+    {
+      "id": "fresh_03__selection",
+      "role": "selection",
+      "shot_id": "fresh_03",
+      "node_type": "text",
+      "model": "GVLM 3.1",
+      "settings": {},
+      "shot_kind": "empty"
+    }
+  ],
+  "edges": [
+    {
+      "source": "fresh_01__scene_ref",
+      "target": "fresh_01__candidate_image_A",
+      "purpose": "scene"
+    },
+    {
+      "source": "fresh_01__composition_ref",
+      "target": "fresh_01__candidate_image_A",
+      "purpose": "composition"
+    },
+    {
+      "source": "fresh_01__candidate_image_A",
+      "target": "fresh_01__refined_image_A",
+      "purpose": "refine"
+    },
+    {
+      "source": "fresh_01__prompt",
+      "target": "fresh_01__video_candidate_A",
+      "purpose": "prompt"
+    },
+    {
+      "source": "fresh_01__refined_image_A",
+      "target": "fresh_01__video_candidate_A",
+      "purpose": "image_reference"
+    },
+    {
+      "source": "fresh_01__storyboard",
+      "target": "fresh_01__prompt",
+      "purpose": "compile"
+    },
+    {
+      "source": "fresh_02__scene_ref",
+      "target": "fresh_02__candidate_image_A",
+      "purpose": "scene"
+    },
+    {
+      "source": "fresh_02__composition_ref",
+      "target": "fresh_02__candidate_image_A",
+      "purpose": "composition"
+    },
+    {
+      "source": "fresh_02__candidate_image_A",
+      "target": "fresh_02__refined_image_A",
+      "purpose": "refine"
+    },
+    {
+      "source": "fresh_02__prompt",
+      "target": "fresh_02__video_candidate_A",
+      "purpose": "prompt"
+    },
+    {
+      "source": "fresh_02__refined_image_A",
+      "target": "fresh_02__video_candidate_A",
+      "purpose": "image_reference"
+    },
+    {
+      "source": "fresh_02__storyboard",
+      "target": "fresh_02__prompt",
+      "purpose": "compile"
+    },
+    {
+      "source": "fresh_03__scene_ref",
+      "target": "fresh_03__candidate_image_A",
+      "purpose": "scene"
+    },
+    {
+      "source": "fresh_03__composition_ref",
+      "target": "fresh_03__candidate_image_A",
+      "purpose": "composition"
+    },
+    {
+      "source": "fresh_03__candidate_image_A",
+      "target": "fresh_03__refined_image_A",
+      "purpose": "refine"
+    },
+    {
+      "source": "fresh_03__prompt",
+      "target": "fresh_03__video_candidate_A",
+      "purpose": "prompt"
+    },
+    {
+      "source": "fresh_03__refined_image_A",
+      "target": "fresh_03__video_candidate_A",
+      "purpose": "image_reference"
+    },
+    {
+      "source": "fresh_03__storyboard",
+      "target": "fresh_03__prompt",
+      "purpose": "compile"
+    },
+    {
+      "source": "fresh_01__video_candidate_A",
+      "target": "fresh_01__selection",
+      "purpose": "candidate_input"
+    },
+    {
+      "source": "fresh_02__video_candidate_A",
+      "target": "fresh_02__selection",
+      "purpose": "candidate_input"
+    },
+    {
+      "source": "fresh_03__video_candidate_A",
+      "target": "fresh_03__selection",
+      "purpose": "candidate_input"
+    }
+  ],
+  "groups": [
+    {
+      "id": "group__fresh_01",
+      "name": "fresh_01｜生产批次",
+      "node_ids": [
+        "fresh_01__storyboard",
+        "fresh_01__prompt",
+        "fresh_01__scene_ref",
+        "fresh_01__composition_ref",
+        "fresh_01__candidate_image_A",
+        "fresh_01__refined_image_A",
+        "fresh_01__video_candidate_A",
+        "fresh_01__selection"
+      ]
+    },
+    {
+      "id": "group__fresh_02",
+      "name": "fresh_02｜生产批次",
+      "node_ids": [
+        "fresh_02__storyboard",
+        "fresh_02__prompt",
+        "fresh_02__scene_ref",
+        "fresh_02__composition_ref",
+        "fresh_02__candidate_image_A",
+        "fresh_02__refined_image_A",
+        "fresh_02__video_candidate_A",
+        "fresh_02__selection"
+      ]
+    },
+    {
+      "id": "group__fresh_03",
+      "name": "fresh_03｜生产批次",
+      "node_ids": [
+        "fresh_03__storyboard",
+        "fresh_03__prompt",
+        "fresh_03__scene_ref",
+        "fresh_03__composition_ref",
+        "fresh_03__candidate_image_A",
+        "fresh_03__refined_image_A",
+        "fresh_03__video_candidate_A",
+        "fresh_03__selection"
+      ]
+    }
+  ],
+  "policy": {
+    "link_grammar": {
+      "asset_chain": [
+        "global_asset_manifest -> asset_anchor -> asset_refine_a -> asset_refine_b -> shot_candidate_image"
+      ],
+      "shot_chain": [
+        "storyboard -> prompt -> video_candidate",
+        "scene_ref/identity_ref/composition_ref/state_ref -> candidate_image",
+        "candidate_image -> refined_image -> video_candidate",
+        "video_candidate -> assembly",
+        "selection -> assembly",
+        "selection -> production_ledger -> qa",
+        "audio -> final_composite",
+        "assembly -> final_composite"
+      ],
+      "terminal_nodes": [
+        "audio",
+        "selection",
+        "video_candidate"
+      ]
+    },
+    "required_shot_roles": [
+      "storyboard",
+      "prompt",
+      "scene_ref",
+      "identity_ref",
+      "composition_ref",
+      "candidate_image",
+      "refined_image",
+      "video_candidate",
+      "selection",
+      "audio",
+      "assembly"
+    ],
+    "high_risk_candidate_min": 2
+  },
+  "mode": "production_build",
+  "deliverable": "production_plan",
+  "source_access": "none",
+  "source_project_uuid": null,
+  "copy_project_uuid": null,
+  "evidence_default": "inferred"
+}

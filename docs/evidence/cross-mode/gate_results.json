@@ -1,0 +1,134 @@
+{
+  "method": "Source captures are exact bytes included in the recorded Hermes query bundles; they do not prove model comprehension. Final artifacts/decision excerpts were independently revised by Codex and labelled as such; no mechanical_review fixture used. Snapshot catalog/source bindings are historical evaluation evidence, not reusable current creative approvals.",
+  "rows": [
+    {
+      "id": "M1",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    },
+    {
+      "id": "M2",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    },
+    {
+      "id": "M3",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    },
+    {
+      "id": "M4",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    },
+    {
+      "id": "M5",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    },
+    {
+      "id": "M6",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    },
+    {
+      "id": "M7",
+      "expected_ready": false,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_REJECTED",
+        "delivery_ready": false,
+        "failures": [
+          "Current-task unresolved facts/decisions must be explicitly empty for formal delivery"
+        ],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality"
+      }
+    },
+    {
+      "id": "M8",
+      "expected_ready": true,
+      "expectation_met": true,
+      "result": {
+        "status": "REVIEW_EVIDENCE_VALID",
+        "delivery_ready": true,
+        "failures": [],
+        "creative_quality_verified": false,
+        "media_quality_verified": false,
+        "generation_authorized": false,
+        "scope": "Source and decision evidence consistency; not proof of understanding or artistic quality",
+        "source_evidence_status": "SOURCE_EVIDENCE_VALID",
+        "decision_count": 2
+      }
+    }
+  ],
+  "all_expectations_met": true
+}

@@ -1,0 +1,237 @@
+{
+  "format": "context-dependencies/v1",
+  "common": [
+    "references/context-reading.md",
+    "references/context-dependencies.json",
+    "references/delivery-review.md"
+  ],
+  "profile_extensions": {
+    "full_film": [
+      "references/studio-workflow.md",
+      "references/run-sheet.md"
+    ],
+    "prompt_only": [
+      "references/stage1-delivery-entry.md",
+      "references/direction-reasoning.md",
+      "references/shot-craft.md"
+    ],
+    "single_shot": [
+      "references/stage1-delivery-entry.md",
+      "references/direction-reasoning.md"
+    ],
+    "empty": [],
+    "silent": [],
+    "no_dialogue": [],
+    "mirror": [
+      "references/reverse-fidelity-contract.md",
+      "references/source-fidelity-mode.md"
+    ],
+    "rework": [
+      "references/offline-continuity-entry.md"
+    ]
+  },
+  "feature_profiles": {
+    "empty": "empty",
+    "silent": "silent",
+    "no_dialogue": "no_dialogue",
+    "mirror": "mirror"
+  },
+  "features": {
+    "performance": [
+      "references/performance-craft.md",
+      "references/performance-vocabulary.md",
+      "references/character-sheet.md",
+      "references/staging-craft.md"
+    ],
+    "motion": [
+      "references/physical-feedback.md",
+      "references/motion-control.md",
+      "references/motion-principles.md"
+    ],
+    "camera": [
+      "references/motion-control.md",
+      "references/block-camera.md",
+      "references/camera-movement-library.md"
+    ],
+    "look": [
+      "references/style-library.md",
+      "references/style-library-index.md",
+      "references/style-package-matching.md"
+    ],
+    "stylized": [
+      "references/style-library.md",
+      "references/style-library-index.md",
+      "references/stylized-look-craft.md"
+    ],
+    "visual": [
+      "references/asset-prompt-spec.md"
+    ],
+    "sound": [
+      "references/sound-craft.md",
+      "references/sound-narrative.md",
+      "references/sound-prompt-craft.md"
+    ],
+    "assets": [
+      "references/asset-prompt-spec.md",
+      "references/asset-consistency.md"
+    ],
+    "continuity": [
+      "references/character-continuity.md",
+      "references/sequence-craft.md",
+      "references/offline-continuity-entry.md"
+    ],
+    "reverse": [
+      "references/reverse-fidelity-contract.md",
+      "references/source-fidelity-mode.md",
+      "references/blind-reverse-runbook.md"
+    ],
+    "direction": [
+      "references/direction-reasoning.md",
+      "references/shot-craft.md"
+    ],
+    "prompting": [
+      "references/prompt-ops.md"
+    ],
+    "maintenance": [
+      "references/governance-law-part2.md",
+      "references/governance-law-part3.md",
+      "references/pitfalls.md"
+    ]
+  },
+  "requires": {
+    "references/asset-prompt-spec.md": [
+      "references/asset-prompt-spec-part2.md"
+    ],
+    "references/asset-consistency.md": [
+      "references/asset-consistency-part2.md"
+    ],
+    "references/shot-craft.md": [
+      "references/shot-craft-part2.md"
+    ],
+    "references/source-fidelity-mode.md": [
+      "references/reverse-fidelity-contract.md"
+    ],
+    "references/stage1-delivery-entry.md": [
+      "references/craft-delivery-entry.md"
+    ]
+  },
+  "constraint_features": {
+    "camera": [
+      "camera"
+    ],
+    "composition": [
+      "camera"
+    ],
+    "visual": [
+      "visual"
+    ],
+    "action": [
+      "motion"
+    ],
+    "negative": [
+      "prompting"
+    ],
+    "duration": [],
+    "ratio": [],
+    "sound": [
+      "sound"
+    ],
+    "performance": [
+      "performance"
+    ],
+    "continuity": [
+      "continuity"
+    ],
+    "transition": [
+      "continuity"
+    ],
+    "style": [
+      "look"
+    ],
+    "sound_craft": [
+      "sound"
+    ],
+    "craft": [
+      "direction"
+    ],
+    "other": null
+  },
+  "craft_features": {
+    "performance": "performance",
+    "action_feedback": "motion",
+    "continuity_state": "continuity",
+    "transition": "continuity",
+    "style_detail": "stylized",
+    "sound_craft": "sound",
+    "motion_path": "motion",
+    "style_notes": "look"
+  },
+  "applicability": {
+    "user_lock_precedes_craft_default": {
+      "features": [],
+      "refs": [
+        "references/governance-law.md"
+      ]
+    },
+    "silence_overrides_default_ambience": {
+      "features": [
+        "silent"
+      ],
+      "refs": [
+        "references/sound-craft.md"
+      ]
+    },
+    "fixed_camera_not_forced_motion": {
+      "features": [
+        "camera"
+      ],
+      "refs": [
+        "references/motion-control.md"
+      ]
+    },
+    "same_frame_not_forced_reverse_shot": {
+      "features": [
+        "performance"
+      ],
+      "refs": [
+        "references/performance-craft.md"
+      ]
+    },
+    "stylized_disables_photoreal_defaults": {
+      "features": [
+        "stylized"
+      ],
+      "refs": [
+        "references/style-library.md"
+      ]
+    },
+    "copy_is_not_original": {
+      "features": [
+        "reverse"
+      ],
+      "refs": [
+        "references/reverse-fidelity-contract.md"
+      ]
+    }
+  },
+  "decision_features": {
+    "duration_sec": [],
+    "aspect_ratio": [],
+    "visual_style": [
+      "look"
+    ],
+    "delivery_scope": [],
+    "shared_identity_and_wardrobe": [
+      "assets",
+      "continuity"
+    ],
+    "shot_count": [],
+    "shot_kind": [],
+    "sound_mode": [
+      "sound"
+    ],
+    "no_dialogue": [
+      "no_dialogue"
+    ]
+  }
+}

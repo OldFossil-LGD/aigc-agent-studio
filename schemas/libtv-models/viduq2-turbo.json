@@ -1,0 +1,86 @@
+{
+  "nameOrId": "viduq2-turbo",
+  "modelName": "viduq2-turbo",
+  "modelKey": "viduq2-turbo",
+  "toolKey": "viduq2-turbo",
+  "modality": "video",
+  "schema": {
+    "modelKey": "viduq2-turbo",
+    "modelName": "Vidu Q2 Turbo",
+    "modelVendor": "vidu",
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "prompt": {
+        "maxLength": 5000
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "720p",
+          "1080p"
+        ],
+        "default": "1080p",
+        "component": "singleButton",
+        "originalField": "resolution"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 8,
+        "originalField": "duration",
+        "component": "slider"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            1,
+            1
+          ],
+          "frames2video": [
+            2,
+            2
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "resolution",
+        "duration"
+      ],
+      "generateTypes": {
+        "text": 37,
+        "image": 38,
+        "checkpointId": 23194069
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

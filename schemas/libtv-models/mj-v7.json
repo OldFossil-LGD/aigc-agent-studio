@@ -1,0 +1,126 @@
+{
+  "nameOrId": "mj-v7",
+  "modelName": "mj-v7",
+  "modelKey": "mj-v7",
+  "toolKey": "mj-v7",
+  "modality": "image",
+  "schema": {
+    "modelKey": "mj-v7",
+    "modelName": "Midjourney V7",
+    "modelVendor": "Midjourney",
+    "baseType": 42,
+    "properties": {
+      "count": [
+        4
+      ],
+      "template": {
+        "displayName": "风格",
+        "maxCount": 1
+      },
+      "prompt": {
+        "placeholder": "描述想要生成的图像或按'/'呼出快捷指令，如需使用sref code ，请在prompt最后添加 --sref 12345",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "personalisation": {
+        "displayName": "个性化风格",
+        "tips": "同步你的MJ专属风格在 Midjourney 中找到你的P值，复制并粘贴到右侧输入框",
+        "placeholder": "请输入你的个性化风格P值",
+        "default": "",
+        "component": "input",
+        "originalField": "personalisation",
+        "layout": "horizontal"
+      },
+      "stylize": {
+        "displayName": "风格化程度",
+        "tips": "控制画面艺术化程度，越高越具创意。",
+        "default": 100,
+        "min": 0,
+        "max": 1000,
+        "step": 50,
+        "component": "slider",
+        "originalField": "stylize"
+      },
+      "weird": {
+        "displayName": "怪异度",
+        "tips": "控制画面非常规程度，越高越脑洞大。",
+        "default": 50,
+        "min": 0,
+        "max": 3000,
+        "step": 50,
+        "component": "slider",
+        "originalField": "weird"
+      },
+      "chaos": {
+        "displayName": "多样性",
+        "tips": "控制生成差异度，越高生成结果越随机。",
+        "default": 5,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "component": "slider",
+        "originalField": "chaos"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            6
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "advancedSettings": [
+        "personalisation",
+        "stylize",
+        "weird",
+        "chaos"
+      ],
+      "generateTypes": {
+        "text": 67,
+        "image": 67,
+        "checkpointId": 21811215
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "nameOrId": "aurora-3-prime",
+  "modelName": "aurora-3-prime",
+  "modelKey": "aurora-3-prime",
+  "toolKey": "aurora-3-prime",
+  "modality": "text",
+  "schema": {
+    "modelKey": "aurora-3-prime",
+    "modelName": "多模态文本模型Pro",
+    "modelVendor": "aurora",
+    "properties": {
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "modeType": {
+        "items": {
+          "image2text": [
+            0,
+            7
+          ],
+          "video2text": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "generateTypes": {
+        "checkpointId": 23193463
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

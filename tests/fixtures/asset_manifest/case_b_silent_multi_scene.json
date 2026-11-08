@@ -1,0 +1,675 @@
+{
+  "schema_version": "asset-system/2",
+  "title": "B · 多场景无对白单人（2 造型 · 漏 1 视角 + 漏 1 平面图）",
+  "platform_mode": "flat",
+  "script_lines": [
+    "M11.1",
+    "M7.S1",
+    "M7.S2",
+    "M7.S3"
+  ],
+  "characters": [
+    {
+      "id": "C1",
+      "name": "她",
+      "states": [
+        "基准",
+        "雨湿"
+      ],
+      "source": "M11.1"
+    }
+  ],
+  "props": [],
+  "scenes": [
+    {
+      "id": "S1",
+      "name": "街口",
+      "states": [
+        "夜"
+      ],
+      "source": "M7.S1"
+    },
+    {
+      "id": "S2",
+      "name": "楼道",
+      "states": [
+        "夜"
+      ],
+      "source": "M7.S2"
+    },
+    {
+      "id": "S3",
+      "name": "天台",
+      "states": [
+        "雨"
+      ],
+      "source": "M7.S3"
+    }
+  ],
+  "shots": [
+    {
+      "id": "SH1",
+      "scene": "S1",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "中景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S1VA",
+        "assets": [
+          "S1VA",
+          "C1F"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S1VA",
+            "node_key": "n_S1VA_2",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 2,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH2",
+      "scene": "S1",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "全景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S1VA",
+        "assets": [
+          "S1VA",
+          "C1F",
+          "C1B"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}",
+          "{{Image 3}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S1VA",
+            "node_key": "n_S1VA_3",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 2,
+            "effective": true
+          },
+          {
+            "asset_id": "C1B",
+            "node_key": "n_C1B_2",
+            "image_index": 3,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH3",
+      "scene": "S1",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "B",
+      "scale": "中景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S1VB",
+        "assets": [
+          "S1VB",
+          "C1VL"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S1VB",
+            "node_key": "n_S1VB_2",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1VL",
+            "node_key": "n_C1VL_1",
+            "image_index": 2,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH4",
+      "scene": "S2",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "中景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S2VA",
+        "assets": [
+          "S2VA",
+          "C1F"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S2VA",
+            "node_key": "n_S2VA_2",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 2,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH5",
+      "scene": "S2",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "中景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S2VA",
+        "assets": [
+          "S2VA",
+          "C1F"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S2VA",
+            "node_key": "n_S2VA_2",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 2,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH6",
+      "scene": "S3",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "中景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S3VA",
+        "assets": [
+          "S3VA",
+          "C1F"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S3VA",
+            "node_key": "n_S3VA_2",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 2,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH7",
+      "scene": "S3",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "特写",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "C1F",
+        "assets": [
+          "C1F"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 1,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    },
+    {
+      "id": "SH8",
+      "scene": "S3",
+      "characters": [
+        "C1"
+      ],
+      "props": [],
+      "camera": "A",
+      "scale": "中景",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "S3VA",
+        "assets": [
+          "S3VA",
+          "C1F"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}",
+          "{{Image 2}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "S3VA",
+            "node_key": "n_S3VA_2",
+            "image_index": 1,
+            "effective": true
+          },
+          {
+            "asset_id": "C1F",
+            "node_key": "n_C1F_1",
+            "image_index": 2,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "C1F",
+      "kind": "character",
+      "subject": "C1",
+      "role": "face",
+      "layer": 1,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "456670168478f26d20fc7fe749536f9164bdde8b1034214e89424c28b2372965",
+      "source": "M11.1",
+      "parent": null,
+      "qc_report_id": "qc-C1F"
+    },
+    {
+      "asset_id": "C1VF",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "1b913b1402565a3a156ca8e02a2efe87f3091121d9e69638090ecfcc9084a402",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VF",
+      "variant": "front"
+    },
+    {
+      "asset_id": "C1VB",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "d4dd642e071503660d0f3f8fe8e4225559edfed40240e6faa36bb9e63746adb9",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VB",
+      "variant": "back"
+    },
+    {
+      "asset_id": "C1VL",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "4dd1fa8e5cd974f5db97ddb09870d2b8b99560cbb0b17b8ecc6ccdd1340636df",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VL",
+      "variant": "left"
+    },
+    {
+      "asset_id": "C1VR",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "94b0a71a4cc971c9bb36debbaa15565c1c641e8444eb7e5fdff610438654fe39",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VR",
+      "variant": "right"
+    },
+    {
+      "asset_id": "C1VT",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "09e42f287f3fabf692981324f3c659b4ca573eea0ecc40e6c61471614e73c8f1",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VT",
+      "variant": "top"
+    },
+    {
+      "asset_id": "C1B",
+      "kind": "character",
+      "subject": "C1",
+      "role": "body",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "a7b7e74f3d5cbd16a9993d4bbd1c1e00a329bb6207576abc305e0ee5b74c8fb4",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1B"
+    },
+    {
+      "asset_id": "C1VF__雨湿",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "fbc1cfc99d6ce7a08edc71a9699ce541f989a1b950615d046b7cc5ce8d492c92",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VF__雨湿",
+      "variant": "front",
+      "state": "雨湿"
+    },
+    {
+      "asset_id": "C1VB__雨湿",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "0c91b97436e3c7655288e02c4ed212915cf8715727e28335499802cec2ba2288",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VB__雨湿",
+      "variant": "back",
+      "state": "雨湿"
+    },
+    {
+      "asset_id": "C1VL__雨湿",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "7e22b12c182ce502600e33549d4fa9e6f1cd215dd2356a2e38f4e82821af8b78",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VL__雨湿",
+      "variant": "left",
+      "state": "雨湿"
+    },
+    {
+      "asset_id": "C1VR__雨湿",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "7127cdb43a0a857eef6cb1682b42076e317c4592a42243d79424fd3a559d7e05",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VR__雨湿",
+      "variant": "right",
+      "state": "雨湿"
+    },
+    {
+      "asset_id": "C1B__雨湿",
+      "kind": "character",
+      "subject": "C1",
+      "role": "body",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "ac000f7f0d14c072421e20f18f83f04e543044724b3c1afb74cf07b900b3bbca",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1B__雨湿",
+      "state": "雨湿"
+    },
+    {
+      "asset_id": "S1P",
+      "kind": "scene",
+      "subject": "S1",
+      "role": "plan",
+      "layer": 1,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "041019d6bd24afd5f42594e6f569a654f30964dc3d66fe3332b1efb61ab8bd2b",
+      "source": "M7.S1",
+      "parent": null,
+      "qc_report_id": "qc-S1P"
+    },
+    {
+      "asset_id": "S1VA",
+      "kind": "scene",
+      "subject": "S1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "d45ffbbe510deb212225cd9a9c633de2f60e58026033329025affd241c46394c",
+      "source": "M7.S1",
+      "parent": "S1P",
+      "qc_report_id": "qc-S1VA",
+      "variant": "A"
+    },
+    {
+      "asset_id": "S1VB",
+      "kind": "scene",
+      "subject": "S1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "e03fc8070d9a869b90a0bc43b550516b56832fbe53db7e4468cf942ac23f4a02",
+      "source": "M7.S1",
+      "parent": "S1P",
+      "qc_report_id": "qc-S1VB",
+      "variant": "B"
+    },
+    {
+      "asset_id": "S2P",
+      "kind": "scene",
+      "subject": "S2",
+      "role": "plan",
+      "layer": 1,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "98c66d2214db12a53843142ea28a8d2259f1b9895b07f5dbae9714912bb53650",
+      "source": "M7.S2",
+      "parent": null,
+      "qc_report_id": "qc-S2P"
+    },
+    {
+      "asset_id": "S2VA",
+      "kind": "scene",
+      "subject": "S2",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "1684483b04039837ec9a045c33b280fe4a1fa6bab8ab24d0edcffc7402b1d841",
+      "source": "M7.S2",
+      "parent": "S2P",
+      "qc_report_id": "qc-S2VA",
+      "variant": "A"
+    },
+    {
+      "asset_id": "S3VA",
+      "kind": "scene",
+      "subject": "S3",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "810d8417c9da756425dd6f6a122de23b8f0884081fd75587bb3698b738522457",
+      "source": "M7.S3",
+      "parent": "S3P",
+      "qc_report_id": "qc-S3VA",
+      "variant": "A"
+    }
+  ],
+  "expected": {
+    "fail": [
+      [
+        "MISSING_ASSET",
+        "",
+        "",
+        "C1"
+      ],
+      [
+        "MISSING_ASSET",
+        "",
+        "",
+        "S3"
+      ]
+    ],
+    "warn": [
+      [
+        "DERIVE_MISSING",
+        "",
+        "S3VA",
+        "S3"
+      ]
+    ]
+  }
+}

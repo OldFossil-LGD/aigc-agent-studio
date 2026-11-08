@@ -1,0 +1,218 @@
+{
+  "schema_version": "asset-system/2",
+  "title": "C · 单镜物证特写（漏近距版）",
+  "platform_mode": "flat",
+  "script_lines": [
+    "M11.1",
+    "M11.4",
+    "M7.S1"
+  ],
+  "characters": [
+    {
+      "id": "C1",
+      "name": "她",
+      "states": [
+        "基准"
+      ],
+      "source": "M11.1"
+    }
+  ],
+  "props": [
+    {
+      "id": "P1",
+      "name": "药瓶",
+      "class": "handheld",
+      "evidence": true,
+      "source": "M11.4"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S1",
+      "name": "病房",
+      "states": [
+        "日"
+      ],
+      "source": "M7.S1"
+    }
+  ],
+  "shots": [
+    {
+      "id": "SH1",
+      "scene": "S1",
+      "characters": [],
+      "props": [
+        "P1"
+      ],
+      "camera": "A",
+      "scale": "特写",
+      "reference_plan": {
+        "selector_policy_version": "ref_v1",
+        "primary_asset_id": "P1A",
+        "assets": [
+          "P1A"
+        ],
+        "order_reason": "主参考在最前（位置权重最高）；其余按入画必要性排序",
+        "prompt_refs": [
+          "{{Image 1}}"
+        ],
+        "resolved": [
+          {
+            "asset_id": "P1A",
+            "node_key": "n_P1A_1",
+            "image_index": 1,
+            "effective": true
+          }
+        ],
+        "reasons": [
+          "identity_approved"
+        ],
+        "capability_check": "PASSED"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "C1F",
+      "kind": "character",
+      "subject": "C1",
+      "role": "face",
+      "layer": 1,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "456670168478f26d20fc7fe749536f9164bdde8b1034214e89424c28b2372965",
+      "source": "M11.1",
+      "parent": null,
+      "qc_report_id": "qc-C1F"
+    },
+    {
+      "asset_id": "C1VF",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "1b913b1402565a3a156ca8e02a2efe87f3091121d9e69638090ecfcc9084a402",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VF",
+      "variant": "front"
+    },
+    {
+      "asset_id": "C1VB",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "d4dd642e071503660d0f3f8fe8e4225559edfed40240e6faa36bb9e63746adb9",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VB",
+      "variant": "back"
+    },
+    {
+      "asset_id": "C1VL",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "4dd1fa8e5cd974f5db97ddb09870d2b8b99560cbb0b17b8ecc6ccdd1340636df",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VL",
+      "variant": "left"
+    },
+    {
+      "asset_id": "C1VR",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "94b0a71a4cc971c9bb36debbaa15565c1c641e8444eb7e5fdff610438654fe39",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VR",
+      "variant": "right"
+    },
+    {
+      "asset_id": "C1VT",
+      "kind": "character",
+      "subject": "C1",
+      "role": "view",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "09e42f287f3fabf692981324f3c659b4ca573eea0ecc40e6c61471614e73c8f1",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1VT",
+      "variant": "top"
+    },
+    {
+      "asset_id": "C1B",
+      "kind": "character",
+      "subject": "C1",
+      "role": "body",
+      "layer": 2,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "a7b7e74f3d5cbd16a9993d4bbd1c1e00a329bb6207576abc305e0ee5b74c8fb4",
+      "source": "M11.1",
+      "parent": "C1F",
+      "qc_report_id": "qc-C1B"
+    },
+    {
+      "asset_id": "P1A",
+      "kind": "prop",
+      "subject": "P1",
+      "role": "anchor",
+      "layer": 1,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "1752721b0ec18f9e72fd3bf569a755ff0aa6ee0edf66094adede2c3d38acd0ec",
+      "source": "M11.4",
+      "parent": null,
+      "qc_report_id": "qc-P1A"
+    },
+    {
+      "asset_id": "S1P",
+      "kind": "scene",
+      "subject": "S1",
+      "role": "plan",
+      "layer": 1,
+      "version": 1,
+      "status": "approved",
+      "origin": "user",
+      "sha256": "041019d6bd24afd5f42594e6f569a654f30964dc3d66fe3332b1efb61ab8bd2b",
+      "source": "M7.S1",
+      "parent": null,
+      "qc_report_id": "qc-S1P"
+    }
+  ],
+  "expected": {
+    "fail": [
+      [
+        "MISSING_ASSET",
+        "",
+        "",
+        "P1"
+      ]
+    ],
+    "warn": []
+  }
+}

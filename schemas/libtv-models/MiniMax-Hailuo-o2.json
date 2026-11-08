@@ -1,0 +1,172 @@
+{
+  "nameOrId": "MiniMax-Hailuo-o2",
+  "modelName": "MiniMax-Hailuo-o2",
+  "modelKey": "MiniMax-Hailuo-o2",
+  "toolKey": "MiniMax-Hailuo-o2",
+  "modality": "video",
+  "schema": {
+    "modelKey": "MiniMax-Hailuo-o2",
+    "modelName": "Hailuo-O2",
+    "modelVendor": "MiniMax",
+    "baseType": 38,
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 2000
+      },
+      "ratio": {
+        "default": "auto",
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "resolution_txt": {
+        "displayName": "清晰度",
+        "enum": [
+          "768P",
+          "1080P"
+        ],
+        "default": "1080P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "resolution": {
+        "displayName": "清晰度",
+        "enum": [
+          "512P",
+          "768P",
+          "1080P"
+        ],
+        "default": "1080P",
+        "originalField": "resolution",
+        "component": "singleButton"
+      },
+      "duration": {
+        "displayName": "视频时长",
+        "enum": [
+          {
+            "value": 6,
+            "displayName": "6s"
+          },
+          {
+            "value": 10,
+            "displayName": "10s"
+          }
+        ],
+        "default": 6,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "singleImage2video": [
+            1,
+            1
+          ],
+          "frames2video": [
+            2,
+            2
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "resolution_txt",
+          "duration"
+        ],
+        "singleImage2video": [
+          "ratio",
+          "resolution",
+          "duration"
+        ],
+        "frames2video": [
+          "ratio",
+          "resolution_txt",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 41,
+        "image": 42,
+        "checkpointId": 21386133
+      }
+    },
+    "settingsRules": [
+      {
+        "conflict": [
+          {
+            "field": "resolution_txt",
+            "values": [
+              "1080P"
+            ]
+          },
+          {
+            "field": "duration",
+            "values": [
+              10
+            ]
+          }
+        ],
+        "forModeTypes": [
+          "text2video"
+        ],
+        "message": "1080P 分辨率下不支持 10s 时长"
+      },
+      {
+        "conflict": [
+          {
+            "field": "resolution",
+            "values": [
+              "1080P"
+            ]
+          },
+          {
+            "field": "duration",
+            "values": [
+              10
+            ]
+          }
+        ],
+        "forModeTypes": [
+          "singleImage2video",
+          "frames2video"
+        ],
+        "message": "1080P 分辨率下不支持 10s 时长"
+      }
+    ],
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      }
+    ]
+  }
+}

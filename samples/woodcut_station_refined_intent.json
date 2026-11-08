@@ -1,0 +1,221 @@
+{
+  "intent_format": "intent-handoff/v1",
+  "goal": "请只给一条8秒、16:9木刻版画风格的空镜提示词。雨后的空站台，一条红围巾平放在长椅上，整段保持静止。相机固定侧面远景，不推拉摇移，完全无声。不出现人物，也不加字幕、旁白或音乐；不要建画布、生成媒体或上传。",
+  "task_type": "prompt_only",
+  "decisions": {
+    "duration_sec": {
+      "value": 8,
+      "source": "user_explicit",
+      "locked": true
+    },
+    "aspect_ratio": {
+      "value": "16:9",
+      "source": "user_explicit",
+      "locked": true
+    },
+    "visual_style": {
+      "value": {
+        "text": "木刻版画风格",
+        "register": "illustration"
+      },
+      "source": "user_explicit",
+      "locked": true
+    },
+    "shot_count": {
+      "value": 1,
+      "source": "user_explicit",
+      "locked": true
+    },
+    "shot_kind": {
+      "value": "empty",
+      "source": "user_explicit",
+      "locked": true
+    },
+    "sound_mode": {
+      "value": "silent",
+      "source": "user_explicit",
+      "locked": true
+    },
+    "delivery_scope": {
+      "value": "prompt_only",
+      "source": "user_explicit",
+      "locked": true
+    }
+  },
+  "sound": {
+    "mode": "silent",
+    "allowed": [],
+    "forbidden": [
+      "human voices",
+      "dialogue",
+      "narration",
+      "music",
+      "sound effects"
+    ],
+    "source": "user_explicit",
+    "locked": true
+  },
+  "shots": [
+    {
+      "id": "shot_01",
+      "duration_sec": 8,
+      "description": "雨后的空站台，一条红围巾平放在长椅上，整段保持静止。相机固定侧面远景，不推拉摇移，完全无声。不出现人物，也不加字幕、旁白或音乐。",
+      "shot_kind": "empty",
+      "sound": {
+        "mode": "silent",
+        "allowed": [],
+        "forbidden": [
+          "human voices",
+          "dialogue",
+          "narration",
+          "music",
+          "sound effects"
+        ],
+        "source": "user_explicit",
+        "locked": true
+      },
+      "style_notes": "可见刀刻线与木版纹理，墨色浓淡略有起伏，套色边界有轻微的静态错位；红围巾保留为独立红色色块，不把整幅改成黑白，不去掉围巾。"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_camera",
+      "kind": "camera",
+      "text": "相机固定侧面远景，不推拉摇移。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "固定侧面远景",
+          "fixed side wide shot",
+          "side view"
+        ],
+        "forbidden": [
+          "推拉",
+          "摇移",
+          "dolly",
+          "pan",
+          "tilt"
+        ]
+      }
+    },
+    {
+      "id": "c_subject",
+      "kind": "visual",
+      "text": "雨后的空站台，一条红围巾平放在长椅上。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_all": [
+          "站台",
+          "红围巾",
+          "长椅"
+        ],
+        "forbidden": []
+      }
+    },
+    {
+      "id": "c_static",
+      "kind": "action",
+      "text": "整段保持静止，无运动。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "静止",
+          "still",
+          "no motion"
+        ],
+        "forbidden": [
+          "运动",
+          "moving"
+        ]
+      }
+    },
+    {
+      "id": "c_sound",
+      "kind": "sound",
+      "text": "完全无声；无环境声、无音效、无音乐。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "silent",
+          "无声",
+          "完全无声",
+          "completely silent"
+        ],
+        "forbidden": [
+          "music",
+          "voices",
+          "narration",
+          "ambience",
+          "sound effects"
+        ]
+      }
+    },
+    {
+      "id": "c_negative",
+      "kind": "negative",
+      "text": "不出现人物，也不加字幕、旁白或音乐。",
+      "delivery": "prompt",
+      "source": "user_explicit",
+      "locked": true,
+      "shots": [
+        "shot_01"
+      ],
+      "semantics": {
+        "required_any": [
+          "不出现人物",
+          "无人物",
+          "no people",
+          "No people"
+        ],
+        "forbidden": [
+          "person",
+          "people",
+          "字幕",
+          "subtitle",
+          "narration",
+          "music"
+        ]
+      }
+    }
+  ],
+  "entities": [],
+  "delivery": {
+    "ignition_allowed": false,
+    "requires_media_generation": false,
+    "requires_export": false,
+    "current_task": "生成一条8秒16:9木刻版画风格空镜提示词（仅提示词，草稿）",
+    "stop_point": "停在 shot graph 与 Prompt Package；不生成 05_platform_execution_plan、不生成 08_libtv_command_plan、不建画布、不生成媒体、不上传。"
+  },
+  "notes": "当前任务：仅一条8秒16:9木刻版画风格空镜提示词。停止点：prompt_only，停在图规划与Prompt Package，不产生平台执行/命令计划，不创建画布、不生成媒体、不上传。style_notes 为 Agent 对木刻工艺的提案，不改变用户锁定的风格、红围巾、静止、无声与无人物约束。",
+  "audit": {
+    "proposals": [
+      {
+        "path": "shots[0].style_notes",
+        "source": "agent_proposed",
+        "locked": false,
+        "reason": "Woodcut was supplied as a style name only; this adds minimal process, material, and ink-trace proposal without overriding the locked style or red scarf."
+      }
+    ],
+    "operator_normalization": "Codex removed an Agent-proposal control prefix from creative text, moved provenance to audit, and translated the same material/ink proposal into Chinese; user locks unchanged."
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "nameOrId": "kling-v2-5-turbo-pro",
+  "modelName": "kling-v2-5-turbo-pro",
+  "modelKey": "kling-v2-5-turbo-pro",
+  "toolKey": "kling-v2-5-turbo-pro",
+  "modality": "video",
+  "schema": {
+    "modelKey": "kling-v2-5-turbo-pro",
+    "modelName": "可灵 2.5",
+    "modelVendor": "Kling",
+    "baseType": 48,
+    "properties": {
+      "magic": true,
+      "count": [
+        1
+      ],
+      "template": {
+        "displayName": "特效",
+        "maxCount": 1
+      },
+      "prompt": {
+        "maxLength": 2000
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "16:9",
+          "1:1",
+          "9:16"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "ratio_auto": {
+        "displayName": "比例",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "originalField": "ratio",
+        "component": "singleButton"
+      },
+      "quality": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "low",
+            "displayName": "标准"
+          },
+          {
+            "value": "high",
+            "displayName": "高品质"
+          }
+        ],
+        "default": "high",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "quality_high": {
+        "displayName": "生成品质",
+        "enum": [
+          {
+            "value": "high",
+            "displayName": "高品质"
+          }
+        ],
+        "default": "high",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "duration": {
+        "displayName": "生成时长",
+        "enum": [
+          {
+            "value": 5,
+            "displayName": "5s"
+          },
+          {
+            "value": 10,
+            "displayName": "10s"
+          }
+        ],
+        "default": 5,
+        "originalField": "duration",
+        "component": "singleButton"
+      },
+      "modeType": {
+        "originalField": "modeType",
+        "items": {
+          "frames2video": [
+            2,
+            2
+          ],
+          "singleImage2video": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": {
+        "text2video": [
+          "ratio",
+          "quality",
+          "duration"
+        ],
+        "frames2video": [
+          "ratio_auto",
+          "quality_high",
+          "duration"
+        ],
+        "singleImage2video": [
+          "ratio_auto",
+          "quality",
+          "duration"
+        ]
+      },
+      "generateTypes": {
+        "text": 43,
+        "image": 44,
+        "checkpointId": 21702422
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      },
+      {
+        "require": [
+          "prompt"
+        ],
+        "forModeTypes": [
+          "text2video"
+        ]
+      }
+    ]
+  }
+}

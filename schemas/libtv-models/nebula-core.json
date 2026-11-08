@@ -1,0 +1,85 @@
+{
+  "nameOrId": "nebula-core",
+  "modelName": "nebula-core",
+  "modelKey": "nebula-core",
+  "toolKey": "nebula-core",
+  "modality": "image",
+  "schema": {
+    "modelKey": "nebula-core",
+    "modelName": "全能图片模型",
+    "modelVendor": "nebula",
+    "baseType": 40,
+    "properties": {
+      "cameraControl": true,
+      "magic": true,
+      "mention": true,
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3",
+          "4:5",
+          "5:4",
+          "21:9"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            10
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "ratio",
+        "quality"
+      ],
+      "generateTypes": {
+        "text": 61,
+        "image": 61,
+        "checkpointId": 21522459
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

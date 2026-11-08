@@ -1,0 +1,79 @@
+{
+  "nameOrId": "flux-2-flex",
+  "modelName": "flux-2-flex",
+  "modelKey": "flux-2-flex",
+  "toolKey": "flux-2-flex",
+  "modality": "image",
+  "schema": {
+    "modelKey": "flux-2-flex",
+    "modelName": "Flux 2 Flex",
+    "modelVendor": "flux",
+    "baseType": 51,
+    "properties": {
+      "count": [
+        1,
+        2,
+        4
+      ],
+      "prompt": {
+        "placeholder": "",
+        "maxLength": 0
+      },
+      "quality": {
+        "displayName": "分辨率",
+        "enum": [
+          {
+            "value": "auto",
+            "displayName": "自适应"
+          }
+        ],
+        "default": "auto",
+        "component": "singleButton",
+        "originalField": "quality"
+      },
+      "ratio": {
+        "displayName": "比例",
+        "enum": [
+          "1:1",
+          "9:16",
+          "16:9",
+          "3:4",
+          "4:3",
+          "3:2",
+          "2:3"
+        ],
+        "default": "16:9",
+        "component": "singleButton",
+        "originalField": "ratio"
+      },
+      "modeType": {
+        "items": {
+          "image2image": [
+            0,
+            10
+          ]
+        }
+      }
+    },
+    "config": {
+      "settings": [
+        "quality",
+        "ratio"
+      ],
+      "generateTypes": {
+        "text": 84,
+        "image": 84,
+        "checkpointId": 22143794
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt",
+          "media"
+        ],
+        "mode": "any"
+      }
+    ]
+  }
+}

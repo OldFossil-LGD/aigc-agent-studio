@@ -1,0 +1,58 @@
+{
+  "nameOrId": "mureka-8",
+  "modelName": "mureka-8",
+  "modelKey": "mureka-8",
+  "toolKey": "mureka-8",
+  "modality": "audio",
+  "schema": {
+    "modelKey": "mureka-8",
+    "modelName": "Mureka V8",
+    "modelVendor": "mureka",
+    "scene": "Music",
+    "sceneName": "音乐",
+    "properties": {
+      "prompt": {
+        "placeholder": "描述您想要的音乐",
+        "maxLength": 1024,
+        "modeTypePlaceholders": {
+          "lyrics2audio": {
+            "placeholder": "输入歌词，生成的歌曲将演唱这段歌词",
+            "placeholderI18nKey": "schema:lyricsPromptPlaceholder"
+          }
+        },
+        "modeTypeMaxLengths": {
+          "lyrics2audio": 3000
+        }
+      },
+      "instrumental": {
+        "displayName": "纯乐器",
+        "default": 1,
+        "component": "switch",
+        "originalField": "force_instrumental"
+      }
+    },
+    "config": {
+      "textModes": [
+        "text2audio",
+        "lyrics2audio"
+      ],
+      "advancedSettings": {
+        "text2audio": [
+          "instrumental"
+        ],
+        "lyrics2audio": []
+      },
+      "generateTypes": {
+        "audio": 99,
+        "checkpointId": 22685089
+      }
+    },
+    "rules": [
+      {
+        "require": [
+          "prompt"
+        ]
+      }
+    ]
+  }
+}

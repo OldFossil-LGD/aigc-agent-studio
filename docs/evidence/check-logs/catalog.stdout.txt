@@ -1,0 +1,44 @@
+{
+  "status": "CATALOG_VALID",
+  "errors": [],
+  "domains": {
+    "story_direction": {
+      "title": "Narrative and direction"
+    },
+    "performance": {
+      "title": "Character performance"
+    },
+    "camera_space": {
+      "title": "Camera, framing and space"
+    },
+    "look_lighting": {
+      "title": "Visual craft, lighting and colour"
+    },
+    "motion_physics": {
+      "title": "Motion and physical causality"
+    },
+    "assets": {
+      "title": "Characters, props and scene assets"
+    },
+    "continuity": {
+      "title": "Continuity and state"
+    },
+    "sound": {
+      "title": "Sound and silence"
+    },
+    "editing_delivery": {
+      "title": "Editing, prompts and delivery"
+    },
+    "reverse": {
+      "title": "Reverse analysis and fidelity"
+    },
+    "workflow_governance": {
+      "title": "Workflow, evidence and permissions"
+    },
+    "implementation_publication": {
+      "title": "Implementation, testing and publication"
+    }
+  },
+  "catalog_sha256": "b48e82ccf8424bae133e87e3dfc52840f25f5a13c1cd2cc275d33b77f3f313ae",
+  "semantic_applicability": "AGENT_MUST_REVIEW"
+}

@@ -1,0 +1,1021 @@
+[
+  {
+    "stage": "first",
+    "job": "cross_mode_M1_M2",
+    "query_sha256": "c6a47b5bb956e6c319176104e85fa7439562da6dea5ae639b4265c6ed9219c6b",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/block-camera.md",
+        "sha256": "1bb5810b7acb9214435211c05565dd130c9d39bc63c440dc0d6230b3b2a51887",
+        "bytes": 13145
+      },
+      {
+        "path": "references/camera-movement-library.md",
+        "sha256": "1b671d46f8bd52b8063c0dc85543d39a961f42b90775719efe76865252aa75d1",
+        "bytes": 18643
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/craft-delivery-entry.md",
+        "sha256": "67fc4f54a2d85eb59bbf61b63ae709e2a4434c5e4f90125157fe508820ca4316",
+        "bytes": 3167
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "5a359afc52cdbcb1929ad9ae01c225c3eb506a0e65f443566173f37a98ae4472",
+        "bytes": 6001
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/motion-control.md",
+        "sha256": "13c3445ea58e479a9f75b02c40415d29673d50d1662831e8a2b639baf7252a8c",
+        "bytes": 20730
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/prompt-ops.md",
+        "sha256": "1b6883526a7f387c5c460688543931e4cb2f2f1af86b81c4cbaee637c6dbee77",
+        "bytes": 14460
+      },
+      {
+        "path": "references/segmented-shot.md",
+        "sha256": "10ab3a3e4e8fb5a7c062c11790514c2c73c7d48413e2e56d6c58bf122d24be76",
+        "bytes": 17253
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/sound-craft.md",
+        "sha256": "c5893ec372a806702d04fd09b3ece9f50e688a8f27b02d54515466ee3ff1c791",
+        "bytes": 18909
+      },
+      {
+        "path": "references/sound-narrative.md",
+        "sha256": "04c0b0c0e12f54e6e4b1a2e5923a093233a1cbfe977913f425d37a58bff9fbac",
+        "bytes": 10979
+      },
+      {
+        "path": "references/sound-prompt-craft.md",
+        "sha256": "1dacfd1719f9c1659734faad11e7acd8232bb27e1e0b2723529f08d305594eee",
+        "bytes": 16400
+      },
+      {
+        "path": "references/stage1-delivery-entry.md",
+        "sha256": "9e6d88450296b83d57c0a1704dd0f7739a6119b70d9da1ff8c1c234722304338",
+        "bytes": 13051
+      },
+      {
+        "path": "references/style-library-index.md",
+        "sha256": "30bbddb2136e861f6a8fb685fa55504d496e72d9adfcfd8371d31760051c2217",
+        "bytes": 10233
+      },
+      {
+        "path": "references/style-library.md",
+        "sha256": "1919f98d88338ec2eaceba4ffa97e6126625f9c2ba325f428e81ecc2bd39eb69",
+        "bytes": 24601
+      },
+      {
+        "path": "references/stylized-look-craft.md",
+        "sha256": "1f42737ad2fbe2bb2554d273a8672b21b3b206b543bf8eb54bdf6cd54b05e993",
+        "bytes": 15185
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "first",
+    "job": "cross_mode_M3_M4",
+    "query_sha256": "3086458fb2ae26502f5ab7b0b7884e616e0f602c07494029d48d658b6ece3d78",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/block-camera.md",
+        "sha256": "1bb5810b7acb9214435211c05565dd130c9d39bc63c440dc0d6230b3b2a51887",
+        "bytes": 13145
+      },
+      {
+        "path": "references/camera-movement-library.md",
+        "sha256": "1b671d46f8bd52b8063c0dc85543d39a961f42b90775719efe76865252aa75d1",
+        "bytes": 18643
+      },
+      {
+        "path": "references/character-sheet.md",
+        "sha256": "928b118d886a50df940ef144aaef0038c824c8a37a389feb3462a17132c1770a",
+        "bytes": 13907
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "5a359afc52cdbcb1929ad9ae01c225c3eb506a0e65f443566173f37a98ae4472",
+        "bytes": 6001
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/motion-control.md",
+        "sha256": "13c3445ea58e479a9f75b02c40415d29673d50d1662831e8a2b639baf7252a8c",
+        "bytes": 20730
+      },
+      {
+        "path": "references/offline-continuity-entry.md",
+        "sha256": "26b1354044f991e8325236a1f00a0040bc14e86c8a4b24a68d7925a18aaf2d09",
+        "bytes": 10425
+      },
+      {
+        "path": "references/performance-craft.md",
+        "sha256": "adf0a271e3931ba23e11d8af9f8e05a82d8204ea0b8cc94024118ebdd2451321",
+        "bytes": 19163
+      },
+      {
+        "path": "references/performance-vocabulary.md",
+        "sha256": "01c1af53e406d0a4c412ae329dde09fd7b9afa4374fe6de1f7419dc36b9a8f8d",
+        "bytes": 11794
+      },
+      {
+        "path": "references/pitfalls.md",
+        "sha256": "4042493a717d45f9fc4f20bd1939a29fd673776094fc7b48c1a19367e845c446",
+        "bytes": 23845
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/review-passes.md",
+        "sha256": "54148440bdb535c13d1ba26baefd006c26e2743de34da8be1d510d22cc920e22",
+        "bytes": 8590
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/staging-craft.md",
+        "sha256": "68abb477c784ee8c1d465f7e1dd551bded020a8e95a28b084c9430b7d4de2756",
+        "bytes": 20183
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "first",
+    "job": "cross_mode_M5_M6",
+    "query_sha256": "7905183509633e9e62e665f312177c0f4dc9eb5599391fb530b9b646a17a65ba",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/asset-consistency-part2.md",
+        "sha256": "e97c954deb25dfb0489dca8dab110bcc1ccc9dc416905669bdb809b34b1fad34",
+        "bytes": 8460
+      },
+      {
+        "path": "references/asset-consistency.md",
+        "sha256": "4c0d9bd94e0f1edde1c8eb8c87a14a6691f15603aab9baceeb91e1fe0fb56269",
+        "bytes": 21374
+      },
+      {
+        "path": "references/asset-prompt-spec-part2.md",
+        "sha256": "dac8a9bd8f010ba7d59542f1876a954723bfb84cdaf275c46c0fdffacce7048a",
+        "bytes": 7605
+      },
+      {
+        "path": "references/asset-prompt-spec.md",
+        "sha256": "4163a82e5628d925f6dd81c9c124d6c5bd85c0a2b1be55485caee10568856638",
+        "bytes": 21094
+      },
+      {
+        "path": "references/character-continuity.md",
+        "sha256": "440053d3ebf37c96f0c5a8b39d33bbb1440ef5a081d055f7f0bd60c1c7c9cb25",
+        "bytes": 19743
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "5a359afc52cdbcb1929ad9ae01c225c3eb506a0e65f443566173f37a98ae4472",
+        "bytes": 6001
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/drama-dialogue-craft.md",
+        "sha256": "4a075ca5a8528c30aa47c66d0b765ab2da19159150d112ef0d1ccf733539d6ae",
+        "bytes": 22609
+      },
+      {
+        "path": "references/editing-rhythm.md",
+        "sha256": "41f34006a4f677092b8cb5a8a71593ee71211c20a8f2b59a27d18a48269b72d2",
+        "bytes": 8964
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/motion-control.md",
+        "sha256": "13c3445ea58e479a9f75b02c40415d29673d50d1662831e8a2b639baf7252a8c",
+        "bytes": 20730
+      },
+      {
+        "path": "references/motion-principles.md",
+        "sha256": "1a22cd4152b90717e4685eae6c84cd738d6ff334bdab346e51012865f3784bd1",
+        "bytes": 19798
+      },
+      {
+        "path": "references/offline-continuity-entry.md",
+        "sha256": "26b1354044f991e8325236a1f00a0040bc14e86c8a4b24a68d7925a18aaf2d09",
+        "bytes": 10425
+      },
+      {
+        "path": "references/physical-feedback.md",
+        "sha256": "f93ad64d0aab7e4c3ed914c6ee0accf20d49edb30fe6395bd4d546ca8287601c",
+        "bytes": 9334
+      },
+      {
+        "path": "references/pitfalls.md",
+        "sha256": "4042493a717d45f9fc4f20bd1939a29fd673776094fc7b48c1a19367e845c446",
+        "bytes": 23845
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/review-passes.md",
+        "sha256": "54148440bdb535c13d1ba26baefd006c26e2743de34da8be1d510d22cc920e22",
+        "bytes": 8590
+      },
+      {
+        "path": "references/sequence-craft.md",
+        "sha256": "8f3e311ab1dc82ee5c954beacf68ef68734024e28be102625a46541cedf3aed5",
+        "bytes": 19824
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/sound-craft.md",
+        "sha256": "c5893ec372a806702d04fd09b3ece9f50e688a8f27b02d54515466ee3ff1c791",
+        "bytes": 18909
+      },
+      {
+        "path": "references/sound-narrative.md",
+        "sha256": "04c0b0c0e12f54e6e4b1a2e5923a093233a1cbfe977913f425d37a58bff9fbac",
+        "bytes": 10979
+      },
+      {
+        "path": "references/sound-prompt-craft.md",
+        "sha256": "1dacfd1719f9c1659734faad11e7acd8232bb27e1e0b2723529f08d305594eee",
+        "bytes": 16400
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "first",
+    "job": "cross_mode_M7_M8",
+    "query_sha256": "0abbf85ee09172fac07897b8a55dc39c55659fa522dceaac116e3b7b6e6b6689",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/blind-reverse-runbook.md",
+        "sha256": "51d47165fd210e6b7c34598e18b6b265d537495cf3f7e7c09fe8f448643af1ff",
+        "bytes": 15042
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/delivery-engineering.md",
+        "sha256": "536c34304c895f31daa242baaa3911d0470495c940c6448244d9b409d5a5e765",
+        "bytes": 8490
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "5a359afc52cdbcb1929ad9ae01c225c3eb506a0e65f443566173f37a98ae4472",
+        "bytes": 6001
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/offline-continuity-entry.md",
+        "sha256": "26b1354044f991e8325236a1f00a0040bc14e86c8a4b24a68d7925a18aaf2d09",
+        "bytes": 10425
+      },
+      {
+        "path": "references/pitfalls.md",
+        "sha256": "4042493a717d45f9fc4f20bd1939a29fd673776094fc7b48c1a19367e845c446",
+        "bytes": 23845
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/reverse-fidelity-contract.md",
+        "sha256": "715e28f6195ae9a463792dbfb954370665d7cba4b11eacddc17354893159d14e",
+        "bytes": 7876
+      },
+      {
+        "path": "references/review-passes.md",
+        "sha256": "54148440bdb535c13d1ba26baefd006c26e2743de34da8be1d510d22cc920e22",
+        "bytes": 8590
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/source-fidelity-mode.md",
+        "sha256": "5202ce9ee5833adea81877e9922cf21d5fa8ace54ececa579b4ded586bc74c7d",
+        "bytes": 5630
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "rework",
+    "job": "cross_rework_M1_M2",
+    "query_sha256": "3f8566232c0d79432c346d429585b14571baee126d3011afaf8bc4158d3ca36c",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/block-camera.md",
+        "sha256": "1bb5810b7acb9214435211c05565dd130c9d39bc63c440dc0d6230b3b2a51887",
+        "bytes": 13145
+      },
+      {
+        "path": "references/camera-movement-library.md",
+        "sha256": "1b671d46f8bd52b8063c0dc85543d39a961f42b90775719efe76865252aa75d1",
+        "bytes": 18643
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/craft-delivery-entry.md",
+        "sha256": "67fc4f54a2d85eb59bbf61b63ae709e2a4434c5e4f90125157fe508820ca4316",
+        "bytes": 3167
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "06583c2cc5c9c90e07733ae6a2c9a7ba0aa3d1aad405b107c037a0d3c436a91d",
+        "bytes": 6621
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/motion-control.md",
+        "sha256": "13c3445ea58e479a9f75b02c40415d29673d50d1662831e8a2b639baf7252a8c",
+        "bytes": 20730
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/prompt-ops.md",
+        "sha256": "1b6883526a7f387c5c460688543931e4cb2f2f1af86b81c4cbaee637c6dbee77",
+        "bytes": 14460
+      },
+      {
+        "path": "references/segmented-shot.md",
+        "sha256": "10ab3a3e4e8fb5a7c062c11790514c2c73c7d48413e2e56d6c58bf122d24be76",
+        "bytes": 17253
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/sound-craft.md",
+        "sha256": "c5893ec372a806702d04fd09b3ece9f50e688a8f27b02d54515466ee3ff1c791",
+        "bytes": 18909
+      },
+      {
+        "path": "references/sound-narrative.md",
+        "sha256": "04c0b0c0e12f54e6e4b1a2e5923a093233a1cbfe977913f425d37a58bff9fbac",
+        "bytes": 10979
+      },
+      {
+        "path": "references/sound-prompt-craft.md",
+        "sha256": "1dacfd1719f9c1659734faad11e7acd8232bb27e1e0b2723529f08d305594eee",
+        "bytes": 16400
+      },
+      {
+        "path": "references/stage1-delivery-entry.md",
+        "sha256": "9e6d88450296b83d57c0a1704dd0f7739a6119b70d9da1ff8c1c234722304338",
+        "bytes": 13051
+      },
+      {
+        "path": "references/style-library-index.md",
+        "sha256": "30bbddb2136e861f6a8fb685fa55504d496e72d9adfcfd8371d31760051c2217",
+        "bytes": 10233
+      },
+      {
+        "path": "references/style-library.md",
+        "sha256": "1919f98d88338ec2eaceba4ffa97e6126625f9c2ba325f428e81ecc2bd39eb69",
+        "bytes": 24601
+      },
+      {
+        "path": "references/style-package-matching.md",
+        "sha256": "4bfc30f631b1e5dbc6b02ec4a94ca2e0028cd659d3be114f9d43d126eb883a88",
+        "bytes": 13450
+      },
+      {
+        "path": "references/stylized-look-craft.md",
+        "sha256": "1f42737ad2fbe2bb2554d273a8672b21b3b206b543bf8eb54bdf6cd54b05e993",
+        "bytes": 15185
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "rework",
+    "job": "cross_rework_M3_M4",
+    "query_sha256": "a736fb46bd4bab5e50d5e592f15df137b9cdc2b95ab4fe34a83b8049c757dff2",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/asset-consistency-part2.md",
+        "sha256": "e97c954deb25dfb0489dca8dab110bcc1ccc9dc416905669bdb809b34b1fad34",
+        "bytes": 8460
+      },
+      {
+        "path": "references/asset-consistency.md",
+        "sha256": "4c0d9bd94e0f1edde1c8eb8c87a14a6691f15603aab9baceeb91e1fe0fb56269",
+        "bytes": 21374
+      },
+      {
+        "path": "references/asset-prompt-spec-part2.md",
+        "sha256": "dac8a9bd8f010ba7d59542f1876a954723bfb84cdaf275c46c0fdffacce7048a",
+        "bytes": 7605
+      },
+      {
+        "path": "references/asset-prompt-spec.md",
+        "sha256": "4163a82e5628d925f6dd81c9c124d6c5bd85c0a2b1be55485caee10568856638",
+        "bytes": 21094
+      },
+      {
+        "path": "references/block-camera.md",
+        "sha256": "1bb5810b7acb9214435211c05565dd130c9d39bc63c440dc0d6230b3b2a51887",
+        "bytes": 13145
+      },
+      {
+        "path": "references/camera-movement-library.md",
+        "sha256": "1b671d46f8bd52b8063c0dc85543d39a961f42b90775719efe76865252aa75d1",
+        "bytes": 18643
+      },
+      {
+        "path": "references/character-continuity.md",
+        "sha256": "440053d3ebf37c96f0c5a8b39d33bbb1440ef5a081d055f7f0bd60c1c7c9cb25",
+        "bytes": 19743
+      },
+      {
+        "path": "references/character-sheet.md",
+        "sha256": "928b118d886a50df940ef144aaef0038c824c8a37a389feb3462a17132c1770a",
+        "bytes": 13907
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "06583c2cc5c9c90e07733ae6a2c9a7ba0aa3d1aad405b107c037a0d3c436a91d",
+        "bytes": 6621
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/motion-control.md",
+        "sha256": "13c3445ea58e479a9f75b02c40415d29673d50d1662831e8a2b639baf7252a8c",
+        "bytes": 20730
+      },
+      {
+        "path": "references/motion-principles.md",
+        "sha256": "1a22cd4152b90717e4685eae6c84cd738d6ff334bdab346e51012865f3784bd1",
+        "bytes": 19798
+      },
+      {
+        "path": "references/offline-continuity-entry.md",
+        "sha256": "26b1354044f991e8325236a1f00a0040bc14e86c8a4b24a68d7925a18aaf2d09",
+        "bytes": 10425
+      },
+      {
+        "path": "references/performance-craft.md",
+        "sha256": "adf0a271e3931ba23e11d8af9f8e05a82d8204ea0b8cc94024118ebdd2451321",
+        "bytes": 19163
+      },
+      {
+        "path": "references/performance-vocabulary.md",
+        "sha256": "01c1af53e406d0a4c412ae329dde09fd7b9afa4374fe6de1f7419dc36b9a8f8d",
+        "bytes": 11794
+      },
+      {
+        "path": "references/physical-feedback.md",
+        "sha256": "f93ad64d0aab7e4c3ed914c6ee0accf20d49edb30fe6395bd4d546ca8287601c",
+        "bytes": 9334
+      },
+      {
+        "path": "references/pitfalls.md",
+        "sha256": "4042493a717d45f9fc4f20bd1939a29fd673776094fc7b48c1a19367e845c446",
+        "bytes": 23845
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/review-passes.md",
+        "sha256": "54148440bdb535c13d1ba26baefd006c26e2743de34da8be1d510d22cc920e22",
+        "bytes": 8590
+      },
+      {
+        "path": "references/sequence-craft.md",
+        "sha256": "8f3e311ab1dc82ee5c954beacf68ef68734024e28be102625a46541cedf3aed5",
+        "bytes": 19824
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/staging-craft.md",
+        "sha256": "68abb477c784ee8c1d465f7e1dd551bded020a8e95a28b084c9430b7d4de2756",
+        "bytes": 20183
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "rework",
+    "job": "cross_rework_M5_M6",
+    "query_sha256": "d52a11a59956122302339338023b254217b39c69b939e5b2ac1908b19ca7329c",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/asset-consistency-part2.md",
+        "sha256": "e97c954deb25dfb0489dca8dab110bcc1ccc9dc416905669bdb809b34b1fad34",
+        "bytes": 8460
+      },
+      {
+        "path": "references/asset-consistency.md",
+        "sha256": "4c0d9bd94e0f1edde1c8eb8c87a14a6691f15603aab9baceeb91e1fe0fb56269",
+        "bytes": 21374
+      },
+      {
+        "path": "references/asset-prompt-spec-part2.md",
+        "sha256": "dac8a9bd8f010ba7d59542f1876a954723bfb84cdaf275c46c0fdffacce7048a",
+        "bytes": 7605
+      },
+      {
+        "path": "references/asset-prompt-spec.md",
+        "sha256": "4163a82e5628d925f6dd81c9c124d6c5bd85c0a2b1be55485caee10568856638",
+        "bytes": 21094
+      },
+      {
+        "path": "references/block-camera.md",
+        "sha256": "1bb5810b7acb9214435211c05565dd130c9d39bc63c440dc0d6230b3b2a51887",
+        "bytes": 13145
+      },
+      {
+        "path": "references/camera-movement-library.md",
+        "sha256": "1b671d46f8bd52b8063c0dc85543d39a961f42b90775719efe76865252aa75d1",
+        "bytes": 18643
+      },
+      {
+        "path": "references/character-continuity.md",
+        "sha256": "440053d3ebf37c96f0c5a8b39d33bbb1440ef5a081d055f7f0bd60c1c7c9cb25",
+        "bytes": 19743
+      },
+      {
+        "path": "references/character-sheet.md",
+        "sha256": "928b118d886a50df940ef144aaef0038c824c8a37a389feb3462a17132c1770a",
+        "bytes": 13907
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "06583c2cc5c9c90e07733ae6a2c9a7ba0aa3d1aad405b107c037a0d3c436a91d",
+        "bytes": 6621
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/drama-dialogue-craft.md",
+        "sha256": "4a075ca5a8528c30aa47c66d0b765ab2da19159150d112ef0d1ccf733539d6ae",
+        "bytes": 22609
+      },
+      {
+        "path": "references/editing-rhythm.md",
+        "sha256": "41f34006a4f677092b8cb5a8a71593ee71211c20a8f2b59a27d18a48269b72d2",
+        "bytes": 8964
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/motion-control.md",
+        "sha256": "13c3445ea58e479a9f75b02c40415d29673d50d1662831e8a2b639baf7252a8c",
+        "bytes": 20730
+      },
+      {
+        "path": "references/motion-principles.md",
+        "sha256": "1a22cd4152b90717e4685eae6c84cd738d6ff334bdab346e51012865f3784bd1",
+        "bytes": 19798
+      },
+      {
+        "path": "references/offline-continuity-entry.md",
+        "sha256": "26b1354044f991e8325236a1f00a0040bc14e86c8a4b24a68d7925a18aaf2d09",
+        "bytes": 10425
+      },
+      {
+        "path": "references/performance-craft.md",
+        "sha256": "adf0a271e3931ba23e11d8af9f8e05a82d8204ea0b8cc94024118ebdd2451321",
+        "bytes": 19163
+      },
+      {
+        "path": "references/performance-vocabulary.md",
+        "sha256": "01c1af53e406d0a4c412ae329dde09fd7b9afa4374fe6de1f7419dc36b9a8f8d",
+        "bytes": 11794
+      },
+      {
+        "path": "references/physical-feedback.md",
+        "sha256": "f93ad64d0aab7e4c3ed914c6ee0accf20d49edb30fe6395bd4d546ca8287601c",
+        "bytes": 9334
+      },
+      {
+        "path": "references/pitfalls.md",
+        "sha256": "4042493a717d45f9fc4f20bd1939a29fd673776094fc7b48c1a19367e845c446",
+        "bytes": 23845
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/review-passes.md",
+        "sha256": "54148440bdb535c13d1ba26baefd006c26e2743de34da8be1d510d22cc920e22",
+        "bytes": 8590
+      },
+      {
+        "path": "references/sequence-craft.md",
+        "sha256": "8f3e311ab1dc82ee5c954beacf68ef68734024e28be102625a46541cedf3aed5",
+        "bytes": 19824
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/sound-craft.md",
+        "sha256": "c5893ec372a806702d04fd09b3ece9f50e688a8f27b02d54515466ee3ff1c791",
+        "bytes": 18909
+      },
+      {
+        "path": "references/sound-narrative.md",
+        "sha256": "04c0b0c0e12f54e6e4b1a2e5923a093233a1cbfe977913f425d37a58bff9fbac",
+        "bytes": 10979
+      },
+      {
+        "path": "references/sound-prompt-craft.md",
+        "sha256": "1dacfd1719f9c1659734faad11e7acd8232bb27e1e0b2723529f08d305594eee",
+        "bytes": 16400
+      },
+      {
+        "path": "references/staging-craft.md",
+        "sha256": "68abb477c784ee8c1d465f7e1dd551bded020a8e95a28b084c9430b7d4de2756",
+        "bytes": 20183
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  },
+  {
+    "stage": "rework",
+    "job": "cross_rework_M7_M8",
+    "query_sha256": "24431b0a88359fde5dafb8b8abb8b10c4c4526c47ba19b5f05677de66360fd6f",
+    "sources": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d0e43537d316a0a67648a3ddfcb3d8aef0b12ffb79287641b54d18294c75b652",
+        "bytes": 5056
+      },
+      {
+        "path": "references/agent-autonomy.md",
+        "sha256": "cc95978924b139789ea3d02dc5f43dbc5b9b150abc6b37b3a4533f6bdf7f5cd8",
+        "bytes": 25462
+      },
+      {
+        "path": "references/blind-reverse-runbook.md",
+        "sha256": "51d47165fd210e6b7c34598e18b6b265d537495cf3f7e7c09fe8f448643af1ff",
+        "bytes": 15042
+      },
+      {
+        "path": "references/character-continuity.md",
+        "sha256": "440053d3ebf37c96f0c5a8b39d33bbb1440ef5a081d055f7f0bd60c1c7c9cb25",
+        "bytes": 19743
+      },
+      {
+        "path": "references/context-dependencies.json",
+        "sha256": "0e6c659ef0f24e5a948059179b3f66f9e7c3ceb17100750a2dbe96d3cd6b13ef",
+        "bytes": 5320
+      },
+      {
+        "path": "references/context-reading.md",
+        "sha256": "757283e8c18ea089b5244dc7a596376113735b023b791b458f50422bbd7569c3",
+        "bytes": 4611
+      },
+      {
+        "path": "references/delivery-engineering.md",
+        "sha256": "536c34304c895f31daa242baaa3911d0470495c940c6448244d9b409d5a5e765",
+        "bytes": 8490
+      },
+      {
+        "path": "references/delivery-review.md",
+        "sha256": "06583c2cc5c9c90e07733ae6a2c9a7ba0aa3d1aad405b107c037a0d3c436a91d",
+        "bytes": 6621
+      },
+      {
+        "path": "references/direction-reasoning.md",
+        "sha256": "2b22b8be35396b8f8c30d6299dc3a208e5ee6b4e0dd6a7d5995770079c542c51",
+        "bytes": 21545
+      },
+      {
+        "path": "references/governance-law.md",
+        "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4",
+        "bytes": 26898
+      },
+      {
+        "path": "references/offline-continuity-entry.md",
+        "sha256": "26b1354044f991e8325236a1f00a0040bc14e86c8a4b24a68d7925a18aaf2d09",
+        "bytes": 10425
+      },
+      {
+        "path": "references/pitfalls.md",
+        "sha256": "4042493a717d45f9fc4f20bd1939a29fd673776094fc7b48c1a19367e845c446",
+        "bytes": 23845
+      },
+      {
+        "path": "references/production-compiler.md",
+        "sha256": "465c805db0df86638e0c3e34ac7ff572693e43794bb96e1f45898aa300eeea85",
+        "bytes": 15033
+      },
+      {
+        "path": "references/reverse-fidelity-contract.md",
+        "sha256": "715e28f6195ae9a463792dbfb954370665d7cba4b11eacddc17354893159d14e",
+        "bytes": 7876
+      },
+      {
+        "path": "references/review-passes.md",
+        "sha256": "54148440bdb535c13d1ba26baefd006c26e2743de34da8be1d510d22cc920e22",
+        "bytes": 8590
+      },
+      {
+        "path": "references/sequence-craft.md",
+        "sha256": "8f3e311ab1dc82ee5c954beacf68ef68734024e28be102625a46541cedf3aed5",
+        "bytes": 19824
+      },
+      {
+        "path": "references/shot-craft-part2.md",
+        "sha256": "f25991da235c9d5bf86a33d010ce4e0c15f7d7ea7d5cbf3f72ff8cc4e109af7e",
+        "bytes": 8032
+      },
+      {
+        "path": "references/shot-craft.md",
+        "sha256": "b92244e8c0935eb5452c297bf2246d01af3d7dd4ccd2e1ba45c57fc423578862",
+        "bytes": 30297
+      },
+      {
+        "path": "references/source-fidelity-mode.md",
+        "sha256": "5202ce9ee5833adea81877e9922cf21d5fa8ace54ececa579b4ded586bc74c7d",
+        "bytes": 5630
+      }
+    ],
+    "method": "Full sources included in actual query file; original query retained in private work evidence. Path/source metadata is not a comprehension certificate."
+  }
+]
