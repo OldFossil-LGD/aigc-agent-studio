@@ -109,9 +109,10 @@
       ],
       "headings": [
         "Changelog",
+        "1.0.1-beta.1",
         "1.0.0"
       ],
-      "sha256": "7264b4b9028fe402e5265f440e57886c4a0d52c8fcab5b248d310dff61497303"
+      "sha256": "dbfc7cfaff06e4faf54f1e9e7a266c613995e02ecc8ecdc73a2e4607599e0136"
     },
     "CONTRIBUTING.md": {
       "role": "publishing",
@@ -139,13 +140,13 @@
       ],
       "headings": [
         "AIGC Agent Studio",
+        "Product preview",
+        "Connect LibTV to your agent",
         "What you can use it for",
         "Try the offline demo",
-        "How the workflow fits together",
-        "Install the Python tools",
-        "Project map"
+        "How the workflow fits together"
       ],
-      "sha256": "56780db95f6b4a118de71399b2e9838962e82d115b64fbac459b2f466975be51"
+      "sha256": "535ef98a990238324c25d41e903b6ef15554e174df21776932e9d799eb28b458"
     },
     "SECURITY.md": {
       "role": "publishing",
@@ -164,13 +165,13 @@
       ],
       "headings": [
         "AIGC 影视工作室",
+        "LibTV 接入前提",
         "共同边界",
         "制作执行链（按已确定的交付终点进入）",
         "按交付终点进入",
-        "最小状态链",
-        "交付前自检"
+        "最小状态链"
       ],
-      "sha256": "61e39acda9cec2f81d831bbcd49fb4dafe9f3e6a940f7afd50c43710a6a747a5"
+      "sha256": "cf8d34e5f382205ec6967d8c87063e5bf491c2a65f99661e5fd8885c6c9ec191"
     },
     "THIRD_PARTY_NOTICES.md": {
       "role": "publishing",
@@ -211,7 +212,7 @@
         "Invalid input is explained",
         "What to review"
       ],
-      "sha256": "2190edb3eba1bcf86adbb1ac194983e19a8e612541358492127928533b98685f"
+      "sha256": "f8a85d5667b6ba8a9f2a634693a9106350bedb2cc3c71a89c773d86c66fa31a4"
     },
     "docs/EVALUATION.md": {
       "role": "documentation",
@@ -259,6 +260,21 @@
       ],
       "sha256": "ed210f0bfea64bc3817d923359b5114800fe3122045a27ba181a3c37df949631"
     },
+    "docs/LIBTV_SETUP.md": {
+      "role": "documentation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [
+        "Connect LibTV to your agent",
+        "Choose a connection",
+        "MCP setup",
+        "CLI setup",
+        "Before production",
+        "Offline demo and Beta coverage"
+      ],
+      "sha256": "0358e269d382a551edab49aa2a38681688e3862ec9cdb972957979a1a1a84208"
+    },
     "docs/PUBLICATION_BOUNDARIES.md": {
       "role": "documentation",
       "domains": [
@@ -281,6 +297,15 @@
         "Choosing a workflow"
       ],
       "sha256": "32fd7dcf55d9ffaf3e8f3e147877cbc5c01ec83206b79d30e24f3e9c73b66ac6"
+    },
+    "docs/assets/public-beta.png": {
+      "role": "documentation",
+      "domains": [
+        "assets",
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "fab708c0a7cea1ed8576544457a050e1549c562cc5ba3eec59906e61102049a9"
     },
     "docs/case-study.md": {
       "role": "documentation",
@@ -838,7 +863,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "24c083abe72102081a44e6463a4e3e7321172381d44621c6c0e53ff6a7d24acb"
+      "sha256": "65d0f7219150697d8492f40a86998f05eaf4551dfd074caaf5a7071414b4965d"
     },
     "references/acceptance-check.md": {
       "role": "active_reference",

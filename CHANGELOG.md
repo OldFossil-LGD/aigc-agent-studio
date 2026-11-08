@@ -1,8 +1,18 @@
 # Changelog
 
+## 1.0.1-beta.1
+
+Public Beta.
+
+- Mark the current public version as Beta and align the package metadata.
+- Link the Public Beta preview with the updated GitHub address.
+- State the LibTV dependency at the start of the README and skill entry.
+- Add MCP and CLI setup guidance, account authorization and read-only connection checks.
+- Explain that bundled Python platform executors invoke the CLI and that the offline demo covers local compilation.
+
 ## 1.0.0
 
-Initial product-focused public release.
+Initial product-focused public upload, subsequently classified as a Beta prerelease.
 
 - Filmmaking skill and reference library for scripts, assets, storyboards and shot prompts.
 - Offline compilers and checks for declared constraints, source evidence and delivery state.

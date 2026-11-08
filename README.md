@@ -1,10 +1,33 @@
 # AIGC Agent Studio
 
-[![Offline checks](https://github.com/dczkv74sh5-cell/aigc-agent-studio/actions/workflows/tests.yml/badge.svg)](https://github.com/dczkv74sh5-cell/aigc-agent-studio/actions/workflows/tests.yml)
+**Public Beta**
 
-A filmmaking skill for AI agents. Use it to develop a script, review a storyboard, plan assets or prepare shot prompts.
+[![Offline checks](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml/badge.svg)](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml)
+
+A LibTV-based filmmaking skill for AI agents. Use it to develop a script, review a storyboard, plan assets and prepare shots for production on LibTV.
+
+**For the production workflow, connect LibTV to your agent through MCP or the LibTV CLI and sign in with your own LibTV account.** Canvas operations, model generation and production execution use that connection. Script review and the offline prompt demo can run before you connect LibTV.
 
 Give the agent a brief in plain language. It uses the filmmaking reference library to work through the task, keeps track of your requirements and checks the result before delivery. The Python tools handle structured handoffs, prompt compilation and offline checks.
+
+## Product preview
+
+[![Watch the Public Beta preview](docs/assets/public-beta.png)](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4)
+
+[Watch or download the preview](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
+
+## Connect LibTV to your agent
+
+Install the complete skill folder in your agent host, then set up a LibTV connection. Your host needs access to the skill files and one of these tool interfaces.
+
+| Connection | What the agent needs |
+| --- | --- |
+| MCP | A remote HTTP MCP client with OAuth support. Add the LibTV server and authorize your own account. |
+| CLI | Shell access to the official `libtv` executable, a signed-in CLI session and access to the project files. |
+
+The Python platform executors included here invoke the LibTV CLI. Install the CLI too when using those scripts, including in an agent that already has an MCP connection.
+
+Follow the [LibTV connection guide](docs/LIBTV_SETUP.md) for official installation sources, authentication and a read-only connection check. Confirm the target account and canvas before allowing platform changes. Media generation needs separate approval and may use LibTV credits.
 
 ## What you can use it for
 
@@ -12,7 +35,7 @@ Give the agent a brief in plain language. It uses the filmmaking reference libra
 - Plan characters, props and locations, then check continuity across shots.
 - Work on storyboards, camera placement, lighting, visual style and sound.
 - Analyze references or revise part of an existing project.
-- Prepare a production plan and, with separate approval, use the LibTV adapters for platform work.
+- Prepare a production plan and execute approved production steps on LibTV through the connected agent.
 
 To use the skill, copy the complete folder into your agent host's configured skill directory and have the agent read [SKILL.md](SKILL.md). Describe the result you want. For example,
 
@@ -21,6 +44,8 @@ To use the skill, copy the complete folder into your agent host's configured ski
 A review task can end with a review. Prompts can be delivered as text. Film production also needs generation approval, current platform information, media review and assembly.
 
 ## Try the offline demo
+
+This example exercises local prompt compilation. To work on a LibTV canvas or generate media, complete the connection setup above.
 
 Install Python 3.10+ and run these commands from the project folder.
 
@@ -54,7 +79,8 @@ flowchart LR
   D --> V[Check actual artifact and current evidence]
   V -->|missing or inconsistent| W[Draft or unresolved review]
   V -->|evidence valid| F[Evidence-reviewed text or plan]
-  F --> P[Separately approved platform and media workflow]
+  F --> L[LibTV connected through MCP or CLI]
+  L --> P[Separately approved platform and media workflow]
 ~~~
 
 The agent considers the library's domains, reads the sources relevant to the task and checks their exceptions before using them. The catalog helps find those sources. Changed or unregistered files require a catalog review and rebuild.
@@ -98,7 +124,7 @@ python scripts/verify_recovery_index.py
 
 The [local verification record](docs/evidence/verification.json) lists the tested source files and commands. Local checks used Windows with Python 3.13.14. The workflow matrix covers Windows and Ubuntu with Python 3.10, 3.11 and 3.13. The badge above links to its current status.
 
-For LibTV, set `LIBTV_BIN` to the executable, install `libtv` on PATH or use a current-user installation. Install the platform CLI separately. The project contains no model or API credential.
+For the bundled platform executors, set `LIBTV_BIN` to the LibTV executable, put `libtv` on PATH or use the official current-user installation. Complete CLI login as described in the [connection guide](docs/LIBTV_SETUP.md). Each user supplies their own LibTV authorization.
 
 ## Project map
 
@@ -111,6 +137,8 @@ For LibTV, set `LIBTV_BIN` to the executable, install `libtv` on PATH or use a c
 | [docs](docs/) | Demo, implementation notes, evaluation and publication details |
 
 ## Scope and limits
+
+This release is a public Beta. Interfaces, documentation and production workflows may change as the project is tested in more agent environments. Report the agent host, connection method and revision when filing an issue.
 
 The offline tools check text, plans and supported declared constraints. Generated motion, contact, clipping and sound need to be checked against actual media. Source selection and artistic judgement still depend on the agent and reviewer. A creator study and finished-media evaluation have yet to be carried out.
 

@@ -2,6 +2,8 @@
 
 This demo compiles a synthetic English brief into a prompt draft. Some compiler labels and boilerplate are still in Chinese. Creators normally give an Agent a natural-language brief. The structured sample lets you inspect the handoff directly.
 
+The complete production workflow is based on LibTV and requires an authenticated MCP or CLI connection in your agent. This demo covers local prompt compilation. For canvas work or generation, follow the [LibTV connection guide](LIBTV_SETUP.md). The bundled Python platform executors require the CLI.
+
 ## Setup and successful draft
 
 Install the requirements in your Python environment, then run this from the project root.
