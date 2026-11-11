@@ -1,14 +1,14 @@
 # AIGC Agent Studio
 
-## Product preview
-
-[![Watch the Public Beta preview](docs/assets/public-beta.png)](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4)
-
-[Watch or download the preview](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
-
 **Public Beta**
 
 [![Offline checks](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml/badge.svg)](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml)
+
+## Product preview
+
+https://github.com/user-attachments/assets/0c283124-e093-463b-9c71-e9a3877c7506
+
+[Download the full-quality film](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
 
 A LibTV-based filmmaking skill for AI agents. Use it to develop a script, review a storyboard, plan assets and prepare shots for production on LibTV.
 
