@@ -4,17 +4,19 @@
 
 [![Offline checks](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml/badge.svg)](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml)
 
+## Product preview
+
+https://github.com/user-attachments/assets/0c283124-e093-463b-9c71-e9a3877c7506
+
+[Download the full-quality film](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
+
 A LibTV-based filmmaking skill for AI agents. Use it to develop a script, review a storyboard, plan assets and prepare shots for production on LibTV.
 
 **For the production workflow, connect LibTV to your agent through MCP or the LibTV CLI and sign in with your own LibTV account.** Canvas operations, model generation and production execution use that connection. Script review and the offline prompt demo can run before you connect LibTV.
 
 Give the agent a brief in plain language. It uses the filmmaking reference library to work through the task, keeps track of your requirements and checks the result before delivery. The Python tools handle structured handoffs, prompt compilation and offline checks.
 
-## Product preview
-
-[![Watch the Public Beta preview](docs/assets/public-beta.png)](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4)
-
-[Watch or download the preview](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
+Every filmmaking task starts with the built-in GrillMe intake. The agent records what you have already said, then asks about missing decisions through your host's clickable question tool. A complete brief can move on without extra questions. If your host has no supported question tool, the agent explains this and asks for your consent to use text choices. The bundled adapter prepares questions and records replies. Your agent host provides the interface. See the [GrillMe workflow](references/grill-me.md).
 
 ## Connect LibTV to your agent
 
@@ -64,7 +66,7 @@ delivery_readiness: DRAFT_REVIEW_REQUIRED
 output: out/demo/13_Draft_Prompt.md
 ~~~
 
-PASS and READY refer to the declared engineering constraints. Final delivery requires a current review record. Removing `--draft` without that record returns a nonzero exit code and creates no current Final. The [demo notes](docs/DEMO.md) include captured output and rejected inputs.
+PASS and READY refer to the declared engineering constraints. Final delivery requires a completed GrillMe record supplied with `--grill` and a current review record. Removing `--draft` without those records returns a nonzero exit code and creates no current Final. The [demo notes](docs/DEMO.md) include captured output and rejected inputs.
 
 The offline demo runs without an API key or LibTV. Agent/model usage and approved platform generation can have separate costs.
 
@@ -72,7 +74,8 @@ The offline demo runs without an API key or LibTV. Agent/model usage and approve
 
 ~~~mermaid
 flowchart LR
-  B[Natural-language brief] --> A[Agent: task and endpoint]
+  B[Natural-language brief] --> G[GrillMe: record known facts and clarify missing decisions]
+  G --> A[Agent: task and endpoint]
   A --> C[Consider domains and select sources]
   C --> R[Read full applicable sources and exceptions]
   R --> D[Task-grounded choices and artifact draft]

@@ -1854,7 +1854,12 @@ def cmd_self_test(argv=None):
 #   站 6.7 的判据缺失 ≠ 交付物有错；而对"只跑剧本/分镜门禁"的人判 FAIL 就是误报（E23）。
 #   缺工具时证据包里对应项记 `未验证`，**绝不拿"看着像"顶替**（L7③）。
 
-import subprocess  # noqa: E402  —— 只用于调 ffmpeg/ffprobe，无网络、无第三方库
+import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc  # noqa: E402  —— 只用于调 ffmpeg/ffprobe，无网络、无第三方库
 
 PLATFORM_BOUNDARY = (
     u"export_readiness.evidenceBoundary: \"Sources are readable; rendering and playback "
@@ -1891,8 +1896,9 @@ def _tool(name):
 
 def _run(cmd, stdin_bytes=False):
     try:
-        r = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                           input=None if not stdin_bytes else subprocess.DEVNULL)
+        r = proc.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                     input=None if not stdin_bytes else subprocess.DEVNULL,
+                     timeout=proc.PLATFORM)
         return r.returncode, r.stdout, r.stderr.decode("utf-8", "replace")
     except Exception as e:                                  # pragma: no cover
         return -1, b"", str(e)
@@ -2204,8 +2210,9 @@ def _run_gate(script, args, stdin_text=None):
     if not os.path.isfile(sp):
         return None, u"找不到 %s" % script
     cmd = [sys.executable, sp] + args
-    r = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                       input=(stdin_text.encode("utf-8") if stdin_text is not None else None))
+    r = proc.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                 input=(stdin_text.encode("utf-8") if stdin_text is not None else None),
+                 timeout=proc.DEFAULT)
     return r.returncode, r.stdout.decode("utf-8", "replace")
 
 

@@ -33,4 +33,9 @@ jobs:
       - run: python scripts/verify_recovery_index.py
       - run: python scripts/audit_prompt.py --self-test
       - run: python scripts/lib_health.py refs
+      # 库体检跑满 46 个脚本自检，约 80–100 秒；只在最低 Python 的 ubuntu 组合上跑，
+      # 避免 6 个矩阵组合各跑一遍。缺 ffmpeg 的组合会自动跳过依赖它的 2 个自检。
+      - name: library doctor
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.10'
+        run: python scripts/lib_doctor.py
       - run: python scripts/compile_intent_delivery.py samples/papercut_empty_shot_intent.en.json --out out/ci-demo --draft

@@ -9,6 +9,8 @@
 
 ## 1 · 任务状态
 
+2026-11-10 补记。下表保留原实施批次状态。P2-02 的源码现已从旧交付包恢复，并接入站 0 与编译器，现行流程见 `references/grill-me.md`。第 3 节第 3 项为历史阻断。
+
 | 任务 | 状态 | 证据 |
 |---|---|---|
 | P0-01 video 引用边 NameError | **IMPLEMENTED / TESTED_OFFLINE** | `tests/test_graph_video_reference_actions.py` 6/6（先红：NameError） |

@@ -19,21 +19,45 @@ import argparse
 import json
 import re
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 from pathlib import Path
 
-import cv2
-import imageio_ffmpeg
+import sys
+
+try:  # 可选视频后端：pip install aigc-agent-studio[video]
+    import cv2
+    import imageio_ffmpeg
+except ImportError:  # 缺后端时模块仍可导入，只有入口拒绝运行
+    cv2 = None
+    imageio_ffmpeg = None
+
+
+VIDEO_BACKEND_HINT = "本功能需要视频后端：pip install aigc-agent-studio[video]"
+
+
+def _require_video_backend():
+    missing = [name for name, mod in (("cv2", cv2), ("imageio_ffmpeg", imageio_ffmpeg)) if mod is None]
+    if missing:
+        print("%s（缺 %s）" % (VIDEO_BACKEND_HINT, ", ".join(missing)), file=sys.stderr)
+        return False
+    return True
+
 
 
 def ffmpeg_scene_times(video: Path, scene: float) -> list[float]:
     exe = imageio_ffmpeg.get_ffmpeg_exe()
-    proc = subprocess.run(
+    finished = proc.run(
         [exe, "-hide_banner", "-i", str(video),
          "-filter:v", f"select='gt(scene,{scene})',showinfo", "-f", "null", "-"],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
+        timeout=proc.FFMPEG,
     )
-    text = proc.stdout.decode("utf-8", "replace")
+    text = finished.stdout.decode("utf-8", "replace")
     return sorted(float(m) for m in re.findall(r"pts_time:([0-9.]+)", text))
 
 
@@ -68,6 +92,8 @@ def contact_sheet(video: Path, times: list[float], out: Path, width: int = 240):
 
 
 def main() -> int:
+    if not _require_video_backend():
+        return 2
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
     ap.add_argument("--shots", required=True)

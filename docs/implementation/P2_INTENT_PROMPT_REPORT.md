@@ -35,6 +35,8 @@
 
 ## 3 · GrillMe（P2-02）
 
+2026-11-10 补记。已从本项目旧交付包恢复原实现，接入当前编译器并增加宿主提问适配。现行用法见 `references/grill-me.md`。下面是当时缺少源码的历史记录。
+
 **`N/A_IN_THIS_REPO`**：`scripts/grill_session.py` / `grill_bank.py` / `grill_ledger.py` 与
 `schemas/creative_intent_contract.schema.json` 在本仓库不存在（见 CURRENT_STATE §1）。
 本仓库的意图入口是 `intent-handoff/v1`（`scripts/intent_handoff.py` + `schemas/intent_handoff.schema.json`），

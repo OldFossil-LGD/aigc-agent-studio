@@ -30,8 +30,10 @@ deliverable = mirror            忠实镜像；必须给 source_graph_path，产
 
 ## 2. 命令
 
+先按 `references/grill-me.md` 完成站 0，产出当前任务的契约或台账。常规 CLI 缺少或未通过 GrillMe 会拒绝编译，`--allow-gate-fail` 不能绕过。显式 `--draft` 用于离线工程诊断，可省略台账，传入台账时仍要校验。
+
 ```powershell
-python scripts/compile_production.py input.json --out out/
+python scripts/compile_production.py input.json --out out/ --grill grill.json
 ```
 
 产物：

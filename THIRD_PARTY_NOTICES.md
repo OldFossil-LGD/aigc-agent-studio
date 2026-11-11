@@ -15,7 +15,7 @@ The project uses MIT with copyright held by jiangchenxi. The upstream notices be
 | Other research, papers, platforms and unlicensed repositories | The per-book bibliographies and sources-and-credits describe method/fact synthesis, terminology or examples | Existing claims of synthesis/no copying have not all been audited against originals. Owner must check rights, quotations, factual support and redistribution scope; this release does not grant them MIT status |
 | Ruff; MarkItDown README | Organizational reference only | Value/demo/setup structure informed this README. No code, images, test numbers, endorsements or badges were copied |
 
-The full attribution record is in [sources-and-credits](references/sources-and-credits.md), with additional sources in individual books. Historical license assertions there still need verification. Distribution rights for film frames, artworks, voices and likenesses require separate review. This candidate includes no new film/image demo assets.
+The full attribution record is in [sources-and-credits](references/sources-and-credits.md), with additional sources in individual books. Historical license assertions there still need verification. Distribution rights for film frames, artworks, voices and likenesses require separate review. The repository includes the promotional preview image `docs/assets/public-beta.png`. The README links to a promotional video distributed as a GitHub release asset. Their source materials belong in the asset rights review.
 
 ## Recorded upstream license notices
 

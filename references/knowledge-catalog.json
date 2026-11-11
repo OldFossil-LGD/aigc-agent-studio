@@ -92,7 +92,7 @@
         "workflow_governance"
       ],
       "headings": [],
-      "sha256": "d7605fe1494103287c14d2414afe06ac2bc4eb155c1e548ce70566c92021108c"
+      "sha256": "4091aae42d273d57d702600128fde35943b6d2d60abf6aa51ef0feede5e42a93"
     },
     ".gitignore": {
       "role": "publishing",
@@ -109,11 +109,12 @@
       ],
       "headings": [
         "Changelog",
+        "Unreleased",
         "1.0.1-beta.2",
         "1.0.1-beta.1",
         "1.0.0"
       ],
-      "sha256": "cc26cde1f5011cfa9c4f865953bc019be354f45efca558485ecfc2fcce10c63c"
+      "sha256": "109ff6dfc8e10773809bb38de1d3d8a859634a39b8e91a98dc39ad85246393dd"
     },
     "CONTRIBUTING.md": {
       "role": "publishing",
@@ -147,7 +148,7 @@
         "Try the offline demo",
         "How the workflow fits together"
       ],
-      "sha256": "535ef98a990238324c25d41e903b6ef15554e174df21776932e9d799eb28b458"
+      "sha256": "b6e8e885de46e1edc1d4f1b8b04dfdc529a7c9a702f0a83a29235435fa4529c3"
     },
     "SECURITY.md": {
       "role": "publishing",
@@ -166,13 +167,13 @@
       ],
       "headings": [
         "AIGC 影视工作室",
+        "站 0 · GrillMe（所有影视制作前的共同入口）",
         "LibTV 接入前提",
         "共同边界",
         "制作执行链（按已确定的交付终点进入）",
-        "按交付终点进入",
-        "最小状态链"
+        "按交付终点进入"
       ],
-      "sha256": "cf8d34e5f382205ec6967d8c87063e5bf491c2a65f99661e5fd8885c6c9ec191"
+      "sha256": "f61e253a6b5d8a94ed5e737830a4997c4b02fff220995ff54403e77d157905ce"
     },
     "THIRD_PARTY_NOTICES.md": {
       "role": "publishing",
@@ -187,7 +188,7 @@
         "ifeihong/aigc-film-studio",
         "higgsfield-ai/skills"
       ],
-      "sha256": "2aa3475823accb0782ddb1667f2d3e8b5484f621ee6e39d3b1693f6b33c65d6e"
+      "sha256": "4e53b51172f1de34a41052abe8ce16759c6bb36b8290d1dc36b5f25e542e3f1c"
     },
     "docs/CONTRIBUTIONS.md": {
       "role": "documentation",
@@ -229,7 +230,7 @@
         "Empty-scene regressions",
         "Creator study protocol (not yet performed)"
       ],
-      "sha256": "d2f35922a77b218f9b7c578e7ddf3e3b53bdd417000d096d7674f0285248947f"
+      "sha256": "3e2717cf172c18dc8f4487cf937c54a94a7b07c5f26e2add04faa7e15ea6df9c"
     },
     "docs/GOAL_12Block_Refactor.md": {
       "role": "documentation",
@@ -259,7 +260,7 @@
         "3 · 阻断与待完成项",
         "4 · 变更日志"
       ],
-      "sha256": "ed210f0bfea64bc3817d923359b5114800fe3122045a27ba181a3c37df949631"
+      "sha256": "87378c474fdec05de2af3b087e23ca299d7237bb1dfd8e52780bf94ae53dbd81"
     },
     "docs/LIBTV_SETUP.md": {
       "role": "documentation",
@@ -671,13 +672,13 @@
       ],
       "headings": [
         "变更与决策记录（CHANGELOG_AND_DECISIONS）",
+        "2026-11-10 本地维护",
         "2026-10-31",
         "修复",
         "新增",
-        "决策",
-        "兼容性"
+        "决策"
       ],
-      "sha256": "f1cf541752c5d3e75c8d7f1ed1ac5200c1a02f0914fc51a20a7b5401ac1d8443"
+      "sha256": "683aec7ce15e79713e779595151b7567f846fffd67db251d8255f00e7bfbc47c"
     },
     "docs/implementation/CURRENT_STATE_AND_BOUNDARIES.md": {
       "role": "documentation",
@@ -686,12 +687,13 @@
       ],
       "headings": [
         "实现状态记录（CURRENT_STATE_AND_BOUNDARIES）",
+        "2026-11-10 补记",
         "1 · 审查对象与本仓库的差异",
         "2 · 本轮实际执行过的检查",
         "3 · 状态口径",
         "4 · 执行范围"
       ],
-      "sha256": "3779ee61390c7a9cd054b814b7a80c45ba92ce604d55b5b948b0b8648ad26fa2"
+      "sha256": "4baf37ea55de37c7d9393520beaa8e4db5beb09aac86d3eff5efc8396ba72791"
     },
     "docs/implementation/P0_FIX_REPORT.md": {
       "role": "documentation",
@@ -736,7 +738,7 @@
         "4 · Rule Registry（P2-05）",
         "5 · 测试"
       ],
-      "sha256": "3de3ebf60c7d3d465b7c0b6e855c31f68349fe557f048792338c6c533618fd2e"
+      "sha256": "3234edecb515190b13a6a54031017aee040f620ccff524bdfa7dddeb9378b84b"
     },
     "docs/implementation/rule_registry.json": {
       "role": "documentation",
@@ -835,6 +837,14 @@
       "headings": [],
       "sha256": "9fb0c0035d1efa35835f138d6ed94fb79b16c839328014dbdf4cd64124499f6e"
     },
+    "evals/mutation_cases.json": {
+      "role": "evaluation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "ccb3a47117765f5fea518ca1231586d9344976072b385c9839b34fbce429167a"
+    },
     "evals/reverse_fixtures.json": {
       "role": "evaluation",
       "domains": [
@@ -858,13 +868,21 @@
       ],
       "sha256": "95c6345b4dbc59e2dbdd9f15e2cbd31386963f8540f2cced4025df34ec70ffd5"
     },
+    "examples/grillme_walkthrough.py": {
+      "role": "publishing",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "0f3ab58928a9c7c4b4c10e754b65045d1deaf99cbf01c239181f177f7c68cd01"
+    },
     "pyproject.toml": {
       "role": "publishing",
       "domains": [
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "6e5573e762eef3f03f61372348c17d94f0e709f0415f9956ea879136c3ef9e20"
+      "sha256": "1605ac10c2c06d8d52a853f921c5d86003c9cdb385bf3108c96d83fe8fb444ca"
     },
     "references/acceptance-check.md": {
       "role": "active_reference",
@@ -1478,7 +1496,7 @@
         "Text-only review and other planning endpoints",
         "Non-negotiable boundaries"
       ],
-      "sha256": "06583c2cc5c9c90e07733ae6a2c9a7ba0aa3d1aad405b107c037a0d3c436a91d"
+      "sha256": "8a3910285356f84b3f1eb6d8212a86ac35e4d5231aacca347688bc1231fdc6e0"
     },
     "references/direction-reasoning.md": {
       "role": "active_reference",
@@ -1932,6 +1950,21 @@
       ],
       "sha256": "8fb982fb2ee15153331aa06591ec8dd69c8af42949a8233aa1cb85ac9cc677b9"
     },
+    "references/final-delivery-audit.md": {
+      "role": "active_reference",
+      "domains": [
+        "editing_delivery"
+      ],
+      "headings": [
+        "交付前最终审计",
+        "最后一道环节",
+        "逐项审阅范围",
+        "机器审计入口",
+        "权威交付契约",
+        "正式提示词的两阶段交付"
+      ],
+      "sha256": "50b2fb05afec8b905bfcc438e33c51e02530da7adc17b62ef136d692b31fd66f"
+    },
     "references/governance-law-part2.md": {
       "role": "active_reference",
       "domains": [
@@ -1972,6 +2005,21 @@
         "L1·补 · 外部输入的检阅：**提炼式 ≠ 过账式**（2026-09-21 实测）"
       ],
       "sha256": "6a2441f28b5e3935fe73d938e5c5bd7817bb95281d939f8a7ad63cfc6cd74bf4"
+    },
+    "references/grill-me.md": {
+      "role": "active_reference",
+      "domains": [
+        "workflow_governance"
+      ],
+      "headings": [
+        "开拍前审问（GrillMe · 创作意图澄清引擎）",
+        "一 · 它解决什么",
+        "二 · 八个意图维度（外加生产闸）",
+        "三 · 一次一个主问题，L0/L1/L2",
+        "四 · 每轮 UX 与「你定」",
+        "五 · 来源、锁定与修订"
+      ],
+      "sha256": "aa23985eb815e12a33d23a27e63cfa5342b67bf1b3d8be1876f9f5e823f87e29"
     },
     "references/key-decisions-part2.md": {
       "role": "mixed_reference",
@@ -3169,7 +3217,7 @@
         "2.6 任务范围与提前停止（task_type）",
         "2.7 无对白与声音"
       ],
-      "sha256": "4a84853a140baaf31ee6bbfe68fce738fda1b8c28a0b35b4c490e71ba975dea5"
+      "sha256": "1bc3356c2f9e5f44ad9c4be27d53ad119551b7b01e743cacf781f93969d1481e"
     },
     "references/production-ledger.md": {
       "role": "active_reference",
@@ -3391,13 +3439,13 @@
       ],
       "headings": [
         "执行清单（**Agent 自主版** · 十站 · 接到活先读这一份）",
+        "站 0 · GrillMe 创作意图收敛",
         "一、先判档并确定状态终点",
         "二、七站",
         "站 1 · 命题（**最上游。跳了必\"正确但空心\"**）",
-        "站 2 · 可行性门 + 一页 brief",
-        "站 3 · 风格编号 + 拍摄方案包（**写任何提示词之前**）"
+        "站 2 · 可行性门 + 一页 brief"
       ],
-      "sha256": "f01757bc813234b1dba660000886e6f2201f85218c75d04c41342f12706d9e03"
+      "sha256": "c588cec7c72960684b8880ad4a959479d4f93b00f8c9b9b8fbf6c7b544b0f4ec"
     },
     "references/script-agent-handoff.md": {
       "role": "active_reference",
@@ -3789,7 +3837,7 @@
         "原话到可编译交接",
         "3. 产物与停止点"
       ],
-      "sha256": "44aecfcf03c0f4fa8ac0a77f056c05adaf1a18e690a0c9756be13801b835cffd"
+      "sha256": "f8b5c4ce12eeeb2389b80c362f64e0fb486d54e26cbf883be0b8d2bb545ee222"
     },
     "references/stage1-recovery-index.json": {
       "role": "active_reference",
@@ -5147,7 +5195,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "29cb6b4d35cc209d93c9bf7d661718e580920c55173cc38d3c9d427bf564a825"
+      "sha256": "1af236bcc8b95999bcb3359b07ef6e3e7b314a4707af9e0fedb0ddd24b560650"
     },
     "samples/craft_pairs/intents/P1_purpose_a.json": {
       "role": "sample",
@@ -5273,6 +5321,15 @@
       "headings": [],
       "sha256": "132522da7bebe406d84da9f9678d4a65659adf19f19c478df9fdbb82c6f63247"
     },
+    "samples/grill_ledger_papercut_prompt.json": {
+      "role": "sample",
+      "domains": [
+        "editing_delivery",
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "f7d4190cb19a0467602de758becfe4d04378585bf308bc2fdd1341923f623ada"
+    },
     "samples/one_sentence_intent.json": {
       "role": "sample",
       "domains": [
@@ -5341,6 +5398,14 @@
       ],
       "headings": [],
       "sha256": "b47e7e5685635205a503de17fd05b9547e95a98dc8129c3b8ae4480494955e07"
+    },
+    "schemas/creative_intent_contract.schema.json": {
+      "role": "schema",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "ba2b590a71a94b8fa1297c2f53e7b768398da5a9d8b40fb5c987a3609be37e34"
     },
     "schemas/filmdsl.schema.json": {
       "role": "schema",
@@ -6099,7 +6164,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "99d01b8717aab3e24bf9c33f6b43cffa087c33f67ff43e4b059765124819545e"
+      "sha256": "2bac5b2dcd10402214879a50718274948c1dc3b8ba7b724dc1d0b132a4e6308f"
     },
     "scripts/asset_manifest.py": {
       "role": "implementation",
@@ -6193,7 +6258,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "edbe1511d398de09c982745665e0e07c1463f11de6a377a957ed3a11905a3654"
+      "sha256": "d0e4350570d640339134f4f16c4bc302831746e029f8ce4585c38d0484425adf"
     },
     "scripts/compile_libtv_commands.py": {
       "role": "implementation",
@@ -6209,7 +6274,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "d9915fdb1fdcfbec70d3076b7b02752de710a67a7c936a9a69abed5a2da38bfd"
+      "sha256": "4be32eb57aa99b704598da0c481cd5c2d55346777e4588c946d1e84b93268c7f"
     },
     "scripts/compile_production_contract.py": {
       "role": "implementation",
@@ -6252,7 +6317,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "41cbdb89c90624ef046cc365911766510aca6c0a1dadce8f6a7ff532237cb00d"
+      "sha256": "8efeab4caa7764789d4afa7993561aaaf719b81f61e27d5bb841496244991564"
     },
     "scripts/constraint_semantics.py": {
       "role": "implementation",
@@ -6270,6 +6335,15 @@
       "headings": [],
       "sha256": "f37e768f95c3e452c375ceea3eebb75f01e100fba9a6ebfc79d761c48cd55603"
     },
+    "scripts/delivery_contract.py": {
+      "role": "implementation",
+      "domains": [
+        "editing_delivery",
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "037aa5803849e9134354599831c63f661158ef02300275ec3544b008cdb4a543"
+    },
     "scripts/delivery_review.py": {
       "role": "implementation",
       "domains": [
@@ -6277,7 +6351,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "355aa11a6c9c203f98d0ef71fa8f6c9c9b09bbf5be17837753f026d0c6b40e51"
+      "sha256": "3c8d26b5b6e11674205e8e80ed06b724b19d4e7ce56bd2ac0e684dff07a30713"
     },
     "scripts/error_contract.py": {
       "role": "implementation",
@@ -6302,7 +6376,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "4976b67d2e4454a7cb8fc60c0b7c1aca6e80c6db716f688787827288a50c7044"
+      "sha256": "d9351c7be01d0d4152db2c4bf9f5735d5236f9701c47ac9913b432ff930af1e7"
     },
     "scripts/film_qc_gate.py": {
       "role": "implementation",
@@ -6310,7 +6384,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "6c6c583c19d3790643e294c7d63bd9e9cf34898586ed62d809f0a473809ee6b1"
+      "sha256": "0ca68e2f72b317cf0baa36e4459d6432a90453046bda7f0bfca3048c8777492e"
     },
     "scripts/filmdsl_bridge.py": {
       "role": "implementation",
@@ -6320,6 +6394,15 @@
       "headings": [],
       "sha256": "9d7865c3c714e6d92ff42ff44b32fb545ffc54de954da67e3fbe9a5fb2892e5b"
     },
+    "scripts/final_delivery_audit.py": {
+      "role": "implementation",
+      "domains": [
+        "editing_delivery",
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "af105e97c3903bc2587e7192df35a02953df0d6e498a68c9dc2fd47763a1bfe0"
+    },
     "scripts/graph_plan_lint.py": {
       "role": "implementation",
       "domains": [
@@ -6327,6 +6410,38 @@
       ],
       "headings": [],
       "sha256": "1d9981a49b4e857cb9c9c820c4ce739ce1f7c21656c3912082283b87f2f660ae"
+    },
+    "scripts/grill_bank.py": {
+      "role": "implementation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "566f4f9b20b5d5f540c3e26e27a4f788d5eb5e075eafbb95a8f262bf21d90a80"
+    },
+    "scripts/grill_ledger.py": {
+      "role": "implementation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "8b5a8e72e442d039f185ad2dc0a63e19690d331ef32914c47f63bee6e9128b40"
+    },
+    "scripts/grill_session.py": {
+      "role": "implementation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "cf95d50dd03af431b8f68111a502d3eb8800f37c4e1d432d715db10492805f0c"
+    },
+    "scripts/grill_ui.py": {
+      "role": "implementation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "49fd206aee6768cbc5bd4783fccce8110f940c9681b34fdd354d804b75bd8b0d"
     },
     "scripts/intent_handoff.py": {
       "role": "implementation",
@@ -6360,7 +6475,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "77ca7771e885ab69578ebea51fe79bb861cda2cf20ae9c00bbfa4839aafaf84e"
+      "sha256": "c9e05a00d3b993af5b529c8fbd07af3b7f5039ff6da3e84add1f0a50221b2c26"
     },
     "scripts/lib_health.py": {
       "role": "implementation",
@@ -6368,7 +6483,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "f0c5b3384f2b13eb13aa6385f38eed1812dbcbcb25f697c4572d8ee2af3990ea"
+      "sha256": "fb2287413d99b6d3c564afdb4fc78d5222c5fe42a712ce78851ec7ec85b5fb44"
     },
     "scripts/libtv_canvas_build.py": {
       "role": "implementation",
@@ -6376,7 +6491,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "3f51f1c5001aba3c756efec9e65e288fd44e416ab6aed4f53af07823eb0991cf"
+      "sha256": "224779bfe6dc7b01151717bb63ab9d752c735aef21d0b666e44d1a05384a1629"
     },
     "scripts/libtv_model_rules_gate.py": {
       "role": "implementation",
@@ -6392,7 +6507,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "2b09d86337f717bae88a76f3b7c35296d39e8328252178e0a9dde1be231b4b0b"
+      "sha256": "0fe80e21b3c1fbf64108c51ca5a28451f6a47287755e190841d5f4f94d302e64"
     },
     "scripts/libtv_schema_sweep.py": {
       "role": "implementation",
@@ -6425,7 +6540,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "ec0f0d2fcd582ca0bfb1f2201919c67dbc77578ee4effa4f4ca2036cbd747004"
+      "sha256": "772bc42c8b2de079d0aabc07460069a7b8b0e75b62cdf0c45472d7fb639b0391"
     },
     "scripts/model_adapter.py": {
       "role": "implementation",
@@ -6442,7 +6557,7 @@
         "motion_physics"
       ],
       "headings": [],
-      "sha256": "68de640ce350a6daf4895c00a3b5c262d3068f8b3850693a44a3283358b1e8ea"
+      "sha256": "cfd15cf3d06286f3a330c2b14935d832dacdeb56ed2710213a09ad65800d02ef"
     },
     "scripts/mutation_check.py": {
       "role": "implementation",
@@ -6450,7 +6565,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "92c7554afaf5757849234604439357813614f6777b26fa2c623a22765d61ba3d"
+      "sha256": "54023cbc2dc0462cd24fe665952b18da71caa7a667c5eae1e7d9da27ca676aca"
     },
     "scripts/numbering.py": {
       "role": "implementation",
@@ -6467,7 +6582,15 @@
         "look_lighting"
       ],
       "headings": [],
-      "sha256": "be0e9d0b5b15693312a5993f945b2e00474afad9c449aca8b4e689876ec24103"
+      "sha256": "86117f588200e12160a5fe63f153757c16d2e95ba255d3366b8657f7dc6b135b"
+    },
+    "scripts/proc.py": {
+      "role": "implementation",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "01bbeb7b6727aaff62e4845efc0c2ffad3029b1eb91d47999ac7b7800106d210"
     },
     "scripts/production_capability_gate.py": {
       "role": "implementation",
@@ -6491,7 +6614,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "07a6dade92d92a5e228982bdb417bbc8a611ec32e3f7c05a69f1c10fa97c4fde"
+      "sha256": "d26987687a9e295c09e18db77e407f9413cc49ede65adbe798586116b3ee7ca3"
     },
     "scripts/production_regression.py": {
       "role": "implementation",
@@ -6577,7 +6700,7 @@
         "reverse"
       ],
       "headings": [],
-      "sha256": "2b12e4c4524217b50a9361a59023f57a61997a79031a509341ff0095710d51d1"
+      "sha256": "b8740376672b20cf5bca5352adc3791e51b1893bbcc69dad23884c503c882798"
     },
     "scripts/reverse_regression.py": {
       "role": "implementation",
@@ -6596,7 +6719,7 @@
         "reverse"
       ],
       "headings": [],
-      "sha256": "d9c342ff2be013a91749af09cb2082cc407dbf3f39e0a72aaa10008fb49da2cd"
+      "sha256": "3fc45c39fd6d92c26bfc34ba1d43193783fbdbeeee2e78d84b1a7a16b3f25a6a"
     },
     "scripts/rule_registry.py": {
       "role": "implementation",
@@ -6665,7 +6788,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "34980015b4c9cd23906488f65321c9dcf2f78fb2df91dc9c323ae35b32e04f07"
+      "sha256": "16b579524a7a9072c22a0b0f2e8fdd3f2387445b59b602aee0569b348eebb720"
     },
     "scripts/subtitle_bands.py": {
       "role": "implementation",
@@ -6673,7 +6796,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "0ec4bbf32bf79e88ce0cd507c8a61e81df0adf31fd8f6509d0054569668beec4"
+      "sha256": "1326d1d72db5358719f849a03fc0876dd3ff8b327aae9e33aa78d0f23869a0cc"
     },
     "scripts/three_work_regression.py": {
       "role": "implementation",
@@ -6714,7 +6837,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "126bd4c1f0373ddf8ed1be6f1044a2332551412d134a9caa0d9da0706597f2f3"
+      "sha256": "5c56ca398cd9e94516455883a7ef78424ffee7716e4204deb9bd98eb8b04deb8"
     },
     "scripts/work_profile.py": {
       "role": "implementation",
@@ -6730,7 +6853,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "859d70ef3a2046830c33a40cee1e7d49fe4a638ac28d8dfbfa0250786add29c7"
+      "sha256": "f8496d22acaa2385a8feb26a49a1c03b3a3adc395fe0aa3cdb60573f2bd30157"
     },
     "scripts/workflow_graph_ir.py": {
       "role": "implementation",
@@ -6747,7 +6870,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "3fb5278499008f7e22f66cd5801d8b6835f2929de28a31ddfd6589cc10bc0abf"
+      "sha256": "c4733a6de3cfae85122d505a89a1b2a70f3490e82aba10eaca2586704e98d883"
     },
     "tests/__init__.py": {
       "role": "test_support",
@@ -6981,13 +7104,37 @@
       "headings": [],
       "sha256": "688dd99280d798d5133f3d5a043d42cbe5ffa32ab07a7c5afafa02a50185e8cb"
     },
+    "tests/fixtures/libtv_platform_projection.json": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "7303fb88cfc59401fe4d7f0c7df980c7cad0542ee1cce24432106b28600689e0"
+    },
     "tests/review_fixture.py": {
       "role": "test_support",
       "domains": [
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "9b8f0f77a4d47eb9056985a34b3b1d1b3392de17eed4a6ec50c20fa5b0ae9245"
+      "sha256": "3e160275071c8b65ca5f00be142d80397159ab526136f8748024630695c57cec"
+    },
+    "tests/test_age_fact_unit.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "6ae497299e8827cda1755d7d928bfded4a9f99f6ebc0155317cfd079691a3c45"
+    },
+    "tests/test_ambiguous_inventory.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "3d687afe9f3b9403aaf8f4540caed491209fdffef745155a4223156112041e3b"
     },
     "tests/test_apply_libtv_plan.py": {
       "role": "test_support",
@@ -7024,6 +7171,14 @@
       "headings": [],
       "sha256": "047acc6826c022212e092815970277fbcb903fd2997006d2a84ddd3b574f344a"
     },
+    "tests/test_audit_recheck_repairs.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "8a912f7a7921844018fae4532f8957fb8ed94bb588092ac57d7afa3945d05fea"
+    },
     "tests/test_audit_state_snapshot.py": {
       "role": "test_support",
       "domains": [
@@ -7040,7 +7195,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "dcc8125763e44dbc6b60e49ecca9c62a78e2e5b25f382bc6a85758897b9394cf"
+      "sha256": "590a361e2dd30f8d2905a8ddbba8e3d4a1ba82da9d80e34459859115d478ee24"
     },
     "tests/test_breakdown_dialogue_preservation.py": {
       "role": "test_support",
@@ -7058,6 +7213,14 @@
       "headings": [],
       "sha256": "baa9c4f931b3a331af60509305a3d046a8391167ec835cfd1d1bde45789413ef"
     },
+    "tests/test_canvas_position_verify.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "b001c6f6e30a2a82064489920739c1fb70799489e48f84fb92da867048d815c1"
+    },
     "tests/test_canvas_preparation.py": {
       "role": "test_support",
       "domains": [
@@ -7066,6 +7229,14 @@
       "headings": [],
       "sha256": "ed4f4138a13e7c0c0b8c0ee1517f0146785b400048ed6b93f438cd31a4d4c80a"
     },
+    "tests/test_canvas_validation.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "565abbe37008b566d0842b5814f198ba9693c6cd1cc443897e4e43df7e6a3459"
+    },
     "tests/test_catalog_domain_regressions.py": {
       "role": "test_support",
       "domains": [
@@ -7073,6 +7244,14 @@
       ],
       "headings": [],
       "sha256": "f22e6ea3330044a00c7659db48c2898a54ba235a83ae31bc07ae5dc97342f4e3"
+    },
+    "tests/test_collision_hint.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "63f54fc0d2c3ebac6127bc1a13248d5d8af645fad305bd589b3a5e017d1b17e6"
     },
     "tests/test_constraint_and_offline_status.py": {
       "role": "test_support",
@@ -7098,6 +7277,14 @@
       ],
       "headings": [],
       "sha256": "8c0c0aeecbe1a109f27c42e56cd5b49ce8c040961115139e9b013a0646f38fce"
+    },
+    "tests/test_coord_arguments.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "4c38d950918462acb0d2bbdd0184953e399a850c8f975ccc24ca4fab1c8ae2eb"
     },
     "tests/test_craft_delivery.py": {
       "role": "test_support",
@@ -7151,6 +7338,15 @@
       "headings": [],
       "sha256": "bb429d9705b10df5f76576baed5d670b01ad6c9f194f4729dca928eb4a0927d0"
     },
+    "tests/test_final_delivery_audit.py": {
+      "role": "test_support",
+      "domains": [
+        "editing_delivery",
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "60b4ea01d9d2934c4c13e199bc0daa90e77b5bd9e0f492a30e442741e1529d71"
+    },
     "tests/test_fixed_camera_semantics.py": {
       "role": "test_support",
       "domains": [
@@ -7167,6 +7363,14 @@
       ],
       "headings": [],
       "sha256": "27499c1408912101313e4c6a7d503fdcf2168b4bf4b335479f4a9b186db1d24e"
+    },
+    "tests/test_gate_sweep.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "b8e0eb55c8daa0c4837829f236b56b51327dc276caab300b5db749d74a577bb1"
     },
     "tests/test_graph_difference_regressions.py": {
       "role": "test_support",
@@ -7199,6 +7403,38 @@
       ],
       "headings": [],
       "sha256": "daaf0d912af404f175a8bb49eb76bd06cf5d25fada75b6123bf02dcce2a5daf2"
+    },
+    "tests/test_grill_ledger.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "ab8664fb4d4e3e89b2195a040b32dbb34556b9609d16c52654a377957667f505"
+    },
+    "tests/test_grill_persistence_guards.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "3a4674b645ab0f536adaaa695a51595294bd8b0113f909b7608765fe320a1444"
+    },
+    "tests/test_grill_session.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "9ae89d217b0059391219aca6a8abaef01e590f2353ffd621690961ae12b62260"
+    },
+    "tests/test_grill_ui.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "363e78b2768189b17b0303415b4fc6c52012c8b7c5aa90f2a5da64395afdeaf0"
     },
     "tests/test_handoff_shape_reference.py": {
       "role": "test_support",
@@ -7241,6 +7477,30 @@
       "headings": [],
       "sha256": "4a02bb558598344396a887ceb85faef8ed28336b816ceea272c8dfb0111202aa"
     },
+    "tests/test_labelled_facts.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "d7a666a9039f746dee2eccdb33a271227faaa8111b2f50ab0b4da9e2797a60fb"
+    },
+    "tests/test_lib_doctor_health_checks.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "a7a120d190be36e1438ebc3b5153e595aacfc031ee28b76bdc4d64496f66a232"
+    },
+    "tests/test_lib_health_citations.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "cf3857c45545835a983842a64f70ad8d0539876aa577d94ac335ba024f4984cb"
+    },
     "tests/test_libtv_binding_uniqueness.py": {
       "role": "test_support",
       "domains": [
@@ -7255,7 +7515,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "d463a8776548c40e754b49236fe60dcb0bef02a77a334de2ce637789a396280c"
+      "sha256": "53560c894127e45a56fc7ac23b04e2679a9681ce8ae402696d9905dc35a86a87"
     },
     "tests/test_media_qc_entry.py": {
       "role": "test_support",
@@ -7265,6 +7525,46 @@
       "headings": [],
       "sha256": "6c3e2e07dbbb85830bb5c1e7cc9e8584dfbe7aeea1b4dbf1efd688e2e433b846"
     },
+    "tests/test_missing_artifact_label.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "1d02caacfff7122218adcf9d6b13577f649a70b6921b48c84ba591614347e238"
+    },
+    "tests/test_model_schema_integrity.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "581cd7bc7ec0b8d124e6d0fe8d55b54d5cbc8dcecd8b7c02df8abe6d2ab10735"
+    },
+    "tests/test_model_schema_shape.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "49f95ad16efe6dd05134e8f0c4c6b47382bf751028958dd8d75755ea6a46cc60"
+    },
+    "tests/test_mutation_restore.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "1dc9c9bdea8984a0559e37f6d8c9b72c522db79fdf6b2a0b7bc7c1066a6c56cc"
+    },
+    "tests/test_name_projection_paths.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "0210b93ffd162aba2a6f97b15ad89bd672daf463a5658627ca45aebc917287bc"
+    },
     "tests/test_no_dialogue.py": {
       "role": "test_support",
       "domains": [
@@ -7272,6 +7572,47 @@
       ],
       "headings": [],
       "sha256": "43ed24a7c46088d4924c478138e6f717321a2aae6b7f7b1bbed08707f7306e9b"
+    },
+    "tests/test_no_literal_none.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "f8346d116b5a9b19e73f19fabaa83c93af3c57341f325a9ad6a4e15c0bca3139"
+    },
+    "tests/test_node_detail_key.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "e65f1a7c78229c80073a2575233a5d60515ae86a0f201715d25a8140e46a1040"
+    },
+    "tests/test_node_params_lookup.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication",
+        "look_lighting"
+      ],
+      "headings": [],
+      "sha256": "180ecf55542bc705cd18c59e27d353f446180ed629bbd0393290408d641ef083"
+    },
+    "tests/test_node_projection.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "48be0353826236c52e5356c231909aa8fbb53fb30587f5a2ff74fd972aac2c02"
+    },
+    "tests/test_optional_video_backend.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "979543706256ceea9fb09357b1fc2d3b6b58c6922f0e89c0ada88ad6790b3d62"
     },
     "tests/test_orchestrator_planning_integrity.py": {
       "role": "test_support",
@@ -7290,13 +7631,29 @@
       "headings": [],
       "sha256": "b0642107506c2a19e8d71625ec94d34e4a8c59a866aa20ddff03efcb1705e432"
     },
+    "tests/test_platform_projection_contract.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "960bf892ff2ea7705504c600ffa98fb1e09758ee79b3776b9403f416f213dbe1"
+    },
+    "tests/test_proc_timeout.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "c72d8b462f8f449967d26030b83bb8490652d87168ef8a8053bc4508d8a20852"
+    },
     "tests/test_production_cli.py": {
       "role": "test_support",
       "domains": [
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "6535088d7c42c4d911ea7929d9ca28a7d2c335f5fe7af1dac13233fbb5981650"
+      "sha256": "48508cc5dead6a265b0bf1fbb36612ac0262263258b8ce8b55ea7f3e05d3131d"
     },
     "tests/test_production_compiler.py": {
       "role": "test_support",
@@ -7387,6 +7744,14 @@
       ],
       "headings": [],
       "sha256": "969943c73d664ac9b7fbc05bce74a411006231fd2dfc43ac1302a969ac8e89e2"
+    },
+    "tests/test_review_repairs.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "2c069cb96468572deb69cc750b025130368ae3895c1da9beccd0f3601f6f3fde"
     },
     "tests/test_rework_application.py": {
       "role": "test_support",
@@ -7481,7 +7846,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "31f0d431ca4d7bcfa759c5ef409c5dfa285b7b3b9617193e6aa5d0b63d9b4398"
+      "sha256": "f93a670fdf1af1bf4f4b74390432ddfe35cbe4a3666fdb920f31b556b2acda62"
     },
     "tests/test_style_register_authority.py": {
       "role": "test_support",
@@ -7539,7 +7904,15 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "3f99fd3a266c804227be0ab5c61628510f7bdeceb3653dd175f7001113745797"
+      "sha256": "b8e38f21994b7edd3b1221c8c7b5ab83a0048043828985069c4abc843e694887"
+    },
+    "tests/test_work_units_cached_status.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "e72b94fd8f687b4410a4e8ce60faadb90241d65175a8281dc76431580e961be6"
     },
     "tests/test_workrally_shot_binding.py": {
       "role": "test_support",

@@ -26,6 +26,11 @@ import io
 import json
 import os
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 
 try:
@@ -63,8 +68,9 @@ def run_gate(video, expect=None):
                       ("fps", "--expect-fps")):
         if (expect or {}).get(key) is not None:
             command.extend([flag, str(expect[key])])
-    r = subprocess.run(command, capture_output=True, text=True, encoding="utf-8",
-                       env=dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1"))
+    r = proc.run(command, capture_output=True, text=True, encoding="utf-8",
+                 env=dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1"),
+                 timeout=proc.FFMPEG)
     try:
         payload = json.loads(r.stdout or "")
     except ValueError:

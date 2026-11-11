@@ -213,7 +213,7 @@ def _new_record(node, references, package, version):
 
 
 def _sync_node(node, record):
-    for key in RUNTIME-{"source_record_id"}:
+    for key in sorted(RUNTIME-{"source_record_id"}):
         node.pop(key,None)
         if key in record:node[key]=copy.deepcopy(record[key])
     node["source_record_id"]=record["record_id"]

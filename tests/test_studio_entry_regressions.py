@@ -14,6 +14,17 @@ from scripts import asset_manifest, stage_gate, studio_run
 
 
 class StudioRunFailureTests(unittest.TestCase):
+    def test_grill_and_explicit_draft_reach_production_compiler(self):
+        for kwargs, expected in (({"grill": "station0.json"}, ["--grill", "station0.json"]),
+                                 ({"draft": True}, ["--draft"])):
+            with self.subTest(kwargs=kwargs), tempfile.TemporaryDirectory() as temp:
+                with patch.object(studio_run, '_run', return_value={
+                        'script': 'compile_production.py', 'exit': 1,
+                        'stdout_tail': [], 'stderr_tail': []}) as execute, \
+                        contextlib.redirect_stdout(io.StringIO()):
+                    studio_run.run(artifacts=temp, out=temp, **kwargs)
+                self.assertEqual(execute.call_args.args[1][-len(expected):], expected)
+
     def test_late_failure_blocks_and_stops_downstream_steps(self):
         for failed_step in [('production_ir.py', 'render'),
                             ('prompt_ast.py', 'build'),

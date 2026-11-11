@@ -12,7 +12,7 @@ The fidelity manifest uses synthetic nodes and edges to expose over/under-buildi
 
 The baseline entry could label a prompt Final with engineering PASS/READY and no current source/decision review. The missing-review regression now requires a draft and nonzero default CLI exit. The fidelity regression formerly stopped at a missing helper import; the standalone CLI now runs its manifest. Machine-specific path use was replaced with environment/PATH/home resolution and repository-relative test paths. Unknown creative fields now fail validation.
 
-Private work records include red/green trials, unsuccessful Hermes attempts and an early full-suite failure. Targeted test counts overlap with the full suite. Logs retain the warnings, and remote CI remains unverified.
+Private work records include red/green trials, unsuccessful Hermes attempts and an early full-suite failure. Targeted test counts overlap with the full suite. Logs retain the warnings. Current remote check results are available in the [CI workflow](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml). Archived local receipts describe their recorded revisions.
 
 ## Cross-mode text evaluation
 

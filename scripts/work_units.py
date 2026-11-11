@@ -17,6 +17,11 @@ import argparse
 import json
 import re
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 from pathlib import Path
 
@@ -33,12 +38,12 @@ BLOCK_RULES = {
 
 
 def run_cli(cli: str, args: list[str]) -> tuple[int, dict | None, str]:
-    proc = subprocess.run([cli] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    raw = proc.stdout.decode("utf-8", "replace").strip()
+    finished = proc.run([cli] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=proc.PLATFORM)
+    raw = finished.stdout.decode("utf-8", "replace").strip()
     try:
-        return proc.returncode, json.loads(raw), raw
+        return finished.returncode, json.loads(raw), raw
     except Exception:
-        return proc.returncode, None, raw + proc.stderr.decode("utf-8", "replace")
+        return finished.returncode, None, raw + finished.stderr.decode("utf-8", "replace")
 
 
 def load(path: str) -> dict:
@@ -96,11 +101,22 @@ def build_units(graph: dict, project: str, cli: str, cache_dir: Path, offline: b
             readback = load(str(cache_file))
         elif not offline and cli:
             code, payload, raw = run_cli(cli, ["node", node_id, "-p", project])
-            if code == 0 and payload:
+            # 返回码 0 不等于成功：payload 里的业务状态是 FAIL 时同样按读不到处理，
+            # 否则失败会被当成正常结果汇总成 PASS（2026-11-12 审计指出）。
+            business_ok = (not isinstance(payload, dict)
+                           or str(payload.get("status") or "PASS").upper() in ("PASS", "OK"))
+            if code == 0 and payload and business_ok:
                 cache_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
                 readback = payload
             else:
                 unreadable.append({"id": node_id, "exit": code, "tail": raw[-200:]})
+        # 缓存路径同样要过业务状态校验：旧缓存里可能就存着一份 status=FAIL 的读回，
+        # 只看"读到了"会把它当正常 unit 汇总成 PASS（2026-11-12 审计指出）。
+        if isinstance(readback, dict) and str(
+                readback.get("status") or "PASS").upper() not in ("PASS", "OK"):
+            unreadable.append({"id": node_id, "reason": "cached_status_failed",
+                               "status": readback.get("status")})
+            readback = None
         if readback is None:
             if not cache_file.is_file():
                 unreadable.append({"id": node_id, "reason": "no_cache_no_cli"})

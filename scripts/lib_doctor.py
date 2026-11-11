@@ -17,6 +17,7 @@
 
 退出码：0 全过 ｜ 1 有问题 ｜ 2 用法错 ｜ 3 没扫到东西（≠通过）
 """
+import ast
 import io
 import os
 import re
@@ -25,6 +26,11 @@ import glob
 import json
 import shutil
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 
 try:
     from .knowledge_routes import CatalogError, library_index_text
@@ -125,6 +131,106 @@ def refs():
     return sorted(os.path.basename(p) for p in glob.glob(REF + "/*.md"))
 
 
+HEALTH_TIMEOUT = 120
+SELFTEST_TIMEOUT = 300
+
+SELFTEST_EXEMPT = {
+    # 自检会再次拉起整套体检，无限自嵌套；其正确性由第5项自身与 tests 里的负向用例覆盖。
+    "lib_doctor.py": "自检递归调用体检，会无限自嵌套",
+}
+
+
+def _run_selftests(scripts):
+    """跑登记清单里的自检，并把"未登记"单独算一类问题。"""
+    fails, skipped = [], []
+    for s in scripts:
+        try:
+            r = subprocess.run([PY, os.path.join(HERE, s), "--self-test"],
+                               capture_output=True, text=True, encoding="utf-8",
+                               errors="replace", env=CHILD_ENV, timeout=SELFTEST_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            fails.append(s + "(超时)")
+            continue
+        if r.returncode == 0:
+            continue
+        # 跳过只认一件事：脚本自己打出的结构化声明 {"self_test": "warn"}。
+        # 不认具体退出码——项目里 motion_readback 用 3、film_qc_gate 用 4，
+        # 门禁不该依赖一个没统一的数字；也不认散文，必须是有字段的 JSON。
+        if '"self_test": "warn"' in (r.stdout or ""):
+            skipped.append(s)
+            continue
+        fails.append(s)
+    unregistered = sorted(d for d in set(_scripts_with_selftest())
+                          if d not in set(scripts) and d not in SELFTEST_EXEMPT)
+    return fails, skipped, unregistered
+
+
+def _model_schema_integrity():
+    """模型 schema 快照自洽性（本地，不联网）。"""
+    base = os.path.join(os.path.dirname(HERE), "schemas", "libtv-models")
+    manifest = os.path.join(base, "_manifest.json")
+    if not os.path.isfile(manifest):
+        return ["缺少 schemas/libtv-models/_manifest.json"], 0
+    try:
+        data = json.loads(io.open(manifest, encoding="utf-8", errors="replace").read())
+    except ValueError as exc:
+        return ["_manifest.json 不是合法 JSON：%s" % exc], 0
+    entries = data.get("models") or []
+    problems = []
+    keys = [entry.get("modelKey") for entry in entries]
+    if len(set(keys)) != len(keys):
+        problems.append("modelKey 有重复")
+    declared = data.get("count")
+    if isinstance(declared, int) and declared != len(entries):
+        problems.append("count 声明 %d，实际 %d 条" % (declared, len(entries)))
+    for entry in entries:
+        name = entry.get("file")
+        if not name or not os.path.isfile(os.path.join(base, name)):
+            problems.append("manifest 指向的 schema 不存在：%s" % name)
+    return problems, len(entries)
+
+
+def _scripts_with_selftest():
+    """按 AST 找真正带 --self-test 字面量的脚本（不数注释与字符串）。"""
+    found = []
+    for path in sorted(glob.glob(os.path.join(HERE, "*.py"))):
+        try:
+            tree = ast.parse(io.open(path, encoding="utf-8", errors="replace").read())
+        except SyntaxError:
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Constant) and node.value == "--self-test":
+                found.append(os.path.basename(path))
+                break
+    return found
+
+
+def _health_subcheck(what, pattern, quiet="无"):
+    """Run one lib_health sub-check.
+
+    A crashed/unparseable sub-check and a sub-check that reports a real problem
+    are different failures: the first is infrastructure, the second belongs to
+    the thing it found. Never let a missing match read as "no problem".
+    """
+    try:
+        r = subprocess.run([PY, os.path.join(HERE, "lib_health.py"), what],
+                           capture_output=True, text=True, encoding="utf-8",
+                           env=CHILD_ENV, timeout=HEALTH_TIMEOUT)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return {"status": "BROKEN", "detail": "lib_health %s 执行失败：%s" % (what, exc)}
+    match = re.search(pattern, r.stdout or "")
+    if not match:
+        return {"status": "BROKEN",
+                "detail": "lib_health %s 输出无法解析(rc=%s)" % (what, r.returncode)}
+    found = match.group(1).strip()
+    if found == quiet:
+        if r.returncode != 0:
+            return {"status": "BROKEN",
+                    "detail": "lib_health %s 报无问题但退出码 %d" % (what, r.returncode)}
+        return {"status": "OK", "detail": "无"}
+    return {"status": "FOUND", "detail": found}
+
+
 def doctor():
     """九项库体检。返回 (问题数, 输出行)。"""
     out, bad = [], 0
@@ -175,15 +281,12 @@ def doctor():
     # 3 悬空指针（**交给 lib_health 判** —— 单一权威源；
     #   本脚本不再自己实现一遍：实测两套口径会打架，且我这套会把"外部技能名带 .md"误判成悬空）
     sec("③ 悬空指针（口径来自 lib_health.py，本脚本不重复实现）")
-    r = subprocess.run([PY, os.path.join(HERE, "lib_health.py")], capture_output=True, text=True, encoding="utf-8", env=CHILD_ENV)
-    seg = (r.stdout or "")
-    m = re.search(r"悬空指针（引用了不存在的册）===+\s*\n\s*(.+)", seg)
-    line = (m.group(1).strip() if m else "")
-    if line and line != "无":
-        bad += 1
-        out.append("  [FAIL] %s" % line[:160])
-    else:
+    checked = _health_subcheck("dangling", r"悬空指针（引用了不存在的册）===+\s*\n\s*([^\n]+)")
+    if checked["status"] == "OK":
         out.append("  [OK]   无")
+    else:
+        bad += 1
+        out.append("  [FAIL] %s" % checked["detail"][:160])
 
     # 4 新册未挂 SKILL 索引
     sec("④ 未挂 SKILL 索引的册")
@@ -241,32 +344,42 @@ def doctor():
                # ★ 2026-10-31 新增：**一句话到交付的一条命令**（拆解→编译→IR→12 块）。
                "studio_run.py",
                # ★ 2026-10-31 新增：**错误契约 / 图权威 v2 / Prompt AST / Rule Registry**。
-               "error_contract.py", "workflow_graph_ir.py", "prompt_ast.py", "rule_registry.py"]
-    fails = []
-    for s in scripts:
-        r = subprocess.run([PY, os.path.join(HERE, s), "--self-test"], capture_output=True, env=CHILD_ENV)
-        if r.returncode != 0:
-            fails.append(s)
+               "error_contract.py", "workflow_graph_ir.py", "prompt_ast.py", "rule_registry.py",
+               # 2026-11-11（B2）：此前有可执行自检却未登记的 16 个脚本，等于没有门禁。
+               # 逐个实测耗时后登记；lib_doctor.py 自身见 SELFTEST_EXEMPT。
+               "blind_test_gate.py", "canvas_layout.py", "claim_method_lint.py",
+               "compile_intent_delivery.py", "cross_work_transfer.py", "film_qc_gate.py",
+               "grill_ledger.py", "grill_session.py", "libtv_model_rules_gate.py",
+               "motion_readback.py", "reverse_claim_lint.py", "source_fidelity_lint.py",
+               "verify_delivery_semantics.py", "work_profile.py", "work_units.py",
+               "workrally_bridge.py"]
+    fails, skipped, unregistered = _run_selftests(scripts)
+    if unregistered:
+        bad += 1
+        out.append("  [FAIL] 有可执行自检但未登记：%s" % "、".join(unregistered))
+        out.append("         → 改法：登记进 scripts 清单，或用 SELFTEST_EXEMPT 写明豁免理由")
     if fails:
         bad += len(fails)
         out.append("  [FAIL] 自检不过：%s" % "、".join(fails))
-    else:
-        out.append("  [OK]   二十九脚本自检全过")
-    r = subprocess.run([PY, os.path.join(HERE, "audit_prompt.py"), "claims", SKILL], capture_output=True, env=CHILD_ENV)
+    elif not unregistered:
+        note = ("；跳过 %d（缺外部工具）：%s" % (len(skipped), "、".join(skipped))) if skipped else ""
+        out.append("  [OK]   %d 个脚本自检全过%s" % (len(scripts), note))
+    r = proc.run([PY, os.path.join(HERE, "audit_prompt.py"), "claims", SKILL], capture_output=True, env=CHILD_ENV, timeout=SELFTEST_TIMEOUT)
     out.append("  [%s] claims：%s" % ("OK" if r.returncode == 0 else "FAIL", "数字断言一致" if r.returncode == 0 else "与实际不符"))
     if r.returncode != 0:
         bad += 1
 
     # 6 跨册真重复
     sec("⑥ 跨册重复长句（规则行）")
-    r = subprocess.run([PY, os.path.join(HERE, "lib_health.py")], capture_output=True, text=True, encoding="utf-8", env=CHILD_ENV)
-    m = re.search(r"规则行（真重复，该修）：(\d+) 条", r.stdout or "")
-    n = int(m.group(1)) if m else -1
-    if n > 0:
-        bad += 1
-        out.append("  [FAIL] %d 条真重复（跑 lib_health 看明细）" % n)
-    else:
+    checked = _health_subcheck("dup", r"规则行（真重复，该修）：(\d+) 条", quiet="0")
+    if checked["status"] == "OK":
         out.append("  [OK]   0 条（导航/出处行属设计）")
+    elif checked["status"] == "FOUND":
+        bad += 1
+        out.append("  [FAIL] %s 条真重复（跑 lib_health 看明细）" % checked["detail"])
+    else:
+        bad += 1
+        out.append("  [FAIL] %s" % checked["detail"])
 
     # 7 路由表是否漏了刚加的册
     sec("⑦ 路由表自检（新增册有没有补路由）")
@@ -309,6 +422,17 @@ def doctor():
                        "未装则站 6.6 的帧级判据无法执行")
 
     # 9 索引断言
+    # 10 模型 schema 快照
+    sec("⑩ 模型 schema 快照（本地对账，不联网）")
+    problems, total = _model_schema_integrity()
+    if problems:
+        bad += len(problems)
+        for problem in problems[:5]:
+            out.append("  [FAIL] %s" % problem)
+    else:
+        out.append("  [OK]   %d 个模型 schema 与 manifest 一致" % total)
+        out.append("         → 与线上目录的差异需联网核对；本项只保证快照自身不残缺")
+
     sec("⑨ 结论")
     out.append("  %s" % ("**全过**" if bad == 0 else "**%d 处要改**（按上面 → 改法）" % bad))
     return bad, out
@@ -322,8 +446,8 @@ def deliver(paths):
             out.append("[SKIP] 不存在：%s" % p); continue
         t = _read(p)
         body = t.split("```text")[1].split("```")[0] if "```text" in t else t
-        g = subprocess.run([PY, os.path.join(HERE, "audit_prompt.py"), "blocks", p],
-                           capture_output=True, env=CHILD_ENV).returncode
+        g = proc.run([PY, os.path.join(HERE, "audit_prompt.py"), "blocks", p],
+                     capture_output=True, env=CHILD_ENV, timeout=SELFTEST_TIMEOUT).returncode
         # ★ rc=3 ＝ **没扫到**（不是通过，也不是要改）→ 报 SKIP，**不计入不合格**。
         #   实测：`--deliver 多形态12轮/*.md` 把 12 份**声音表**全报成"要改 门禁 rc=3"——
         #   它们本来就不是镜头稿。把"没验到"混进"要改"，就是让 WARN 贬值
@@ -384,8 +508,8 @@ def grade(paths):
             out.append("[SKIP] 不存在：%s" % p); continue
         t = _read(p)
         body = t.split("```text")[1].split("```")[0] if "```text" in t else t
-        g1 = subprocess.run([PY, os.path.join(HERE, "audit_prompt.py"), "blocks", p], capture_output=True, env=CHILD_ENV).returncode
-        g2 = subprocess.run([PY, os.path.join(HERE, "ai_smell_check.py"), p], capture_output=True, env=CHILD_ENV).returncode
+        g1 = proc.run([PY, os.path.join(HERE, "audit_prompt.py"), "blocks", p], capture_output=True, env=CHILD_ENV, timeout=SELFTEST_TIMEOUT).returncode
+        g2 = proc.run([PY, os.path.join(HERE, "ai_smell_check.py"), p], capture_output=True, env=CHILD_ENV, timeout=SELFTEST_TIMEOUT).returncode
         probs = [name for name, fn in CROSS_CHECKS if fn(body)]
         # 及格线：结构与观感必须 0 告警；跨块矛盾必须 0
         item = []

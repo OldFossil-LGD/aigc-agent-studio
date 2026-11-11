@@ -22,6 +22,8 @@ from collections import defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REFS = os.path.join(ROOT, "references")
 MAX_LINES = 300
+# 反引号引用；允许 references/ 前缀。正文裸文件名不算引用——那会把"提到过"误当成"有工位"。
+CITATION_RE = re.compile(r"`(?:references/)?([A-Za-z0-9_\-]+\.md)`")
 NEAR_FULL = 290
 # 历史条目里的旧册名（已在 key-decisions 附「历史册名对照」登记）——不算悬空
 OLD_NAMES = {"prompt-engineering.md", "acting-performance.md", "performance-micro-beats.md",
@@ -155,7 +157,7 @@ def check_orphan():
     cited = defaultdict(int)
     for fn in names:
         body = _strip_code(_read(os.path.join(REFS, fn)))
-        for m in re.finditer(r"`([A-Za-z0-9_\-]+\.md)`", body):
+        for m in CITATION_RE.finditer(body):
             cited[m.group(1)] += 1
     # 风格卷这类"只被索引引用"的册单独列出来（它们本来就是一册一风格编号）
     style_like = re.compile(r"^style-(cards|cores|sources|library)-")

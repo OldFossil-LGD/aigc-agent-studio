@@ -9,6 +9,11 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 from pathlib import Path
 
@@ -58,12 +63,18 @@ def _source_result(args) -> tuple[dict | None, int]:
     ]
     if args.contract:
         cmd += ["--contract", args.contract]
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    finished = proc.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=proc.DEFAULT)
     try:
-        result = json.loads(proc.stdout.decode("utf-8", "replace"))
+        result = json.loads(finished.stdout.decode("utf-8", "replace"))
     except Exception:
-        result = {"status": "FAIL", "failures": [{"code": "SOURCE_GATE_PARSE_FAILED"}], "stdout": proc.stdout.decode("utf-8", "replace")}
-    return result, proc.returncode
+        result = {"status": "FAIL", "failures": [{"code": "SOURCE_GATE_PARSE_FAILED"}],
+                  "stdout": finished.stdout.decode("utf-8", "replace")}
+        # 解析失败必须体现为失败码：汇总只按返回码判定，否则会出假 PASS。
+        return result, finished.returncode or 1
+    code = finished.returncode
+    if code == 0 and str(result.get("status") or "").upper() not in ("PASS", "OK"):
+        code = 1      # 子进程返回 0 但结论不是 PASS：同样按失败汇总
+    return result, code
 
 
 def main() -> int:

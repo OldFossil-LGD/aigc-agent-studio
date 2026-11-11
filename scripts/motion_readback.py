@@ -27,6 +27,11 @@ import argparse
 import json
 import math
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 import tempfile
 from pathlib import Path
@@ -40,7 +45,7 @@ SUBJECT_RATIO = 2.0          # 中央能量 / 边缘能量 超过此值判"主�
 def grab(path: str, start: float, end: float, w: int = W, h: int = H, fps: int = FPS) -> list[bytes]:
     cmd = ["ffmpeg", "-v", "error", "-ss", str(start), "-to", str(end), "-i", path,
            "-vf", "fps=%d,scale=%d:%d,format=gray" % (fps, w, h), "-f", "rawvideo", "-"]
-    raw = subprocess.run(cmd, stdout=subprocess.PIPE).stdout
+    raw = proc.run(cmd, stdout=subprocess.PIPE, timeout=proc.FFMPEG).stdout
     size = w * h
     return [raw[i:i + size] for i in range(0, len(raw) - size + 1, size)]
 
@@ -216,7 +221,11 @@ def similarity_readback(video: str, shots: list[dict], w: int = 120, h: int = 68
 
 def self_test() -> int:
     cases = []
-    ffmpeg_ok = subprocess.run(["ffmpeg", "-version"], stdout=subprocess.DEVNULL).returncode == 0
+    try:
+        ffmpeg_ok = proc.run(["ffmpeg", "-version"], stdout=subprocess.DEVNULL,
+                             timeout=proc.DEFAULT).returncode == 0
+    except OSError:  # ffmpeg 根本没装：终止的是依赖，不是本工具
+        ffmpeg_ok = False
     if not ffmpeg_ok:
         print(json.dumps({"self_test": "warn", "reason": "ffmpeg unavailable"}, ensure_ascii=False))
         return 3
@@ -224,18 +233,18 @@ def self_test() -> int:
         static = Path(tmp) / "static.mp4"
         moving = Path(tmp) / "moving.mp4"
         rotating = Path(tmp) / "rotating.mp4"
-        subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
-                        "-i", "smptebars=size=320x180:duration=2", "-r", "10", str(static)],
-                       stdout=subprocess.DEVNULL)
-        subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
-                        "-i", "smptebars=size=640x180:duration=2",
-                        "-vf", "crop=320:180:x='t*120'", "-r", "10", str(moving)],
-                       stdout=subprocess.DEVNULL)
+        proc.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
+                  "-i", "smptebars=size=320x180:duration=2", "-r", "10", str(static)],
+                 stdout=subprocess.DEVNULL, timeout=proc.FFMPEG)
+        proc.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
+                  "-i", "smptebars=size=640x180:duration=2",
+                  "-vf", "crop=320:180:x='t*120'", "-r", "10", str(moving)],
+                 stdout=subprocess.DEVNULL, timeout=proc.FFMPEG)
         # ★ 旋转用例：**没有它，工具漏掉"环绕"时自检照样是绿的**（2026-10-12 实撞）
-        subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
-                        "-i", "smptebars=size=420x240:duration=2",
-                        "-vf", "rotate='t*30*PI/180':fillcolor=black,crop=320:180",
-                        "-r", "10", str(rotating)],
+        proc.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
+                  "-i", "smptebars=size=420x240:duration=2",
+                  "-vf", "rotate='t*30*PI/180':fillcolor=black,crop=320:180",
+                  "-r", "10", str(rotating)],
                        stdout=subprocess.DEVNULL)
         s = analyse(str(static), [{"id": "S", "start": 0.0, "end": 2.0}])["S"]
         m = analyse(str(moving), [{"id": "M", "start": 0.0, "end": 2.0}])["M"]

@@ -71,6 +71,7 @@ def evaluate_delivery_review(skill_root, task, artifacts, review, *, capture_roo
             expected = {row['id'] for row in task.get('requirements', [])}
         if not expected: raise ValueError('No explicit task requirements to review')
         covered = set()
+        reviewed_artifacts = set()
         judgement = review.get('decisions')
         if not isinstance(judgement, list) or not judgement: raise ValueError('Decision-to-source-to-output evidence required')
         for decision in judgement:
@@ -95,8 +96,11 @@ def evaluate_delivery_review(skill_root, task, artifacts, review, *, capture_roo
                 if name not in artifacts or not isinstance(text, str) or not text.strip(): raise ValueError('Output location/text is missing')
                 actual = artifacts[name].decode('utf-8') if isinstance(artifacts[name], bytes) else str(artifacts[name])
                 if text not in actual: raise ValueError('Claimed application is absent from actual output')
+                reviewed_artifacts.add(name)
             covered.update(ids)
         if covered != expected: raise ValueError('Some task requirements have no decision evidence: ' + ', '.join(sorted(expected - covered)))
+        if reviewed_artifacts != set(artifacts):
+            raise ValueError('Artifacts without item-level review: ' + ', '.join(sorted(set(artifacts) - reviewed_artifacts)))
         result.update(status='REVIEW_EVIDENCE_VALID', delivery_ready=True, source_evidence_status=checked['status'], decision_count=len(judgement))
     except (ValueError, OSError, KeyError, TypeError, AttributeError) as exc:
         result['status'] = 'REVIEW_REJECTED'

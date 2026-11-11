@@ -41,8 +41,15 @@
 import argparse
 import hashlib
 import io
+import json
+import shlex
 import os
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 
 
@@ -65,21 +72,60 @@ def _file_sha(p):
 
 
 def _run(cmd, cwd):
-    r = subprocess.run(cmd, shell=True, cwd=cwd, stdout=subprocess.PIPE,
+    # 传 list 就不经过 shell：解释器路径里即便有 & % 空格也不会被解析。
+    # 传字符串仍走 shell（兼容旧的单条用法）。
+    shell = not isinstance(cmd, (list, tuple))
+    r = proc.run(cmd, shell=shell, cwd=cwd, timeout=proc.DEFAULT, stdout=subprocess.PIPE,
                        stderr=subprocess.STDOUT)
     return r.returncode, r.stdout.decode("utf-8", "replace")
 
 
-def check(file_path, frm, to, test_cmd, expect, cwd):
+def _failures(output):
+    """收集输出里所有失败条目：(kind, 测试标识)。kind 是 FAIL 或 ERROR。
+
+    FAIL = 断言失败（门禁确实判了且判错）；ERROR = 异常提前中断（可能根本没走到断言）。
+    归因必须区分这两者，否则"测试里抛了个别的东西"会被当成"门禁抓住了变异"。
+    """
+    found = []
+    for line in (output or "").splitlines():
+        for kind in ("FAIL:", "ERROR:"):
+            if line.startswith(kind):
+                head = line[len(kind):].strip()
+                name = head.split(" (")[0].strip().rstrip(".")
+                location = head[len(name):].strip()      # 形如 (tests.mod.Class)
+                found.append((kind.rstrip(":"), name, location))
+    return found
+
+
+def _first_failure(output):
+    found = _failures(output)
+    return found[0][1] if found else None
+
+
+def _is_target(entry, want_kind, want_name, want_in):
+    """精确归因：类别、方法名都要相等，给了位置还要位置包含。
+
+    用子串匹配方法名会让 test_target_extra 冒充 test_target。
+    """
+    kind, name, location = entry
+    if kind != want_kind or name != want_name:
+        return False
+    return (not want_in) or (want_in in location)
+
+
+def check(file_path, frm, to, test_cmd, expect, cwd, expect_failure=None,
+          expect_kind=None, expect_in=None):
     out = []
     original = _read(file_path)
     original_sha = _file_sha(file_path)
     out.append("original sha256 = %s…" % original_sha[:16])
 
-    # 1) 基线必须绿
+    # 1) 基线必须绿：既要出现期望字样，也要真的退出 0。
+    #    只看字样不够——一个报错的运行同样可以打印出 "OK"。
     rc0, o0 = _run(test_cmd, cwd)
-    if expect not in o0:
-        out.append("[STOP] 基线不绿：未变异的输出里找不到 %r（rc=%d）" % (expect, rc0))
+    if expect not in o0 or rc0 != 0:
+        out.append("[STOP] 基线不绿：%r %s（rc=%d）"
+                   % (expect, "出现了" if expect in o0 else "找不到", rc0))
         out.append(o0[-1500:])
         return 3, out
     out.append("[OK]   基线绿：未变异时出现了 %r" % expect)
@@ -99,13 +145,43 @@ def check(file_path, frm, to, test_cmd, expect, cwd):
         out.append("[OK]   变异已落盘：%d → %d 字符" % (len(original), len(mutated)))
 
         rc1, o1 = _run(test_cmd, cwd)
-        caught = expect not in o1
-        out.append("[%s] 变异后 rc=%d，%r %s"
-                   % ("OK" if caught else "FAIL", rc1, expect,
-                      "已消失（抓住了）" if caught else "**仍然出现（没抓住）**"))
-        if not caught:
+        # "抓住"的判据：期望字样消失 + 进程非 0 + **失败确实来自预期的那条测试**。
+        # 只凭"字样消失"会把握手失败（导入/语法错误）也算成抓住；
+        # 再加上 expect_failure 做正向归因，才能说"红的是它"，而不是"某个东西红了"。
+        failures = _failures(o1)
+        first = failures[0][1] if failures else None
+        broken = [m for m in LOAD_FAILURE_MARKERS if m in o1]
+        wanted = (expect_kind or "FAIL").upper()
+        if expect_failure is None:
+            attributed = True
+        else:
+            attributed = any(_is_target(entry, wanted, expect_failure, expect_in)
+                             for entry in failures)
+        caught = expect not in o1 and rc1 != 0 and not broken and attributed
+        if broken:
+            out.append("[STOP] 变异后测试没跑起来（%s），这次不算捕获" % "、".join(broken))
             out.append(o1[-1500:])
-        return (0 if caught else 1), out
+            rc = 3
+        elif expect_failure is not None and not attributed:
+            out.append("[STOP] 失败归因不符：期望 %r 以断言失败(FAIL)出现，实际失败条目 %r"
+                       % (expect_failure, failures[:3] or "无"))
+            out.append(o1[-1500:])
+            rc = 3
+        else:
+            out.append("[%s] 变异后 rc=%d，%r %s"
+                       % ("OK" if caught else "FAIL", rc1, expect,
+                          "已消失且非 0（抓住了）" if caught else "**仍然出现或仍为 0（没抓住）**"))
+            if not caught:
+                out.append(o1[-1500:])
+            rc = 0 if caught else 1
+        if caught:
+            # 证据必须取自**实际满足判据**的那条，不能按名字随便挑第一条。
+            matched = next((entry for entry in failures
+                            if expect_failure is None or
+                            _is_target(entry, wanted, expect_failure, expect_in)),
+                           failures[0] if failures else ("?", first or "?", ""))
+            out.append("[证据] %s 失败来自 %s %s"
+                       % (matched[0], matched[1], matched[2]))
     finally:
         _write(file_path, original)
         restored = _file_sha(file_path) == original_sha
@@ -114,6 +190,9 @@ def check(file_path, frm, to, test_cmd, expect, cwd):
                       "与改动前一致" if restored else "**不一致——文件已被污染，请手工恢复**"))
         if not restored:
             out.append("[STOP] 还原失败，请手工恢复该文件")
+            # 还原失败必须盖掉"抓住了"：文件已被污染，这次验证不成立。
+            rc = 3
+    return rc, out
 
 
 def _self_test():
@@ -137,9 +216,12 @@ def _self_test():
         gate = os.path.join(d, "gate.py")
         # ★ 自检自己写文件也要 newline=""——否则 Windows 上写出来是 CRLF，
         #   而 _read 用 newline="" 读回的是原样，两边对不上（2026-10-16 实测踩到）。
+        # 门禁报 FAIL 时必须非 0：真实门禁就是这样，"抓住"的判据也依赖退出码。
         _write(gate, "import io,sys\n"
                      "t=io.open('target.py',encoding='utf-8',newline='').read()\n"
-                     "print('PASS' if 'GOOD' in t else 'FAIL')\n")
+                     "ok='GOOD' in t\n"
+                     "print('PASS' if ok else 'FAIL')\n"
+                     "sys.exit(0 if ok else 1)\n")
         _write(target, "GOOD = 1\n")
         cmd = "%s %s" % (sys.executable, gate)
 
@@ -169,9 +251,99 @@ def _self_test():
     return 0 if bad == 0 else 1
 
 
+# 这些字样说明测试压根没加载成功；此时"期望字样消失"不能算门禁抓住了变异。
+LOAD_FAILURE_MARKERS = ("SyntaxError", "IndentationError", "ModuleNotFoundError",
+                        "ImportError", "failed to import test module", "_FailedTest")
+
+
+def _quote_executable(path):
+    """把解释器路径嵌进**字符串**命令时用；能传 list 就别用这个。
+
+    引号只是缓解，不是保证：Windows 的 cmd 即使加了双引号，%VAR% 仍会展开；
+    路径里有 & 时未加引号会被当命令分隔符。所以清单请优先用 list 形式（不经 shell）。
+    """
+    text = str(path)
+    if os.name == "nt":
+        return '"%s"' % text.replace('"', '')
+    return shlex.quote(text)
+
+
+def run_cases(path):
+    """跑一份用例清单：每条都走 single-case 的同一套判据，最后汇总。
+
+    退出码：任一条没抓住 → 1；否则任一条前提不成立 → 3；全抓住 → 0。
+    3 与 0 的区别仍然是"没验到"与"验过了"。
+    """
+    try:
+        with io.open(path, encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except (OSError, ValueError) as exc:
+        print("用例清单读不了：%s" % exc)
+        return 2
+    cases = payload.get("cases") if isinstance(payload, dict) else None
+    if not isinstance(cases, list) or not cases:
+        print("用例清单里没有 cases 列表")
+        return 2
+
+    codes = []
+    for index, case in enumerate(cases, 1):
+        if not isinstance(case, dict):
+            print("[%02d] 用例格式无效" % index)
+            codes.append(2)
+            continue
+        label = str(case.get("id") or case.get("file") or index)
+        missing = [k for k in ("file", "from", "to", "test", "expect") if not case.get(k)]
+        if missing:
+            print("[%02d] %-34s 缺字段：%s" % (index, label, ",".join(missing)))
+            codes.append(2)
+            continue
+        target = case["file"]
+        if not os.path.isfile(target):
+            print("[%02d] %-34s 跳过：找不到 %s" % (index, label, target))
+            codes.append(3)
+            continue
+        cwd = case.get("cwd") or os.path.dirname(os.path.abspath(target))
+        # {python} 换成当前解释器。list 形式不经过 shell，路径里有 & % 空格都安全；
+        # 字符串形式只能靠引号缓解，且 Windows 的 %VAR% 仍会展开——所以优先用 list。
+        raw_test = case["test"]
+        if isinstance(raw_test, list):
+            test_cmd = [sys.executable if str(part) == "{python}" else str(part)
+                        for part in raw_test]
+        else:
+            test_cmd = str(raw_test).replace("{python}", _quote_executable(sys.executable))
+        rc, log = check(target, case["from"], case["to"], test_cmd, case["expect"], cwd,
+                        expect_failure=case.get("expect_failure"),
+                        expect_kind=case.get("expect_kind"),
+                        expect_in=case.get("expect_in"))
+        verdict = {0: "抓住", 1: "**没抓住**", 3: "前提不成立"}.get(rc, "用法错(%d)" % rc)
+        print("[%02d] %-34s %s" % (index, label, verdict))
+        # 不论成败都打证据行：成功捕获也要能回看"红的是哪条"。
+        evidence = [line for line in (log or []) if str(line).startswith(("[证据]", "[STOP]"))]
+        for line in evidence[:1]:
+            print("      %s" % str(line)[:160])
+        if rc != 0:
+            for line in (log or [])[-3:]:
+                if str(line).startswith(("[证据]", "[STOP]")):
+                    continue
+                print("      %s" % str(line)[:160])
+        codes.append(rc)
+
+    caught = codes.count(0)
+    print("\n共 %d 条：抓住 %d ／ 没抓住 %d ／ 没验到 %d ／ 用法错 %d"
+          % (len(codes), caught, codes.count(1), codes.count(3), codes.count(2)))
+    if 1 in codes:
+        return 1
+    if 3 in codes:
+        return 3
+    if 2 in codes:
+        return 2
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=False)
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--cases", help="用例清单 JSON：{\"cases\": [{file, from, to, test, expect, cwd?}]}")
     ap.add_argument("--file")
     ap.add_argument("--from", dest="frm")
     ap.add_argument("--to", dest="to")
@@ -181,6 +353,8 @@ def main():
 
     if a.self_test:
         return _self_test()
+    if a.cases:
+        return run_cases(a.cases)
     if not (a.file and a.frm and a.to and a.test and a.expect):
         print(__doc__)
         return 2

@@ -19,8 +19,14 @@ from __future__ import print_function
 
 import argparse
 import json
+import math
 import os
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 
 RC_OK, RC_FAIL, RC_USAGE, RC_EMPTY = 0, 1, 2, 3
@@ -83,7 +89,7 @@ def from_plan(doc):
 
 def from_canvas(project):
     def call(*args):
-        r = subprocess.run([LIBTV] + list(args), capture_output=True)
+        r = proc.run([LIBTV] + list(args), capture_output=True, timeout=proc.PLATFORM)
         out = r.stdout.decode("utf-8", "replace")
         return json.loads(out) if out.strip() else {}
     lst = call("node", "list", "-p", project)
@@ -101,6 +107,22 @@ def from_canvas(project):
                           "derive" if derive else "feed",
                           "画布边·图生图派生" if derive else "画布边·投喂"))
     return nodes, edges
+
+
+def _is_coord(value):
+    """能不能当坐标用。
+
+    整数天然有限，且**不能转 float**：10**400 转 float 会抛 OverflowError，
+    2**53+1 与 2**53+2 则会塌缩成同一个数、把两个不同位置判成重合。
+    只有 float 才需要查 isfinite（inf/nan 不是坐标）。
+    """
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, int):
+        return True
+    if isinstance(value, float):
+        return math.isfinite(value)
+    return False
 
 
 def integrity_report(nodes, names, orders, edges):
@@ -125,23 +147,37 @@ def integrity_report(nodes, names, orders, edges):
             refs_no_edge.append(tid)
         elif set(order) != srcs:
             mismatch.append(tid)
+    # 位置重合：真实画布回包里 nodes[*].position 是 {x, y}（实测 2026-11-11）。
+    # 只在能读到有限数值时才有结论；读不到就跳过，不猜。
+    positions = {}
+    for nid, node in nodes.items():
+        pos = node.get("position")
+        if not isinstance(pos, dict):
+            continue
+        x, y = pos.get("x"), pos.get("y")
+        if not (_is_coord(x) and _is_coord(y)):
+            continue
+        positions.setdefault((x, y), []).append(nid)
+    stacked = {key: ids for key, ids in positions.items() if len(ids) > 1}
     return {"duplicate_names": dup, "duplicate_count": len(dup),
             "refs_without_edge": refs_no_edge, "order_mismatch": mismatch,
-            "unknown_endpoints": unknown}
+            "unknown_endpoints": unknown,
+            "stacked_positions": stacked, "stacked_count": len(stacked),
+            "stacked_nodes": sum(len(ids) for ids in stacked.values())}
 
 
 def canvas_integrity(project):
     from concurrent.futures import ThreadPoolExecutor
 
     def one(i):
-        rr = subprocess.run([LIBTV, "node", i, "-p", project], capture_output=True)
+        rr = proc.run([LIBTV, "node", i, "-p", project], capture_output=True, timeout=proc.PLATFORM)
         try:
             d = json.loads(rr.stdout.decode("utf-8", "replace"))
         except ValueError:
             return i, []
         return i, ((d.get("data") or {}).get("params") or {}).get("imageListOrder") or []
 
-    r = subprocess.run([LIBTV, "project", project], capture_output=True)
+    r = proc.run([LIBTV, "project", project], capture_output=True, timeout=proc.PLATFORM)
     meta = json.loads(r.stdout.decode("utf-8", "replace"))
     nodes = {n["id"]: n for n in meta.get("nodes") or []}
     names = {i: nodes[i]["name"] for i in nodes}
@@ -163,6 +199,11 @@ def canvas_integrity(project):
     for i in rep["order_mismatch"][:5]:
         print("    -", names.get(i, i)[:50])
     print("  悬空端点：%d 条边" % rep["unknown_endpoints"])
+    print("  位置重合：%d 组（%d 个节点）—— 仅报告，不计入失败" %
+          (rep["stacked_count"], rep["stacked_nodes"]))
+    for (x, y), ids in list(rep["stacked_positions"].items())[:3]:
+        print("    - (%g, %g) 处有 %d 个节点，如 %s" %
+              (x, y, len(ids), names.get(ids[0], ids[0])[:40]))
     bad = len(rep["refs_without_edge"]) + len(rep["order_mismatch"]) + rep["unknown_endpoints"]
     return RC_FAIL if bad else RC_OK
 
