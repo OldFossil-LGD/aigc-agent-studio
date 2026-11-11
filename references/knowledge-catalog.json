@@ -173,7 +173,7 @@
         "制作执行链（按已确定的交付终点进入）",
         "按交付终点进入"
       ],
-      "sha256": "f61e253a6b5d8a94ed5e737830a4997c4b02fff220995ff54403e77d157905ce"
+      "sha256": "fc78b129b95596305cca15c2fec20c205e9e5ded41d756ec615b6d57e97ecb90"
     },
     "THIRD_PARTY_NOTICES.md": {
       "role": "publishing",
@@ -1453,6 +1453,21 @@
         "§5 ★ 重编码：**直接拼会翻车**（工程坑，实测）"
       ],
       "sha256": "3ec2650544939d3e7ffd1433693855b9c7cb10cf5a6ce94260cfd37656cc0d44"
+    },
+    "references/crowd-and-take-length.md": {
+      "role": "active_reference",
+      "domains": [
+        "workflow_governance"
+      ],
+      "headings": [
+        "群像自然度与素材时长（长改短投产）",
+        "一、群像自然度（v4.2 新增的四条硬约束）",
+        "1.1 三类群体动作，三种写法",
+        "1.2 群演微动作库（写提示词时从这里取，别自创）",
+        "1.3 三条禁止底线与一条反作用提醒",
+        "二、动作预算与步速（写死，不靠模型自觉）"
+      ],
+      "sha256": "75bde6eb0bd2b24a26ee404cc2ef64a0b02f6bd9308c2ddcab5a427aed67a633"
     },
     "references/default-standard.md": {
       "role": "active_reference",
@@ -3445,7 +3460,7 @@
         "站 1 · 命题（**最上游。跳了必\"正确但空心\"**）",
         "站 2 · 可行性门 + 一页 brief"
       ],
-      "sha256": "c588cec7c72960684b8880ad4a959479d4f93b00f8c9b9b8fbf6c7b544b0f4ec"
+      "sha256": "523191f5b1b048257438ab3be17abf4c9a8f46f764c3c980721193f4b6e7f453"
     },
     "references/script-agent-handoff.md": {
       "role": "active_reference",

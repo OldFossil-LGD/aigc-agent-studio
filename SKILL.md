@@ -48,6 +48,7 @@ metadata:
 | 单镜或完整影视生产 | 完整读 references/studio-workflow.md 与 references/run-sheet.md，再用 references/production-compiler.md 的主编译链 |
 | 影视任务内的角色/道具/场景资产 | **先读 references/asset-standard.md（四层 / 版本 / 状态 / 数量的唯一裁决）**，再读 references/asset-pipeline.md（引用计划与四层 QC）与 references/asset-prompt-spec.md；**清单→画布用 scripts/libtv_canvas_build.py（七件＋两类边，默认 dry-run）**；先按 references/style-library.md 确定风格，不给空镜补人物 |
 | 反推、复刻、蒸馏或盲测 | 先读唯一 references/reverse-fidelity-contract.md，分别声明mode、deliverable、source_access；副本不能升格原项目，未解不编 |
+| 镜头里**多人同框**，或一份素材要**剪出长短两个版本** | references/crowd-and-take-length.md（群像四约束：相位错开／幅度差／视线不齐／各人小动作；舞蹈"先同拍再写差异"；动作预算≤5 段与步速写死；长改短：+2 秒手柄、三条删减规则、重抽才是真成本） |
 | 局部返工、版本变化、审片回执 | references/offline-continuity-entry.md 与 references/review-passes.md；图失效建议不等于已执行返工，绑定PASS不等于媒体已审 |
 | 剧本要拆成资产与分镜（"哪些资产、多少镜、每镜什么景别"） | **唯一入口 references/script-breakdown-bridge.md**（认哪三种版式、字段契约、未解怎么记），再用 scripts/breakdown_compile.py 出 10/11/12 三件；站 5 用 asset_manifest 对账，站 6 用 compile_production 编译 |
 | 与外部 crew / 别的 agent 系统交换分镜契约 | **唯一入口 references/filmdsl-interchange.md**（派生视图与权威分界、五层归属、crew 角色换算、回修梯度），再用 scripts/filmdsl_bridge.py 导出与对账；`filmdsl/v1` 不是新权威 |
