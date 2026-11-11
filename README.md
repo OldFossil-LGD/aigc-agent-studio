@@ -1,5 +1,11 @@
 # AIGC Agent Studio
 
+## Product preview
+
+[![Watch the Public Beta preview](docs/assets/public-beta.png)](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4)
+
+[Watch or download the preview](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
+
 **Public Beta**
 
 [![Offline checks](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml/badge.svg)](https://github.com/OldFossil-LGD/aigc-agent-studio/actions/workflows/tests.yml)
@@ -9,12 +15,6 @@ A LibTV-based filmmaking skill for AI agents. Use it to develop a script, review
 **For the production workflow, connect LibTV to your agent through MCP or the LibTV CLI and sign in with your own LibTV account.** Canvas operations, model generation and production execution use that connection. Script review and the offline prompt demo can run before you connect LibTV.
 
 Give the agent a brief in plain language. It uses the filmmaking reference library to work through the task, keeps track of your requirements and checks the result before delivery. The Python tools handle structured handoffs, prompt compilation and offline checks.
-
-## Product preview
-
-[![Watch the Public Beta preview](docs/assets/public-beta.png)](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4)
-
-[Watch or download the preview](https://github.com/OldFossil-LGD/aigc-agent-studio/releases/download/v1.0.1-beta.1/AIGC_Agent_Studio_Public_Beta.mp4).
 
 ## Connect LibTV to your agent
 
