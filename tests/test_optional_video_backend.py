@@ -1,4 +1,5 @@
 """The optional video backend must never break import or hide the reason."""
+import os
 import subprocess
 import sys
 import unittest
@@ -13,8 +14,8 @@ BLOCK = ("import sys\n"
 def run(code):
     return subprocess.run([sys.executable, '-c', BLOCK + code], capture_output=True,
                           text=True, encoding='utf-8', cwd=str(ROOT),
-                          env={'PYTHONPATH': str(ROOT), 'PYTHONIOENCODING': 'utf-8',
-                               'PYTHONUTF8': '1', 'PATH': ''})
+                          env=dict(os.environ, PYTHONPATH=str(ROOT),
+                                   PYTHONIOENCODING='utf-8', PYTHONUTF8='1', PATH=''))
 
 
 class OptionalBackendTests(unittest.TestCase):
