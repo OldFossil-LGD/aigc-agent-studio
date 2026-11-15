@@ -480,12 +480,19 @@ class FinalPromotionGateTests(unittest.TestCase):
     def test_stale_supporting_input_blocks_promotion(self):
         import hashlib
         source = self.root / 'source.json'
-        source.write_bytes(b'original')
-        report = self.report(inputs={str(self.pending): self.digest,
-                                     str(source): hashlib.sha256(source.read_bytes()).hexdigest()})
-        source.write_bytes(b'changed')
-        self.assertEqual(self.gate(report, self.pending, self.final, self.digest)['reason'],
-                         'FINAL_AUDIT_STALE_INPUTS')
+        canonical = self.pending
+        alias = self.root / 'path_alias'
+        alias.mkdir()
+        for pending in (canonical, alias / '..' / canonical.name):
+            with self.subTest(pending=pending):
+                source.write_bytes(b'original')
+                # Real audit reports store resolved paths, including on Windows
+                # runners whose temporary directory has a short-path alias.
+                report = self.report(inputs={str(pending.resolve()): self.digest,
+                                             str(source.resolve()): hashlib.sha256(source.read_bytes()).hexdigest()})
+                source.write_bytes(b'changed')
+                self.assertEqual(self.gate(report, pending, self.final, self.digest)['reason'],
+                                 'FINAL_AUDIT_STALE_INPUTS')
 
     def test_text_audit_cannot_authorize_prompt_promotion(self):
         report = self.report(kind='text')

@@ -7360,7 +7360,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "60b4ea01d9d2934c4c13e199bc0daa90e77b5bd9e0f492a30e442741e1529d71"
+      "sha256": "e9eafb960f51f7bdba82e5b11963aa7164218ad9d502916d185f45a026aef861"
     },
     "tests/test_fixed_camera_semantics.py": {
       "role": "test_support",
