@@ -233,6 +233,9 @@ def validate_ledger(ledger: dict[str, Any]) -> list[str]:
                           % (question_id,))
             continue
 
+        if entry.get("projection_error"):
+            errors.append(str(entry["projection_error"]))
+            continue
         status = entry.get("status")
         if status not in STATUSES:
             errors.append("GRILL_STATUS: entry %s status %r is not one of %s"
@@ -434,10 +437,10 @@ def ledger_from_contract(contract: dict[str, Any]) -> dict[str, Any]:
 
     try:
         from .grill_bank import QUESTION_BANK, cic_mappings
-        from .grill_session import BASIS_BY_SOURCE
+        from .grill_session import BASIS_BY_SOURCE, contract_question_provenance, GrillSessionError
     except ImportError:
         from grill_bank import QUESTION_BANK, cic_mappings
-        from grill_session import BASIS_BY_SOURCE
+        from grill_session import BASIS_BY_SOURCE, contract_question_provenance, GrillSessionError
     by_path = {}
     for decision in contract.get("decisions") or []:
         if isinstance(decision, dict) and isinstance(decision.get("field_path"), str):
@@ -450,19 +453,24 @@ def ledger_from_contract(contract: dict[str, Any]) -> dict[str, Any]:
             continue
         found = [by_path.get(mapping["path"]) for mapping in mappings]
         if all(found):
+            try:
+                source, decision_status, locked = contract_question_provenance(question["id"], found)
+            except GrillSessionError as exc:
+                entries.append({"id": question["id"], "status": "open",
+                                "reason": str(exc), "projection_error": str(exc)})
+                continue
             if len(mappings) == 1:
                 answer = found[0].get("value")
             else:
                 answer = {mapping.get("pick", "value"): decision.get("value")
                           for mapping, decision in zip(mappings, found)}
-            source = found[0].get("source_type")
             entries.append({
                 "id": question["id"],
                 "status": "resolved",
                 "basis": BASIS_BY_SOURCE.get(source, "agent_proposal"),
                 "answer": answer,
-                "locked": bool(found[0].get("locked")),
-                "note": "contract:%s/%s" % (source, found[0].get("decision_status")),
+                "locked": locked,
+                "note": "contract:%s/%s" % (source, decision_status),
                 "evidence": [],
             })
         else:

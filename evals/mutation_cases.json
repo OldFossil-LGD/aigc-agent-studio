@@ -11,13 +11,12 @@
         "{python}",
         "-m",
         "unittest",
-        "tests.test_final_delivery_audit",
-        "tests.test_bound_delivery_review"
+        "tests.test_mutation_targets.MutationTargetTests.test_film_without_authoritative_target_is_blocked"
       ],
       "expect": "OK",
-      "expect_failure": "test_film_cannot_skip_the_canvas_silently",
-      "expect_kind": "ERROR",
-      "expect_in": "tests.test_final_delivery_audit.DeliveryContractScopeTests"
+      "expect_failure": "test_film_without_authoritative_target_is_blocked",
+      "expect_kind": "FAIL",
+      "expect_in": "tests.test_mutation_targets.MutationTargetTests"
     },
     {
       "id": "占位词清单清空",
@@ -29,13 +28,12 @@
         "{python}",
         "-m",
         "unittest",
-        "tests.test_final_delivery_audit",
-        "tests.test_bound_delivery_review"
+        "tests.test_mutation_targets.MutationTargetTests.test_placeholder_paragraph_is_identified"
       ],
       "expect": "OK",
-      "expect_failure": "test_audited_project_must_be_the_task_target",
+      "expect_failure": "test_placeholder_paragraph_is_identified",
       "expect_kind": "FAIL",
-      "expect_in": "tests.test_final_delivery_audit.DeliveryContractScopeTests"
+      "expect_in": "tests.test_mutation_targets.MutationTargetTests"
     },
     {
       "id": "画布布局重叠检查失效",
@@ -47,13 +45,12 @@
         "{python}",
         "-m",
         "unittest",
-        "tests.test_final_delivery_audit",
-        "tests.test_audit_recheck_repairs"
+        "tests.test_mutation_targets.MutationTargetTests.test_overlapping_rectangles_are_reported"
       ],
       "expect": "OK",
-      "expect_failure": "test_invalid_declared_footprints_block_before_writing",
-      "expect_kind": "ERROR",
-      "expect_in": "tests.test_audit_recheck_repairs.CanvasScopeAndGeometryTests"
+      "expect_failure": "test_overlapping_rectangles_are_reported",
+      "expect_kind": "FAIL",
+      "expect_in": "tests.test_mutation_targets.MutationTargetTests"
     },
     {
       "id": "画布流程检查失效",
@@ -65,13 +62,12 @@
         "{python}",
         "-m",
         "unittest",
-        "tests.test_final_delivery_audit",
-        "tests.test_audit_recheck_repairs"
+        "tests.test_mutation_targets.MutationTargetTests.test_missing_parent_is_reported"
       ],
       "expect": "OK",
-      "expect_failure": "test_audited_project_must_be_the_task_target",
+      "expect_failure": "test_missing_parent_is_reported",
       "expect_kind": "FAIL",
-      "expect_in": "tests.test_final_delivery_audit.DeliveryContractScopeTests"
+      "expect_in": "tests.test_mutation_targets.MutationTargetTests"
     },
     {
       "id": "nodeKey 投影退化",
@@ -255,13 +251,11 @@
         "{python}",
         "-m",
         "unittest",
-        "tests.test_intent_delivery",
-        "tests.test_bound_delivery_review",
-        "tests.test_final_delivery_audit"
+        "tests.test_final_delivery_audit.FinalPromotionGateTests.test_no_report_blocks_the_final"
       ],
       "expect": "OK",
-      "expect_failure": "test_stale_supporting_input_blocks_promotion",
-      "expect_kind": "ERROR",
+      "expect_failure": "test_no_report_blocks_the_final",
+      "expect_kind": "FAIL",
       "expect_in": "tests.test_final_delivery_audit.FinalPromotionGateTests"
     }
   ]

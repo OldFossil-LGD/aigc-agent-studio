@@ -563,6 +563,8 @@ def _workflow_errors(doc):
     shot_ids = {str(shot.get("id")) for shot in doc.get("shots") or []}
     for shot in doc.get("shots") or []:
         for reference in (shot.get("reference_plan") or {}).get("assets") or []:
+            if str(reference) in by_id:
+                continue
             if str(reference) in shot_ids:
                 errors.append("%s 引用了另一个镜头 %r：视频不能作为视频的输入" % (shot.get("id"), reference))
             elif str(reference) not in by_id:
@@ -702,15 +704,16 @@ def apply(doc, args):
     return verify(project, doc, strict_effective=args.strict_effective)
 
 
-def _platform_snapshot(project, names):
+def _platform_snapshot(project, names, expected=None):
     """Full normalized readback of the canvas, for before/after comparison."""
     rc, listing = _run(["node", "list", "-p", project])
     if rc != 0 or not isinstance(listing, dict):
         raise RuntimeError("读不到节点列表")
-    rows = listing.get("nodes") or []
+    rows = listing.get("nodes")
     if not isinstance(rows, list):
         raise RuntimeError("节点列表格式无效")
     snapshot = {}
+    owned_ids = {}
     for row in rows:
         if not isinstance(row, dict) or not isinstance(row.get("id"), str):
             raise RuntimeError("节点列表格式无效")
@@ -718,6 +721,9 @@ def _platform_snapshot(project, names):
         row_name = _node_name(row)
         if row_name not in names:
             continue
+        if row_name in owned_ids or row['id'] in owned_ids.values():
+            raise RuntimeError("节点身份有歧义")
+        owned_ids[row_name] = row['id']
         detail = _read_existing(["unused", "node", row["id"], "-p", project])
         if "nodes" in detail:
             items = detail["nodes"]
@@ -726,8 +732,53 @@ def _platform_snapshot(project, names):
             detail = items[0]
         if _detail_key(detail) != row["id"] or _node_name(detail) != row_name:
             raise RuntimeError("节点身份回读不一致")
-        snapshot[str(row_name)] = json.dumps(
-            detail, sort_keys=True, ensure_ascii=False, allow_nan=False)
+        snapshot[row_name] = {'detail': detail}
+    if expected is None:
+        return {name: json.dumps(value['detail'], sort_keys=True, ensure_ascii=False, allow_nan=False)
+                for name, value in snapshot.items()}
+    if set(owned_ids) != names:
+        raise RuntimeError("缺少计划节点")
+    meta = _read_existing(['unused', 'project', project])
+    graph_nodes, edges = meta.get('nodes'), meta.get('edges')
+    if not isinstance(graph_nodes, list) or not isinstance(edges, list):
+        raise RuntimeError("画布图结构格式无效")
+    by_id = {}
+    for row in graph_nodes:
+        if (not isinstance(row, dict) or not isinstance(row.get('id'), str)
+                or not row['id'].strip() or row['id'] in by_id):
+            raise RuntimeError("画布节点身份格式无效")
+        by_id[row['id']] = row
+    incoming = {node_id: [] for node_id in owned_ids.values()}
+    owned_edge_ids = set()
+    for edge in edges:
+        if (not isinstance(edge, dict)
+                or any(not isinstance(edge.get(key), str) or not edge[key].strip()
+                       for key in ('source', 'target'))):
+            raise RuntimeError("画布边格式无效")
+        if edge['target'] in incoming:
+            edge_id = edge.get('id')
+            if not isinstance(edge_id, str) or not edge_id.strip() or edge_id in owned_edge_ids:
+                raise RuntimeError("计划节点入边身份无效或有歧义")
+            owned_edge_ids.add(edge_id)
+            if edge['source'] not in by_id:
+                raise RuntimeError("计划节点存在悬空入边")
+            incoming[edge['target']].append(edge)
+    for command in expected:
+        name = command['name']
+        node_id = owned_ids[name]
+        row = by_id.get(node_id)
+        if row is None or _node_name(row) != name:
+            raise RuntimeError("画布与节点列表身份不一致")
+        actual_edges = incoming[node_id]
+        actual_sources = [edge['source'] for edge in actual_edges]
+        wanted_sources = [owned_ids[ref] for ref in command['refs']]
+        if (len(actual_sources) != len(set(actual_sources))
+                or sorted(actual_sources) != sorted(wanted_sources)):
+            raise RuntimeError("节点实际入边与计划不一致：" + name)
+        snapshot[name].update(
+            position=row.get('position'), width=row.get('width'), height=row.get('height'),
+            edges=sorted(actual_edges, key=lambda edge: json.dumps(edge, sort_keys=True)))
+        snapshot[name] = json.dumps(snapshot[name], sort_keys=True, ensure_ascii=False, allow_nan=False)
     return snapshot
 
 
@@ -751,7 +802,7 @@ def audit_canvas(project, doc, strict_effective=False):
     expected = _expected_nodes(doc, node_of)
     names = {node["name"] for node in expected}
     try:
-        before = _platform_snapshot(project, names)
+        before = _platform_snapshot(project, names, expected=expected)
     except (RuntimeError, ValueError, TypeError, KeyError) as exc:
         print("[FAIL] 审计前快照失败：%s" % exc)
         return RC_FAIL
@@ -777,7 +828,7 @@ def audit_canvas(project, doc, strict_effective=False):
         return RC_FAIL
     code = verify(project, doc, strict_effective=strict_effective)
     try:
-        after = _platform_snapshot(project, names)
+        after = _platform_snapshot(project, names, expected=expected)
     except (RuntimeError, ValueError, TypeError, KeyError) as exc:
         print("[FAIL] 审计后快照失败：%s" % exc)
         return RC_FAIL

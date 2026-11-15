@@ -31,9 +31,9 @@ import sys
 
 RC_OK, RC_FAIL, RC_USAGE, RC_EMPTY = 0, 1, 2, 3
 try:
-    from .apply_libtv_plan import resolve_libtv_binary
+    from .apply_libtv_plan import resolve_libtv_binary, _node_params
 except ImportError:
-    from apply_libtv_plan import resolve_libtv_binary
+    from apply_libtv_plan import resolve_libtv_binary, _node_params
 
 LIBTV = str(resolve_libtv_binary())
 FACE_VIEWS = {"front", "left", "right"}
@@ -140,10 +140,8 @@ def integrity_report(nodes, names, orders, edges):
             in_img.setdefault(t, set()).add(s)
     refs_no_edge, mismatch = [], []
     for tid, order in orders.items():
-        if not order:
-            continue
         srcs = in_img.get(tid, set())
-        if not srcs:
+        if order and not srcs:
             refs_no_edge.append(tid)
         elif set(order) != srcs:
             mismatch.append(tid)
@@ -171,22 +169,53 @@ def canvas_integrity(project):
 
     def one(i):
         rr = proc.run([LIBTV, "node", i, "-p", project], capture_output=True, timeout=proc.PLATFORM)
+        if rr.returncode != 0:
+            raise ValueError("节点详情回读失败：" + i)
         try:
             d = json.loads(rr.stdout.decode("utf-8", "replace"))
-        except ValueError:
-            return i, []
-        return i, ((d.get("data") or {}).get("params") or {}).get("imageListOrder") or []
+        except ValueError as exc:
+            raise ValueError("节点详情 JSON 无效：" + i) from exc
+        params = _node_params(d) if isinstance(d, dict) else None
+        if not isinstance(params, dict):
+            raise ValueError("节点参数回读无效：" + i)
+        order = params.get('imageListOrder', [])
+        if not isinstance(order, list) or any(not isinstance(ref, str) or not ref.strip() for ref in order):
+            raise ValueError("节点引用顺序回读无效：" + i)
+        return i, order
 
     r = proc.run([LIBTV, "project", project], capture_output=True, timeout=proc.PLATFORM)
-    meta = json.loads(r.stdout.decode("utf-8", "replace"))
-    nodes = {n["id"]: n for n in meta.get("nodes") or []}
-    names = {i: nodes[i]["name"] for i in nodes}
+    try:
+        if r.returncode != 0:
+            raise ValueError("画布回读失败")
+        meta = json.loads(r.stdout.decode("utf-8", "replace"))
+        if (not isinstance(meta, dict) or not isinstance(meta.get('nodes'), list)
+                or not isinstance(meta.get('edges'), list)):
+            raise ValueError("画布图结构无效")
+        nodes = {}
+        for node in meta['nodes']:
+            if (not isinstance(node, dict) or not isinstance(node.get('id'), str)
+                    or not node['id'].strip() or node['id'] in nodes
+                    or not isinstance(node.get('name'), str) or not node['name'].strip()):
+                raise ValueError("画布节点身份无效或有歧义")
+            nodes[node['id']] = node
+        for edge in meta['edges']:
+            if (not isinstance(edge, dict)
+                    or any(not isinstance(edge.get(key), str) or not edge[key].strip()
+                           for key in ('source', 'target'))):
+                raise ValueError("画布边格式无效")
+        names = {i: nodes[i]["name"] for i in nodes}
+    except (ValueError, TypeError) as exc:
+        print("[FAIL] 画布回读失败：%s" % exc)
+        return RC_FAIL
     targets = [i for i in nodes if nodes[i].get("type") in ("video", "image")]
     orders = {}
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        for i, order in ex.map(one, targets):
-            if order:
+    try:
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            for i, order in ex.map(one, targets):
                 orders[i] = order
+    except (OSError, ValueError, TypeError) as exc:
+        print("[FAIL] 画布引用回读失败：%s" % exc)
+        return RC_FAIL
     rep = integrity_report(nodes, names, orders, meta.get("edges") or [])
     print("画布体检：%d 节点 / %d 边" % (len(nodes), len(meta.get("edges") or [])))
     print("  重名节点：%d 个名字（%d 个节点受影响）" % (rep["duplicate_count"], len(rep["duplicate_names"])))

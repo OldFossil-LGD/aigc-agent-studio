@@ -57,6 +57,10 @@ def ffmpeg_scene_times(video: Path, scene: float) -> list[float]:
         stderr=subprocess.STDOUT,
         timeout=proc.FFMPEG,
     )
+    if finished.returncode != 0:
+        detail = (finished.stderr or finished.stdout or b"").decode("utf-8", "replace")
+        raise RuntimeError("ffmpeg scene detection failed (rc=%d): %s"
+                           % (finished.returncode, detail[-500:]))
     text = finished.stdout.decode("utf-8", "replace")
     return sorted(float(m) for m in re.findall(r"pts_time:([0-9.]+)", text))
 
@@ -108,7 +112,11 @@ def main() -> int:
 
     shots = json.loads(Path(args.shots).read_text(encoding="utf-8"))
     cv2_cuts = [s["start"] for s in shots][1:]
-    ff_cuts = ffmpeg_scene_times(video, args.scene)
+    try:
+        ff_cuts = ffmpeg_scene_times(video, args.scene)
+    except (OSError, RuntimeError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
 
     def nere(a: float, seq: list[float]) -> bool:
         return any(abs(a - b) <= args.tol for b in seq)

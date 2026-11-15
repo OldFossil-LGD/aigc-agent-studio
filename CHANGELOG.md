@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Restore the built-in GrillMe intake and host question adapter. Preserve proposal, preset and confirmed-user provenance when continuing a project.
+- Gate formal prompt delivery on a current final audit, with per-file review coverage and required-check execution receipts.
+- Reconcile physical incoming canvas edges and include owned geometry and edges in audit freshness checks. Failed platform reads stop integrity checks.
+- Bound subprocess cleanup and report timed-out mutation checks and failed scene detection as failures to verify.
+- Require an explicit project for live projection capture, and scope handbook timing and prompt-count examples to the current task.
 - Read node identity from either platform projection: `id`/`nodeKey` and `type`/`nodeType`. The single-node detail payload carries only the latter.
 - Verify declared canvas positions by reading them back from the project payload. `position: null` means "not declared", and assets and shots are both checked.
 - Reject assets without `subject`, which the asset schema requires and the node name is built from.

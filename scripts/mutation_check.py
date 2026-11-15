@@ -157,8 +157,12 @@ def check(file_path, frm, to, test_cmd, expect, cwd, expect_failure=None,
         else:
             attributed = any(_is_target(entry, wanted, expect_failure, expect_in)
                              for entry in failures)
-        caught = expect not in o1 and rc1 != 0 and not broken and attributed
-        if broken:
+        timed_out = rc1 == proc.TIMEOUT_RC
+        caught = expect not in o1 and rc1 != 0 and not broken and attributed and not timed_out
+        if timed_out:
+            out.append("[STOP] 变异后测试超时，这次没验到，不算捕获")
+            rc = 3
+        elif broken:
             out.append("[STOP] 变异后测试没跑起来（%s），这次不算捕获" % "、".join(broken))
             out.append(o1[-1500:])
             rc = 3

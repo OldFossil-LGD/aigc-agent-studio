@@ -379,17 +379,45 @@ def _guard(session: dict[str, Any], key: str | None, revision: int | None) -> bo
     return True
 
 
+def contract_question_provenance(question_id: str, decisions: list[dict[str, Any]]) -> tuple[str, str, bool]:
+    """Require one lossless authority category for a ledger/session question."""
+    values = [(item.get("source_type"), item.get("decision_status"), item.get("locked"))
+              for item in decisions]
+    if any(not isinstance(source, str) or not isinstance(status, str)
+           or not isinstance(locked, bool) for source, status, locked in values):
+        raise GrillSessionError("GRILL_CONTRACT_PROVENANCE",
+                                "%s has invalid field provenance types" % question_id)
+    provenance = set(values)
+    valid = {
+        ("user_original", "confirmed", True),
+        ("grillme_answer", "confirmed", True),
+        ("inherited_project", "confirmed", True),
+        ("agent_proposed", "proposed", False),
+        ("project_preset", "defaulted", False),
+    }
+    user_provenance = {item for item in valid if item[2] is True}
+    if provenance and provenance <= user_provenance and len(provenance) > 1:
+        return "inherited_project", "confirmed", True
+    if len(provenance) != 1 or not provenance <= valid:
+        raise GrillSessionError(
+            "GRILL_CONTRACT_PROVENANCE",
+            "%s has mixed or invalid field provenance; preserve the field decisions and "
+            "obtain a consistent user confirmation before grouping them" % question_id)
+    return next(iter(provenance))
+
+
 def inherit_contract(session: dict[str, Any], contract: dict[str, Any]) -> list[str]:
     """Seed a session from a published contract (rework / continuation).
 
-    Inherited values stay `inherited_project`: still a user constraint, but the
-    provenance points upstream instead of pretending the user just said it.
+    Confirmed user values become `inherited_project`. Proposals and presets
+    retain their original authority and remain unlocked.
     """
 
     by_path = {decision["field_path"]: decision
                for decision in contract.get("decisions") or []
                if isinstance(decision, dict) and isinstance(decision.get("field_path"), str)}
     inherited = []
+    prepared = {}
     for question in QUESTION_BANK:
         mappings = cic_mappings(question)
         if not mappings or not all(mapping["path"] in by_path for mapping in mappings):
@@ -402,14 +430,18 @@ def inherit_contract(session: dict[str, Any], contract: dict[str, Any]) -> list[
         errors = answer_errors(question, value)
         if errors:
             continue
-        first = by_path[mappings[0]["path"]]
-        session["entries"][question["id"]] = _entry(
-            question, value, "inherited_project", "confirmed",
-            locked=bool(first.get("locked")),
+        source, decision_status, locked = contract_question_provenance(
+            question["id"], [by_path[mapping["path"]] for mapping in mappings])
+        if locked:
+            source = "inherited_project"
+        prepared[question["id"]] = _entry(
+            question, value, source, decision_status,
+            locked=locked,
             source_ref="contract:%s" % contract.get("contract_id", ""),
             note="继承自已发布契约")
         inherited.append(question["id"])
     if inherited:
+        session["entries"].update(prepared)
         session["turns"].append({"turn": 1, "id": "*", "action": "inherit",
                                  "value": inherited})
         _touch(session, "NEEDS_QUESTION")

@@ -37,6 +37,7 @@ class CanvasCLI:
     """Stateful external CLI double. It never calls a real executable."""
     def __init__(self):
         self.nodes = {}
+        self.edges = []
         self.creates = []
         self.calls = []
         self.fail_once = None
@@ -64,6 +65,9 @@ class CanvasCLI:
             sources = [args[i + 1] for i, arg in enumerate(args) if arg == '--left']
             params['imageListOrder'] = [next(k for k, n in self.nodes.items() if n['name'] == source)
                                         for source in sources]
+            for source in params['imageListOrder']:
+                self.edges.append({'id': 'edge-' + str(len(self.edges) + 1),
+                                   'source': source, 'target': key})
             self.nodes[key] = {'id': key, 'name': name, 'type': args[args.index('-t') + 1],
                                'params': params}
             if '--x' in args:
@@ -78,7 +82,7 @@ class CanvasCLI:
                        'nodes': [{'id': key, 'name': node['name'], 'type': node.get('type'),
                                   'position': dict(node.get('position') or {})}
                                  for key, node in self.nodes.items()],
-                       'edges': []}
+                       'edges': copy.deepcopy(self.edges)}
         if args[0] == 'node':
             selected = [node for key, node in self.nodes.items()
                         if args[1] in (key, node['name'])]

@@ -5,12 +5,13 @@ nesting and types are verbatim. These tests feed that payload through the actual
 code paths, so the fixture pins behaviour instead of restating key lists.
 
 A committed fixture cannot notice the platform changing under it. Drift needs a
-fresh capture: python scripts/capture_libtv_projection.py --check
+fresh capture: python tests/test_platform_projection_contract.py --check --project <uuid>
 """
 import json
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -77,6 +78,27 @@ class DriftCheckerTests(unittest.TestCase):
         self.assertEqual(diff_shape({'a': [{'b': 1}]}, {'a': [{'b': 2}]}), [])
 
 
+class ProjectionCommandTests(unittest.TestCase):
+    def test_check_uses_the_callers_project(self):
+        with patch(__name__ + '.capture', return_value=FIXTURE) as reader:
+            self.assertEqual(main(['--check', '--project', 'chosen-project']), 0)
+        reader.assert_called_once_with('chosen-project')
+
+    def test_live_check_requires_an_explicit_project(self):
+        with patch(__name__ + '.capture') as reader:
+            with self.assertRaises(SystemExit) as stopped:
+                main(['--check'])
+        self.assertEqual(stopped.exception.code, 2)
+        reader.assert_not_called()
+
+    def test_failed_cli_json_is_rejected(self):
+        from subprocess import CompletedProcess
+        failed = CompletedProcess([], 1, b'{"error":"denied"}', b'no access')
+        with patch('subprocess.run', return_value=failed):
+            with self.assertRaises(RuntimeError):
+                _cli_json('project', 'chosen-project')
+
+
 class FixtureFidelityTests(unittest.TestCase):
     """夹具必须是真实回包本身，不能是重建出来的近似物。"""
 
@@ -131,15 +153,16 @@ class CapturedPayloadTests(unittest.TestCase):
 # --- 漂移检测 -------------------------------------------------------------
 # 提交在仓库里的夹具是**历史快照**，平台改形状它不会自己变红。
 # 漂移只能靠重新抓取比对：
-#   python tests/test_platform_projection_contract.py --check   （需要已授权的 CLI）
-#   python tests/test_platform_projection_contract.py --refresh （重写夹具）
-
-CANVAS_UUID = '02e2eca2f8cc4ce887049e9108bf4bb9'
+#   python tests/test_platform_projection_contract.py --check --project <uuid>
+#   python tests/test_platform_projection_contract.py --refresh --project <uuid>
 
 
 def _cli_json(*args):
     import subprocess
-    result = subprocess.run(['libtv'] + list(args), capture_output=True, timeout=180)
+    result = subprocess.run([str(plan.resolve_libtv_binary())] + list(args),
+                            capture_output=True, timeout=180)
+    if result.returncode != 0:
+        raise RuntimeError('LibTV 回读失败（退出码 %s）' % result.returncode)
     text = result.stdout.decode('utf-8', 'replace').strip()
     if not text:
         raise RuntimeError('libtv 无输出（是否未登录？先运行 libtv account info）')
@@ -167,7 +190,7 @@ def _sanitize(obj, ids, names, key=None):
     return '<%s>' % type(obj).__name__
 
 
-def capture(project=CANVAS_UUID):
+def capture(project):
     """三份回包**原样脱敏**：不重建顶层、不截断列表。
 
     重建会让真实回包里的字段漂移悄悄消失（此前 node_list 就是手搓的）。
@@ -180,8 +203,8 @@ def capture(project=CANVAS_UUID):
     return {
         'note': ('LibTV CLI 回包的完整结构快照（值脱敏，结构/嵌套/类型保持原样）。'
                  '**本文件不会自动发现平台漂移**——'
-                 '漂移需重跑 tests/test_platform_projection_contract.py --check。'),
-        'captured_from': {'cli': '1.1.3', 'nodes': len(listing.get('nodes') or []),
+                 '漂移需重跑 tests/test_platform_projection_contract.py --check --project <uuid>。'),
+        'captured_from': {'cli': 'unverified', 'nodes': len(listing.get('nodes') or []),
                           'edges': len(meta.get('edges') or [])},
         'node_list': _sanitize(listing, ids, names),
         'node_detail': _sanitize(detail, ids, names),
@@ -224,24 +247,33 @@ def diff_shape(live, stored, path=''):
 
 
 def main(argv):
+    if '--check' not in argv and '--refresh' not in argv:
+        unittest.main(argv=[__file__] + argv)
+        return 0
+    import argparse
+    parser = argparse.ArgumentParser(description='Read the selected LibTV project to check projection drift')
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument('--check', action='store_true')
+    mode.add_argument('--refresh', action='store_true')
+    parser.add_argument('--project', required=True, help='Authorized LibTV canvas UUID')
+    args = parser.parse_args(argv)
     fixture = ROOT / 'tests' / 'fixtures' / 'libtv_platform_projection.json'
-    if '--refresh' in argv:
-        fixture.write_text(json.dumps(capture(), ensure_ascii=False, indent=2) + '\n',
+    if args.refresh:
+        fixture.write_text(json.dumps(capture(args.project), ensure_ascii=False, indent=2) + '\n',
                            encoding='utf-8')
         print('已重写夹具：%s' % fixture)
         return 0
-    if '--check' in argv:
+    if args.check:
         stored = json.loads(fixture.read_text(encoding='utf-8'))
-        differences = diff_shape(capture(), stored)
+        differences = diff_shape(capture(args.project), stored)
         if differences:
             print('平台投影已漂移：')
             for line in differences:
                 print('  -', line)
-            print('确认后运行 --refresh 更新夹具。')
+            print('确认后运行 --refresh --project <uuid> 更新夹具。')
             return 1
         print('平台投影与夹具一致。')
         return 0
-    unittest.main(argv=argv)
     return 0
 
 

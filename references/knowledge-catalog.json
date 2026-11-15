@@ -114,7 +114,7 @@
         "1.0.1-beta.1",
         "1.0.0"
       ],
-      "sha256": "109ff6dfc8e10773809bb38de1d3d8a859634a39b8e91a98dc39ad85246393dd"
+      "sha256": "8bd46663a67be765b8fcfffe42ad306f9c6020ede91577d3088d3747cdcdbaf5"
     },
     "CONTRIBUTING.md": {
       "role": "publishing",
@@ -173,7 +173,7 @@
         "制作执行链（按已确定的交付终点进入）",
         "按交付终点进入"
       ],
-      "sha256": "fc78b129b95596305cca15c2fec20c205e9e5ded41d756ec615b6d57e97ecb90"
+      "sha256": "b24d901f9f73fdc6a2f4830d19c2d56af3688ceecbe1bac4b9c8b83e333fa715"
     },
     "THIRD_PARTY_NOTICES.md": {
       "role": "publishing",
@@ -843,7 +843,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "ccb3a47117765f5fea518ca1231586d9344976072b385c9839b34fbce429167a"
+      "sha256": "dd28d199fdc970709c250a6e8a23fef4e91d95fa266dea363ce31ff50a3a9196"
     },
     "evals/reverse_fixtures.json": {
       "role": "evaluation",
@@ -1467,7 +1467,7 @@
         "1.3 三条禁止底线与一条反作用提醒",
         "1.4 行的取舍：哪些恒定、哪些命中才加"
       ],
-      "sha256": "bb9cc3cd6657b4e666f8ef78da221b573263d1eed96ee5edaefeae0a52b62812"
+      "sha256": "9b2cae626916671929e536ee55fb6d7b47c951ba401316eb12bbe191689e08a3"
     },
     "references/default-standard.md": {
       "role": "active_reference",
@@ -1978,7 +1978,7 @@
         "权威交付契约",
         "正式提示词的两阶段交付"
       ],
-      "sha256": "50b2fb05afec8b905bfcc438e33c51e02530da7adc17b62ef136d692b31fd66f"
+      "sha256": "2c2b5e165cc4969c72a1df26f48e776f6e9eaea3375f918a87cf2e5de8b6bae2"
     },
     "references/governance-law-part2.md": {
       "role": "active_reference",
@@ -6332,7 +6332,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "8efeab4caa7764789d4afa7993561aaaf719b81f61e27d5bb841496244991564"
+      "sha256": "2fca7c211fa12a5097eea838f4476cb1c83ac2a66b35d4b5fd134b39e17311b6"
     },
     "scripts/constraint_semantics.py": {
       "role": "implementation",
@@ -6440,7 +6440,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "8b5a8e72e442d039f185ad2dc0a63e19690d331ef32914c47f63bee6e9128b40"
+      "sha256": "73d002451d7473e151711eebbb85c63281b8924c22f8b9ca3085408a058ba6f6"
     },
     "scripts/grill_session.py": {
       "role": "implementation",
@@ -6448,7 +6448,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "cf95d50dd03af431b8f68111a502d3eb8800f37c4e1d432d715db10492805f0c"
+      "sha256": "25b3d8af1d803d1a66de5b9c9fcbc7c225fd728546433fefc48ea5b9e1d2578e"
     },
     "scripts/grill_ui.py": {
       "role": "implementation",
@@ -6506,7 +6506,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "224779bfe6dc7b01151717bb63ab9d752c735aef21d0b666e44d1a05384a1629"
+      "sha256": "6a9d4be3d5d36d76744db97327888be61ec130ae9d5e9498a53b99383a059c41"
     },
     "scripts/libtv_model_rules_gate.py": {
       "role": "implementation",
@@ -6580,7 +6580,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "54023cbc2dc0462cd24fe665952b18da71caa7a667c5eae1e7d9da27ca676aca"
+      "sha256": "c5a2f2f3cf4cabb6aa17010c43aaea69b784620b728d25113825b2402e29ad57"
     },
     "scripts/numbering.py": {
       "role": "implementation",
@@ -6605,7 +6605,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "01bbeb7b6727aaff62e4845efc0c2ffad3029b1eb91d47999ac7b7800106d210"
+      "sha256": "dfde1fc6384ee0733f47859b61a697fb16e7387319983f305e963e64c920ddec"
     },
     "scripts/production_capability_gate.py": {
       "role": "implementation",
@@ -6852,7 +6852,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "5c56ca398cd9e94516455883a7ef78424ffee7716e4204deb9bd98eb8b04deb8"
+      "sha256": "0a30520027faf224f0e47a4ad1f8c872b028b095c85335ca11a4d5483944752d"
     },
     "scripts/work_profile.py": {
       "role": "implementation",
@@ -7530,7 +7530,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "53560c894127e45a56fc7ac23b04e2679a9681ce8ae402696d9905dc35a86a87"
+      "sha256": "862e15abac90794d82fc41c9fae2700f5e8f1b87df484654ea3ea4a2358853ba"
     },
     "tests/test_media_qc_entry.py": {
       "role": "test_support",
@@ -7538,7 +7538,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "6c3e2e07dbbb85830bb5c1e7cc9e8584dfbe7aeea1b4dbf1efd688e2e433b846"
+      "sha256": "6d453ae4bcd45efc1d82421b5e155740c4a861471075cdbf3f19bb2fac4995b0"
     },
     "tests/test_missing_artifact_label.py": {
       "role": "test_support",
@@ -7571,6 +7571,14 @@
       ],
       "headings": [],
       "sha256": "1dc9c9bdea8984a0559e37f6d8c9b72c522db79fdf6b2a0b7bc7c1066a6c56cc"
+    },
+    "tests/test_mutation_targets.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "6f9eb42f9962bff3a85b4ef05bf634c403fb4499d24d42881299a20528506d59"
     },
     "tests/test_name_projection_paths.py": {
       "role": "test_support",
@@ -7652,7 +7660,7 @@
         "implementation_publication"
       ],
       "headings": [],
-      "sha256": "960bf892ff2ea7705504c600ffa98fb1e09758ee79b3776b9403f416f213dbe1"
+      "sha256": "7fc989db4dcf3b56ce7ea344bd6cad01c25a97cc4688de9948746d89f8314a5b"
     },
     "tests/test_proc_timeout.py": {
       "role": "test_support",
@@ -7760,6 +7768,22 @@
       "headings": [],
       "sha256": "969943c73d664ac9b7fbc05bce74a411006231fd2dfc43ac1302a969ac8e89e2"
     },
+    "tests/test_review_canvas_edges.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "9a1b69e1bf781aa3dd31e889778c3d3078c1268b59e6ca72fb14ff232b0b1434"
+    },
+    "tests/test_review_grill_provenance.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "b524dd3126ca199931063a7db4667eec6d62226833533b8958b6835779dae626"
+    },
     "tests/test_review_repairs.py": {
       "role": "test_support",
       "domains": [
@@ -7767,6 +7791,14 @@
       ],
       "headings": [],
       "sha256": "2c069cb96468572deb69cc750b025130368ae3895c1da9beccd0f3601f6f3fde"
+    },
+    "tests/test_review_runtime_regressions.py": {
+      "role": "test_support",
+      "domains": [
+        "implementation_publication"
+      ],
+      "headings": [],
+      "sha256": "1bd95165a8499810168ed15766091da6c0e8e275629e42a647a06e5f5127e3fb"
     },
     "tests/test_rework_application.py": {
       "role": "test_support",
