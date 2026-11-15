@@ -43,7 +43,7 @@ class MediaQCEntryTests(unittest.TestCase):
             video.write_bytes(b'synthetic test bytes')
             ir = Path(temp) / 'ir.json'
             ir.write_text(json.dumps({'project': {'delivery': {'duration_sec': 5, 'aspect_ratio': {'value': '9:16'}, 'fps': {'value': 24}}}, 'shots': []}), encoding='utf-8')
-            with patch.object(media_qc.subprocess, 'run', return_value=CompletedProcess([], 0, json.dumps({'status': 'PASS', 'failures': []}), '')) as child, contextlib.redirect_stdout(io.StringIO()) as out:
+            with patch.object(media_qc.proc, 'run', return_value=CompletedProcess([], 0, json.dumps({'status': 'PASS', 'failures': []}), '')) as child, contextlib.redirect_stdout(io.StringIO()) as out:
                 code = media_qc.main(['--video', str(video), '--ir', str(ir)])
             self.assertEqual(code, 0, out.getvalue())
             command = child.call_args.args[0]

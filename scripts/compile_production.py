@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -358,15 +359,46 @@ def _load_input(input_path: Path) -> dict[str, Any]:
     return parse_text_input(text)
 
 
+GRILL_PASS_STATUSES = ("GRILL_PASS", "GRILL_PASS_WITH_WARNINGS")
+
+
+def _grill_gate(data: dict[str, Any], grill: dict[str, Any] | None) -> dict[str, Any]:
+    try:
+        from scripts.grill_ledger import as_ledger, decision_mismatches, gate
+    except ImportError:
+        from grill_ledger import as_ledger, decision_mismatches, gate
+    stop = "film" if task_type_for(data) == "full_film" else "prompt"
+    if grill is None:
+        return {"status": "GRILL_REQUIRED", "stop": stop, "blocking": [], "warnings": []}
+    result = dict(gate(grill, stop))
+    result["mismatches"] = decision_mismatches(
+        as_ledger(grill), task_type=task_type_for(data),
+        duration_sec=data.get("duration_sec"), aspect_ratio=data.get("aspect_ratio"),
+        sound_mode=(data.get("sound") or {}).get("mode"),
+    )
+    if result["mismatches"] and result["status"] in GRILL_PASS_STATUSES:
+        result["status"] = "GRILL_MISMATCH"
+    return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("input")
     parser.add_argument("--out", required=True)
     parser.add_argument("--previous-graph", help="Apply offline rework to this actual compiled record graph")
     parser.add_argument("--allow-gate-fail", action="store_true")
+    parser.add_argument("--grill", help="Station 0 ledger or creative intent contract JSON")
+    parser.add_argument("--draft", action="store_true", help="Explicit offline engineering compilation")
     args = parser.parse_args()
     input_path = Path(args.input)
     data = _load_input(input_path)
+    grill = json.loads(Path(args.grill).read_text(encoding="utf-8")) if args.grill else None
+    if not args.draft or grill is not None:
+        grill_result = _grill_gate(data, grill)
+        if grill_result["status"] not in GRILL_PASS_STATUSES:
+            print(json.dumps({"grill": grill_result}, ensure_ascii=False, indent=2))
+            sys.stderr.write("%s: station 0 requires a matching completed interview\n" % grill_result["status"])
+            return 1
     previous = json.loads(Path(args.previous_graph).read_text(encoding="utf-8")) if args.previous_graph else None
     result = compile_production(data, Path(args.out), previous_graph=previous)
     print(json.dumps(result["gate"], ensure_ascii=False, indent=2))

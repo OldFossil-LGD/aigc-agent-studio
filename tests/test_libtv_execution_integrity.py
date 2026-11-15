@@ -37,6 +37,7 @@ class CanvasCLI:
     """Stateful external CLI double. It never calls a real executable."""
     def __init__(self):
         self.nodes = {}
+        self.edges = []
         self.creates = []
         self.calls = []
         self.fail_once = None
@@ -46,8 +47,8 @@ class CanvasCLI:
         if args[:2] == ['node', 'list']:
             return 0, {'nodes': [
                 {'id': key, 'name': node['name']} for key, node in self.nodes.items()]}
-        if args[:2] == ['node', 'create']:
-            name = args[2]
+        if args[0] == 'node' and 'create' in args:
+            name = args[args.index('create') + 1]
             if name == self.fail_once:
                 self.fail_once = None
                 return 1, {'_raw': 'synthetic interrupted request'}
@@ -57,19 +58,39 @@ class CanvasCLI:
             for i, arg in enumerate(args):
                 if arg == '-s':
                     setting, value = args[i + 1].split('=', 1)
-                    params[setting] = value
+                    try:
+                        params[setting] = json.loads(value)
+                    except ValueError:
+                        params[setting] = value
             sources = [args[i + 1] for i, arg in enumerate(args) if arg == '--left']
             params['imageListOrder'] = [next(k for k, n in self.nodes.items() if n['name'] == source)
                                         for source in sources]
+            for source in params['imageListOrder']:
+                self.edges.append({'id': 'edge-' + str(len(self.edges) + 1),
+                                   'source': source, 'target': key})
             self.nodes[key] = {'id': key, 'name': name, 'type': args[args.index('-t') + 1],
                                'params': params}
+            if '--x' in args:
+                self.nodes[key].update(position={'x': float(args[args.index('--x') + 1]),
+                                                 'y': float(args[args.index('--y') + 1])},
+                                       width=100, height=100)
             self.creates.append(name)
             return 0, {'nodeKey': key}
+        if args[:1] == ['project']:
+            # 真实 CLI：节点坐标只在 project 回包里（node <id> 详情没有）。
+            return 0, {'projectUuid': args[1] if len(args) > 1 else '',
+                       'nodes': [{'id': key, 'name': node['name'], 'type': node.get('type'),
+                                  'position': dict(node.get('position') or {})}
+                                 for key, node in self.nodes.items()],
+                       'edges': copy.deepcopy(self.edges)}
         if args[0] == 'node':
             selected = [node for key, node in self.nodes.items()
                         if args[1] in (key, node['name'])]
             if len(selected) == 1:
-                return 0, copy.deepcopy(selected[0])
+                detail = copy.deepcopy(selected[0])
+                for field in ('position', 'width', 'height'):
+                    detail.pop(field, None)
+                return 0, detail
             return 1, {'_raw': 'missing or ambiguous node'}
         raise AssertionError('Unexpected CLI operation: ' + repr(args))
 

@@ -2,6 +2,8 @@
 
 Use this interface before a final prompt, text review, asset plan, reverse analysis or rework delivery. It is not a model-thinking certificate or generation approval.
 
+After the applicable workflow and reviews, run the final delivery firewall described in [final-delivery-audit.md](final-delivery-audit.md). It reopens actual files and current canvas/media evidence before handoff. Fix problems within the user's authorization and rerun the audit after any change. Its supported machine checks complement the Agent's task-specific content review.
+
 ## Scope and discovery
 
 1. Use knowledge_catalog.py to inspect the current domain inventory and candidate sources. It includes active references, mixed/history/example sources, code/schema and publication support. Metadata classification is a discovery hint, not authority or proof that every file was read.
@@ -26,7 +28,9 @@ It creates 13_Draft_Prompt.md and reports DRAFT_REVIEW_REQUIRED. The same comman
 
 For a formal prompt delivery, the Agent supplies its current creative-review/v1 record:
 
-    python scripts/compile_intent_delivery.py intent.json --out out/reviewed --review review.json --capture-root .context_reads --session current-session
+    python scripts/compile_intent_delivery.py intent.json --out out/reviewed --grill grill.json --review review.json --capture-root .context_reads --session current-session
+
+This first formal pass stages 13_Final_Prompt.pending.md and returns FINAL_AUDIT_REQUIRED after the other gates pass. Audit the actual candidate and supporting files, then rerun with --final-audit-report. The compiler revalidates the task, inputs and manifest before promotion. Follow the two-stage procedure in final-delivery-audit.md. Each audited file needs an applied_to location in its review record.
 
 The review contains:
 

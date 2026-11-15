@@ -18,6 +18,11 @@ import json
 import re
 import shutil
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 from pathlib import Path
 
@@ -31,8 +36,12 @@ DURATION_TOLERANCE_SEC = 0.35
 
 
 def run(cmd: list[str]) -> tuple[int, str]:
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    return proc.returncode, proc.stdout.decode("utf-8", "replace")
+    try:
+        finished = proc.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                            timeout=proc.FFMPEG)
+    except OSError as exc:  # 外部工具没装：返回失败码，由调用方决定是否声明跳过
+        return 127, "tool unavailable: %s" % exc
+    return finished.returncode, finished.stdout.decode("utf-8", "replace")
 
 
 def probe(path: str) -> dict | None:
@@ -64,10 +73,25 @@ def probe(path: str) -> dict | None:
     }
 
 
-def black_segments(path: str) -> list[dict]:
+def _detect(cmd: list[str]) -> tuple[str, str | None]:
+    """跑一次检测，返回 (输出, 问题描述)。
+
+    返回码必须看：超时或 ffmpeg 出错时输出为空，而"空"会被读成"没有黑帧/没有静音"，
+    最终得出假 PASS（2026-11-12 审计指出）。
+    """
+    code, out = run(cmd)
+    if code != 0:
+        return out, "检测进程返回 %d，结果不可信" % code
+    return out, None
+
+
+def black_segments(path: str) -> tuple[list[dict], str | None]:
     if not FFMPEG:
-        return []
-    _, out = run([FFMPEG, "-i", path, "-vf", "blackdetect=d=0.5:pix_th=0.10", "-f", "null", "-"])
+        return [], "找不到 ffmpeg，黑帧未检测"
+    out, problem = _detect([FFMPEG, "-i", path, "-vf", "blackdetect=d=0.5:pix_th=0.10",
+                            "-f", "null", "-"])
+    if problem:
+        return [], problem
     rows = []
     for line in out.splitlines():
         if "black_start:" not in line:
@@ -79,13 +103,16 @@ def black_segments(path: str) -> list[dict]:
                 row[key] = float(match.group(1))
         if row:
             rows.append(row)
-    return rows
+    return rows, None
 
 
-def silence_segments(path: str) -> list[dict]:
+def silence_segments(path: str) -> tuple[list[dict], str | None]:
     if not FFMPEG:
-        return []
-    _, out = run([FFMPEG, "-i", path, "-af", "silencedetect=noise=-50dB:d=0.5", "-f", "null", "-"])
+        return [], "找不到 ffmpeg，静音未检测"
+    out, problem = _detect([FFMPEG, "-i", path, "-af", "silencedetect=noise=-50dB:d=0.5",
+                            "-f", "null", "-"])
+    if problem:
+        return [], problem
     rows, current = [], {}
     for line in out.splitlines():
         if "silence_start:" in line:
@@ -99,13 +126,16 @@ def silence_segments(path: str) -> list[dict]:
             current["duration"] = float(duration.group(1)) if duration else None
             rows.append(current)
             current = {}
-    return rows
+    return rows, None
 
 
 def hard_cuts(path: str) -> int | None:
     if not FFMPEG:
         return None
-    _, out = run([FFMPEG, "-i", path, "-filter:v", "select='gt(scene,0.30)',showinfo", "-f", "null", "-"])
+    code, out = run([FFMPEG, "-i", path, "-filter:v", "select='gt(scene,0.30)',showinfo",
+                     "-f", "null", "-"])
+    if code != 0:
+        return None      # 检测没跑成：None 表示"不知道"，不能当成 0 个切换
     return len(re.findall(r"pts_time:", out))
 
 
@@ -126,10 +156,16 @@ def evaluate(path: str, expect: dict) -> dict:
         return {"status": "NOT_VERIFIED", "exit_code": RC_EMPTY, "path": path, "facts": facts,
                 "failures": [{"code": "NO_EXPECTATION_GIVEN"}]}
 
-    blacks = black_segments(path)
-    silences = silence_segments(path)
+    blacks, black_problem = black_segments(path)
+    silences, silence_problem = silence_segments(path)
     cuts = hard_cuts(path)
     failures, warnings = [], []
+    # 检测没跑成 ≠ 没有黑帧/没有静音。必须报出来，否则会得出假 PASS。
+    for problem in (black_problem, silence_problem):
+        if problem:
+            failures.append({"code": "DETECTION_UNAVAILABLE", "message": problem})
+    if cuts is None:
+        failures.append({"code": "DETECTION_UNAVAILABLE", "message": "场景切换检测失败，切换数未知"})
 
     expected_duration = expect.get("duration")
     if expected_duration is not None:

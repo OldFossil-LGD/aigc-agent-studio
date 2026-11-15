@@ -3,6 +3,10 @@
 > 依据：《架构审查 2026-10-31》《Codex 标准化实施任务书 v1.0》。
 > 下文记录该次实施时的仓库内容及其与审查对象（zip）的差异。
 
+## 2026-11-10 补记
+
+已从本项目旧交付包恢复 `grill_session.py`、`grill_bank.py`、`grill_ledger.py` 和 Creative Intent Contract Schema，并接回编译器门禁。新增 `grill_ui.py` 适配宿主原生提问与经用户同意的文字回退。当前入口见 `references/grill-me.md`。下表的“不存在”与 N/A 保留为 2026-10-31 的检查记录。
+
 ## 1 · 审查对象与本仓库的差异
 
 | 审查/任务书提到的文件 | 本仓库 | 处理 |

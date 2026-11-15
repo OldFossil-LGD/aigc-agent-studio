@@ -20,8 +20,7 @@ def mechanical_review(root, task, artifacts, capture_root, session='mechanical-t
     consideration = [{'domain': domain, 'status': 'applicable' if domain in required else 'not_applicable', 'reason': 'Mechanical protocol fixture only: ' + ('structured intent triggers ' if domain in required else 'no declared requirement for ') + domain} for domain in catalog['domains']]
     source = 'references/context-reading.md'
     quote = next(line for line in (root / source).read_text(encoding='utf-8').splitlines() if line.strip() and not line.startswith(('#', '>')))
-    name = next(iter(artifacts))
-    fragment = str(artifacts[name])[:100]
+    locations = [{'artifact': name, 'text': str(body)[:100]} for name, body in artifacts.items()]
     goal = task['goal']
-    decisions = [{'requirement_ids': [row['requirement_id']], 'rationale': 'Mechanical consistency fixture, not artistic judgement; current goal: ' + goal, 'task_evidence': [goal], 'source_evidence': [{'path': source, 'quote': quote}], 'applied_to': [{'artifact': name, 'text': fragment}]} for row in list(plan['coverage']) + [{'requirement_id': item['id']} for item in task.get('requirements', [])]]
+    decisions = [{'requirement_ids': [row['requirement_id']], 'rationale': 'Mechanical consistency fixture, not artistic judgement; current goal: ' + goal, 'task_evidence': [goal], 'source_evidence': [{'path': source, 'quote': quote}], 'applied_to': locations} for row in list(plan['coverage']) + [{'requirement_id': item['id']} for item in task.get('requirements', [])]]
     return {'review_format': 'creative-review/v1', 'unresolved': [], 'task_sha256': task_fingerprint(task), 'artifact_sha256': artifact_fingerprint(artifacts), 'catalog_sha256': catalog['catalog_sha256'], 'context_plan': plan, 'read_receipt': {'session_id': session, 'reads': reads}, 'consideration': consideration, 'decisions': decisions}

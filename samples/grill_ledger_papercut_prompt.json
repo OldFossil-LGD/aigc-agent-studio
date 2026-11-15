@@ -1,0 +1,72 @@
+{
+  "grill_format": "grill-ledger/v1",
+  "job": {
+    "kind": "original",
+    "request": "一条 5 秒、9:16 竖屏的剪纸空镜：白色纸制时钟的影子扫过蓝色墙面。无人声，仅保留雨声；固定俯拍，右上角留白供后期标题；只要提示词，不生成。"
+  },
+  "entries": [
+    {
+      "id": "G01",
+      "status": "resolved",
+      "basis": "user_explicit",
+      "answer": "prompt_only",
+      "locked": true,
+      "note": "用户原话：只要提示词，不生成。"
+    },
+    {
+      "id": "G03",
+      "status": "resolved",
+      "basis": "user_explicit",
+      "answer": 5,
+      "locked": true,
+      "note": "用户原话：一条 5 秒。"
+    },
+    {
+      "id": "G04",
+      "status": "resolved",
+      "basis": "user_explicit",
+      "answer": "9:16",
+      "locked": true,
+      "note": "用户原话：9:16 竖屏。"
+    },
+    {
+      "id": "G06",
+      "status": "resolved",
+      "basis": "user_explicit",
+      "answer": {
+        "style_id": "剪纸风格：色块平涂、剪裁边缘干净、纸纤维哑光",
+        "register": "stylized"
+      },
+      "locked": true,
+      "note": "用户原话：剪纸空镜。"
+    },
+    {
+      "id": "G08",
+      "status": "resolved",
+      "basis": "user_explicit",
+      "answer": "ambience_only",
+      "locked": true,
+      "note": "用户原话：无人声，仅保留雨声。"
+    },
+    {
+      "id": "G10",
+      "status": "resolved",
+      "basis": "agent_proposal",
+      "answer": "空镜按「时间在走、画面无人」处理：影子推进即时间推进，不额外加叙事拐点。",
+      "locked": false,
+      "note": "用户只给了画面与声音，未指定叙事落点；此条可改，不锁。",
+      "evidence": [
+        {
+          "type": "craft_prior",
+          "ref": "references/shot-craft.md",
+          "where": "空镜的信息量与留白"
+        }
+      ]
+    },
+    {
+      "id": "G02",
+      "status": "deferred",
+      "reason": "用户没提范围外；按原话执行，不替用户追加排除项。"
+    }
+  ]
+}

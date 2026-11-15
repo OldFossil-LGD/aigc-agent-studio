@@ -12,6 +12,8 @@
 
 ## 1. 真实入口
 
+先走 `references/grill-me.md` 站 0，记录原话已明确的内容，使用宿主原生提问补齐空白，形成契约和台账。Agent 据此写交接文档。常规编译传 `--grill <cic.json 或 grill.json>`，正式交付还须当前审阅证据。下面的 `--draft` 命令用于离线工程诊断，可省略 GrillMe，显式传入时仍会校验。
+
 ```powershell
 # 阶段一真实入口：意图交接文档 → 正本 → 可复制 Markdown
 python scripts/compile_intent_delivery.py <intent_handoff.json> --out out/ --draft

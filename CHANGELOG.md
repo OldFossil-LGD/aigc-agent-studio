@@ -1,5 +1,27 @@
 # Changelog
 
+## Unreleased
+
+- Restore the built-in GrillMe intake and host question adapter. Preserve proposal, preset and confirmed-user provenance when continuing a project.
+- Gate formal prompt delivery on a current final audit, with per-file review coverage and required-check execution receipts.
+- Reconcile physical incoming canvas edges and include owned geometry and edges in audit freshness checks. Failed platform reads stop integrity checks.
+- Bound subprocess cleanup and report timed-out mutation checks and failed scene detection as failures to verify.
+- Require an explicit project for live projection capture, and scope handbook timing and prompt-count examples to the current task.
+- Read node identity from either platform projection: `id`/`nodeKey` and `type`/`nodeType`. The single-node detail payload carries only the latter.
+- Verify declared canvas positions by reading them back from the project payload. `position: null` means "not declared", and assets and shots are both checked.
+- Reject assets without `subject`, which the asset schema requires and the node name is built from.
+- Stop rendering absent prompts and coordinates as the string `None`.
+- Report stacked node positions in canvas integrity output; they are reported, not treated as failures.
+- Check the bundled model-schema snapshot in `lib_doctor` for duplicate keys, the declared count, and missing files. This is snapshot consistency, not a review of schema contents.
+- Add a captured platform-projection fixture with a `--check` drift comparison, and a mutation case list for `mutation_check.py --cases`.
+- Treat a failed mutation restore as "not verified" rather than "caught".
+- Compare node parameters against both places the platform stores them (the `params` object and `params.settings`), so a storage difference alone no longer produces a false parameter mismatch when a build runs again. A real difference is still rejected.
+- Reject a declared parameter whose two stored copies disagree, instead of guessing which one the platform uses.
+- Compare parameter values with JSON semantics, so `true` and `1` are not treated as equal.
+- Explain hash-suffixed missing node names as collision renames: a duplicate display name renames every colliding node, which orphans nodes built earlier.
+- Stop repeating a unit a fact already carries (`二十岁上下岁`) and a label it already carries (`层高层高约三米`).
+- Report strict-mode artifact warnings as failures, matching the exit code instead of still printing `[WARN]`.
+
 ## 1.0.1-beta.2
 
 - Preserve the complete ordered reference list when applying multiple incoming edges.

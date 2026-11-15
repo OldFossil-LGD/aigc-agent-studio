@@ -22,6 +22,11 @@ import io
 import json
 import os
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 import tempfile
 
@@ -62,9 +67,9 @@ def load_jsonl_strict(path):
 
 
 def run(cmd):
-    proc = subprocess.run(cmd, capture_output=True, text=True,
-                          encoding="utf-8", env=CHILD_ENV)
-    return proc.returncode, (proc.stdout or "") + (proc.stderr or "")
+    finished = proc.run(cmd, capture_output=True, text=True,
+                        encoding="utf-8", env=CHILD_ENV, timeout=proc.DEFAULT)
+    return finished.returncode, (finished.stdout or "") + (finished.stderr or "")
 
 
 def find_one(package, pattern):

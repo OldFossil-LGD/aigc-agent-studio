@@ -17,8 +17,26 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-import cv2
-import numpy as np
+import sys
+
+try:  # 可选视频后端：pip install aigc-agent-studio[video]
+    import cv2
+    import numpy as np
+except ImportError:  # 缺后端时模块仍可导入，只有入口拒绝运行
+    cv2 = None
+    np = None
+
+
+VIDEO_BACKEND_HINT = "本功能需要视频后端：pip install aigc-agent-studio[video]"
+
+
+def _require_video_backend():
+    missing = [name for name, mod in (("cv2", cv2), ("numpy", np)) if mod is None]
+    if missing:
+        print("%s（缺 %s）" % (VIDEO_BACKEND_HINT, ", ".join(missing)), file=sys.stderr)
+        return False
+    return True
+
 
 
 def ts(seconds: float) -> str:
@@ -43,6 +61,8 @@ def content_bounds(frame: np.ndarray, thresh: float = 8.0) -> tuple[int, int]:
 
 
 def main() -> int:
+    if not _require_video_backend():
+        return 2
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
     ap.add_argument("--out", required=True)

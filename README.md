@@ -16,6 +16,8 @@ A LibTV-based filmmaking skill for AI agents. Use it to develop a script, review
 
 Give the agent a brief in plain language. It uses the filmmaking reference library to work through the task, keeps track of your requirements and checks the result before delivery. The Python tools handle structured handoffs, prompt compilation and offline checks.
 
+Every filmmaking task starts with the built-in GrillMe intake. The agent records what you have already said, then asks about missing decisions through your host's clickable question tool. A complete brief can move on without extra questions. If your host has no supported question tool, the agent explains this and asks for your consent to use text choices. The bundled adapter prepares questions and records replies. Your agent host provides the interface. See the [GrillMe workflow](references/grill-me.md).
+
 ## Connect LibTV to your agent
 
 Install the complete skill folder in your agent host, then set up a LibTV connection. Your host needs access to the skill files and one of these tool interfaces.
@@ -64,7 +66,7 @@ delivery_readiness: DRAFT_REVIEW_REQUIRED
 output: out/demo/13_Draft_Prompt.md
 ~~~
 
-PASS and READY refer to the declared engineering constraints. Final delivery requires a current review record. Removing `--draft` without that record returns a nonzero exit code and creates no current Final. The [demo notes](docs/DEMO.md) include captured output and rejected inputs.
+PASS and READY refer to the declared engineering constraints. Final delivery requires a completed GrillMe record supplied with `--grill` and a current review record. Removing `--draft` without those records returns a nonzero exit code and creates no current Final. The [demo notes](docs/DEMO.md) include captured output and rejected inputs.
 
 The offline demo runs without an API key or LibTV. Agent/model usage and approved platform generation can have separate costs.
 
@@ -72,7 +74,8 @@ The offline demo runs without an API key or LibTV. Agent/model usage and approve
 
 ~~~mermaid
 flowchart LR
-  B[Natural-language brief] --> A[Agent: task and endpoint]
+  B[Natural-language brief] --> G[GrillMe: record known facts and clarify missing decisions]
+  G --> A[Agent: task and endpoint]
   A --> C[Consider domains and select sources]
   C --> R[Read full applicable sources and exceptions]
   R --> D[Task-grounded choices and artifact draft]

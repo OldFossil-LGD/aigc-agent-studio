@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import shutil
 import subprocess
@@ -36,6 +37,10 @@ def resolve_libtv_binary() -> Path:
 LIBTV = resolve_libtv_binary()
 
 
+def _setting_value(value):
+    return value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
+
+
 def _node_args(
     command: dict[str, Any],
     project_uuid: str,
@@ -46,9 +51,9 @@ def _node_args(
         str(LIBTV),
         "node",
         "--x",
-        str(command.get("x", 0)),
+        str(_coord(command.get("x"))),
         "--y",
-        str(command.get("y", 0)),
+        str(_coord(command.get("y"))),
         "create",
         command["name"],
         "-t",
@@ -63,7 +68,7 @@ def _node_args(
     if mode_type:
         args.extend(["-s", f"modeType={mode_type}"])
     for key, value in (command.get("settings") or {}).items():
-        args.extend(["-s", f"{key}={value}"])
+        args.extend(["-s", f"{key}={_setting_value(value)}"])
     if with_prompt:
         prompt = command.get("prompt")
         if prompt:
@@ -227,7 +232,7 @@ def _existing_nodes(project_uuid, commands, read_json=None):
         if not isinstance(row, dict):
             raise RuntimeError("invalid node inventory row")
         node_id = row.get("id")
-        name = row.get("name")
+        name = _node_name(row)
         if not isinstance(node_id, str) or not node_id.strip():
             raise RuntimeError("invalid node id")
         if not isinstance(name, str) or not name.strip():
@@ -236,6 +241,22 @@ def _existing_nodes(project_uuid, commands, read_json=None):
             raise RuntimeError("ambiguous node inventory")
         by_id[node_id] = row
         by_name[name] = row
+
+    # 单节点详情没有 position（实测：position 只出现在 libtv project 的回包里）。
+    # 计划声明了坐标就必须补取，否则 _node_matches 会把它判成"参数不匹配"。
+    positions = {}
+    if any(isinstance(c, dict) and "position" in c for c in (commands or [])):
+        try:
+            meta = read_json([str(LIBTV), "project", project_uuid])
+        except Exception:
+            # 取不到就退回旧行为：缺坐标仍会被 _node_matches 判成不匹配，
+            # 所以这里不是放宽校验，而是不把"读不到"升级成另一种失败。
+            meta = None
+        rows = meta.get("nodes") if isinstance(meta, dict) else None
+        for row in rows or []:
+            if (isinstance(row, dict) and isinstance(row.get("id"), str)
+                    and isinstance(row.get("position"), dict)):
+                positions[row["id"]] = row["position"]
 
     skip_names = set()
     for command in commands or []:
@@ -257,10 +278,13 @@ def _existing_nodes(project_uuid, commands, read_json=None):
             node = detail
         else:
             raise RuntimeError("invalid node detail")
-        if not isinstance(node, dict) or node.get("id") != node_id:
+        if not isinstance(node, dict) or _detail_key(node) != node_id:
             raise RuntimeError("node id mismatch")
-        if node.get("name") != name:
+        # 详情投影同样可能把名字放在 data.name（MCP 形态），统一用 _node_name 取名。
+        if _node_name(node) != name:
             raise RuntimeError('node name mismatch')
+        if "position" in command and "position" not in node and node_id in positions:
+            node = dict(node, position=positions[node_id])
         if not _node_matches(command, node):
             raise RuntimeError("node parameters mismatch")
         if "refs" in command:
@@ -279,18 +303,111 @@ def _existing_nodes(project_uuid, commands, read_json=None):
 
 
 def _node_params(node):
+    if "nodes" in node:
+        rows = node["nodes"]
+        if not isinstance(rows, list) or len(rows) != 1 or not isinstance(rows[0], dict):
+            return None
+        node = rows[0]
     if "params" in node:
         return node["params"]
     data = node.get("data")
     return data.get("params") if isinstance(data, dict) else None
 
 
+def _node_name(node):
+    """展示名：CLI 投影在顶层，MCP 投影在 data.name（顶层为空串）。"""
+    if "nodes" in node and isinstance(node.get("nodes"), list) and len(node["nodes"]) == 1:
+        node = node["nodes"][0]
+    if not isinstance(node, dict):
+        return None
+    for candidate in (node.get("name"),
+                      node["data"].get("name") if isinstance(node.get("data"), dict) else None):
+        if isinstance(candidate, str) and candidate.strip():
+            return candidate
+    return None
+
+
+def _coord(value):
+    """坐标：缺键与显式 null 同义，都按 0 处理。
+
+    直接 str() 会把 None 渲染成字符串 "None" 发给 CLI（实测 --x None）。
+    整数不做 float 转换（10**400 转 float 会抛 OverflowError，2**53+1 会丢精度）。
+    """
+    if isinstance(value, bool):
+        return 0
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float) and math.isfinite(value):
+        return value
+    return 0
+
+
+def _detail_key(detail):
+    """详情里的节点标识。
+
+    实测（2026-11-11，真实 CLI）：`node list` 给 `id`，`node <id>` 详情给
+    `nodeKey` 且**没有 `id` 字段**，两者是同一个 UUID。只比 `id` 会让身份
+    回读必定失败——重跑建库与审计已建好的画布都会踩到。
+    """
+    if not isinstance(detail, dict):
+        return None
+    return detail.get("nodeKey") or detail.get("id")
+
+
+def _geometry(node):
+    position = node.get("position")
+    if isinstance(position, (list, tuple)) and len(position) >= 2:
+        position = dict(zip(("x", "y", "w", "h"), position))
+    if not isinstance(position, dict):
+        return None
+    values = {"x": position.get("x"), "y": position.get("y")}
+    for short, long_name in (("w", "width"), ("h", "height")):
+        value = position.get(short, position.get(long_name, node.get(long_name)))
+        if value is not None:
+            values[short] = value
+    if any(isinstance(value, bool) for value in values.values()):
+        return None
+    try:
+        values = {key: float(value) for key, value in values.items()}
+    except (TypeError, ValueError):
+        return None
+    return values if all(math.isfinite(value) for value in values.values()) else None
+
+
+def _same_value(left, right):
+    """按 JSON 语义判等（与后续比较用的口径一致）。
+
+    不能用 Python 的 ==：True == 1 在 Python 里成立，而 JSON 里 true 与 1 是不同值。
+    序列化失败一律判不等——宁可报不一致，也不要静默认为相同。
+    """
+    try:
+        return (json.dumps(left, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+                           allow_nan=False)
+                == json.dumps(right, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+                              allow_nan=False))
+    except (TypeError, ValueError):
+        return False
+
+
 def _node_matches(command, node):
     if not isinstance(command, dict) or not isinstance(node, dict):
         return False
     node_type = command.get("node_type")
-    if node_type is None or type(node.get("type")) is not type(node_type) or node.get("type") != node_type:
+    # 列表投影给 type，单节点详情给 nodeType（实测同值），两处都要认。
+    actual_type = node.get("type", node.get("nodeType")) if isinstance(node, dict) else None
+    if node_type is None or type(actual_type) is not type(node_type) or actual_type != node_type:
         return False
+    if "position" in command:
+        expected_geometry, actual_geometry = _geometry(command), _geometry(node)
+        if expected_geometry is None or actual_geometry is None:
+            return False
+        # 只比两边都有的键：真实 CLI 的 project 回包只给 x/y，没有宽高。
+        # 宽高核不到就不装作核过——但 x/y 必须都在，缺一即判不匹配。
+        shared = [key for key in expected_geometry if key in actual_geometry]
+        if "x" not in shared or "y" not in shared:
+            return False
+        if any(actual_geometry.get(key) != expected_geometry[key] for key in shared):
+            return False
 
     model = command.get("model")
     mode_type = command.get("mode_type")
@@ -301,12 +418,20 @@ def _node_matches(command, node):
     if not isinstance(settings, dict):
         return False
     content = command.get("content")
-    needs_params = bool(model) or bool(mode_type) or bool(prompt) or bool(settings)
+    params_want = command.get("params")
+    needs_params = bool(model) or bool(mode_type) or bool(prompt) or bool(settings) or bool(params_want)
     params = _node_params(node)
     if needs_params and not isinstance(params, dict):
         return False
     if not isinstance(params, dict):
         params = {}
+
+    # 平台把同一批声明的 -s 拆到两处：modeType 在 params 顶层，enableSound 在
+    # params.settings（实测 2026-11-12）。只查其中一处，重跑 apply 必然误判。
+    # 合并视图包含顶层全部键（含 settings 本身），供 params 分支按原样比对嵌套结构。
+    nested = params.get("settings") if isinstance(params.get("settings"), dict) else {}
+    lookup = dict(nested)
+    lookup.update(params)
 
     if model:
         try:
@@ -327,14 +452,29 @@ def _node_matches(command, node):
         except (TypeError, ValueError):
             return False
     if settings:
-        params_settings = params.get("settings")
-        if not isinstance(params_settings, dict):
-            return False
+        # 不再要求节点必须有 params.settings：单个 -s 键可能被平台放到 params 顶层。
         for key, value in settings.items():
-            if key not in params_settings:
+            if key not in lookup:
+                return False
+            # 两处都有却互相矛盾时，无法判断平台以哪一处为准：判为不匹配（不猜）。
+            if key in params and key in nested and not _same_value(params[key], nested[key]):
+                return False
+            actual = lookup[key]
+            try:
+                if json.dumps(actual, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False) != json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False):
+                    return False
+            except (TypeError, ValueError):
+                return False
+    if params_want is not None:
+        if not isinstance(params_want, dict):
+            return False
+        for key, value in params_want.items():
+            if key not in lookup:
+                return False
+            if key in params and key in nested and not _same_value(params[key], nested[key]):
                 return False
             try:
-                if json.dumps(params_settings[key], sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False) != json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False):
+                if json.dumps(lookup[key], sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False) != json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False):
                     return False
             except (TypeError, ValueError):
                 return False

@@ -10,6 +10,13 @@ metadata:
 先确认用户要停在哪里；只交提示词就停在提示词，不自动变成画布或成片任务。
 用户不用填写JSON：Agent理解原话并形成现有intent交接，脚本负责校验和机械派生。
 
+## 站 0 · GrillMe（所有影视制作前的共同入口）
+
+先完整读 references/grill-me.md，建立或恢复内置 GrillMe 会话。先把用户原话中的已知项和创作委托落账，再选择下一题；完整 brief 可按 L0 零提问通过。每个制作任务都先过这一环节，问几轮由缺口决定。
+有问题时，Agent 调用宿主当前实际提供的原生询问工具，以可点击选项和自由输入收集答案；每轮一个主问题，附推荐、依据和适用的“由 AI 决定”出口。发出工具请求后等待真实用户回复，推荐项与派发回执均不算用户选择。
+宿主缺交互工具时先暂停说明，取得文字交互同意后才使用文字选项。问题适配器见 scripts/grill_ui.py；宿主 UI 由宿主提供，安装本项目后由 Agent 调用可用工具。
+会话形成带来源、锁定与修订的 Creative Intent Contract 和台账，站 0 就绪后再进入对应创作或制作路径。用户说“其他你定”记为提案，自拟值保留 agent_proposed、locked=false。生成与画布写入仍分别按授权边界处理。
+
 ## LibTV 接入前提
 
 完整制作工作流依赖 LibTV。Agent 须通过 LibTV MCP 或官方 CLI 接入并完成用户自己的账号授权，再执行画布操作、模型生成和制作交付。安装说明见 docs/LIBTV_SETUP.md。
@@ -36,11 +43,12 @@ metadata:
 | 用户要什么 | 必读入口与真实执行路径 |
 |---|---|
 | 可复制提示词，含空镜/风格化/人物镜 | references/stage1-delivery-entry.md → scripts/compile_intent_delivery.py；工艺消费见 references/craft-delivery-entry.md。**块序由 block-spec.md 裁决，用户不选模板**：一次出 13（交付正文）+ 15（统一 12 块标准视图，scripts/canonical_prompt.py） |
-| 用户只说一句话要做一条片子 | **唯一入口 scripts/studio_run.py**（拆解→编译→IR→12 块视图一条命令跑完，产物 10/11/12/15/16 自动落盘）；用户不需要知道 IR / 12 块 / 拆解单这些词；停下来就地说明缺什么、回哪一站 |
+| 用户只说一句话要做一条片子 | 先经过站 0 GrillMe，形成可用剧本后进入 **scripts/studio_run.py**（拆解→编译→IR→12 块视图一条命令跑完，产物 10/11/12/15/16 自动落盘）；用户不需要知道 IR / 12 块 / 拆解单这些词；停下来就地说明缺什么、回哪一站 |
 | 要改提示词系统本身（块契约 / 编译器 / 校验规则） | **先读 references/prompt-ir-contract.md**（IR 唯一事实源、来源与锁定、12 块映射、规则清单）＋ docs/prompt_audit.md（审计与缺口）；再用 scripts/production_ir.py build/validate/render；不改 13 号排法前先看审计 §6 |
 | 单镜或完整影视生产 | 完整读 references/studio-workflow.md 与 references/run-sheet.md，再用 references/production-compiler.md 的主编译链 |
 | 影视任务内的角色/道具/场景资产 | **先读 references/asset-standard.md（四层 / 版本 / 状态 / 数量的唯一裁决）**，再读 references/asset-pipeline.md（引用计划与四层 QC）与 references/asset-prompt-spec.md；**清单→画布用 scripts/libtv_canvas_build.py（七件＋两类边，默认 dry-run）**；先按 references/style-library.md 确定风格，不给空镜补人物 |
 | 反推、复刻、蒸馏或盲测 | 先读唯一 references/reverse-fidelity-contract.md，分别声明mode、deliverable、source_access；副本不能升格原项目，未解不编 |
+| 镜头里**多人同框**，或一份素材要**剪出长短两个版本** | references/crowd-and-take-length.md（群像动作差异、同步表演的适用例外、动作预算与步速、长短版取点和手柄成本；手册数值按当前镜头与参考校准） |
 | 局部返工、版本变化、审片回执 | references/offline-continuity-entry.md 与 references/review-passes.md；图失效建议不等于已执行返工，绑定PASS不等于媒体已审 |
 | 剧本要拆成资产与分镜（"哪些资产、多少镜、每镜什么景别"） | **唯一入口 references/script-breakdown-bridge.md**（认哪三种版式、字段契约、未解怎么记），再用 scripts/breakdown_compile.py 出 10/11/12 三件；站 5 用 asset_manifest 对账，站 6 用 compile_production 编译 |
 | 与外部 crew / 别的 agent 系统交换分镜契约 | **唯一入口 references/filmdsl-interchange.md**（派生视图与权威分界、五层归属、crew 角色换算、回修梯度），再用 scripts/filmdsl_bridge.py 导出与对账；`filmdsl/v1` 不是新权威 |
@@ -51,11 +59,13 @@ prompt_only停在Prompt Package与草稿/受审阅门控的正式Markdown：不�
 
 ## 最小状态链
 
-定义与停止点见 references/studio-workflow.md 开篇“最小状态链”及 references/run-sheet.md §一。
+站 0 的会话和契约先于制作规划；缺口或冲突保留在会话中。其余定义与停止点见 references/studio-workflow.md 开篇“最小状态链”及 references/run-sheet.md §一。
 
 ## 交付前自检
 
 按 references/studio-workflow.md 的分镜交付检查及 references/run-sheet.md 对应工位执行；提示词交付另按 references/stage1-delivery-entry.md §4 独立验收。
+
+**最后一道环节是最终审计**：任何影视交付前完整读 references/final-delivery-audit.md，逐项审阅用户需求、内容、文件完整性、结构执行、来源证据、适用媒体与交付状态，再运行 scripts/final_delivery_audit.py。对实际文件和平台读回核验；失败或关键项未验证时停止交付。Agent 在已授权范围内修复后重跑审计，删除重建及付费动作另行确认。审计后改动任何交付物，旧报告失效，重新审计。
 
 ## 任务读取计划
 

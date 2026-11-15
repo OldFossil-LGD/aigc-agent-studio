@@ -45,6 +45,11 @@ import json
 import os
 import re
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -203,8 +208,8 @@ def _gate(path, mode):
     sp = os.path.join(HERE, "shotlist_lint.py")
     if not os.path.isfile(sp):
         return None, ""
-    r = subprocess.run([sys.executable, sp, path, "--mode", mode],
-                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    r = proc.run([sys.executable, sp, path, "--mode", mode],
+                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=proc.DEFAULT)
     return r.returncode, r.stdout.decode("utf-8", "replace")
 
 

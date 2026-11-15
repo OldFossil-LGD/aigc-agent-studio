@@ -19,15 +19,21 @@ from __future__ import print_function
 
 import argparse
 import json
+import math
 import os
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 
 RC_OK, RC_FAIL, RC_USAGE, RC_EMPTY = 0, 1, 2, 3
 try:
-    from .apply_libtv_plan import resolve_libtv_binary
+    from .apply_libtv_plan import resolve_libtv_binary, _node_params
 except ImportError:
-    from apply_libtv_plan import resolve_libtv_binary
+    from apply_libtv_plan import resolve_libtv_binary, _node_params
 
 LIBTV = str(resolve_libtv_binary())
 FACE_VIEWS = {"front", "left", "right"}
@@ -83,7 +89,7 @@ def from_plan(doc):
 
 def from_canvas(project):
     def call(*args):
-        r = subprocess.run([LIBTV] + list(args), capture_output=True)
+        r = proc.run([LIBTV] + list(args), capture_output=True, timeout=proc.PLATFORM)
         out = r.stdout.decode("utf-8", "replace")
         return json.loads(out) if out.strip() else {}
     lst = call("node", "list", "-p", project)
@@ -103,6 +109,22 @@ def from_canvas(project):
     return nodes, edges
 
 
+def _is_coord(value):
+    """能不能当坐标用。
+
+    整数天然有限，且**不能转 float**：10**400 转 float 会抛 OverflowError，
+    2**53+1 与 2**53+2 则会塌缩成同一个数、把两个不同位置判成重合。
+    只有 float 才需要查 isfinite（inf/nan 不是坐标）。
+    """
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, int):
+        return True
+    if isinstance(value, float):
+        return math.isfinite(value)
+    return False
+
+
 def integrity_report(nodes, names, orders, edges):
     """画布体检：重名、参考无入边、顺序与边不一致、悬空端点。"""
     vals = list(names.values())
@@ -118,39 +140,82 @@ def integrity_report(nodes, names, orders, edges):
             in_img.setdefault(t, set()).add(s)
     refs_no_edge, mismatch = [], []
     for tid, order in orders.items():
-        if not order:
-            continue
         srcs = in_img.get(tid, set())
-        if not srcs:
+        if order and not srcs:
             refs_no_edge.append(tid)
         elif set(order) != srcs:
             mismatch.append(tid)
+    # 位置重合：真实画布回包里 nodes[*].position 是 {x, y}（实测 2026-11-11）。
+    # 只在能读到有限数值时才有结论；读不到就跳过，不猜。
+    positions = {}
+    for nid, node in nodes.items():
+        pos = node.get("position")
+        if not isinstance(pos, dict):
+            continue
+        x, y = pos.get("x"), pos.get("y")
+        if not (_is_coord(x) and _is_coord(y)):
+            continue
+        positions.setdefault((x, y), []).append(nid)
+    stacked = {key: ids for key, ids in positions.items() if len(ids) > 1}
     return {"duplicate_names": dup, "duplicate_count": len(dup),
             "refs_without_edge": refs_no_edge, "order_mismatch": mismatch,
-            "unknown_endpoints": unknown}
+            "unknown_endpoints": unknown,
+            "stacked_positions": stacked, "stacked_count": len(stacked),
+            "stacked_nodes": sum(len(ids) for ids in stacked.values())}
 
 
 def canvas_integrity(project):
     from concurrent.futures import ThreadPoolExecutor
 
     def one(i):
-        rr = subprocess.run([LIBTV, "node", i, "-p", project], capture_output=True)
+        rr = proc.run([LIBTV, "node", i, "-p", project], capture_output=True, timeout=proc.PLATFORM)
+        if rr.returncode != 0:
+            raise ValueError("节点详情回读失败：" + i)
         try:
             d = json.loads(rr.stdout.decode("utf-8", "replace"))
-        except ValueError:
-            return i, []
-        return i, ((d.get("data") or {}).get("params") or {}).get("imageListOrder") or []
+        except ValueError as exc:
+            raise ValueError("节点详情 JSON 无效：" + i) from exc
+        params = _node_params(d) if isinstance(d, dict) else None
+        if not isinstance(params, dict):
+            raise ValueError("节点参数回读无效：" + i)
+        order = params.get('imageListOrder', [])
+        if not isinstance(order, list) or any(not isinstance(ref, str) or not ref.strip() for ref in order):
+            raise ValueError("节点引用顺序回读无效：" + i)
+        return i, order
 
-    r = subprocess.run([LIBTV, "project", project], capture_output=True)
-    meta = json.loads(r.stdout.decode("utf-8", "replace"))
-    nodes = {n["id"]: n for n in meta.get("nodes") or []}
-    names = {i: nodes[i]["name"] for i in nodes}
+    r = proc.run([LIBTV, "project", project], capture_output=True, timeout=proc.PLATFORM)
+    try:
+        if r.returncode != 0:
+            raise ValueError("画布回读失败")
+        meta = json.loads(r.stdout.decode("utf-8", "replace"))
+        if (not isinstance(meta, dict) or not isinstance(meta.get('nodes'), list)
+                or not isinstance(meta.get('edges'), list)):
+            raise ValueError("画布图结构无效")
+        nodes = {}
+        for node in meta['nodes']:
+            if (not isinstance(node, dict) or not isinstance(node.get('id'), str)
+                    or not node['id'].strip() or node['id'] in nodes
+                    or not isinstance(node.get('name'), str) or not node['name'].strip()):
+                raise ValueError("画布节点身份无效或有歧义")
+            nodes[node['id']] = node
+        for edge in meta['edges']:
+            if (not isinstance(edge, dict)
+                    or any(not isinstance(edge.get(key), str) or not edge[key].strip()
+                           for key in ('source', 'target'))):
+                raise ValueError("画布边格式无效")
+        names = {i: nodes[i]["name"] for i in nodes}
+    except (ValueError, TypeError) as exc:
+        print("[FAIL] 画布回读失败：%s" % exc)
+        return RC_FAIL
     targets = [i for i in nodes if nodes[i].get("type") in ("video", "image")]
     orders = {}
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        for i, order in ex.map(one, targets):
-            if order:
+    try:
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            for i, order in ex.map(one, targets):
                 orders[i] = order
+    except (OSError, ValueError, TypeError) as exc:
+        print("[FAIL] 画布引用回读失败：%s" % exc)
+        return RC_FAIL
     rep = integrity_report(nodes, names, orders, meta.get("edges") or [])
     print("画布体检：%d 节点 / %d 边" % (len(nodes), len(meta.get("edges") or [])))
     print("  重名节点：%d 个名字（%d 个节点受影响）" % (rep["duplicate_count"], len(rep["duplicate_names"])))
@@ -163,6 +228,11 @@ def canvas_integrity(project):
     for i in rep["order_mismatch"][:5]:
         print("    -", names.get(i, i)[:50])
     print("  悬空端点：%d 条边" % rep["unknown_endpoints"])
+    print("  位置重合：%d 组（%d 个节点）—— 仅报告，不计入失败" %
+          (rep["stacked_count"], rep["stacked_nodes"]))
+    for (x, y), ids in list(rep["stacked_positions"].items())[:3]:
+        print("    - (%g, %g) 处有 %d 个节点，如 %s" %
+              (x, y, len(ids), names.get(ids[0], ids[0])[:40]))
     bad = len(rep["refs_without_edge"]) + len(rep["order_mismatch"]) + rep["unknown_endpoints"]
     return RC_FAIL if bad else RC_OK
 

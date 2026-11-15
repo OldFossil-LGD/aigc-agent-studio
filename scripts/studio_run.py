@@ -27,6 +27,11 @@ import io
 import json
 import os
 import subprocess
+
+try:
+    from . import proc
+except ImportError:  # 作为脚本直接运行时
+    import proc
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -36,8 +41,8 @@ RC_OK, RC_FAIL, RC_USAGE = 0, 1, 2
 
 
 def _run(script, args):
-    r = subprocess.run([PY, os.path.join(HERE, script)] + args, capture_output=True,
-                       text=True, encoding="utf-8", env=ENV)
+    r = proc.run([PY, os.path.join(HERE, script)] + args, capture_output=True,
+                 text=True, encoding="utf-8", env=ENV, timeout=proc.DEFAULT)
     return {"script": script, "exit": r.returncode,
             "stdout_tail": (r.stdout or "").strip().splitlines()[-6:],
             "stderr_tail": (r.stderr or "").strip().splitlines()[-3:]}
@@ -52,7 +57,7 @@ def _write(path, payload):
 
 
 def run(script=None, artifacts=None, out=".", duration=None, aspect=None, style=None,
-        asset_spec=None):
+        asset_spec=None, *, grill=None, draft=False):
     os.makedirs(out, exist_ok=True)
     steps = []
     if script:
@@ -67,10 +72,15 @@ def run(script=None, artifacts=None, out=".", duration=None, aspect=None, style=
         artifacts = out
     if not artifacts:
         raise ValueError("需要 --script 或 --artifacts")
-    steps.append(_run("compile_production.py", [os.path.join(artifacts, "11_compiler_input.json"),
-                                                "--out", os.path.join(out, "plan")]))
+    compile_args = [os.path.join(artifacts, "11_compiler_input.json"),
+                    "--out", os.path.join(out, "plan")]
+    if grill:
+        compile_args += ["--grill", str(grill)]
+    if draft:
+        compile_args.append("--draft")
+    steps.append(_run("compile_production.py", compile_args))
     if steps[-1]["exit"] != 0:
-        return _finish(out, steps, blk="计划编译未通过（看 plan/06_gate_results.json）")
+        return _finish(out, steps, blk="计划编译未通过（查本步 stdout_tail / stderr_tail 与站 0 台账）")
     steps.append(_run("production_ir.py", ["build", "--artifacts", os.path.join(out, "plan"),
                                            "--out", os.path.join(out, "16_production_ir.json")]))
     if steps[-1]["exit"] not in (0, 4):
@@ -120,7 +130,7 @@ def self_test():
                                 "prop_01": "玻璃门，门轴干涩，门框有冷凝水珠"}, ensure_ascii=False))
         out = os.path.join(root, "proj")
         rc = run(script=script, out=out, duration=5, aspect="16:9", style="写实电影纪录片",
-                 asset_spec=spec_path)
+                 asset_spec=spec_path, draft=True)
         arts = set(os.listdir(out)) if os.path.isdir(out) else set()
         checks = [
             ("一条命令跑通", rc == RC_OK),
@@ -161,6 +171,8 @@ def main(argv=None):
     ap.add_argument("--aspect")
     ap.add_argument("--style")
     ap.add_argument("--asset-spec")
+    ap.add_argument("--grill", help="站 0 契约或台账路径")
+    ap.add_argument("--draft", action="store_true", help="显式离线工程诊断模式")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args(argv)
     if args.self_test:
@@ -170,7 +182,7 @@ def main(argv=None):
         return RC_USAGE
     try:
         return run(args.script, args.artifacts, args.out, args.duration, args.aspect,
-                   args.style, args.asset_spec)
+                   args.style, args.asset_spec, grill=args.grill, draft=args.draft)
     except ValueError as exc:
         print("用法错误：%s" % exc)
         return RC_USAGE

@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 import re
 import shutil
@@ -100,7 +101,9 @@ _COPYABLE_HEADER = """# 最终提示词（可直接复制投喂）
 
 
 def _write_json(path: Path, payload: Any) -> None:
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    pending = path.with_name(path.name + ".pending")
+    pending.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    pending.replace(path)
 
 
 def _clean_block_value(value: Any) -> str:
@@ -257,11 +260,120 @@ def build_delivery_package(
     return delivery
 
 
-def compile_intent_delivery(handoff: dict[str, Any], out_dir: Path, previous_graph: dict[str, Any] | None = None, *, review=None, capture_root=None, session_id=None, draft=False, canonical_13=False) -> dict[str, Any]:
+GRILL_PASS_STATUSES = ("GRILL_PASS", "GRILL_PASS_WITH_WARNINGS")
+
+
+def grill_gate_for(handoff: dict[str, Any], grill: dict[str, Any] | None) -> dict[str, Any]:
+    try:
+        from scripts.grill_ledger import as_ledger, decision_mismatches, gate
+    except ImportError:
+        from grill_ledger import as_ledger, decision_mismatches, gate
+    stop = "film" if handoff.get("task_type") == "full_film" else "prompt"
+    if grill is None:
+        return {"status": "GRILL_REQUIRED", "stop": stop, "blocking": [], "warnings": [], "errors": []}
+    result = dict(gate(grill, stop))
+    decisions = handoff.get("decisions") or {}
+    mismatches = decision_mismatches(
+        as_ledger(grill), task_type=handoff.get("task_type"),
+        duration_sec=(decisions.get("duration_sec") or {}).get("value"),
+        aspect_ratio=(decisions.get("aspect_ratio") or {}).get("value"),
+        sound_mode=(handoff.get("sound") or {}).get("mode"),
+    )
+    result["mismatches"] = mismatches
+    if mismatches and result["status"] in GRILL_PASS_STATUSES:
+        result["status"] = "GRILL_MISMATCH"
+    return result
+
+
+PENDING_MARKDOWN = "13_Final_Prompt.pending.md"
+AUDIT_FORMAT = "final-delivery-audit/v1"
+REQUIRED_FINAL_CHECKS = {
+    "delivery_contract_scope_and_target",
+    "actual_files_and_scope",
+    "current_task_sources_and_decisions",
+    "inputs_unchanged_at_end",
+    "production_contract_roles_dependencies_and_prompts",
+    "prompt_packages_graph_and_constraints",
+    "required_check_execution_receipts",
+}
+
+
+def _final_audit_gate(report_path, pending, final, digest, *, task=None):
+    """A Final may exist only if an audit report covers exactly these bytes."""
+    resolved_pending, resolved_final = Path(pending).resolve(), Path(final).resolve()
+    if not report_path:
+        return {"status": "BLOCKED", "reason": "FINAL_AUDIT_REQUIRED",
+                "candidate_sha256": digest, "candidate": str(resolved_pending)}
+    try:
+        report = json.loads(Path(report_path).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return {"status": "BLOCKED", "reason": "FINAL_AUDIT_UNREADABLE: %s" % exc,
+                "candidate_sha256": digest}
+    if not isinstance(report, dict):
+        return {"status": "BLOCKED", "reason": "FINAL_AUDIT_INVALID_REPORT"}
+    inputs = report.get("inputs") or {}
+    if not isinstance(inputs, dict) or any(not isinstance(path, str) or not isinstance(value, str) for path, value in inputs.items()):
+        return {"status": "BLOCKED", "reason": "FINAL_AUDIT_INVALID_INPUTS"}
+    recorded = sorted({inputs[str(path)] for path in (resolved_pending, resolved_final) if str(path) in inputs})
+    detail = {"candidate_sha256": digest, "recorded": recorded, "report": str(Path(report_path).resolve())}
+    if report.get("audit_format") != AUDIT_FORMAT:
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_WRONG_FORMAT")
+    if report.get("delivery_ready") is not True or report.get("status") != "PASS":
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_NOT_PASSING")
+    if any(not isinstance(item, dict) or item.get("status") != "PASS" for item in report.get("checks") or []):
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_NOT_PASSING")
+    # A report is only convincing if it carries the whole audit, not a bare flag:
+    # every required check must be present and passing.
+    passed = {item.get("name") for item in report.get("checks") or []
+              if isinstance(item, dict) and item.get("status") == "PASS"}
+    absent = sorted(REQUIRED_FINAL_CHECKS - passed)
+    if absent:
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_INCOMPLETE",
+                    missing_checks=absent)
+    if digest not in recorded:
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_DOES_NOT_COVER_THESE_BYTES")
+    if task is None or report.get("kind") != "prompt" or not isinstance(report.get("manifest"), str):
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_CONTEXT_REQUIRED")
+    try:
+        from scripts.delivery_review import task_fingerprint
+        from scripts.final_delivery_audit import audit_manifest, _file_digest
+        if report.get("task_sha256") != task_fingerprint(task):
+            return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_WRONG_TASK")
+        stale = [path for path, value in inputs.items() if _file_digest(path)[0] != value]
+        if stale:
+            return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_STALE_INPUTS", changed=stale)
+        current = audit_manifest(report["manifest"])
+        covered = current["inputs"].get(str(resolved_pending)) == digest
+        complete = REQUIRED_FINAL_CHECKS <= {item["name"] for item in current["checks"] if item["status"] == "PASS"}
+        if (current.get("delivery_ready") is not True or current.get("kind") != "prompt"
+                or current.get("task_sha256") != task_fingerprint(task) or not covered or not complete):
+            return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_REVALIDATION_FAILED", revalidation=current)
+    except (OSError, ValueError, TypeError, KeyError) as exc:
+        return dict(detail, status="BLOCKED", reason="FINAL_AUDIT_REVALIDATION_FAILED", error=str(exc))
+    return dict(detail, status="PASS", reason="FINAL_AUDIT_CURRENT", revalidation=current)
+
+
+def compile_intent_delivery(handoff: dict[str, Any], out_dir: Path, previous_graph: dict[str, Any] | None = None, *, review=None, capture_root=None, session_id=None, draft=False, canonical_13=False, grill=None, require_grill=False, final_audit_report=None) -> dict[str, Any]:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     validate_intent_handoff(handoff)
     compiler_input = to_compiler_input(handoff)
+    # Invalidate the previous delivery before any compiler outputs can change.
+    old_final = out_dir / COPYABLE_MARKDOWN
+    if old_final.exists() and not old_final.read_text(encoding="utf-8").startswith("# 最终提示词（可直接复制投喂）"):
+        raise RuntimeError("Existing Final is not a recognised generated artifact; use a new output directory")
+    _write_json(out_dir / DELIVERY_PACKAGE, {
+        "delivery_readiness": "DRAFT_REVIEW_REQUIRED",
+        "verification_status": "NOT_EVALUATED", "artifacts": [],
+    })
+    if old_final.exists():
+        previous = out_dir / "13_Previous_Final_Prompt.unverified.md"
+        index = 1
+        while previous.exists():
+            previous = out_dir / ("13_Previous_Final_Prompt.%d.unverified.md" % index)
+            index += 1
+        old_final.rename(previous)
+
     result = compile_production(compiler_input, out_dir, previous_graph=previous_graph)
 
     # One-way adapter: canonical prompt packages -> legacy offline renderer.
@@ -289,20 +401,10 @@ def compile_intent_delivery(handoff: dict[str, Any], out_dir: Path, previous_gra
         from delivery_review import evaluate_delivery_review
     canonical = json.dumps(result.get("prompts") or [], ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     review_check = evaluate_delivery_review(_SKILL_ROOT, handoff, {"prompt_packages": canonical}, review, capture_root=capture_root, session_id=session_id)
-    evidence_ready = review_check["delivery_ready"] and not draft
+    grill_check = grill_gate_for(handoff, grill)
+    grill_passed = grill_check["status"] in GRILL_PASS_STATUSES
+    evidence_ready = review_check["delivery_ready"] and not draft and (grill_passed or (not require_grill and grill is None))
     formal = False  # Write Final only after independent verification.
-    # An unreviewed rerun must not leave an old generated Final masquerading as current.
-    old_final = out_dir / COPYABLE_MARKDOWN
-    if not formal and old_final.exists():
-        if old_final.read_text(encoding="utf-8").startswith("# 最终提示词（可直接复制投喂）"):
-            previous = out_dir / "13_Previous_Final_Prompt.unverified.md"
-            index = 1
-            while previous.exists():
-                previous = out_dir / ("13_Previous_Final_Prompt.%d.unverified.md" % index)
-                index += 1
-            old_final.rename(previous)
-        else:
-            raise RuntimeError("Existing Final is not a recognised generated artifact; use a new output directory")
     copyable = out_dir / (COPYABLE_MARKDOWN if formal else DRAFT_MARKDOWN)
     markdown = build_copyable_markdown(result.get("prompts") or [])
     if not formal:
@@ -334,6 +436,8 @@ def compile_intent_delivery(handoff: dict[str, Any], out_dir: Path, previous_gra
         print("canonical view skipped: %s" % exc)
     delivery["delivery_readiness"] = "REVIEW_EVIDENCE_READY" if formal else "DRAFT_REVIEW_REQUIRED"
     delivery["review_evidence"] = review_check
+    delivery["grill_evidence"] = grill_check
+    delivery["claims"]["grill_interview_complete"] = grill_passed
     delivery["claims"]["material_decision_provenance_locked"] = delivery["claims"].pop("creative_decisions_locked")
     delivery["claims"]["creative_quality_verified"] = False
 
@@ -346,12 +450,12 @@ def compile_intent_delivery(handoff: dict[str, Any], out_dir: Path, previous_gra
         result.get("graph"),
         copyable.read_text(encoding="utf-8"),
     )
+    final_text = None
     if evidence_ready and verification["status"] == "PASS" and result["gate"]["status"] == "PASS" and result["contract"].get("status") == "READY":
         final_text = build_copyable_markdown(result.get("prompts") or [], reviewed=True)
         final_check = verify_delivery(handoff, result.get("prompts") or [], result.get("graph"), final_text)
         if final_check["status"] == "PASS":
             copyable = out_dir / COPYABLE_MARKDOWN
-            copyable.write_text(final_text, encoding="utf-8")
             delivery["delivery_readiness"] = "REVIEW_EVIDENCE_READY"
             verification = final_check
     delivery["verification_scope"] = "Declared constraint semantics; not all creative quality or actual media"
@@ -365,8 +469,39 @@ def compile_intent_delivery(handoff: dict[str, Any], out_dir: Path, previous_gra
         "约束语义验收由 scripts/verify_delivery_semantics.py 独立执行，结果见 %s。"
         % VERIFICATION_REPORT
     )
-    delivery["artifacts"] = sorted({p.name for p in out_dir.iterdir() if p.is_file()} | {DELIVERY_PACKAGE})
-    _write_json(out_dir / DELIVERY_PACKAGE, delivery)
+    # The staging candidate is not a deliverable: it is replaced by the Final.
+    delivery["artifacts"] = sorted({p.name for p in out_dir.iterdir()
+                                    if p.is_file() and p.name != PENDING_MARKDOWN}
+                                   | {DELIVERY_PACKAGE, copyable.name})
+    if delivery["delivery_readiness"] == "REVIEW_EVIDENCE_READY":
+        # The candidate is staged, audited by its own bytes and only then
+        # promoted. Without a report that covers exactly these bytes there is
+        # no Final — a formal entry may not hand over an unaudited delivery.
+        pending = out_dir / PENDING_MARKDOWN
+        pending.write_text(final_text, encoding="utf-8")
+        # Hash what is actually on disk: text mode rewrites newlines on Windows.
+        gate = _final_audit_gate(final_audit_report, pending, out_dir / COPYABLE_MARKDOWN,
+                                 hashlib.sha256(pending.read_bytes()).hexdigest(), task=handoff)
+        delivery["final_audit"] = gate
+        if gate["status"] == "PASS":
+            staged = dict(delivery, delivery_readiness="DRAFT_REVIEW_REQUIRED",
+                          artifacts=[name for name in delivery["artifacts"] if name != COPYABLE_MARKDOWN])
+            _write_json(out_dir / DELIVERY_PACKAGE, staged)
+            pending.replace(copyable)
+            try:
+                _write_json(out_dir / DELIVERY_PACKAGE, delivery)
+            except OSError:
+                copyable.unlink()
+                raise
+        else:
+            delivery["delivery_readiness"] = "FINAL_AUDIT_REQUIRED"
+            delivery["final_candidate"] = str(pending)
+            copyable = out_dir / DRAFT_MARKDOWN
+            delivery["artifacts"] = sorted(p.name for p in out_dir.iterdir()
+                                           if p.is_file() and p.name != PENDING_MARKDOWN)
+            _write_json(out_dir / DELIVERY_PACKAGE, delivery)
+    else:
+        _write_json(out_dir / DELIVERY_PACKAGE, delivery)
 
     return {
         "gate": result["gate"],
@@ -394,6 +529,9 @@ def main() -> int:
     parser.add_argument("--review", help="Current creative-review/v1 JSON")
     parser.add_argument("--capture-root")
     parser.add_argument("--session")
+    parser.add_argument("--grill", help="Station 0 grill-ledger/v1 or creative-intent-contract/v1 JSON")
+    parser.add_argument("--final-audit-report",
+                        help="final-delivery-audit/v1 report that covers the bytes being promoted")
     args = parser.parse_args()
 
     if args.self_test:
@@ -405,7 +543,8 @@ def main() -> int:
         handoff = json.loads(Path(args.intent).read_text(encoding="utf-8"))
         previous = json.loads(Path(args.previous_graph).read_text(encoding="utf-8")) if args.previous_graph else None
         review = json.loads(Path(args.review).read_text(encoding="utf-8")) if args.review else None
-        result = compile_intent_delivery(handoff, Path(args.out), previous_graph=previous, review=review, capture_root=args.capture_root, session_id=args.session, draft=args.draft, canonical_13=getattr(args, "canonical_13", False))
+        grill = json.loads(Path(args.grill).read_text(encoding="utf-8")) if args.grill else None
+        result = compile_intent_delivery(handoff, Path(args.out), previous_graph=previous, review=review, capture_root=args.capture_root, session_id=args.session, draft=args.draft, canonical_13=getattr(args, "canonical_13", False), grill=grill, require_grill=not args.draft, final_audit_report=args.final_audit_report)
     except IntentHandoffError as exc:
         sys.stderr.write("intent handoff invalid: %s\n" % exc)
         return 2
@@ -422,6 +561,7 @@ def main() -> int:
         "copyable_markdown": result["copyable_markdown"],
         "verification_status": result["verification"]["status"],
         "delivery_readiness": result["delivery"]["delivery_readiness"],
+        "grill_status": result["delivery"]["grill_evidence"]["status"],
     }, ensure_ascii=False, indent=2))
     if result["gate"]["status"] == "FAIL":
         return 1
@@ -435,6 +575,13 @@ def main() -> int:
                 json.dumps(result["verification"]["failures"], ensure_ascii=False, indent=2),
             )
         )
+        return 1
+    if (not args.draft or args.grill) and result["delivery"]["grill_evidence"]["status"] not in GRILL_PASS_STATUSES:
+        sys.stderr.write("%s: station 0 requires a matching completed interview ledger or contract\n" % result["delivery"]["grill_evidence"]["status"])
+        return 1
+    if not args.draft and result["delivery"]["delivery_readiness"] == "FINAL_AUDIT_REQUIRED":
+        sys.stderr.write("FINAL_AUDIT_REQUIRED: %s\n"
+                         % json.dumps(result["delivery"].get("final_audit"), ensure_ascii=False))
         return 1
     if not args.draft and result["delivery"]["delivery_readiness"] != "REVIEW_EVIDENCE_READY":
         sys.stderr.write("DRAFT_REVIEW_REQUIRED: full current source and decision evidence required before formal delivery\n")

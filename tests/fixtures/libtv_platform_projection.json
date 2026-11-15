@@ -1,0 +1,552 @@
+{
+  "note": "LibTV CLI 回包的完整结构快照（值脱敏，结构/嵌套/类型保持原样）。**本文件不会自动发现平台漂移**——漂移需重跑 tests/test_platform_projection_contract.py --check。",
+  "captured_from": {
+    "cli": "1.1.3",
+    "nodes": 26,
+    "edges": 25
+  },
+  "node_list": {
+    "projectUuid": "<str>",
+    "scope": "<str>",
+    "count": 26,
+    "nodes": [
+      {
+        "id": "node-1",
+        "type": "<str>",
+        "name": "节点_1"
+      },
+      {
+        "id": "node-2",
+        "type": "<str>",
+        "name": "节点_2"
+      },
+      {
+        "id": "node-3",
+        "type": "<str>",
+        "name": "节点_3"
+      },
+      {
+        "id": "node-4",
+        "type": "<str>",
+        "name": "节点_4"
+      },
+      {
+        "id": "node-5",
+        "type": "<str>",
+        "name": "节点_5"
+      },
+      {
+        "id": "node-6",
+        "type": "<str>",
+        "name": "节点_6"
+      },
+      {
+        "id": "node-7",
+        "type": "<str>",
+        "name": "节点_7"
+      },
+      {
+        "id": "node-8",
+        "type": "<str>",
+        "name": "节点_8"
+      },
+      {
+        "id": "node-9",
+        "type": "<str>",
+        "name": "节点_9"
+      },
+      {
+        "id": "node-10",
+        "type": "<str>",
+        "name": "节点_10"
+      },
+      {
+        "id": "node-11",
+        "type": "<str>",
+        "name": "节点_11"
+      },
+      {
+        "id": "node-12",
+        "type": "<str>",
+        "name": "节点_12"
+      },
+      {
+        "id": "node-13",
+        "type": "<str>",
+        "name": "节点_13"
+      },
+      {
+        "id": "node-14",
+        "type": "<str>",
+        "name": "节点_14"
+      },
+      {
+        "id": "node-15",
+        "type": "<str>",
+        "name": "节点_15"
+      },
+      {
+        "id": "node-16",
+        "type": "<str>",
+        "name": "节点_16"
+      },
+      {
+        "id": "node-17",
+        "type": "<str>",
+        "name": "节点_17"
+      },
+      {
+        "id": "node-18",
+        "type": "<str>",
+        "name": "节点_18"
+      },
+      {
+        "id": "node-19",
+        "type": "<str>",
+        "name": "节点_19"
+      },
+      {
+        "id": "node-20",
+        "type": "<str>",
+        "name": "节点_20"
+      },
+      {
+        "id": "node-21",
+        "type": "<str>",
+        "name": "节点_21"
+      },
+      {
+        "id": "node-22",
+        "type": "<str>",
+        "name": "节点_22"
+      },
+      {
+        "id": "node-23",
+        "type": "<str>",
+        "name": "节点_23"
+      },
+      {
+        "id": "node-24",
+        "type": "<str>",
+        "name": "节点_24"
+      },
+      {
+        "id": "node-25",
+        "type": "<str>",
+        "name": "节点_25"
+      },
+      {
+        "id": "node-26",
+        "type": "<str>",
+        "name": "节点_26"
+      }
+    ]
+  },
+  "node_detail": {
+    "nodeKey": "node-1",
+    "data": {
+      "type": "<str>",
+      "name": "节点_1",
+      "url": [],
+      "alt": "<str>",
+      "action": "<str>",
+      "generatorType": "<str>",
+      "params": {
+        "prompt": "<str>",
+        "model": "<str>",
+        "count": 1,
+        "modeType": "<str>",
+        "settings": {
+          "quality": "<str>",
+          "resolution": "<str>",
+          "background": "<str>",
+          "ratio": "<str>"
+        },
+        "advancedSettings": {},
+        "imageListOrder": [
+          "<str>"
+        ],
+        "textList": [],
+        "imageList": [
+          {
+            "nodeId": "<str>",
+            "url": "https://example.invalid/asset"
+          }
+        ],
+        "videoList": [],
+        "audioList": [],
+        "mixedListOrder": [
+          "<str>"
+        ]
+      }
+    },
+    "nodeType": "<str>",
+    "name": "节点_1"
+  },
+  "project": {
+    "projectUuid": "<str>",
+    "nodes": [
+      {
+        "id": "node-1",
+        "name": "节点_1",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-2",
+        "name": "节点_2",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-3",
+        "name": "节点_3",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-4",
+        "name": "节点_4",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-5",
+        "name": "节点_5",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-6",
+        "name": "节点_6",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-7",
+        "name": "节点_7",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-8",
+        "name": "节点_8",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-9",
+        "name": "节点_9",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-10",
+        "name": "节点_10",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-11",
+        "name": "节点_11",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-12",
+        "name": "节点_12",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-13",
+        "name": "节点_13",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-14",
+        "name": "节点_14",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-15",
+        "name": "节点_15",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-16",
+        "name": "节点_16",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-17",
+        "name": "节点_17",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-18",
+        "name": "节点_18",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-19",
+        "name": "节点_19",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-20",
+        "name": "节点_20",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-21",
+        "name": "节点_21",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-22",
+        "name": "节点_22",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-23",
+        "name": "节点_23",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-24",
+        "name": "节点_24",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-25",
+        "name": "节点_25",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "node-26",
+        "name": "节点_26",
+        "type": "<str>",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "node-27",
+        "source": "node-20",
+        "target": "node-14"
+      },
+      {
+        "id": "node-28",
+        "source": "node-15",
+        "target": "node-13"
+      },
+      {
+        "id": "node-29",
+        "source": "node-10",
+        "target": "node-22"
+      },
+      {
+        "id": "node-30",
+        "source": "node-24",
+        "target": "node-3"
+      },
+      {
+        "id": "node-31",
+        "source": "node-10",
+        "target": "node-25"
+      },
+      {
+        "id": "node-32",
+        "source": "node-10",
+        "target": "node-7"
+      },
+      {
+        "id": "node-33",
+        "source": "node-9",
+        "target": "node-11"
+      },
+      {
+        "id": "node-34",
+        "source": "node-9",
+        "target": "node-21"
+      },
+      {
+        "id": "node-35",
+        "source": "node-10",
+        "target": "node-14"
+      },
+      {
+        "id": "node-36",
+        "source": "node-9",
+        "target": "node-19"
+      },
+      {
+        "id": "node-37",
+        "source": "node-10",
+        "target": "node-16"
+      },
+      {
+        "id": "node-38",
+        "source": "node-6",
+        "target": "node-26"
+      },
+      {
+        "id": "node-39",
+        "source": "node-6",
+        "target": "node-12"
+      },
+      {
+        "id": "node-40",
+        "source": "node-20",
+        "target": "node-23"
+      },
+      {
+        "id": "node-41",
+        "source": "node-9",
+        "target": "node-5"
+      },
+      {
+        "id": "node-42",
+        "source": "node-10",
+        "target": "node-17"
+      },
+      {
+        "id": "node-43",
+        "source": "node-9",
+        "target": "node-8"
+      },
+      {
+        "id": "node-44",
+        "source": "node-6",
+        "target": "node-14"
+      },
+      {
+        "id": "node-45",
+        "source": "node-9",
+        "target": "node-1"
+      },
+      {
+        "id": "node-46",
+        "source": "node-9",
+        "target": "node-18"
+      },
+      {
+        "id": "node-47",
+        "source": "node-15",
+        "target": "node-6"
+      },
+      {
+        "id": "node-48",
+        "source": "node-10",
+        "target": "node-4"
+      },
+      {
+        "id": "node-49",
+        "source": "node-3",
+        "target": "node-2"
+      },
+      {
+        "id": "node-50",
+        "source": "node-10",
+        "target": "node-12"
+      },
+      {
+        "id": "node-51",
+        "source": "node-13",
+        "target": "node-8"
+      }
+    ]
+  }
+}

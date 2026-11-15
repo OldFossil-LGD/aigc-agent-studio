@@ -1,1 +1,5 @@
 jsonschema>=4.0
+
+# 可选视频后端（consensus_cuts / film_contact_sheets / reverse_shotlist / subtitle_bands）:
+#   pip install -e ".[video]"
+# 缺它时这些脚本的模块仍可导入，只有运行入口会提示并退出 2。

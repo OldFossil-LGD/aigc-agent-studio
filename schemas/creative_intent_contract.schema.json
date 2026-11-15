@@ -1,0 +1,640 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigc-agent-studio.local/schemas/creative_intent_contract.schema.json",
+  "title": "CreativeIntentContract",
+  "description": "创作意图契约（creative-intent-contract/v1）。GrillMe 的唯一输出；值来自用户原话、问答、预设或 AI 提议，逐项带来源与锁。null 表示未确认，不是「无」。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract_format",
+    "contract_id",
+    "project_id",
+    "original_request",
+    "creative_intent",
+    "production_constraints",
+    "creative_authority",
+    "creative_constraints",
+    "decisions",
+    "unresolved",
+    "blocking_conflicts",
+    "status",
+    "revision"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "contract_format": {
+      "const": "creative-intent-contract/v1"
+    },
+    "contract_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "original_request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "creative_intent": {
+      "type": "object",
+      "properties": {
+        "deliverable": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "prompt_only",
+            "single_shot",
+            "full_film",
+            null
+          ]
+        },
+        "content_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "short_drama",
+            "short_film",
+            "ad",
+            "trailer",
+            "concept_piece",
+            null
+          ]
+        },
+        "genre": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "emotional_target": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "psychological_suspense",
+            "horror",
+            "emotional_twist",
+            "intellectual_mystery",
+            "gentle_healing",
+            "other",
+            null
+          ]
+        },
+        "theme": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "core_conflict": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "narrative_preference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "final_reveal",
+            "continuous_reveal",
+            "open_ending",
+            "no_reversal",
+            null
+          ]
+        },
+        "ending_tone": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "relief",
+            "regret",
+            "open",
+            "ai_decide",
+            null
+          ]
+        },
+        "visual_style": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visual_register": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "photoreal",
+            "stylized",
+            "illustration",
+            "graphic",
+            null
+          ]
+        },
+        "character_invariants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cast_relations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relationship_axis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "family",
+            "old_friends",
+            "strangers_kindness",
+            "ai_decide",
+            null
+          ]
+        },
+        "clue_policy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "fair_clues",
+            "unreliable_narrator",
+            "dual_line_misdirection",
+            null
+          ]
+        },
+        "horror_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "supernatural",
+            "psychological",
+            "body",
+            null
+          ]
+        },
+        "intent_fork": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reverse_contract": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "content_reverse",
+                "copy_reverse",
+                "source_replica",
+                "rule_distill",
+                "production_build"
+              ]
+            },
+            "deliverable": {
+              "type": "string"
+            },
+            "source_access": {
+              "type": "string",
+              "enum": [
+                "original_readback",
+                "copy_readback",
+                "public_media",
+                "text_only",
+                "none"
+              ]
+            }
+          },
+          "required": [
+            "mode",
+            "deliverable",
+            "source_access"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "production_constraints": {
+      "type": "object",
+      "properties": {
+        "duration_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "aspect_ratio": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\s*\\d+(?:\\.\\d+)?\\s*:\\s*\\d+(?:\\.\\d+)?\\s*$"
+        },
+        "target_platform": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "vertical_feed",
+            "horizontal",
+            "streaming",
+            "cinema",
+            "undecided",
+            null
+          ]
+        },
+        "spoken_language": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "zh",
+            "en",
+            "no_dialogue",
+            "multi_subtitle",
+            null
+          ]
+        },
+        "audio_policy": {
+          "type": "string",
+          "enum": [
+            "silent",
+            "ambience_only",
+            "dialogue_allowed",
+            "unspecified"
+          ]
+        },
+        "music_policy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "none",
+            "source_music",
+            "score",
+            "ai_decide",
+            null
+          ]
+        },
+        "shot_count": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "one",
+            "two_to_eight",
+            "over_eight",
+            null
+          ]
+        },
+        "consistency_chain": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "asset_plus_tailframe",
+            "asset_only",
+            "text_only",
+            null
+          ]
+        },
+        "channel": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "libtv",
+            "workrally",
+            "none",
+            null
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "creative_authority": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "auto_with_escalation",
+            "confirm_each_node"
+          ]
+        },
+        "allow_agent_defaults": {
+          "type": "boolean"
+        },
+        "confirmation_required_for": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "budget_ceiling": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ignition_approval": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "creative_constraints": {
+      "type": "object",
+      "properties": {
+        "must_have": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "must_never": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scope_out": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "consistency_anchors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dialogue_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acceptance": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "asset_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rights_status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "cleared",
+            "pending",
+            "none",
+            "not_applicable",
+            null
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "field_path",
+          "value",
+          "source_type",
+          "source_ref",
+          "locked",
+          "confidence",
+          "decision_status"
+        ],
+        "properties": {
+          "field_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {},
+          "source_type": {
+            "enum": [
+              "user_original",
+              "grillme_answer",
+              "project_preset",
+              "agent_proposed",
+              "inherited_project"
+            ]
+          },
+          "source_ref": {
+            "type": "string"
+          },
+          "locked": {
+            "type": "boolean"
+          },
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "decision_status": {
+            "enum": [
+              "confirmed",
+              "proposed",
+              "defaulted",
+              "unresolved",
+              "conflicted"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "fields",
+          "message",
+          "severity"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "blocking",
+              "warning"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "enum": [
+        "needs_question",
+        "ready_for_planning",
+        "blocked_conflict"
+      ]
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "revision_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "revision",
+          "id",
+          "previous",
+          "value",
+          "action"
+        ],
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "minimum": 2
+          },
+          "id": {
+            "type": "string"
+          },
+          "previous": {},
+          "value": {},
+          "action": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "grill_policy": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "L0",
+            "L1",
+            "L2"
+          ]
+        },
+        "threshold": {
+          "type": "number"
+        },
+        "questions_asked": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "next_question": {
+      "type": "string"
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schema": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorization": {
+      "type": "object",
+      "required": [
+        "generation_authorized",
+        "note"
+      ],
+      "properties": {
+        "generation_authorized": {
+          "const": false
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
